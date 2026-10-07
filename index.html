@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kids Learning Hub 🎈 CBSE Pattern</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:'Baloo 2','Comic Sans MS',system-ui,sans-serif;
+  min-height:100vh;color:#2b2b3a;
+  background:linear-gradient(135deg,#ffe9f3,#e6f4ff 35%,#fff8e1 65%,#e9fff0);
+  background-attachment:fixed;
+}
+/* ---------- HEADER ---------- */
+header{
+  position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;
+  padding:10px 14px;background:rgba(255,255,255,.85);
+  backdrop-filter:blur(14px);border-bottom:2px solid #fff;
+  box-shadow:0 4px 20px rgba(0,0,0,.06);
+}
+header h1{font-size:1.05rem;font-weight:800;line-height:1.1}
+header .sub{font-size:.7rem;opacity:.6;font-weight:600}
+.icon-btn{
+  width:44px;height:44px;border-radius:14px;border:none;cursor:pointer;
+  background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.1);font-size:1.25rem;
+  display:grid;place-items:center;transition:.2s;flex:0 0 auto;
+}
+.icon-btn:hover{transform:translateY(-2px)}
+.icon-btn:active{transform:scale(.94)}
+.spacer{flex:1}
+.stars{background:#fff5cc;border-radius:14px;padding:8px 14px;font-weight:800;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);white-space:nowrap;font-size:.9rem}
+/* ---------- LAYOUT ---------- */
+main{padding:18px 16px 70px;max-width:1100px;margin:0 auto}
+.hero{text-align:center;padding:18px 10px 26px}
+.hero h1{font-size:clamp(1.5rem,5.5vw,2.6rem);font-weight:800;
+  background:linear-gradient(90deg,#ff5f9e,#7c5cff,#00b8d9);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin-top:8px;opacity:.7;font-weight:600;font-size:.98rem}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.grid.levels{grid-template-columns:repeat(auto-fill,minmax(215px,1fr))}
+/* ---------- CARDS ---------- */
+.card,.item{
+  border:none;cursor:pointer;font-family:inherit;background:#fff;
+  display:flex;flex-direction:column;align-items:center;
+  box-shadow:0 8px 22px rgba(80,80,140,.12);
+  transition:transform .15s, box-shadow .15s;
+  position:relative;overflow:hidden;text-align:center;
+}
+.card{border-radius:26px;padding:22px 14px;gap:6px}
+.card::after{content:'';position:absolute;inset:0 0 auto 0;height:7px;background:var(--c,#7c5cff)}
+.card:hover,.item:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 16px 34px rgba(80,80,140,.2)}
+.card:active,.item:active{transform:scale(.96)}
+.card .emo{font-size:2.4rem;line-height:1}
+.card .ttl{font-weight:800;font-size:1.02rem}
+.card .sub{font-size:.78rem;opacity:.65;font-weight:600}
+.item{border-radius:22px;padding:16px 10px;gap:8px}
+.item .visual{font-size:2.8rem;line-height:1}
+.item .bignum{font-size:3.2rem;font-weight:800;color:#7c5cff;line-height:1}
+.item .label{font-weight:800;font-size:.95rem}
+.item .badge{position:absolute;top:8px;left:8px;background:#7c5cff;color:#fff;
+  border-radius:10px;padding:1px 9px;font-size:.75rem;font-weight:800}
+.swatch{width:62px;height:62px;border-radius:50%;
+  box-shadow:inset 0 0 0 3px rgba(0,0,0,.08), 0 4px 10px rgba(0,0,0,.12)}
+/* ---------- INFO CARDS ---------- */
+.grid.info-grid{grid-template-columns:repeat(auto-fill,minmax(255px,1fr))}
+.card.info{align-items:flex-start;text-align:left;padding:20px 18px 18px;gap:8px}
+.card.info .emo{font-size:2rem}
+.card.info .ttl{font-size:1.05rem}
+.card.info .txt{font-size:.85rem;opacity:.75;font-weight:600;line-height:1.35}
+.card.info .play{align-self:flex-start;background:#eef0ff;color:#5c4dff;font-weight:800;
+  border-radius:12px;padding:4px 12px;font-size:.75rem;margin-top:4px}
+/* ---------- LESSON VIEW ---------- */
+.lesson{background:#fff;border-radius:28px;padding:24px 18px;
+  box-shadow:0 10px 30px rgba(80,80,140,.14);max-width:780px;margin:0 auto}
+.lesson h2{text-align:center;font-size:1.45rem;color:#7c5cff;margin-bottom:6px}
+.lesson .chapter{text-align:center;font-size:.82rem;opacity:.6;font-weight:700;margin-bottom:18px}
+.sec-title{font-size:1.1rem;font-weight:800;margin:20px 0 12px;color:#2b2b3a;
+  display:flex;align-items:center;gap:8px}
+.point{
+  width:100%;border:none;font-family:inherit;cursor:pointer;background:#f6f4ff;
+  border-radius:16px;padding:13px 16px;font-size:.98rem;font-weight:700;
+  text-align:left;transition:.2s;color:#2b2b3a;margin-bottom:9px;line-height:1.4;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.point:hover{background:#e9e5ff;transform:translateX(4px)}
+.point.active{background:#7c5cff;color:#fff}
+.point .dot{flex:0 0 auto}
+.qa-item{background:#f9f9ff;border-radius:16px;padding:12px 14px;margin-bottom:10px;
+  border-left:5px solid #7c5cff}
+.qa-q{font-weight:800;font-size:.96rem;margin-bottom:8px;line-height:1.35;cursor:pointer}
+.qa-q:hover{color:#7c5cff}
+.qa-a{background:#e8fff0;border-radius:12px;padding:10px 13px;font-size:.92rem;
+  font-weight:700;color:#1b7a45;display:none;line-height:1.4}
+.qa-a.show{display:block;animation:fade .3s}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
+.ans-btn{border:none;font-family:inherit;cursor:pointer;background:#eef0ff;color:#5c4dff;
+  font-weight:800;border-radius:12px;padding:7px 15px;font-size:.82rem;transition:.2s}
+.ans-btn:hover{background:#dfe3ff}
+/* ---------- TABLE VIEW ---------- */
+.table-view{background:#fff;border-radius:28px;padding:24px 18px;max-width:520px;margin:0 auto;
+  box-shadow:0 10px 30px rgba(80,80,140,.14)}
+.table-view h2{text-align:center;font-size:1.5rem;color:#7c5cff;margin-bottom:16px}
+.trow{
+  width:100%;border:none;font-family:inherit;cursor:pointer;background:#f6f4ff;
+  border-radius:14px;padding:13px 16px;font-size:1.15rem;font-weight:800;
+  text-align:center;transition:.2s;color:#2b2b3a;margin-bottom:8px;letter-spacing:.5px;
+}
+.trow:hover{background:#e9e5ff;transform:scale(1.02)}
+.trow.active{background:#7c5cff;color:#fff;transform:scale(1.03)}
+/* ---------- POEM ---------- */
+.poem{background:#fff;border-radius:28px;padding:24px 18px;
+  box-shadow:0 10px 30px rgba(80,80,140,.14);max-width:720px;margin:0 auto}
+.poem h2{text-align:center;font-size:1.45rem;margin-bottom:6px;color:#7c5cff}
+.poem .author{text-align:center;font-size:.8rem;opacity:.6;font-weight:700;margin-bottom:16px}
+.lines{display:flex;flex-direction:column;gap:9px}
+.line{
+  border:none;font-family:inherit;cursor:pointer;background:#f6f4ff;
+  border-radius:16px;padding:13px 16px;font-size:1.02rem;font-weight:700;
+  text-align:left;transition:.2s;color:#2b2b3a;line-height:1.4;
+}
+.line:hover{background:#e9e5ff;transform:translateX(4px)}
+.line.active{background:#7c5cff;color:#fff;transform:scale(1.02)}
+.poem-actions{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.btn{border:none;font-family:inherit;cursor:pointer;border-radius:16px;
+  padding:12px 22px;font-weight:800;font-size:.98rem;background:#eef0ff;color:#5c4dff;transition:.2s}
+.btn.primary{background:linear-gradient(90deg,#7c5cff,#ff5f9e);color:#fff;
+  box-shadow:0 8px 20px rgba(124,92,255,.35)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.96)}
+/* ---------- QUIZ ---------- */
+.quiz{background:#fff;border-radius:28px;padding:24px 18px;
+  box-shadow:0 10px 30px rgba(80,80,140,.14);max-width:640px;margin:0 auto;text-align:center}
+.qmeta{font-weight:800;color:#9aa;font-size:.85rem;margin-bottom:10px}
+.qtext{font-size:clamp(1.15rem,4vw,1.7rem);margin:8px 0 22px;color:#2b2b3a;line-height:1.35}
+.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.opt{border:none;font-family:inherit;cursor:pointer;border-radius:18px;padding:18px 12px;
+  font-size:1.15rem;font-weight:800;background:#f4f6ff;color:#3b3b5c;transition:.2s;
+  box-shadow:0 4px 12px rgba(80,80,140,.1)}
+.opt:hover:not(:disabled){transform:translateY(-3px);background:#e8ecff}
+.opt.right{background:#34C759;color:#fff}
+.opt.wrong{background:#FF3B30;color:#fff}
+.result{background:#fff;border-radius:28px;padding:36px 20px;text-align:center;
+  box-shadow:0 10px 30px rgba(80,80,140,.14);max-width:520px;margin:0 auto}
+.result h2{margin:14px 0 20px;color:#7c5cff}
+@media(max-width:480px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:12px}
+  .item .visual{font-size:2.2rem}
+  .card .emo{font-size:1.9rem}
+  header h1{font-size:.9rem}
+  main{padding:14px 12px 60px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <button class="icon-btn" id="backBtn" onclick="goBack()">⬅️</button>
+  <div>
+    <h1 id="hTitle">Kids Learning Hub</h1>
+    <div class="sub" id="hSub">CBSE Pattern • Choose your class</div>
+  </div>
+  <div class="spacer"></div>
+  <button class="icon-btn" id="muteBtn" onclick="toggleSound()">🔊</button>
+  <div class="stars">⭐ <span id="starCount">0</span></div>
+</header>
+
+<main id="screen"></main>
+
+<script>
+/* =========================================================
+   1. SPEECH ENGINE
+   ========================================================= */
+let voices = [];
+let soundOn = true;
+
+function loadVoices(){ voices = window.speechSynthesis ? speechSynthesis.getVoices() : []; }
+if('speechSynthesis' in window){
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function pickVoice(lang){
+  const base = lang.split('-')[0];
+  return voices.find(v => v.lang.replace('_','-') === lang)
+      || voices.find(v => v.lang.replace('_','-').startsWith(base))
+      || null;
+}
+
+function speak(text, lang='en-IN', rate=0.85){
+  if(!soundOn || !('speechSynthesis' in window) || !text) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(String(text));
+  u.lang = lang; u.rate = rate; u.pitch = 1.05; u.volume = 1;
+  const v = pickVoice(lang);
+  if(v) u.voice = v;
+  speechSynthesis.speak(u);
+}
+
+function speakSequence(lines, lang='en-IN', onLine){
+  if(!soundOn || !('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  let i = 0;
+  const go = () => {
+    if(i >= lines.length){ if(onLine) onLine(-1); return; }
+    if(onLine) onLine(i);
+    const u = new SpeechSynthesisUtterance(lines[i]);
+    u.lang = lang; u.rate = 0.8; u.pitch = 1.1;
+    const v = pickVoice(lang); if(v) u.voice = v;
+    u.onend = () => { i++; setTimeout(go, 320); };
+    speechSynthesis.speak(u);
+  };
+  go();
+}
+
+function toggleSound(){
+  soundOn = !soundOn;
+  if(!soundOn && window.speechSynthesis) speechSynthesis.cancel();
+  document.getElementById('muteBtn').textContent = soundOn ? '🔊' : '🔇';
+}
+
+/* =========================================================
+   2. STARS / PROGRESS
+   ========================================================= */
+let stars = parseInt(localStorage.getItem('klh_stars') || '0', 10);
+function addStar(){
+  stars++;
+  localStorage.setItem('klh_stars', stars);
+  document.getElementById('starCount').textContent = stars;
+}
+document.getElementById('starCount').textContent = stars;
+
+/* =========================================================
+   3. LEVELS
+   ========================================================= */
+const LEVELS = {
+  l1:{name:'3 – 5 Years', sub:'Play Group • Nursery • KG', emoji:'🧸', color:'#FF6B9D',
+      cats:['alphabet','numbers','counting','colors','shapes','animals','fruits','flowers','body','rhymes']},
+  l2:{name:'6 – 8 Years', sub:'Class 1 – 3', emoji:'🎒', color:'#00C2A8',
+      cats:['phonics','tables','opposites','vegetables','birds','hindi','poems1','mathlesson1','mathquiz1','englesson1','engquiz1','gkquiz1']},
+  l3:{name:'9 – 11 Years', sub:'Class 4 – 6', emoji:'📚', color:'#FFA726',
+      cats:['tables','mathlesson2','mathquiz2','englesson2','engquiz2','gkquiz2','science','gk','computer','poems2']},
+  l4:{name:'12 – 15 Years', sub:'Class 7 – 10', emoji:'🎓', color:'#9B72FF',
+      cats:['tables','mathlesson3','mathquiz3','englesson3','engquiz3','gkquiz3','science2','history','geography','computer2','poems3']}
+};
+
+/* =========================================================
+   4. CATEGORIES
+   ========================================================= */
+const CATS = {
+  alphabet:{n:'ABCD', e:'🔤', c:'#FF6B9D'},
+  numbers:{n:'Numbers', e:'🔢', c:'#FFB300'},
+  counting:{n:'Counting', e:'💯', c:'#FFA000'},
+  colors:{n:'Colours', e:'🎨', c:'#00C2A8'},
+  shapes:{n:'Shapes', e:'🔷', c:'#4D96FF'},
+  animals:{n:'Animals', e:'🐘', c:'#FF7043'},
+  fruits:{n:'Fruits', e:'🍎', c:'#E53935'},
+  flowers:{n:'Flowers', e:'🌸', c:'#EC407A'},
+  body:{n:'Body Parts', e:'🖐️', c:'#8D6E63'},
+  rhymes:{n:'Rhymes', e:'🎵', c:'#7E57C2'},
+  phonics:{n:'Words', e:'📝', c:'#26A69A'},
+  tables:{n:'Tables 2–20', e:'✖️', c:'#5C6BC0'},
+  opposites:{n:'Opposites', e:'↔️', c:'#EF5350'},
+  vegetables:{n:'Vegetables', e:'🥕', c:'#66BB6A'},
+  birds:{n:'Birds', e:'🦜', c:'#29B6F6'},
+  hindi:{n:'हिंदी वर्णमाला', e:'🕉️', c:'#FF7043', lang:'hi-IN'},
+  poems1:{n:'Poems Class 1–3', e:'📜', c:'#8E24AA'},
+  poems2:{n:'Poems Class 4–6', e:'📜', c:'#8E24AA'},
+  poems3:{n:'Poems Class 7–10', e:'📜', c:'#8E24AA'},
+  mathlesson1:{n:'Maths Lessons', e:'📗', c:'#5C6BC0'},
+  mathlesson2:{n:'Maths Lessons', e:'📗', c:'#5C6BC0'},
+  mathlesson3:{n:'Maths Lessons', e:'📗', c:'#5C6BC0'},
+  englesson1:{n:'English Lessons', e:'📘', c:'#EF5350'},
+  englesson2:{n:'English Lessons', e:'📘', c:'#EF5350'},
+  englesson3:{n:'English Lessons', e:'📘', c:'#EF5350'},
+  mathquiz1:{n:'Maths Quiz', e:'🧮', c:'#AB47BC'},
+  mathquiz2:{n:'Maths Quiz', e:'🧮', c:'#AB47BC'},
+  mathquiz3:{n:'Maths Quiz', e:'🧮', c:'#AB47BC'},
+  engquiz1:{n:'English Quiz', e:'📝', c:'#26A69A'},
+  engquiz2:{n:'English Quiz', e:'📝', c:'#26A69A'},
+  engquiz3:{n:'English Quiz', e:'📝', c:'#26A69A'},
+  gkquiz1:{n:'GK Questions', e:'🌏', c:'#66BB6A'},
+  gkquiz2:{n:'GK Questions', e:'🌏', c:'#66BB6A'},
+  gkquiz3:{n:'GK Questions', e:'🌏', c:'#66BB6A'},
+  science:{n:'Science', e:'🔬', c:'#26C6DA'},
+  science2:{n:'Science', e:'⚛️', c:'#26C6DA'},
+  gk:{n:'GK', e:'🌍', c:'#66BB6A'},
+  history:{n:'History', e:'🏛️', c:'#A1887F'},
+  geography:{n:'Geography', e:'🗺️', c:'#43A047'},
+  computer:{n:'Computer', e:'💻', c:'#78909C'},
+  computer2:{n:'Computer', e:'🖥️', c:'#78909C'}
+};
+
+/* =========================================================
+   5. BASIC CONTENT (Level 1)
+   ========================================================= */
+const alphaPairs = [
+ ['A','Apple','🍎'],['B','Ball','⚽'],['C','Cat','🐱'],['D','Dog','🐶'],
+ ['E','Elephant','🐘'],['F','Fish','🐟'],['G','Grapes','🍇'],['H','Hat','👒'],
+ ['I','Ice Cream','🍦'],['J','Jug','🥛'],['K','Kite','🪁'],['L','Lion','🦁'],
+ ['M','Monkey','🐵'],['N','Nest','🪺'],['O','Orange','🍊'],['P','Parrot','🦜'],
+ ['Q','Queen','👑'],['R','Rabbit','🐰'],['S','Sun','☀️'],['T','Tiger','🐯'],
+ ['U','Umbrella','☂️'],['V','Van','🚐'],['W','Watch','⌚'],['X','Xylophone','🎹'],
+ ['Y','Yak','🐃'],['Z','Zebra','🦓']
+];
+
+const keycap = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+const numWords = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten',
+ 'Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
+
+const colorList = [
+ ['Red','#FF3B30'],['Blue','#0A84FF'],['Green','#34C759'],['Yellow','#FFD60A'],
+ ['Orange','#FF9500'],['Purple','#AF52DE'],['Pink','#FF2D95'],['Brown','#8B5A2B'],
+ ['Black','#1C1C1E'],['White','#FFFFFF'],['Grey','#9E9E9E'],['Golden','#FFC300']
+];
+
+const shapeList = [
+ ['Circle','⭕'],['Triangle','🔺'],['Square','🟥'],['Star','⭐'],['Heart','❤️'],
+ ['Diamond','🔷'],['Rectangle','🟦'],['Oval','🥚'],['Moon','🌙'],['Pentagon','🔶']
+];
+
+/* =========================================================
+   6. TABLES (auto-generated 2–20)
+   ========================================================= */
+const tableItems = [];
+for(let t=2; t<=20; t++){
+  const rows = [], spoken = [];
+  for(let i=1; i<=10; i++){
+    rows.push(`${t} × ${i} = ${t*i}`);
+    spoken.push(`${t} times ${i} is ${t*i}`);
+  }
+  tableItems.push({ n:t, rows, spoken });
+}
+
+/* =========================================================
+   7. LESSONS  (CBSE pattern — points + Q&A)
+   ========================================================= */
+const MATH_L1 = [
+ {emoji:'🔢', title:'Numbers 1 to 100', chapter:'Class 1 – Chapter 1',
+  points:[
+   'Numbers tell us how many things are there. We count from 1 to 100.',
+   'One digit numbers are 1 to 9. Two digit numbers are 10 to 99.',
+   'The number after 9 is 10. After 19 is 20. After 99 is 100.',
+   'We write numbers in words also. 5 is Five, 15 is Fifteen, 50 is Fifty.'
+  ],
+  qa:[
+   {q:'What comes after 19?', a:'20 — Twenty.'},
+   {q:'How many digits are there in 100?', a:'Three digits — 1, 0 and 0.'},
+   {q:'Write 15 in words.', a:'Fifteen.'}
+  ]},
+ {emoji:'➕', title:'Addition', chapter:'Class 1 – Chapter 2',
+  points:[
+   'Addition means putting things together. The sign of addition is +.',
+   'When we add, the answer is called the sum.',
+   'Example: 3 + 4 = 7. Three plus four equals seven.',
+   'We can add in any order. 3 + 4 is the same as 4 + 3.'
+  ],
+  qa:[
+   {q:'What is the sign of addition?', a:'The plus sign (+).'},
+   {q:'What is 5 + 5?', a:'10 — Ten.'},
+   {q:'What is the answer of addition called?', a:'The sum.'}
+  ]},
+ {emoji:'➖', title:'Subtraction', chapter:'Class 1 – Chapter 3',
+  points:[
+   'Subtraction means taking away. The sign is −.',
+   'The answer of subtraction is called the difference.',
+   'Example: 9 − 4 = 5. Nine minus four equals five.',
+   'We cannot take away more than we have in Class 1 numbers.'
+  ],
+  qa:[
+   {q:'What is the sign of subtraction?', a:'The minus sign (−).'},
+   {q:'What is 10 − 3?', a:'7 — Seven.'},
+   {q:'What is the answer of subtraction called?', a:'The difference.'}
+  ]},
+ {emoji:'🔷', title:'Shapes Around Us', chapter:'Class 2 – Chapter 1',
+  points:[
+   'A circle has no corners. Examples — ball, sun, wheel.',
+   'A triangle has 3 sides and 3 corners. Example — samosa, roof.',
+   'A square has 4 equal sides and 4 corners. Example — chessboard.',
+   'A rectangle has 4 sides. Two are long, two are short. Example — door.'
+  ],
+  qa:[
+   {q:'How many sides does a triangle have?', a:'Three sides.'},
+   {q:'Which shape has no corners?', a:'A circle.'},
+   {q:'Name a thing that is square.', a:'A chessboard or a square tile.'}
+  ]},
+ {emoji:'⏰', title:'Time', chapter:'Class 2 – Chapter 2',
+  points:[
+   'A clock tells us the time. It has two hands — hour hand and minute hand.',
+   'The short hand is the hour hand. The long hand is the minute hand.',
+   'When both hands are on 12, it is 12 o\'clock.',
+   'One hour has 60 minutes. One day has 24 hours.'
+  ],
+  qa:[
+   {q:'How many minutes are there in one hour?', a:'60 minutes.'},
+   {q:'Which hand is the hour hand?', a:'The short hand.'},
+   {q:'How many hours are there in a day?', a:'24 hours.'}
+  ]},
+ {emoji:'💰', title:'Money', chapter:'Class 3 – Chapter 1',
+  points:[
+   'Indian money is called Rupee. We write it as ₹.',
+   'One rupee has 100 paise.',
+   'Coins are 1, 2, 5, 10 rupees. Notes are 10, 20, 50, 100, 200, 500, 2000 rupees.',
+   'If a pencil costs ₹5 and an eraser costs ₹3, together they cost ₹8.'
+  ],
+  qa:[
+   {q:'How many paise make one rupee?', a:'100 paise.'},
+   {q:'What is the symbol of the Indian rupee?', a:'₹ — the rupee symbol.'},
+   {q:'If a pen is ₹10 and a copy is ₹20, what is the total?', a:'₹30 — thirty rupees.'}
+  ]}
+];
+
+const MATH_L2 = [
+ {emoji:'🔢', title:'Large Numbers', chapter:'Class 4 – Chapter 1',
+  points:[
+   'Numbers beyond 999 are large numbers. 1000 is One Thousand.',
+   'We use place value — Ones, Tens, Hundreds, Thousands, Ten Thousands, Lakhs.',
+   'The smallest 4-digit number is 1000. The largest 4-digit number is 9999.',
+   'The smallest 5-digit number is 10000. The largest is 99999.'
+  ],
+  qa:[
+   {q:'What is the smallest 4-digit number?', a:'1000 — One Thousand.'},
+   {q:'What is the largest 4-digit number?', a:'9999 — Nine thousand nine hundred ninety nine.'},
+   {q:'How many digits are there in a lakh?', a:'Six digits — 1,00,000.'}
+  ]},
+ {emoji:'✖️', title:'Multiplication', chapter:'Class 4 – Chapter 2',
+  points:[
+   'Multiplication is repeated addition. The sign is ×.',
+   'Example: 4 × 3 means 4 + 4 + 4 = 12.',
+   'The answer of multiplication is called the product.',
+   'Any number multiplied by 1 gives the same number. Any number multiplied by 0 gives 0.'
+  ],
+  qa:[
+   {q:'What is 6 × 7?', a:'42 — Forty two.'},
+   {q:'What is the answer of multiplication called?', a:'The product.'},
+   {q:'What is 25 × 0?', a:'Zero. Any number multiplied by zero is zero.'}
+  ]},
+ {emoji:'➗', title:'Division', chapter:'Class 4 – Chapter 3',
+  points:[
+   'Division means sharing equally. The sign is ÷.',
+   'Example: 12 ÷ 3 = 4. Twelve divided by three is four.',
+   'The answer of division is called the quotient. The left part is the remainder.',
+   'A number divided by 1 gives the same number. A number divided by itself gives 1.'
+  ],
+  qa:[
+   {q:'What is 20 ÷ 4?', a:'5 — Five.'},
+   {q:'What is the answer of division called?', a:'The quotient.'},
+   {q:'What is 9 ÷ 9?', a:'1 — One.'}
+  ]},
+ {emoji:'🍕', title:'Fractions', chapter:'Class 5 – Chapter 1',
+  points:[
+   'A fraction shows a part of a whole. Example: 1/2 means one part out of two.',
+   'The top number is the numerator. The bottom number is the denominator.',
+   '1/2 is called half. 1/4 is called one fourth or quarter. 3/4 is three fourths.',
+   'When the numerator and denominator are the same, the fraction equals 1.'
+  ],
+  qa:[
+   {q:'In 3/5, which number is the numerator?', a:'3 is the numerator.'},
+   {q:'What is 1/2 called?', a:'Half.'},
+   {q:'What is 1/4 called?', a:'One fourth or a quarter.'}
+  ]},
+ {emoji:'📐', title:'Lines and Angles', chapter:'Class 5 – Chapter 2',
+  points:[
+   'A line has no end points. A line segment has two end points. A ray has one end point.',
+   'An angle is formed when two rays meet at a point.',
+   'A right angle is exactly 90 degrees. A straight angle is 180 degrees.',
+   'An angle less than 90 degrees is acute. More than 90 is obtuse.'
+  ],
+  qa:[
+   {q:'How many degrees are there in a right angle?', a:'90 degrees.'},
+   {q:'What is an angle of 180 degrees called?', a:'A straight angle.'},
+   {q:'What is an angle smaller than 90 degrees called?', a:'An acute angle.'}
+  ]},
+ {emoji:'📏', title:'Perimeter and Area', chapter:'Class 5 – Chapter 3',
+  points:[
+   'Perimeter is the distance around a shape. We add all the sides.',
+   'Area is the space inside a shape. We measure it in square units.',
+   'Perimeter of a rectangle = 2 × (length + breadth).',
+   'Area of a rectangle = length × breadth. Area of a square = side × side.'
+  ],
+  qa:[
+   {q:'What is the formula for the perimeter of a rectangle?', a:'2 × (length + breadth).'},
+   {q:'What is the area of a square of side 4 cm?', a:'16 square centimetres.'},
+   {q:'What is the formula for the area of a rectangle?', a:'Length × breadth.'}
+  ]}
+];
+
+const MATH_L3 = [
+ {emoji:'➕', title:'Integers', chapter:'Class 7 – Chapter 1',
+  points:[
+   'Integers include positive numbers, negative numbers and zero.',
+   'On a number line, numbers to the right of zero are positive. To the left are negative.',
+   'Adding a negative number is like subtracting. 5 + (−3) = 2.',
+   'Subtracting a negative number is like adding. 5 − (−3) = 8.'
+  ],
+  qa:[
+   {q:'What is 7 + (−2)?', a:'5 — Five.'},
+   {q:'What is 4 − (−6)?', a:'10 — Ten.'},
+   {q:'Is zero a positive or a negative integer?', a:'Neither. Zero is neither positive nor negative.'}
+  ]},
+ {emoji:'📊', title:'Algebra – Expressions', chapter:'Class 7 – Chapter 2',
+  points:[
+   'Algebra uses letters like x, y, a, b to represent unknown numbers.',
+   'An expression is a combination of variables, numbers and operations. Example: 3x + 5.',
+   'A term is a part of an expression. In 3x + 5, the terms are 3x and 5.',
+   'The coefficient is the number multiplying the variable. In 3x, 3 is the coefficient.'
+  ],
+  qa:[
+   {q:'In 5y + 7, what is the coefficient of y?', a:'5 is the coefficient.'},
+   {q:'How many terms are there in 2a + 3b − 4?', a:'Three terms.'},
+   {q:'What is a variable?', a:'A letter that represents an unknown number.'}
+  ]},
+ {emoji:'⚖️', title:'Linear Equations', chapter:'Class 7 – Chapter 3',
+  points:[
+   'An equation has an equals sign. Example: x + 5 = 12.',
+   'To solve, we do the same operation on both sides.',
+   'From x + 5 = 12, subtract 5 from both sides. x = 7.',
+   'From 2x = 10, divide both sides by 2. x = 5.'
+  ],
+  qa:[
+   {q:'Solve: x + 8 = 15.', a:'x = 7.'},
+   {q:'Solve: 3x = 21.', a:'x = 7.'},
+   {q:'Solve: 2x − 4 = 10.', a:'2x = 14, so x = 7.'}
+  ]},
+ {emoji:'🔺', title:'Triangles', chapter:'Class 7 – Chapter 4',
+  points:[
+   'A triangle has three sides and three angles. The sum of angles is 180 degrees.',
+   'By sides: Equilateral (all equal), Isosceles (two equal), Scalene (all different).',
+   'By angles: Acute (all below 90), Right (one 90), Obtuse (one above 90).',
+   'Pythagoras theorem: In a right triangle, hypotenuse² = base² + height².'
+  ],
+  qa:[
+   {q:'What is the sum of the angles of a triangle?', a:'180 degrees.'},
+   {q:'What is a triangle with all sides equal called?', a:'An equilateral triangle.'},
+   {q:'State the Pythagoras theorem.', a:'In a right triangle, the square of the hypotenuse equals the sum of the squares of the other two sides.'}
+  ]},
+ {emoji:'📦', title:'Mensuration', chapter:'Class 8 – Chapter 5',
+  points:[
+   'Area of a circle = πr². Circumference = 2πr. Take π = 22/7 or 3.14.',
+   'Volume of a cube = side³. Volume of a cuboid = length × breadth × height.',
+   'Total surface area of a cube = 6 × side². Of a cuboid = 2(lb + bh + hl).',
+   'Volume of a cylinder = πr²h. Curved surface area = 2πrh.'
+  ],
+  qa:[
+   {q:'What is the formula for the area of a circle?', a:'πr².'},
+   {q:'What is the volume of a cube of side 3 cm?', a:'27 cubic centimetres.'},
+   {q:'What is the curved surface area of a cylinder?', a:'2πrh.'}
+  ]},
+ {emoji:'📈', title:'Statistics', chapter:'Class 9 – Chapter 6',
+  points:[
+   'Data is a collection of facts and numbers.',
+   'The mean is the sum of all values divided by the number of values.',
+   'The median is the middle value when data is arranged in order.',
+   'The mode is the value that appears most often.'
+  ],
+  qa:[
+   {q:'What is the mean of 2, 4, 6, 8?', a:'The sum is 20 and there are 4 numbers, so mean = 5.'},
+   {q:'What is the mode of 3, 5, 3, 7, 3?', a:'3, because it appears most often.'},
+   {q:'What is the median of 1, 3, 5, 7, 9?', a:'5, the middle value.'}
+  ]}
+];
+
+const ENG_L1 = [
+ {emoji:'🔤', title:'Alphabet and Sounds', chapter:'Class 1 – Chapter 1',
+  points:[
+   'English has 26 letters. A E I O U are vowels. The rest are consonants.',
+   'Every letter has a sound. A says "ah", B says "buh", C says "kuh".',
+   'Words are made by joining letters. c + a + t makes cat.',
+   'We write with a capital letter at the start of a sentence and a full stop at the end.'
+  ],
+  qa:[
+   {q:'How many letters are there in English?', a:'26 letters.'},
+   {q:'Name the five vowels.', a:'A, E, I, O, U.'},
+   {q:'Which letter comes after M?', a:'N.'}
+  ]},
+ {emoji:'🏷️', title:'Naming Words (Nouns)', chapter:'Class 1 – Chapter 2',
+  points:[
+   'A noun is the name of a person, place, animal or thing.',
+   'Person: Riya, teacher, doctor. Place: Delhi, school, park.',
+   'Animal: dog, cat, elephant. Thing: book, ball, chair.',
+   'Every sentence has at least one noun.'
+  ],
+  qa:[
+   {q:'What is a noun?', a:'A noun is the name of a person, place, animal or thing.'},
+   {q:'Find the noun: The dog is running.', a:'Dog.'},
+   {q:'Find the noun: I live in Mumbai.', a:'Mumbai.'}
+  ]},
+ {emoji:'👤', title:'Pronouns', chapter:'Class 2 – Chapter 1',
+  points:[
+   'A pronoun is used in place of a noun. He, she, it, they, we, I, you.',
+   'For a boy we use "he". For a girl we use "she". For a thing we use "it".',
+   'For many people we use "they". For two people including me we use "we".',
+   'Example: Riya is my friend. She is kind.'
+  ],
+  qa:[
+   {q:'Which pronoun do we use for a girl?', a:'She.'},
+   {q:'Replace the noun: Sohan is tall.', a:'He is tall.'},
+   {q:'Which pronoun do we use for a book?', a:'It.'}
+  ]},
+ {emoji:'🏃', title:'Action Words (Verbs)', chapter:'Class 2 – Chapter 2',
+  points:[
+   'A verb shows an action. Run, eat, write, sing, play, sleep.',
+   'Every sentence must have a verb.',
+   'Example: The boy runs fast. Here "runs" is the verb.',
+   'Verbs change with time: I play today. I played yesterday. I will play tomorrow.'
+  ],
+  qa:[
+   {q:'What is a verb?', a:'A verb is an action word.'},
+   {q:'Find the verb: She sings a song.', a:'Sings.'},
+   {q:'Find the verb: Birds fly in the sky.', a:'Fly.'}
+  ]},
+ {emoji:'🎨', title:'Describing Words (Adjectives)', chapter:'Class 3 – Chapter 1',
+  points:[
+   'An adjective describes a noun. Big, small, red, beautiful, clever.',
+   'Example: a red apple. Here "red" is the adjective.',
+   'Adjectives tell us about size, colour, shape, number or quality.',
+   'We can use more than one adjective: a big red ball.'
+  ],
+  qa:[
+   {q:'What is an adjective?', a:'A word that describes a noun.'},
+   {q:'Find the adjective: She has a cute puppy.', a:'Cute.'},
+   {q:'Find the adjective: I ate two mangoes.', a:'Two.'}
+  ]},
+ {emoji:'↔️', title:'Opposites', chapter:'Class 3 – Chapter 2',
+  points:[
+   'Opposites are words with opposite meanings.',
+   'Big – Small. Hot – Cold. Day – Night. Up – Down.',
+   'Happy – Sad. Fast – Slow. Tall – Short. Open – Close.',
+   'Learning opposites helps us speak and write better.'
+  ],
+  qa:[
+   {q:'What is the opposite of "hot"?', a:'Cold.'},
+   {q:'What is the opposite of "happy"?', a:'Sad.'},
+   {q:'What is the opposite of "tall"?', a:'Short.'}
+  ]},
+ {emoji:'✍️', title:'Making Sentences', chapter:'Class 3 – Chapter 3',
+  points:[
+   'A sentence is a group of words that makes complete sense.',
+   'A sentence starts with a capital letter and ends with a full stop, question mark or exclamation mark.',
+   'A sentence has a subject and a predicate. Subject tells who. Predicate tells what.',
+   'Example: The cat (subject) is sleeping (predicate).'
+  ],
+  qa:[
+   {q:'What is a sentence?', a:'A group of words that makes complete sense.'},
+   {q:'What comes at the end of a sentence?', a:'A full stop, question mark or exclamation mark.'},
+   {q:'Find the subject: The children are playing.', a:'The children.'}
+  ]}
+];
+
+const ENG_L2 = [
+ {emoji:'🏷️', title:'Kinds of Nouns', chapter:'Class 4 – Chapter 1',
+  points:[
+   'Common noun: a general name. boy, city, river.',
+   'Proper noun: a special name. Rahul, Delhi, Ganga. It always starts with a capital letter.',
+   'Collective noun: a group. a team of players, a flock of birds.',
+   'Abstract noun: something we cannot see or touch. honesty, bravery, love.'
+  ],
+  qa:[
+   {q:'What is a proper noun? Give an example.', a:'A special name like Delhi or Rahul. It starts with a capital letter.'},
+   {q:'What kind of noun is "a flock of birds"?', a:'A collective noun.'},
+   {q:'What kind of noun is "bravery"?', a:'An abstract noun.'}
+  ]},
+ {emoji:'⏳', title:'Tenses', chapter:'Class 4 – Chapter 2',
+  points:[
+   'Tense tells us the time of an action.',
+   'Simple Present: I play. Simple Past: I played. Simple Future: I will play.',
+   'Present Continuous: I am playing. Past Continuous: I was playing.',
+   'Present Perfect: I have played. Past Perfect: I had played.'
+  ],
+  qa:[
+   {q:'Change to past tense: She writes a letter.', a:'She wrote a letter.'},
+   {q:'Change to future tense: We go to school.', a:'We will go to school.'},
+   {q:'What is the present continuous of "eat"?', a:'Am eating / is eating / are eating.'}
+  ]},
+ {emoji:'🎨', title:'Adjectives and Degrees', chapter:'Class 5 – Chapter 1',
+  points:[
+   'Adjectives have three degrees — positive, comparative and superlative.',
+   'Positive: big. Comparative: bigger. Superlative: biggest.',
+   'For long words we use more and most. beautiful, more beautiful, most beautiful.',
+   'We use "than" with the comparative. We use "the" with the superlative.'
+  ],
+  qa:[
+   {q:'What is the comparative of "tall"?', a:'Taller.'},
+   {q:'What is the superlative of "good"?', a:'Best.'},
+   {q:'What is the superlative of "beautiful"?', a:'Most beautiful.'}
+  ]},
+ {emoji:'📍', title:'Prepositions', chapter:'Class 5 – Chapter 2',
+  points:[
+   'A preposition shows the relation of a noun with another word.',
+   'In, on, under, over, between, among, behind, beside, with, from.',
+   'Example: The book is on the table.',
+   'Between is used for two. Among is used for more than two.'
+  ],
+  qa:[
+   {q:'Fill in: The cat is ___ the table. (under/on)', a:'Under — The cat is under the table.'},
+   {q:'When do we use "between"?', a:'For two things or people.'},
+   {q:'When do we use "among"?', a:'For more than two things or people.'}
+  ]},
+ {emoji:'🔗', title:'Conjunctions', chapter:'Class 5 – Chapter 3',
+  points:[
+   'A conjunction joins words or sentences. And, but, or, because, so.',
+   'And adds: I like tea and coffee.',
+   'But shows contrast: He is rich but not happy.',
+   'Because gives a reason: I am late because the bus was slow.'
+  ],
+  qa:[
+   {q:'What is a conjunction?', a:'A word that joins words or sentences.'},
+   {q:'Join: I was tired. I went to bed.', a:'I was tired so I went to bed.'},
+   {q:'Which conjunction shows a reason?', a:'Because.'}
+  ]},
+ {emoji:'❓', title:'Punctuation', chapter:'Class 6 – Chapter 1',
+  points:[
+   'Full stop (.) ends a statement. Question mark (?) ends a question.',
+   'Exclamation mark (!) shows strong feeling. Comma (,) shows a short pause.',
+   'Capital letters are used at the start of a sentence and for proper nouns.',
+   'Example: Wow! What a beautiful garden!'
+  ],
+  qa:[
+   {q:'Which mark ends a question?', a:'A question mark (?).'},
+   {q:'Which mark shows strong feeling?', a:'An exclamation mark (!).'},
+   {q:'Add punctuation: what is your name', a:'What is your name?'}
+  ]},
+ {emoji:'🧩', title:'Subject and Predicate', chapter:'Class 6 – Chapter 2',
+  points:[
+   'Every sentence has two parts — subject and predicate.',
+   'The subject tells who or what the sentence is about.',
+   'The predicate tells what the subject does or is.',
+   'Example: The little boy (subject) laughed loudly (predicate).'
+  ],
+  qa:[
+   {q:'What is the subject?', a:'The part that tells who or what the sentence is about.'},
+   {q:'Find the predicate: My mother cooks well.', a:'Cooks well.'},
+   {q:'Find the subject: The sun rises in the east.', a:'The sun.'}
+  ]},
+ {emoji:'📖', title:'Comprehension', chapter:'Class 6 – Chapter 3',
+  points:[
+   'Comprehension means reading a passage and understanding it.',
+   'Read the passage twice — first for the general idea, then for details.',
+   'Look for the main idea, characters, and important events.',
+   'Answer in your own words but keep the meaning the same.'
+  ],
+  qa:[
+   {q:'What should we do first while doing comprehension?', a:'Read the passage carefully twice.'},
+   {q:'Should answers be copied word to word?', a:'No. Write in your own words but keep the meaning.'},
+   {q:'What is the main idea?', a:'The most important point of the passage.'}
+  ]}
+];
+
+const ENG_L3 = [
+ {emoji:'🔁', title:'Active and Passive Voice', chapter:'Class 7 – Chapter 1',
+  points:[
+   'In active voice the subject does the action. Riya wrote a letter.',
+   'In passive voice the action is done to the subject. A letter was written by Riya.',
+   'Passive voice uses a form of "be" + past participle.',
+   'We use passive voice when the doer is unknown or unimportant.'
+  ],
+  qa:[
+   {q:'Change to passive: The boy broke the window.', a:'The window was broken by the boy.'},
+   {q:'Change to passive: They are playing cricket.', a:'Cricket is being played by them.'},
+   {q:'When do we use passive voice?', a:'When the doer is unknown or not important.'}
+  ]},
+ {emoji:'💬', title:'Direct and Indirect Speech', chapter:'Class 7 – Chapter 2',
+  points:[
+   'Direct speech uses the exact words inside inverted commas. He said, "I am tired."',
+   'Indirect speech reports it without quotes. He said that he was tired.',
+   'In indirect speech, present tense usually becomes past tense.',
+   'Words like now become then, today becomes that day, here becomes there.'
+  ],
+  qa:[
+   {q:'Change to indirect: She said, "I am happy."', a:'She said that she was happy.'},
+   {q:'Change to indirect: He said, "I will come tomorrow."', a:'He said that he would come the next day.'},
+   {q:'What happens to inverted commas in indirect speech?', a:'They are removed.'}
+  ]},
+ {emoji:'🧩', title:'Clauses and Phrases', chapter:'Class 8 – Chapter 1',
+  points:[
+   'A phrase is a group of words without a subject and verb. in the morning.',
+   'A clause has a subject and a verb. when the sun rose.',
+   'Independent clause can stand alone. She smiled.',
+   'Dependent clause cannot stand alone. because she was happy.'
+  ],
+  qa:[
+   {q:'What is the difference between a phrase and a clause?', a:'A clause has a subject and a verb, a phrase does not.'},
+   {q:'Which clause can stand alone?', a:'An independent clause.'},
+   {q:'Is "in the garden" a phrase or a clause?', a:'A phrase.'}
+  ]},
+ {emoji:'🔓', title:'Modals', chapter:'Class 8 – Chapter 2',
+  points:[
+   'Modals are helping verbs. Can, could, may, might, must, should, would, will, shall.',
+   'Can shows ability. She can swim.',
+   'May shows permission or possibility. May I come in?',
+   'Must shows strong obligation. You must wear a helmet.'
+  ],
+  qa:[
+   {q:'Which modal shows ability?', a:'Can.'},
+   {q:'Which modal shows strong obligation?', a:'Must.'},
+   {q:'Fill in: You ___ obey the rules.', a:'Must — You must obey the rules.'}
+  ]},
+ {emoji:'🔤', title:'Determiners', chapter:'Class 9 – Chapter 1',
+  points:[
+   'Determiners come before nouns. a, an, the, this, that, my, some, any, many.',
+   'A is used before a consonant sound. An is used before a vowel sound.',
+   'The is used for a particular thing. The book on the table.',
+   'Some is used in positive sentences. Any is used in negative and questions.'
+  ],
+  qa:[
+   {q:'When do we use "an"?', a:'Before a vowel sound. an apple, an hour.'},
+   {q:'Fill in: I have ___ book.', a:'A — I have a book.'},
+   {q:'Fill in: Do you have ___ money?', a:'Any — Do you have any money?'}
+  ]},
+ {emoji:'✒️', title:'Editing and Omission', chapter:'Class 9 – Chapter 2',
+  points:[
+   'Editing means finding and correcting mistakes in a passage.',
+   'Look for spelling, tense, subject-verb agreement and punctuation errors.',
+   'Omission means a word is missing and must be added.',
+   'Read the sentence aloud — the mistake often becomes clear.'
+  ],
+  qa:[
+   {q:'What is editing?', a:'Finding and correcting mistakes in a passage.'},
+   {q:'What is omission?', a:'A missing word that has to be added.'},
+   {q:'Name two things to check while editing.', a:'Spelling and subject-verb agreement.'}
+  ]},
+ {emoji:'✉️', title:'Letter Writing', chapter:'Class 10 – Chapter 1',
+  points:[
+   'A formal letter has — sender address, date, receiver address, subject, salutation, body, closing.',
+   'A formal letter is written to officials, principals or editors.',
+   'An informal letter is written to family and friends.',
+   'Keep paragraphs short and the language simple and polite.'
+  ],
+  qa:[
+   {q:'Name the parts of a formal letter.', a:'Sender address, date, receiver address, subject, salutation, body and closing.'},
+   {q:'To whom do we write an informal letter?', a:'Family and friends.'},
+   {q:'What kind of language should a formal letter use?', a:'Simple, polite and formal language.'}
+  ]},
+ {emoji:'📚', title:'Story Writing', chapter:'Class 10 – Chapter 2',
+  points:[
+   'A story has a beginning, a middle and an end.',
+   'It has characters, a setting, a problem and a solution.',
+   'Use simple past tense. Add dialogues to make it lively.',
+   'Give your story a title and a moral if asked.'
+  ],
+  qa:[
+   {q:'Which tense is mostly used in stories?', a:'Simple past tense.'},
+   {q:'What are the three parts of a story?', a:'Beginning, middle and end.'},
+   {q:'What four things does a story need?', a:'Characters, setting, problem and solution.'}
+  ]}
+];
+
+/* =========================================================
+   8. QUIZZES
+   ========================================================= */
+const MATH_Q1 = [
+ {q:'2 + 3 = ?', options:['4','5','6'], answer:'5'},
+ {q:'7 − 2 = ?', options:['4','5','6'], answer:'5'},
+ {q:'5 + 5 = ?', options:['9','10','11'], answer:'10'},
+ {q:'10 − 4 = ?', options:['5','6','7'], answer:'6'},
+ {q:'3 + 4 = ?', options:['6','7','8'], answer:'7'},
+ {q:'6 + 2 = ?', options:['7','8','9'], answer:'8'},
+ {q:'9 − 3 = ?', options:['5','6','7'], answer:'6'},
+ {q:'4 + 4 = ?', options:['7','8','9'], answer:'8'},
+ {q:'How many sides does a triangle have?', options:['2','3','4'], answer:'3'},
+ {q:'Which shape has no corners?', options:['Circle','Square','Triangle'], answer:'Circle'}
+];
+
+const MATH_Q2 = [
+ {q:'12 × 3 = ?', options:['36','32','42'], answer:'36'},
+ {q:'48 ÷ 6 = ?', options:['6','7','8'], answer:'8'},
+ {q:'What is 1/2 of 20?', options:['5','10','15'], answer:'10'},
+ {q:'Perimeter of a square with side 5 cm?', options:['10 cm','20 cm','25 cm'], answer:'20 cm'},
+ {q:'Area of a rectangle 6 cm × 4 cm?', options:['10','24','20'], answer:'24'},
+ {q:'What is 25 × 4?', options:['90','100','110'], answer:'100'},
+ {q:'What is 144 ÷ 12?', options:['10','11','12'], answer:'12'},
+ {q:'Right angle is how many degrees?', options:['45','90','180'], answer:'90'},
+ {q:'Which is a prime number?', options:['9','11','15'], answer:'11'},
+ {q:'Round 47 to the nearest ten.', options:['40','50','45'], answer:'50'}
+];
+
+const MATH_Q3 = [
+ {q:'Solve: x + 7 = 15', options:['6','7','8'], answer:'8'},
+ {q:'What is 5 + (−3)?', options:['2','8','−2'], answer:'2'},
+ {q:'Sum of angles of a triangle?', options:['90°','180°','360°'], answer:'180°'},
+ {q:'Area of a circle of radius 7 cm? (π = 22/7)', options:['154 cm²','144 cm²','44 cm²'], answer:'154 cm²'},
+ {q:'Solve: 3x = 27', options:['6','9','12'], answer:'9'},
+ {q:'Mean of 4, 6, 8, 10?', options:['6','7','8'], answer:'7'},
+ {q:'Value of (2)³?', options:['6','8','9'], answer:'8'},
+ {q:'In a right triangle with base 3 and height 4, the hypotenuse is?', options:['5','6','7'], answer:'5'},
+ {q:'Volume of a cube of side 4 cm?', options:['16 cm³','48 cm³','64 cm³'], answer:'64 cm³'},
+ {q:'What is 15% of 200?', options:['20','30','40'], answer:'30'}
+];
+
+const ENG_Q1 = [
+ {q:'Which one is a noun?', options:['run','book','quickly'], answer:'book'},
+ {q:'Which pronoun is used for a girl?', options:['He','She','It'], answer:'She'},
+ {q:'Find the verb: Birds fly in the sky.', options:['Birds','Fly','Sky'], answer:'Fly'},
+ {q:'Opposite of "hot"?', options:['Warm','Cold','Wet'], answer:'Cold'},
+ {q:'How many vowels are there in English?', options:['3','5','7'], answer:'5'},
+ {q:'Which is an adjective?', options:['Beautiful','Run','Slowly'], answer:'Beautiful'},
+ {q:'A sentence starts with a ___ letter.', options:['small','capital','number'], answer:'capital'},
+ {q:'Opposite of "big"?', options:['Tall','Small','Long'], answer:'Small'},
+ {q:'Which one is a proper noun?', options:['city','Delhi','river'], answer:'Delhi'},
+ {q:'What comes at the end of a question?', options:['Full stop','Question mark','Comma'], answer:'Question mark'}
+];
+
+const ENG_Q2 = [
+ {q:'Change to past tense: She writes a letter.', options:['She write','She wrote','She written'], answer:'She wrote'},
+ {q:'Comparative of "tall"?', options:['Taller','Tallest','More tall'], answer:'Taller'},
+ {q:'Fill in: The cat is ___ the table.', options:['on','between','among'], answer:'on'},
+ {q:'Which is a conjunction?', options:['Because','Beautiful','Quickly'], answer:'Because'},
+ {q:'Superlative of "good"?', options:['Gooder','Better','Best'], answer:'Best'},
+ {q:'When is "among" used?', options:['For two','For more than two','For one'], answer:'For more than two'},
+ {q:'Which one is a collective noun?', options:['Team','Rahul','Honesty'], answer:'Team'},
+ {q:'Present continuous of "eat" (I)?', options:['I eat','I am eating','I ate'], answer:'I am eating'},
+ {q:'Add punctuation: what is your name', options:['What is your name.','What is your name?','What is your name!'], answer:'What is your name?'},
+ {q:'Which is an abstract noun?', options:['Bravery','Table','Delhi'], answer:'Bravery'}
+];
+
+const ENG_Q3 = [
+ {q:'Change to passive: The boy broke the window.', options:['The window was broken by the boy.','The window is broken.','The boy was broken.'], answer:'The window was broken by the boy.'},
+ {q:'Change to indirect: She said, "I am happy."', options:['She said she is happy.','She said that she was happy.','She says she was happy.'], answer:'She said that she was happy.'},
+ {q:'Which modal shows strong obligation?', options:['Can','May','Must'], answer:'Must'},
+ {q:'When do we use "an"?', options:['Before consonant sound','Before vowel sound','Before plural'], answer:'Before vowel sound'},
+ {q:'Is "in the garden" a phrase or a clause?', options:['Phrase','Clause','Sentence'], answer:'Phrase'},
+ {q:'Which is used in negative sentences?', options:['Some','Any','Many'], answer:'Any'},
+ {q:'Tense mostly used in stories?', options:['Present','Past','Future'], answer:'Past'},
+ {q:'What is omission?', options:['A missing word','A spelling error','A punctuation'], answer:'A missing word'},
+ {q:'Formal letters are written to?', options:['Friends','Officials','Family'], answer:'Officials'},
+ {q:'A clause must have?', options:['Only a subject','Only a verb','Subject and verb'], answer:'Subject and verb'}
+];
+
+const GK_Q1 = [
+ {q:'What is the national animal of India?', options:['Lion','Tiger','Elephant'], answer:'Tiger'},
+ {q:'How many days are there in a week?', options:['5','6','7'], answer:'7'},
+ {q:'Which is the largest planet?', options:['Earth','Jupiter','Mars'], answer:'Jupiter'},
+ {q:'What colour is the sky?', options:['Green','Blue','Red'], answer:'Blue'},
+ {q:'How many months are there in a year?', options:['10','11','12'], answer:'12'},
+ {q:'Which animal gives us milk?', options:['Cow','Lion','Tiger'], answer:'Cow'},
+ {q:'What is the national bird of India?', options:['Parrot','Peacock','Crow'], answer:'Peacock'},
+ {q:'How many colours are there in a rainbow?', options:['5','6','7'], answer:'7'},
+ {q:'Which is the tallest animal?', options:['Elephant','Giraffe','Horse'], answer:'Giraffe'},
+ {q:'What do we use to see?', options:['Ear','Eye','Nose'], answer:'Eye'},
+ {q:'Which festival is called the festival of lights?', options:['Holi','Diwali','Eid'], answer:'Diwali'},
+ {q:'How many legs does a spider have?', options:['6','8','10'], answer:'8'}
+];
+
+const GK_Q2 = [
+ {q:'Which is the longest river in India?', options:['Yamuna','Ganga','Godavari'], answer:'Ganga'},
+ {q:'Who wrote the national anthem of India?', options:['Rabindranath Tagore','Bankim Chandra','Gandhi'], answer:'Rabindranath Tagore'},
+ {q:'How many states are there in India?', options:['28','29','30'], answer:'28'},
+ {q:'Which is the smallest planet?', options:['Mercury','Mars','Venus'], answer:'Mercury'},
+ {q:'What is the capital of France?', options:['Berlin','Paris','Rome'], answer:'Paris'},
+ {q:'Which gas do plants take in?', options:['Oxygen','Carbon dioxide','Nitrogen'], answer:'Carbon dioxide'},
+ {q:'Who is known as the Father of the Nation?', options:['Nehru','Mahatma Gandhi','Bose'], answer:'Mahatma Gandhi'},
+ {q:'Which is the largest continent?', options:['Africa','Asia','Europe'], answer:'Asia'},
+ {q:'How many players are there in a cricket team?', options:['9','10','11'], answer:'11'},
+ {q:'Which is the hardest natural substance?', options:['Iron','Diamond','Gold'], answer:'Diamond'},
+ {q:'When is Independence Day celebrated in India?', options:['26 January','15 August','2 October'], answer:'15 August'},
+ {q:'Which organ pumps blood in our body?', options:['Lungs','Heart','Liver'], answer:'Heart'}
+];
+
+const GK_Q3 = [
+ {q:'Who was the first Prime Minister of India?', options:['Sardar Patel','Jawaharlal Nehru','Rajendra Prasad'], answer:'Jawaharlal Nehru'},
+ {q:'What is the chemical symbol of water?', options:['H2O','CO2','O2'], answer:'H2O'},
+ {q:'Which is the largest desert in the world?', options:['Thar','Sahara','Gobi'], answer:'Sahara'},
+ {q:'Who discovered gravity?', options:['Einstein','Newton','Galileo'], answer:'Newton'},
+ {q:'Which planet is called the Red Planet?', options:['Venus','Mars','Jupiter'], answer:'Mars'},
+ {q:'What is the speed of light?', options:['3 × 10⁶ m/s','3 × 10⁸ m/s','3 × 10¹⁰ m/s'], answer:'3 × 10⁸ m/s'},
+ {q:'Who wrote "Discovery of India"?', options:['Gandhi','Nehru','Tagore'], answer:'Nehru'},
+ {q:'Which is the smallest continent?', options:['Australia','Europe','Antarctica'], answer:'Australia'},
+ {q:'What is the value of π (pi) up to 2 decimals?', options:['3.12','3.14','3.16'], answer:'3.14'},
+ {q:'Which acid is present in lemon?', options:['Citric acid','Sulphuric acid','Nitric acid'], answer:'Citric acid'},
+ {q:'Who invented the telephone?', options:['Edison','Graham Bell','Marconi'], answer:'Graham Bell'},
+ {q:'Which is the deepest ocean?', options:['Atlantic','Indian','Pacific'], answer:'Pacific'}
+];
+
+/* =========================================================
+   9. POEMS (CBSE pattern)
+   ========================================================= */
+const POEMS_L1 = [
+ {emoji:'⭐', title:'Twinkle Twinkle Little Star', author:'Jane Taylor',
+  lines:['Twinkle twinkle little star','How I wonder what you are',
+   'Up above the world so high','Like a diamond in the sky',
+   'Twinkle twinkle little star','How I wonder what you are']},
+ {emoji:'👶', title:'Johny Johny Yes Papa', author:'Traditional',
+  lines:['Johny Johny yes papa','Eating sugar no papa',
+   'Telling lies no papa','Open your mouth ha ha ha']},
+ {emoji:'🐑', title:'Ba Ba Black Sheep', author:'Traditional',
+  lines:['Ba ba black sheep have you any wool','Yes sir yes sir three bags full',
+   'One for my master and one for my dame',
+   'And one for the little boy who lives down the lane']},
+ {emoji:'🥚', title:'Humpty Dumpty', author:'Traditional',
+  lines:['Humpty Dumpty sat on a wall','Humpty Dumpty had a great fall',
+   'All the kings horses and all the kings men',
+   'Could not put Humpty together again']},
+ {emoji:'🌧️', title:'Rain Rain Go Away', author:'Traditional',
+  lines:['Rain rain go away','Come again another day',
+   'Little children want to play','Rain rain go away']},
+ {emoji:'🐑', title:'Mary Had a Little Lamb', author:'Sarah Josepha Hale',
+  lines:['Mary had a little lamb','Its fleece was white as snow',
+   'And everywhere that Mary went','The lamb was sure to go']},
+ {emoji:'🦆', title:'Five Little Ducks', author:'Traditional',
+  lines:['Five little ducks went out one day','Over the hill and far away',
+   'Mother duck said quack quack quack quack','But only four little ducks came back']}
+];
+
+const POEMS_L2 = [
+ {emoji:'🐢', title:'A Little Turtle', author:'Anonymous',
+  lines:['A little turtle, he lived in a box.',
+   'He swam in a puddle, he climbed on the rocks.',
+   'He snapped at a mosquito, he snapped at a flea.',
+   'He snapped at a minnow, and he snapped at me.',
+   'He caught the mosquito, he caught the flea.',
+   'He caught the minnow, but he didn\'t catch me!']},
+ {emoji:'☁️', title:'Clouds', author:'Christina Rossetti',
+  lines:['White sheep, white sheep,','On a blue hill,',
+   'When the wind stops,','You all stand still.',
+   'When the wind blows,','You walk away slow.',
+   'White sheep, white sheep,','Where do you go?']},
+ {emoji:'🐿️', title:'The Squirrel', author:'Mildred Bowers Armstrong',
+  lines:['Whiskers and russet, cocked tail,','He sits up and chatters,',
+   'And when you look at him,','He is full of fun and games.',
+   'He likes nuts and he likes grain,','And he comes again and again.']},
+ {emoji:'☀️', title:'Merry Sunshine', author:'Anonymous',
+  lines:['Good morning, merry sunshine,','How did you wake so soon?',
+   'You\'ve scared away the little stars,','And chased away the moon.',
+   'Good morning, merry sunshine,','We welcome you today.']},
+ {emoji:'🌧️', title:'Little Raindrops', author:'Anonymous',
+  lines:['Little raindrops falling down,','On the roofs and on the ground,',
+   'Dancing, playing all the day,','Washing all the dust away.',
+   'Little raindrops, come again,','You are welcome, gentle rain.']},
+ {emoji:'🌙', title:'चंदा मामा', author:'लोकगीत (Hindi)',
+  lines:['चंदा मामा दूर के','पुए पकाएँ बूर के',
+   'आप खाएँ थाली में','मुन्ने को दें प्याली में',
+   'प्याली गई टूट','मुन्ने को दें छूट',
+   'छूट गई बाजार','मुन्ने को दें तलवार',
+   'तलवार में लगी काई','मुन्ने को दें रुपई',
+   'रुपई गई कहार','मुन्ने को दें पहाड़',
+   'पहाड़ गया पानी में','मुन्ने को दें रानी',
+   'रानी बैठी अटारी','मुन्ने को दें साड़ी',
+   'साड़ी में लगा कीड़ा','मुन्ने को दें भैंसा',
+   'भैंसा गया खेत में','मुन्ने को दें दूध'],
+  lang:'hi-IN'},
+ {emoji:'🐟', title:'मछली जल की रानी', author:'लोकगीत (Hindi)',
+  lines:['मछली जल की रानी है','जीवन उसका पानी है',
+   'हाथ लगाओ तो डर जाएगी','बाहर निकालो तो मर जाएगी',
+   'जाल बिछाओ मत मछली को पकड़ो मत','मछली को तुम जीने दो',
+   'पानी में उसे तैरने दो'],
+  lang:'hi-IN'}
+];
+
+const POEMS_L3 = [
+ {emoji:'🌅', title:'Wake Up!', author:'C. Fletcher',
+  lines:['Wake up! Wake up!','The sun is up,','The birds are singing,',
+   'The cows are mooing,','The cocks are crowing,',
+   'Wake up! Wake up!','It is a new day.']},
+ {emoji:'🌈', title:'The Rainbow', author:'Christina Rossetti',
+  lines:['Boats sail on the rivers,','And ships sail on the seas;',
+   'But clouds that sail across the sky','Are prettier far than these.',
+   'There are bridges on the rivers,','As pretty as you please;',
+   'But the bow that bridges heaven,','And overtops the trees,',
+   'And builds a road from earth to sky,','Is prettier far than these.']},
+ {emoji:'💧', title:'A Watering Rhyme', author:'P. H. A.',
+  lines:['Early in the morning,','Or the evening hour,',
+   'Water the flowers,','Water the flower.',
+   'The sun is hot,','The day is long,',
+   'Water the flowers,','And hear their song.']},
+ {emoji:'👦', title:'The Naughty Boy', author:'John Keats',
+  lines:['There was a naughty boy,','And a naughty boy was he,',
+   'He ran away to Scotland,','The people there to see.',
+   'There he found that the ground','Was as hard as a stone,',
+   'And that he had not a penny,','Nor a friend to help him home.']},
+ {emoji:'🦗', title:'The Ant and the Cricket', author:'Adelaide O\'Keeffe (adapted)',
+  lines:['A silly young cricket, accustomed to sing,',
+   'Through the warm sunny months of gay summer and spring,',
+   'Began to complain, when he found that at home,',
+   'His cupboard was empty and winter was come.',
+   'Not a crumb to be found on the snow-covered ground,',
+   'Not a flower could he see, not a leaf on a tree.',
+   'The ant then advised him to dance all the winter away.']},
+ {emoji:'🌳', title:'Trees', author:'Shirley Bauer',
+  lines:['Trees are the kindest things I know,','They do no harm, they simply grow,',
+   'And spread a shade for sleepy cows,','And gather birds among their boughs.',
+   'They give us fruit in leaves above,','And wood to make our houses of,',
+   'And leaves to burn on Halloween,','And in the spring new buds of green.']}
+];
+
+const POEMS_L4 = [
+ {emoji:'🛤️', title:'The Road Not Taken', author:'Robert Frost',
+  lines:['Two roads diverged in a yellow wood,','And sorry I could not travel both',
+   'And be one traveller, long I stood','And looked down one as far as I could',
+   'To where it bent in the undergrowth;',
+   'Then took the other, as just as fair,','And having perhaps the better claim,',
+   'Because it was grassy and wanted wear;',
+   'I shall be telling this with a sigh','Somewhere ages and ages hence:',
+   'Two roads diverged in a wood, and I—','I took the one less travelled by,',
+   'And that has made all the difference.']},
+ {emoji:'💨', title:'Wind', author:'Subramania Bharati (translated)',
+  lines:['Wind, come softly.','Don\'t break the shutters of the windows.',
+   'Don\'t scatter the papers.','Don\'t throw down the books on the shelf.',
+   'You brought rain again.','You\'re very clever at poking fun at weaklings.',
+   'The wind blows out weak fires.','He makes strong fires roar and flourish.',
+   'His friendship is good.','We praise him every day.']},
+ {emoji:'🐿️', title:'The Squirrel', author:'Mildred Bowers Armstrong',
+  lines:['Whiskers and russet, cocked tail,','He sits up and chatters,',
+   'And when you look at him,','He is full of fun and games.',
+   'He likes nuts and he likes grain,','And he comes again and again.',
+   'He sits on the branch and nibbles,','And chatters at the rain.']},
+ {emoji:'🏛️', title:'Ozymandias', author:'P. B. Shelley',
+  lines:['I met a traveller from an antique land',
+   'Who said: Two vast and trunkless legs of stone',
+   'Stand in the desert. Near them, on the sand,',
+   'Half sunk, a shattered visage lies,',
+   'Whose frown, and wrinkled lip, and sneer of cold command,',
+   'Tell that its sculptor well those passions read.',
+   'And on the pedestal these words appear:',
+   '"My name is Ozymandias, king of kings;',
+   'Look on my works, ye Mighty, and despair!"',
+   'Nothing beside remains. Round the decay',
+   'Of that colossal wreck, boundless and bare',
+   'The lone and level sands stretch far away.']},
+ {emoji:'🔥', title:'Fire and Ice', author:'Robert Frost',
+  lines:['Some say the world will end in fire,','Some say in ice.',
+   'From what I\'ve tasted of desire','I hold with those who favour fire.',
+   'But if it had to perish twice,','I think I know enough of hate',
+   'To say that for destruction ice','Is also great','And would suffice.']},
+ {emoji:'🐟', title:'मछली जल की रानी', author:'लोकगीत (Hindi)',
+  lines:['मछली जल की रानी है','जीवन उसका पानी है',
+   'हाथ लगाओ तो डर जाएगी','बाहर निकालो तो मर जाएगी',
+   'जाल बिछाओ मत मछली को पकड़ो मत','मछली को तुम जीने दो',
+   'पानी में उसे तैरने दो'],
+  lang:'hi-IN'}
+];
+
+/* =========================================================
+   10. INFO CONTENT (Science, GK, Computer, History, Geography)
+   ========================================================= */
+const INFO = {
+ science:[
+  {emoji:'🌍', main:'Solar System', text:'Our solar system has eight planets that go around the Sun. Mercury is closest to the Sun and Neptune is the farthest.'},
+  {emoji:'🌱', main:'Photosynthesis', text:'Green plants make their own food using sunlight, water and carbon dioxide. This process is called photosynthesis.'},
+  {emoji:'💧', main:'Water Cycle', text:'Water turns into vapour, rises up, forms clouds, and comes back down as rain. This is the water cycle.'},
+  {emoji:'🫀', main:'Human Body', text:'The heart pumps blood, the lungs help us breathe, and the brain controls the whole body.'},
+  {emoji:'🧊', main:'States of Matter', text:'Matter has three states — solid, liquid and gas. Ice is solid, water is liquid and steam is gas.'},
+  {emoji:'🔗', main:'Food Chain', text:'Plants are producers. Animals that eat plants are herbivores. Animals that eat other animals are carnivores.'}
+ ],
+ science2:[
+  {emoji:'🍏', main:"Newton's Laws", text:'First law — an object stays at rest or in motion unless a force acts on it. Second law — force equals mass times acceleration. Third law — every action has an equal and opposite reaction.'},
+  {emoji:'⚛️', main:'Periodic Table', text:'Elements are arranged by atomic number. Hydrogen is the lightest and oxygen is essential for life.'},
+  {emoji:'⚡', main:'Electricity', text:'Electric current is the flow of electrons. Ohm\'s law states that voltage equals current times resistance.'},
+  {emoji:'🧬', main:'The Cell', text:'The cell is the basic unit of life. The nucleus controls the cell and mitochondria produce energy.'},
+  {emoji:'🧲', main:'Force & Motion', text:'Force can change the speed, direction or shape of an object. Motion is described by speed, velocity and acceleration.'},
+  {emoji:'🔬', main:'Acids and Bases', text:'Acids turn blue litmus red. Bases turn red litmus blue. Acid plus base gives salt and water.'}
+ ],
+ gk:[
+  {emoji:'🇮🇳', main:'National Symbols', text:'The national animal is the tiger, the national bird is the peacock, and the national flower is the lotus.'},
+  {emoji:'🌏', main:'Continents', text:'There are seven continents — Asia, Africa, North America, South America, Antarctica, Europe and Australia.'},
+  {emoji:'🏔️', main:'Longest Rivers', text:'The Nile is the longest river in the world. In India, the Ganga is the longest river.'},
+  {emoji:'🪐', main:'Planets', text:'There are eight planets. Jupiter is the largest and Mercury is the smallest.'},
+  {emoji:'🧠', main:'Human Brain', text:'The brain is the control centre of the body. It helps us think, remember and feel.'},
+  {emoji:'🌳', main:'Environment', text:'Trees give us oxygen, fruits and shade. We must plant more trees and save water.'}
+ ],
+ computer:[
+  {emoji:'⌨️', main:'Input Devices', text:'Input devices send data to the computer. Keyboard, mouse and microphone are input devices.'},
+  {emoji:'🖥️', main:'Output Devices', text:'Output devices show results. Monitor, printer and speaker are output devices.'},
+  {emoji:'💾', main:'Storage', text:'Storage keeps our data safe. Hard disk, pen drive and memory card are storage devices.'},
+  {emoji:'🌐', main:'Internet', text:'The internet connects computers all over the world. We use it to learn, chat and share information.'},
+  {emoji:'📄', main:'MS Word', text:'MS Word is used to write and format documents. We can change font, size and colour of text.'},
+  {emoji:'🔒', main:'Online Safety', text:'Never share your password with anyone. Always ask an adult before opening unknown links.'}
+ ],
+ computer2:[
+  {emoji:'👨‍💻', main:'Programming Basics', text:'Programming means giving step by step instructions to a computer. Variables, loops and conditions are basic building blocks.'},
+  {emoji:'🌐', main:'HTML & Web', text:'HTML is the language used to create web pages. Tags like heading, paragraph and image build the structure.'},
+  {emoji:'🤖', main:'Artificial Intelligence', text:'AI is the ability of machines to learn and make decisions. Voice assistants and self driving cars use AI.'},
+  {emoji:'🔐', main:'Cyber Safety', text:'Use strong passwords, never share personal information online, and be careful of unknown links and messages.'},
+  {emoji:'0️⃣', main:'Binary Numbers', text:'Computers understand only zero and one. This number system is called binary.'},
+  {emoji:'🗄️', main:'Databases', text:'A database stores data in tables so it can be searched and updated easily.'}
+ ],
+ history:[
+  {emoji:'🏺', main:'Indus Valley Civilisation', text:'One of the world\'s oldest civilisations, famous for planned cities like Harappa and Mohenjo daro, and for drainage systems.'},
+  {emoji:'🕌', main:'Mughal Empire', text:'The Mughals ruled India from 1526. Akbar, Shah Jahan and Aurangzeb were important rulers. The Taj Mahal was built by Shah Jahan.'},
+  {emoji:'🇮🇳', main:'Freedom Struggle', text:'India became independent on 15 August 1947 after a long struggle led by Mahatma Gandhi, Nehru, Subhash Chandra Bose and many others.'},
+  {emoji:'📜', main:'The Constitution', text:'The Indian Constitution came into effect on 26 January 1950. Dr B R Ambedkar was the chairman of the drafting committee.'},
+  {emoji:'🕉️', main:'Ancient India', text:'Ancient India saw the Vedic period, the rise of Buddhism and Jainism, and great universities like Nalanda.'},
+  {emoji:'⚔️', main:'Medieval India', text:'The Delhi Sultanate and the Vijayanagara Empire were powerful kingdoms of medieval India.'}
+ ],
+ geography:[
+  {emoji:'🌍', main:"Earth's Layers", text:'The Earth has three main layers — the crust, the mantle and the core. The core is the hottest part.'},
+  {emoji:'🌦️', main:'Climate', text:'Climate is the average weather of a place over many years. India has a tropical monsoon climate.'},
+  {emoji:'🏞️', main:'Rivers of India', text:'The Ganga, Yamuna, Brahmaputra, Godavari, Narmada and Kaveri are the major rivers of India.'},
+  {emoji:'🗺️', main:'Maps & Globes', text:'A globe is a model of the Earth. Maps show places on a flat surface using scale and directions.'},
+  {emoji:'⛏️', main:'Natural Resources', text:'Coal, petroleum, minerals, water and forests are natural resources. We must use them carefully.'},
+  {emoji:'🌪️', main:'Natural Disasters', text:'Earthquakes, floods, cyclones and droughts are natural disasters caused by natural processes.'}
+ ]
+};
+
+/* =========================================================
+   11. CONTENT MAP
+   ========================================================= */
+const CONTENT = {
+
+/* ---- LEVEL 1 ---- */
+alphabet:{type:'cards', items: alphaPairs.map(([l,w,e]) => ({
+  emoji:e, badge:l, sub:w, say:`${l} for ${w}` }))},
+
+numbers:{type:'cards', items: numWords.map((w,i) => i<10
+  ? {emoji:keycap[i], sub:w, say:w}
+  : {main:String(i+1), sub:w, say:w})},
+
+counting:{type:'cards', items:[
+  ['10','Ten'],['20','Twenty'],['30','Thirty'],['40','Forty'],['50','Fifty'],
+  ['60','Sixty'],['70','Seventy'],['80','Eighty'],['90','Ninety'],['100','Hundred']
+].map(([n,w]) => ({main:n, sub:w, say:w}))},
+
+colors:{type:'cards', items: colorList.map(([n,c]) => ({
+  color:c, sub:n, say:`${n} colour` }))},
+
+shapes:{type:'cards', items: shapeList.map(([n,e]) => ({
+  emoji:e, sub:n, say:n }))},
+
+animals:{type:'cards', items:[
+  ['Dog','🐶'],['Cat','🐱'],['Elephant','🐘'],['Lion','🦁'],['Tiger','🐯'],
+  ['Monkey','🐵'],['Rabbit','🐰'],['Bear','🐻'],['Panda','🐼'],['Horse','🐴'],
+  ['Cow','🐮'],['Pig','🐷'],['Sheep','🐑'],['Fox','🦊'],['Frog','🐸'],
+  ['Hen','🐔'],['Duck','🦆'],['Fish','🐟'],['Butterfly','🦋'],['Bee','🐝']
+].map(([n,e]) => ({emoji:e, sub:n, say:n}))},
+
+fruits:{type:'cards', items:[
+  ['Apple','🍎'],['Banana','🍌'],['Grapes','🍇'],['Orange','🍊'],['Mango','🥭'],
+  ['Watermelon','🍉'],['Strawberry','🍓'],['Pineapple','🍍'],['Pear','🍐'],
+  ['Peach','🍑'],['Coconut','🥥'],['Cherry','🍒'],['Lemon','🍋'],['Kiwi','🥝'],
+  ['Blueberry','🫐']
+].map(([n,e]) => ({emoji:e, sub:n, say:n}))},
+
+flowers:{type:'cards', items:[
+  ['Rose','🌹'],['Sunflower','🌻'],['Tulip','🌷'],['Daisy','🌼'],
+  ['Cherry Blossom','🌸'],['Marigold','🏵️'],['Lotus','🪷'],['Hibiscus','🌺'],
+  ['Bouquet','💐'],['Jasmine','🤍'],['Orchid','🌺'],['Lily','🌷']
+].map(([n,e]) => ({emoji:e, sub:n, say:n}))},
+
+body:{type:'cards', items:[
+  ['Eye','👁️'],['Ear','👂'],['Nose','👃'],['Mouth','👄'],['Hand','✋'],
+  ['Foot','🦶'],['Tooth','🦷'],['Tongue','👅'],['Hair','💇'],['Brain','🧠'],
+  ['Heart','❤️'],['Bone','🦴']
+].map(([n,e]) => ({emoji:e, sub:n, say:n}))},
+
+rhymes:{type:'poemlist', items: POEMS_L1},
+
+/* ---- LEVEL 2 ---- */
+phonics:{type:'cards', items:[
+  ['Cat','🐱','C'],['Dog','🐶','D'],['Sun','☀️','S'],['Bat','🦇','B'],
+  ['Pen','🖊️','P'],['Cup','🥤','C'],['Box','📦','B'],['Hat','👒','H'],
+  ['Bus','🚌','B'],['Jam','🍯','J'],['Net','🕸️','N'],['Bag','🎒','B'],
+  ['Mat','🧘','M'],['Pot','🍲','P'],['Fan','🌀','F'],['Hen','🐔','H']
+].map(([w,e,l]) => ({emoji:e, main:w, say:`${l}, ${w.charAt(1)}, ${w.charAt(2)} spells ${w}`}))},
+
+tables:{type:'tablelist', items: tableItems},
+
+opposites:{type:'cards', items:[
+  ['Big','Small','🐘'],['Hot','Cold','🔥'],['Up','Down','⬆️'],['Day','Night','🌞'],
+  ['Open','Close','🚪'],['Fast','Slow','🐇'],['Tall','Short','🦒'],['Happy','Sad','😊'],
+  ['Wet','Dry','💧'],['Full','Empty','🥛']
+].map(([a,b,e]) => ({emoji:e, sub:`${a} ↔ ${b}`, say:`${a} and ${b}`}))},
+
+vegetables:{type:'cards', items:[
+  ['Carrot','🥕'],['Potato','🥔'],['Tomato','🍅'],['Broccoli','🥦'],['Corn','🌽'],
+  ['Cucumber','🥒'],['Onion','🧅'],['Garlic','🧄'],['Capsicum','🫑'],
+  ['Spinach','🥬'],['Brinjal','🍆'],['Pumpkin','🎃']
+].map(([n,e]) => ({emoji:e, sub:n, say:n}))},
+
+birds:{type:'cards', items:[
+  ['Parrot','🦜'],['Peacock','🦚'],['Owl','🦉'],['Eagle','🦅'],['Sparrow','🐦'],
+  ['Swan','🦢'],['Flamingo','🦩'],['Penguin','🐧'],['Dove','🕊️'],['Rooster','🐓']
+].map(([n,e]) => ({emoji:e, sub:n, say:n}))},
+
+hindi:{type:'cards', items:[
+  ['अ','अनार','🍎'],['आ','आम','🥭'],['इ','इमली','🌿'],['ई','ईख','🎋'],
+  ['उ','उल्लू','🦉'],['ऊ','ऊन','🧶'],['ए','एक','1️⃣'],['ऐ','ऐनक','👓'],
+  ['ओ','ओखली','🥣'],['औ','औरत','👩'],['क','कबूतर','🕊️'],['ख','खरगोश','🐰'],
+  ['ग','गमला','🪴'],['घ','घर','🏠'],['च','चम्मच','🥄'],['छ','छाता','☂️'],
+  ['ज','जहाज','🚢'],['झ','झंडा','🚩'],['ट','टमाटर','🍅'],['ठ','ठेला','🛒'],
+  ['ड','डमरू','🥁'],['ढ','ढोल','🪘'],['त','तरबूज','🍉'],['थ','थाली','🍽️'],
+  ['द','दीपक','🪔'],['ध','धनुष','🏹'],['न','नल','🚰'],['प','पतंग','🪁'],
+  ['फ','फल','🍇'],['ब','बकरी','🐐'],['भ','भालू','🐻'],['म','मछली','🐟'],
+  ['य','यज्ञ','🔥'],['र','रथ','🛕'],['ल','लड्डू','🍡'],['व','वन','🌳'],
+  ['श','शेर','🦁'],['स','सूरज','☀️'],['ह','हाथी','🐘']
+].map(([l,w,e]) => ({emoji:e, badge:l, sub:w, say:`${l} से ${w}`}))},
+
+poems1:{type:'poemlist', items: POEMS_L2},
+mathlesson1:{type:'lesson', items: MATH_L1},
+mathquiz1:{type:'quiz', questions: MATH_Q1},
+englesson1:{type:'lesson', items: ENG_L1},
+engquiz1:{type:'quiz', questions: ENG_Q1},
+gkquiz1:{type:'quiz', questions: GK_Q1},
+
+/* ---- LEVEL 3 ---- */
+poems2:{type:'poemlist', items: POEMS_L3},
+mathlesson2:{type:'lesson', items: MATH_L2},
+mathquiz2:{type:'quiz', questions: MATH_Q2},
+englesson2:{type:'lesson', items: ENG_L2},
+engquiz2:{type:'quiz', questions: ENG_Q2},
+gkquiz2:{type:'quiz', questions: GK_Q2},
+science:{type:'info', items: INFO.science},
+gk:{type:'info', items: INFO.gk},
+computer:{type:'info', items: INFO.computer},
+
+/* ---- LEVEL 4 ---- */
+poems3:{type:'poemlist', items: POEMS_L4},
+mathlesson3:{type:'lesson', items: MATH_L3},
+mathquiz3:{type:'quiz', questions: MATH_Q3},
+englesson3:{type:'lesson', items: ENG_L3},
+engquiz3:{type:'quiz', questions: ENG_Q3},
+gkquiz3:{type:'quiz', questions: GK_Q3},
+science2:{type:'info', items: INFO.science2},
+history:{type:'info', items: INFO.history},
+geography:{type:'info', items: INFO.geography},
+computer2:{type:'info', items: INFO.computer2}
+};
+
+/* =========================================================
+   12. ROUTER
+   ========================================================= */
+const screen   = document.getElementById('screen');
+const hTitle   = document.getElementById('hTitle');
+const hSub     = document.getElementById('hSub');
+const backBtn  = document.getElementById('backBtn');
+
+let state = { level:null, cat:null, view:'home' };
+let currentItems = [];
+let currentPoem  = null;
+let currentLesson= null;
+let currentTable = null;
+let quizState    = null;
+
+function setHeader(title, sub){
+  hTitle.textContent = title;
+  hSub.textContent   = sub;
+  backBtn.style.visibility = state.view === 'home' ? 'hidden' : 'visible';
+}
+
+function goHome(){ state = {level:null,cat:null,view:'home'}; renderHome(); }
+function goLevel(k){ state = {level:k,cat:null,view:'level'}; renderLevel(); }
+function goCat(c){ state.cat = c; state.view = 'cat'; renderCategory(); }
+
+function goBack(){
+  if(state.view === 'cat' || state.view === 'lesson' || state.view === 'poem' ||
+     state.view === 'table' || state.view === 'quiz'){
+    state.view = 'level'; renderLevel();
+  } else if(state.view === 'level'){
+    state = {level:null,cat:null,view:'home'}; renderHome();
+  }
+  if(window.speechSynthesis) speechSynthesis.cancel();
+}
+
+/* ---------- HOME ---------- */
+function renderHome(){
+  setHeader('Kids Learning Hub','CBSE Pattern • Choose your class');
+  screen.innerHTML = `
+    <div class="hero">
+      <h1>🎈 Welcome to Learning Land!</h1>
+      <p>Apna age group chuno aur seekhna shuru karo ✨</p>
+    </div>
+    <div class="grid levels">
+      ${Object.entries(LEVELS).map(([k,l]) => `
+        <button class="card" style="--c:${l.color}" onclick="goLevel('${k}')">
+          <span class="emo">${l.emoji}</span>
+          <span class="ttl">${l.name}</span>
+          <span class="sub">${l.sub}</span>
+        </button>`).join('')}
+    </div>`;
+  window.scrollTo(0,0);
+}
+
+/* ---------- LEVEL ---------- */
+function renderLevel(){
+  const lvl = LEVELS[state.level];
+  setHeader(lvl.name, lvl.sub);
+  screen.innerHTML = `
+    <div class="hero" style="padding:10px 10px 22px">
+      <h1 style="font-size:1.55rem">${lvl.emoji} ${lvl.name}</h1>
+      <p>Neeche tap karo aur seekho 👇</p>
+    </div>
+    <div class="grid">
+      ${lvl.cats.map(id => {
+        const c = CATS[id];
+        return `<button class="card" style="--c:${c.c}" onclick="goCat('${id}')">
+          <span class="emo">${c.e}</span>
+          <span class="ttl">${c.n}</span>
+        </button>`;
+      }).join('')}
+    </div>`;
+  window.scrollTo(0,0);
+}
+
+/* ---------- CATEGORY ---------- */
+function renderCategory(){
+  const cid = state.cat;
+  const cat = CATS[cid];
+  const data = CONTENT[cid];
+  currentItems = data.items || [];
+  setHeader(cat.n, LEVELS[state.level].name);
+
+  if(data.type === 'cards' || data.type === 'info'){
+    screen.innerHTML = `<div class="grid ${data.type === 'info' ? 'info-grid' : ''}">` +
+      currentItems.map((it,i) => cardHTML(it,i,data.type)).join('') + `</div>`;
+
+  } else if(data.type === 'poemlist'){
+    screen.innerHTML = `<div class="grid">` +
+      currentItems.map((it,i) => `
+        <button class="card" style="--c:${cat.c}" onclick="openPoem(${i})">
+          <span class="emo">${it.emoji}</span>
+          <span class="ttl">${it.title}</span>
+          <span class="sub">Tap to listen 🎧</span>
+        </button>`).join('') + `</div>`;
+
+  } else if(data.type === 'lesson'){
+    screen.innerHTML = `<div class="grid">` +
+      currentItems.map((it,i) => `
+        <button class="card" style="--c:${cat.c}" onclick="openLesson(${i})">
+          <span class="emo">${it.emoji}</span>
+          <span class="ttl">${it.title}</span>
+          <span class="sub">${it.chapter}</span>
+        </button>`).join('') + `</div>`;
+
+  } else if(data.type === 'tablelist'){
+    screen.innerHTML = `<div class="grid">` +
+      currentItems.map((t,i) => `
+        <button class="card" style="--c:${cat.c}" onclick="openTable(${i})">
+          <span class="emo">✖️</span>
+          <span class="ttl">Table of ${t.n}</span>
+          <span class="sub">Tap to open</span>
+        </button>`).join('') + `</div>`;
+
+  } else if(data.type === 'quiz'){
+    screen.innerHTML = `<div id="quizBox"></div>`;
+    quizState = { idx:0, score:0 };
+    drawQuiz();
+  }
+  window.scrollTo(0,0);
+}
+
+function cardHTML(it, i, type){
+  if(type === 'info'){
+    return `<button class="card info" style="--c:#7c5cff" onclick="tap(${i})">
+      <span class="emo">${it.emoji}</span>
+      <span class="ttl">${it.main}</span>
+      <span class="txt">${it.text}</span>
+      <span class="play">🔊 Suno</span>
+    </button>`;
+  }
+  const visual = it.color
+    ? `<span class="swatch" style="background:${it.color}"></span>`
+    : it.emoji
+      ? `<span class="visual">${it.emoji}</span>`
+      : `<span class="bignum">${it.main}</span>`;
+
+  return `<button class="item" onclick="tap(${i})">
+    ${it.badge ? `<span class="badge">${it.badge}</span>` : ''}
+    ${visual}
+    <span class="label">${it.sub || it.main}</span>
+  </button>`;
+}
+
+function tap(i){
+  const it = currentItems[i];
+  if(!it) return;
+  const lang = CATS[state.cat].lang || 'en-IN';
+  speak(it.say || it.main || it.text, lang);
+  addStar();
+}
+
+/* ---------- TABLE VIEW ---------- */
+function openTable(i){
+  currentTable = currentItems[i];
+  state.view = 'table';
+  setHeader(`Table of ${currentTable.n}`, 'Tap a line to hear it');
+  screen.innerHTML = `
+    <div class="table-view">
+      <h2>✖️ Table of ${currentTable.n}</h2>
+      <div class="rows">
+        ${currentTable.rows.map((r,j) =>
+          `<button class="trow" onclick="speakRow(${j})">${r}</button>`).join('')}
+      </div>
+      <div class="poem-actions">
+        <button class="btn primary" onclick="playTable()">▶️ Poora Table Suno</button>
+        <button class="btn" onclick="renderCategory()">↩️ Wapas</button>
+      </div>
+    </div>`;
+  window.scrollTo(0,0);
+}
+
+function speakRow(j){
+  speak(currentTable.spoken[j]);
+  document.querySelectorAll('.trow').forEach((e,k) =>
+    e.classList.toggle('active', k === j));
+  addStar();
+}
+
+function playTable(){
+  speakSequence(currentTable.spoken, 'en-IN', idx => {
+    document.querySelectorAll('.trow').forEach((e,k) =>
+      e.classList.toggle('active', k === idx));
+  });
+  addStar();
+}
+
+/* ---------- LESSON VIEW ---------- */
+function openLesson(i){
+  currentLesson = currentItems[i];
+  state.view = 'lesson';
+  setHeader(currentLesson.title, currentLesson.chapter);
+  renderLessonBody();
+}
+
+function renderLessonBody(){
+  const L = currentLesson;
+  screen.innerHTML = `
+    <div class="lesson">
+      <h2>${L.emoji} ${L.title}</h2>
+      <div class="chapter">${L.chapter}</div>
+
+      <div class="sec-title">📖 Padhai</div>
+      ${L.points.map((p,j) =>
+        `<button class="point" id="pt-${j}" onclick="speakPoint(${j})">
+          <span class="dot">🔹</span><span>${p}</span>
+        </button>`).join('')}
+
+      <div class="sec-title">❓ Prashn Uttar</div>
+      ${L.qa.map((q,j) => `
+        <div class="qa-item">
+          <div class="qa-q" onclick="speakQ(${j})">Q${j+1}. ${q.q} 🔊</div>
+          <button class="ans-btn" onclick="revealAns(${j})">👉 Uttar Dekho</button>
+          <div class="qa-a" id="ans-${j}">${q.a}</div>
+        </div>`).join('')}
+
+      <div class="poem-actions">
+        <button class="btn primary" onclick="playLesson()">▶️ Poora Chapter Suno</button>
+        <button class="btn" onclick="renderCategory()">↩️ Wapas</button>
+      </div>
+    </div>`;
+  window.scrollTo(0,0);
+}
+
+function speakPoint(j){
+  const L = currentLesson;
+  speak(L.points[j]);
+  document.querySelectorAll('.point').forEach((e,k) =>
+    e.classList.toggle('active', k === j));
+  addStar();
+}
+
+function speakQ(j){
+  speak(currentLesson.qa[j].q);
+  addStar();
+}
+
+function revealAns(j){
+  const el = document.getElementById('ans-' + j);
+  if(!el) return;
+  el.classList.toggle('show');
+  if(el.classList.contains('show')) speak(currentLesson.qa[j].a);
+  addStar();
+}
+
+function playLesson(){
+  const L = currentLesson;
+  const seq = [];
+  L.points.forEach(p => seq.push(p));
+  L.qa.forEach((qa,k) => {
+    seq.push('Question ' + (k+1) + '. ' + qa.q);
+    seq.push('Answer. ' + qa.a);
+  });
+  speakSequence(seq, 'en-IN', idx => {
+    const total = L.points.length;
+    document.querySelectorAll('.point').forEach((e,k) => {
+      e.classList.toggle('active', k === idx);
+    });
+  });
+  addStar();
+}
+
+/* ---------- POEM VIEW ---------- */
+function openPoem(i){
+  currentPoem = currentItems[i];
+  state.view = 'poem';
+  setHeader(currentPoem.title, 'Rhyme Time 🎵');
+  screen.innerHTML = `
+    <div class="poem">
+      <h2>${currentPoem.emoji} ${currentPoem.title}</h2>
+      <div class="author">— ${currentPoem.author}</div>
+      <div class="lines">
+        ${currentPoem.lines.map((l,j) =>
+          `<button class="line" onclick="speakLine(${j})">${l}</button>`).join('')}
+      </div>
+      <div class="poem-actions">
+        <button class="btn primary" onclick="playPoem()">▶️ Poori Poem Suno</button>
+        <button class="btn" onclick="renderCategory()">↩️ Wapas</button>
+      </div>
+    </div>`;
+  window.scrollTo(0,0);
+}
+
+function speakLine(j){
+  speak(currentPoem.lines[j], currentPoem.lang || 'en-IN');
+  document.querySelectorAll('.line').forEach((e,k) =>
+    e.classList.toggle('active', k === j));
+  addStar();
+}
+
+function playPoem(){
+  speakSequence(currentPoem.lines, currentPoem.lang || 'en-IN', idx => {
+    document.querySelectorAll('.line').forEach((e,k) =>
+      e.classList.toggle('active', k === idx));
+  });
+  addStar();
+}
+
+/* ---------- QUIZ ---------- */
+function drawQuiz(){
+  const data = CONTENT[state.cat];
+  const box  = document.getElementById('quizBox');
+  if(!box) return;
+
+  if(quizState.idx >= data.questions.length){
+    const perfect = quizState.score === data.questions.length;
+    box.innerHTML = `<div class="result">
+      <div style="font-size:4rem">${perfect ? '🏆' : '🌟'}</div>
+      <h2>Score: ${quizState.score} / ${data.questions.length}</h2>
+      <button class="btn primary" onclick="restartQuiz()">🔄 Phir Se Khelo</button>
+      <button class="btn" style="margin-left:10px" onclick="renderCategory()">↩️ Wapas</button>
+    </div>`;
+    speak(perfect
+      ? 'Perfect score! Shabaash!'
+      : `You scored ${quizState.score} out of ${data.questions.length}. Well done!`);
+    return;
+  }
+
+  const q = data.questions[quizState.idx];
+  box.innerHTML = `
+    <div class="quiz">
+      <div class="qmeta">Question ${quizState.idx+1} / ${data.questions.length} &nbsp;•&nbsp; ⭐ ${quizState.score}</div>
+      <h2 class="qtext">${q.q}</h2>
+      <div class="options">
+        ${q.options.map(o => `<button class="opt" onclick="answer('${o.replace(/'/g,"\\'")}')">${o}</button>`).join('')}
+      </div>
+    </div>`;
+  speak(q.q);
+}
+
+function answer(opt){
+  const data = CONTENT[state.cat];
+  const q = data.questions[quizState.idx];
+  const opts = document.querySelectorAll('.opt');
+  opts.forEach(o => o.disabled = true);
+
+  if(opt === q.answer){
+    quizState.score++;
+    opts.forEach(o => { if(o.textContent.trim() === opt) o.classList.add('right'); });
+    speak('Correct! Well done.');
+    addStar();
+  } else {
+    opts.forEach(o => {
+      if(o.textContent.trim() === opt) o.classList.add('wrong');
+      if(o.textContent.trim() === q.answer) o.classList.add('right');
+    });
+    speak(`Oops! The correct answer is ${q.answer}`);
+  }
+
+  setTimeout(() => { quizState.idx++; drawQuiz(); }, 1700);
+}
+
+function restartQuiz(){
+  quizState = { idx:0, score:0 };
+  drawQuiz();
+}
+
+/* =========================================================
+   13. START
+   ========================================================= */
+renderHome();
+
+/* Unlock speech on first user interaction (mobile browsers) */
+document.body.addEventListener('touchstart', function unlock(){
+  if('speechSynthesis' in window){
+    const u = new SpeechSynthesisUtterance(' ');
+    u.volume = 0;
+    speechSynthesis.speak(u);
+  }
+  document.body.removeEventListener('touchstart', unlock);
+}, {once:true});
+</script>
+</body>
+</html>
