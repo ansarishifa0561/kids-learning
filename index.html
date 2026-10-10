@@ -6,27 +6,17 @@
 <title>Kids Learning Hub 🎈 CBSE Pattern</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-/* =========================================================
-   STYLES
-   ========================================================= */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-
-/* ===== BOOK-LIKE BACKGROUND ===== */
 html,body{height:100%}
 body{
   font-family:'Baloo 2','Comic Sans MS',system-ui,sans-serif;
   color:#2b2b3a;padding:14px;
-  background:
-    radial-gradient(circle at 20% 20%,#fff5e6,#f0d9b5 60%,#d9b88a 100%);
-  background-attachment:fixed;
-  min-height:100vh;
+  background:radial-gradient(circle at 20% 20%,#fff5e6,#f0d9b5 60%,#d9b88a 100%);
+  background-attachment:fixed;min-height:100vh;
 }
-
-/* ===== PROFESSIONAL BOOK FRAME ===== */
 .book-frame{
   max-width:1250px;margin:0 auto;position:relative;
-  background:
-    linear-gradient(135deg,#fffefb,#fff8ee 50%,#fffefb);
+  background:linear-gradient(135deg,#fffefb,#fff8ee 50%,#fffefb);
   border-radius:14px;
   box-shadow:
     0 0 0 3px #fff,
@@ -35,27 +25,20 @@ body{
     0 0 0 16px #8B5A2B,
     0 25px 60px rgba(80,50,20,.35),
     0 8px 20px rgba(0,0,0,.2);
-  overflow:hidden;
-  padding:0;
-  margin-top:24px;
-  margin-bottom:24px;
+  overflow:hidden;padding:0;margin-top:24px;margin-bottom:24px;
 }
-
-/* ===== DECORATIVE CORNERS ===== */
 .book-frame::before,
 .book-frame::after{
   content:'';position:absolute;width:60px;height:60px;
   background:
-    radial-gradient(circle at 30% 30%, #FFD60A 0 25%, transparent 30%),
-    radial-gradient(circle at 70% 30%, #FF3B30 0 25%, transparent 30%),
-    radial-gradient(circle at 30% 70%, #0A84FF 0 25%, transparent 30%),
-    radial-gradient(circle at 70% 70%, #34C759 0 25%, transparent 30%);
+    radial-gradient(circle at 30% 30%,#FFD60A 0 25%,transparent 30%),
+    radial-gradient(circle at 70% 30%,#FF3B30 0 25%,transparent 30%),
+    radial-gradient(circle at 30% 70%,#0A84FF 0 25%,transparent 30%),
+    radial-gradient(circle at 70% 70%,#34C759 0 25%,transparent 30%);
   z-index:5;pointer-events:none;
 }
 .book-frame::before{top:14px;left:14px}
 .book-frame::after{bottom:14px;right:14px}
-
-/* ===== HEADER ===== */
 header{
   position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;
   padding:12px 16px;
@@ -77,21 +60,15 @@ header .sub{font-size:.7rem;opacity:.75;font-weight:600;color:#8B5A2B}
   border:2px solid #d4a373;border-radius:14px;padding:7px 14px;font-weight:800;
   box-shadow:0 3px 8px rgba(139,90,43,.2);white-space:nowrap;font-size:.9rem;
   color:#7a4a10}
-
-/* ===== MAIN ===== */
 main{padding:22px 20px 60px}
-
 .hero{text-align:center;padding:18px 10px 26px}
 .hero h1{font-size:clamp(1.5rem,5.5vw,2.6rem);font-weight:800;
   background:linear-gradient(90deg,#ff5f9e,#7c5cff,#00b8d9);
   -webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{margin-top:8px;opacity:.75;font-weight:600;font-size:.98rem;color:#5a3a1a}
-
 .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 .grid.levels{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 .grid.info-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-
-/* ===== CARDS ===== */
 .card,.item{
   border:none;cursor:pointer;font-family:inherit;
   background:linear-gradient(145deg,#fffefb,#fff5e6);
@@ -122,34 +99,22 @@ main{padding:22px 20px 60px}
 .swatch{width:90px;height:90px;border-radius:50%;
   box-shadow:inset 0 -8px 15px rgba(0,0,0,.15), inset 0 8px 15px rgba(255,255,255,.4),
   0 8px 20px rgba(0,0,0,.2)}
-
-/* ===== NUMBER TILE ===== */
 .num-tile{
   display:inline-flex;align-items:center;justify-content:center;
   min-width:70px;min-height:70px;border-radius:18px;
-  font-size:clamp(1.6rem,4.5vw,2.6rem);
-  font-weight:800;color:#fff;
+  font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:800;color:#fff;
   box-shadow:0 8px 16px rgba(0,0,0,.25), inset 0 -4px 0 rgba(0,0,0,.2);
-  text-shadow:0 2px 4px rgba(0,0,0,.35);
-  padding:6px 14px;white-space:nowrap;
+  text-shadow:0 2px 4px rgba(0,0,0,.35);padding:6px 14px;white-space:nowrap;
 }
-
-/* ===== WORD ITEM (Numbers in Words) ===== */
-.item.word-item{
-  grid-column:span 2;padding:22px 16px;min-height:170px;justify-content:center;
-}
-.item .wordtext{
-  font-weight:800;line-height:1.15;text-align:center;
+.item.word-item{grid-column:span 2;padding:22px 16px;min-height:170px;justify-content:center}
+.item .wordtext{font-weight:800;line-height:1.15;text-align:center;
   word-break:break-word;overflow-wrap:break-word;
-  padding:6px;max-width:100%;color:#5C6BC0;
-}
+  padding:6px;max-width:100%;color:#5C6BC0}
 .item.word-item[data-len="xs"] .wordtext{font-size:2rem}
 .item.word-item[data-len="s"]  .wordtext{font-size:1.6rem}
 .item.word-item[data-len="m"]  .wordtext{font-size:1.35rem}
 .item.word-item[data-len="l"]  .wordtext{font-size:1.15rem}
 .item.word-item[data-len="xl"] .wordtext{font-size:1rem}
-
-/* ===== SQUARE / CUBE CARDS ===== */
 .sq-card{
   border:none;cursor:pointer;font-family:inherit;
   background:linear-gradient(145deg,#ffffff,#f0f4ff);
@@ -163,28 +128,19 @@ main{padding:22px 20px 60px}
   background:linear-gradient(90deg,#7c5cff,#ff5f9e)}
 .sq-card:hover{transform:translateY(-6px) scale(1.03);
   box-shadow:0 18px 35px rgba(80,80,180,.3)}
-.sq-card .expr{
-  font-size:1.6rem;font-weight:800;color:#5C6BC0;
-  display:flex;align-items:center;gap:8px;
-}
+.sq-card .expr{font-size:1.6rem;font-weight:800;color:#5C6BC0;
+  display:flex;align-items:center;gap:8px}
 .sq-card .expr sup{font-size:.9rem;color:#7c5cff}
 .sq-card .eq{font-size:1rem;color:#8B5A2B;font-weight:700}
-.sq-card .res{
-  font-size:2.2rem;font-weight:800;
+.sq-card .res{font-size:2.2rem;font-weight:800;
   background:linear-gradient(135deg,#7c5cff,#ff5f9e);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  margin-top:2px;
-}
-
-/* ===== INFO CARDS ===== */
+  -webkit-background-clip:text;background-clip:text;color:transparent;margin-top:2px}
 .card.info{align-items:flex-start;text-align:left;padding:20px 18px;gap:8px}
 .card.info .emo{font-size:2.5rem}
 .card.info .ttl{font-size:1.1rem}
 .card.info .txt{font-size:.88rem;opacity:.8;font-weight:600;line-height:1.4;color:#5a3a1a}
 .card.info .play{align-self:flex-start;background:#eef0ff;color:#5c4dff;
   font-weight:800;border-radius:12px;padding:4px 12px;font-size:.78rem;margin-top:4px}
-
-/* ===== LESSON ===== */
 .lesson{background:#fffefb;border-radius:22px;padding:24px 20px;
   box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:820px;margin:0 auto;
   border:2px solid #e8d5b7}
@@ -216,8 +172,6 @@ main{padding:22px 20px 60px}
   background:#eef0ff;color:#5c4dff;font-weight:800;border-radius:12px;
   padding:8px 16px;font-size:.85rem;transition:.2s}
 .ans-btn:hover{background:#dfe3ff}
-
-/* ===== TABLE ===== */
 .table-view{background:#fffefb;border-radius:22px;padding:24px 20px;
   max-width:540px;margin:0 auto;
   box-shadow:0 12px 30px rgba(139,90,43,.18);border:2px solid #e8d5b7}
@@ -229,8 +183,6 @@ main{padding:22px 20px 60px}
   letter-spacing:.5px;box-shadow:0 4px 10px rgba(80,80,140,.1)}
 .trow:hover{background:linear-gradient(145deg,#e9e5ff,#dcd6ff);transform:scale(1.02)}
 .trow.active{background:linear-gradient(135deg,#7c5cff,#5c4dff);color:#fff;transform:scale(1.03)}
-
-/* ===== POEM ===== */
 .poem{background:#fff;border-radius:22px;padding:0;overflow:hidden;
   box-shadow:0 15px 40px rgba(139,90,43,.25);max-width:750px;margin:0 auto;
   border:2px solid #e8d5b7}
@@ -268,8 +220,6 @@ main{padding:22px 20px 60px}
 .btn.primary{background:linear-gradient(135deg,#7c5cff,#ff5f9e);color:#fff;
   box-shadow:0 10px 22px rgba(124,92,255,.4)}
 .btn:hover{transform:translateY(-3px)}
-
-/* ===== QUIZ ===== */
 .quiz{background:#fffefb;border-radius:22px;padding:26px 20px;
   box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:680px;margin:0 auto;
   text-align:center;border:2px solid #e8d5b7}
@@ -287,8 +237,6 @@ main{padding:22px 20px 60px}
   text-align:center;box-shadow:0 12px 30px rgba(139,90,43,.18);
   max-width:560px;margin:0 auto;border:2px solid #e8d5b7}
 .result h2{margin:16px 0 22px;color:#7c5cff}
-
-/* ===== MISSING GAME ===== */
 .missing-view{background:#fffefb;border-radius:22px;padding:26px 20px;
   box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:680px;margin:0 auto;
   text-align:center;border:2px solid #e8d5b7}
@@ -307,8 +255,6 @@ main{padding:22px 20px 60px}
 .mopt:hover:not(:disabled){transform:translateY(-4px) scale(1.05)}
 .mopt.right{background:linear-gradient(145deg,#34C759,#28a745);color:#fff}
 .mopt.wrong{background:linear-gradient(145deg,#FF3B30,#dc3545);color:#fff}
-
-/* ===== MATCHING ===== */
 .match-view{background:#fffefb;border-radius:22px;padding:26px 20px;
   box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:750px;margin:0 auto;
   border:2px solid #e8d5b7}
@@ -324,8 +270,6 @@ main{padding:22px 20px 60px}
 .match-btn.done{background:linear-gradient(145deg,#34C759,#28a745);color:#fff;
   opacity:.5;cursor:default}
 .match-btn.err{background:linear-gradient(145deg,#FF3B30,#dc3545);color:#fff}
-
-/* ===== OPPOSITES ===== */
 .opp-card{grid-column:span 2;border:none;cursor:pointer;font-family:inherit;
   background:linear-gradient(145deg,#fffefb,#fff5e6);
   display:flex;align-items:center;justify-content:space-around;
@@ -340,7 +284,6 @@ main{padding:22px 20px 60px}
 .opp-label{font-weight:800;font-size:1rem;color:#5a3a1a}
 .opp-arrow{font-size:2rem;color:#7c5cff;animation:pulse 1.5s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-
 @media(max-width:480px){
   body{padding:6px}
   .book-frame{margin-top:14px;margin-bottom:14px;
@@ -365,7 +308,6 @@ main{padding:22px 20px 60px}
 <body>
 
 <div class="book-frame">
-
 <header>
   <button class="icon-btn" id="backBtn" onclick="goBack()">⬅️</button>
   <div>
@@ -376,31 +318,47 @@ main{padding:22px 20px 60px}
   <button class="icon-btn" id="muteBtn" onclick="toggleSound()">🔊</button>
   <div class="stars">⭐ <span id="starCount">0</span></div>
 </header>
-
 <main id="screen"></main>
-
 </div>
 
 <script>
 /* =========================================================
-   SECTION 1: SPEECH ENGINE
+   SECTION 1: SPEECH ENGINE (Better Voice)
    ========================================================= */
 let voices = [];
 let soundOn = true;
 function loadVoices(){ voices = window.speechSynthesis ? speechSynthesis.getVoices() : []; }
 if('speechSynthesis' in window){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+
 function pickVoice(lang){
   const base = lang.split('-')[0];
-  return voices.find(v => v.lang.replace('_','-') === lang)
-      || voices.find(v => v.lang.replace('_','-').startsWith(base))
-      || null;
+  const isHindi = base === 'hi';
+  const preferredNames = isHindi
+    ? ['Google हिन्दी','Microsoft Swara','Microsoft Kalpana','Lekha','Aditi']
+    : ['Google UK English Female','Microsoft Zira','Samantha','Microsoft Heera',
+       'Google US English','Microsoft Aria','Karen','Tessa'];
+  for(const name of preferredNames){
+    const v = voices.find(v => v.name && v.name.includes(name));
+    if(v) return v;
+  }
+  const indian = voices.find(v => v.lang.replace('_','-') === 'en-IN');
+  if(indian) return indian;
+  const female = voices.find(v => v.lang.replace('_','-').startsWith(base)
+    && /female|zira|samantha|heera|aria|swara/i.test(v.name||''));
+  if(female) return female;
+  return voices.find(v => v.lang.replace('_','-').startsWith(base)) || null;
 }
-function speak(text, lang='en-IN', rate=0.85){
+
+function speak(text, lang='en-IN', rate=0.78){
   if(!soundOn || !('speechSynthesis' in window) || !text) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(String(text));
-  u.lang = lang; u.rate = rate; u.pitch = 1.05; u.volume = 1;
-  const v = pickVoice(lang); if(v) u.voice = v;
+  u.lang = lang;
+  u.rate = rate;
+  u.pitch = 1.25;
+  u.volume = 1;
+  const v = pickVoice(lang);
+  if(v) u.voice = v;
   speechSynthesis.speak(u);
 }
 function speakSequence(lines, lang='en-IN', onLine){
@@ -411,7 +369,7 @@ function speakSequence(lines, lang='en-IN', onLine){
     if(i >= lines.length){ if(onLine) onLine(-1); return; }
     if(onLine) onLine(i);
     const u = new SpeechSynthesisUtterance(lines[i]);
-    u.lang = lang; u.rate = 0.8; u.pitch = 1.1;
+    u.lang = lang; u.rate = 0.72; u.pitch = 1.3;
     const v = pickVoice(lang); if(v) u.voice = v;
     u.onend = () => { i++; setTimeout(go, 320); };
     speechSynthesis.speak(u);
@@ -463,13 +421,6 @@ function makeTables(from, to){
   }
   return arr;
 }
-function makeSquares(from, to){
-  const arr = [];
-  for(let i=from; i<=to; i++){
-    arr.push({n:i, sq:i*i, cube:i*i*i});
-  }
-  return arr;
-}
 function shuffle(arr){
   for(let i = arr.length-1; i > 0; i--){
     const j = Math.floor(Math.random()*(i+1));
@@ -477,7 +428,6 @@ function shuffle(arr){
   }
   return arr;
 }
-/* Poem pronunciation fix */
 function fixPoemText(t){
   return String(t)
     .replace(/\bBaa\b/gi, 'Bah')
@@ -487,12 +437,9 @@ function fixPoemText(t){
 /* =========================================================
    SECTION 4: DATA
    ========================================================= */
-
-/* Number colors */
 const NUM_COLORS = ['#FF3B30','#FF9500','#FFC300','#34C759','#00C2A8',
                     '#0A84FF','#5C6BC0','#AF52DE','#FF2D95','#8B5A2B'];
 
-/* 4.1 ALPHABET */
 const ALPHABET = [
  ['A','Apple','🍎'],['B','Ball','⚽'],['C','Cat','🐱'],['D','Dog','🐶'],
  ['E','Elephant','🐘'],['F','Fish','🐟'],['G','Grapes','🍇'],['H','Hat','👒'],
@@ -502,16 +449,12 @@ const ALPHABET = [
  ['U','Umbrella','☂️'],['V','Van','🚐'],['W','Watch','⌚'],['X','Xylophone','🎹'],
  ['Y','Yak','🐃'],['Z','Zebra','🦓']
 ];
-
-/* 4.2 TWO LETTER */
 const TWO_LETTER = [
  ['At','🎯'],['An','1️⃣'],['In','📥'],['On','🔛'],['Up','⬆️'],['Go','🟢'],
  ['No','❌'],['So','✨'],['My','🙋'],['By','👉'],['Do','✅'],['To','➡️'],
  ['Am','🌅'],['As','🅰️'],['Be','🐝'],['He','👦'],['If','❓'],['Is','🟰'],
  ['It','🎁'],['Me','🙋'],['Of','🔗'],['Or','🔀'],['Us','👫'],['We','👨‍👩‍👧']
 ];
-
-/* 4.3 THREE LETTER */
 const THREE_LETTER = [
  ['Cat','🐱'],['Dog','🐶'],['Sun','☀️'],['Bat','🦇'],['Pen','🖊️'],
  ['Cup','🥤'],['Box','📦'],['Hat','👒'],['Bus','🚌'],['Jam','🍯'],
@@ -519,31 +462,23 @@ const THREE_LETTER = [
  ['Hen','🐔'],['Rat','🐀'],['Bee','🐝'],['Owl','🦉'],['Fly','🪰'],
  ['Ant','🐜'],['Cow','🐮'],['Pig','🐷'],['Fox','🦊'],['Jar','🫙']
 ];
-
-/* 4.4 COLORS */
 const COLORS = [
  ['Red','#FF3B30'],['Blue','#0A84FF'],['Green','#34C759'],['Yellow','#FFD60A'],
  ['Orange','#FF9500'],['Purple','#AF52DE'],['Pink','#FF2D95'],['Brown','#8B5A2B'],
  ['Black','#1C1C1E'],['White','#FFFFFF'],['Grey','#9E9E9E'],['Golden','#FFC300'],
  ['Sky Blue','#87CEEB'],['Lime','#A8E63A'],['Maroon','#800000'],['Navy','#000080']
 ];
-
-/* 4.5 SHAPES */
 const SHAPES = [
  ['Circle','⭕'],['Triangle','🔺'],['Square','🟥'],['Star','⭐'],['Heart','❤️'],
  ['Diamond','🔷'],['Rectangle','🟦'],['Oval','🥚'],['Moon','🌙'],['Pentagon','🔶'],
  ['Hexagon','🛑'],['Cross','➕']
 ];
-
-/* 4.6 FRUITS */
 const FRUITS = [
  ['Apple','🍎'],['Banana','🍌'],['Grapes','🍇'],['Orange','🍊'],['Mango','🥭'],
  ['Watermelon','🍉'],['Strawberry','🍓'],['Pineapple','🍍'],['Pear','🍐'],
  ['Peach','🍑'],['Coconut','🥥'],['Cherry','🍒'],['Lemon','🍋'],['Kiwi','🥝'],
  ['Blueberry','🫐'],['Papaya','🍈']
 ];
-
-/* 4.7 ANIMALS */
 const ANIMALS = [
  ['Dog','🐶'],['Cat','🐱'],['Elephant','🐘'],['Lion','🦁'],['Tiger','🐯'],
  ['Monkey','🐵'],['Rabbit','🐰'],['Bear','🐻'],['Panda','🐼'],['Horse','🐴'],
@@ -551,16 +486,12 @@ const ANIMALS = [
  ['Hen','🐔'],['Duck','🦆'],['Fish','🐟'],['Butterfly','🦋'],['Bee','🐝'],
  ['Deer','🦌'],['Wolf','🐺'],['Camel','🐫'],['Giraffe','🦒'],['Zebra','🦓']
 ];
-
-/* 4.8 FLOWERS */
 const FLOWERS = [
  ['Rose','🌹'],['Sunflower','🌻'],['Tulip','🌷'],['Daisy','🌼'],
  ['Cherry Blossom','🌸'],['Marigold','🏵️'],['Lotus','🪷'],['Hibiscus','🌺'],
  ['Bouquet','💐'],['Jasmine','🤍'],['Orchid','🌺'],['Lily','🌷'],
  ['Lavender','💜'],['Dandelion','🌼']
 ];
-
-/* 4.9 OPPOSITES */
 const OPPOSITES = [
  {left:'Big', right:'Small', leftEmoji:'🐘', rightEmoji:'🐜', leftSize:'6rem', rightSize:'2rem'},
  {left:'Hot', right:'Cold', leftEmoji:'🔥', rightEmoji:'❄️', leftSize:'5rem', rightSize:'5rem'},
@@ -577,8 +508,6 @@ const OPPOSITES = [
  {left:'Thick', right:'Thin', leftEmoji:'📚', rightEmoji:'📄', leftSize:'5rem', rightSize:'4rem'},
  {left:'Old', right:'New', leftEmoji:'👴', rightEmoji:'👶', leftSize:'5rem', rightSize:'5rem'}
 ];
-
-/* 4.10 MISSING WORDS */
 const MISSING_WORDS = [
  {word:'CAT', emoji:'🐱'},{word:'DOG', emoji:'🐶'},{word:'SUN', emoji:'☀️'},
  {word:'BAT', emoji:'🦇'},{word:'PEN', emoji:'🖊️'},{word:'CUP', emoji:'🥤'},
@@ -591,26 +520,140 @@ const MISSING_WORDS = [
  {word:'MANGO', emoji:'🥭'},{word:'GRAPE', emoji:'🍇'}
 ];
 
-/* 4.11 POEMS */
+/* ---------- READING STORIES ---------- */
+const STORIES = [
+  {emoji:'🐦', title:'The Thirsty Crow', bg:'linear-gradient(135deg,#ffe0b2,#ffb74d)',
+   lines:[
+     ['Once upon a time, there was a crow.', '🐦'],
+     ['He was very thirsty.', '💧'],
+     ['He looked for water everywhere.', '🔍'],
+     ['At last, he found a pot with a little water.', '🏺'],
+     ['But his beak could not reach the water.', '😔'],
+     ['He put small stones in the pot, one by one.', '🪨'],
+     ['The water came up slowly.', '💦'],
+     ['The clever crow drank the water and flew away.', '😊'],
+     ['Moral: Where there is a will, there is a way.', '⭐']
+   ],
+   questions:[
+     {q:'What did the crow want?', a:'He wanted water to drink.'},
+     {q:'Why could the crow not drink the water?', a:'His beak could not reach the water.'},
+     {q:'How did the crow solve the problem?', a:'He put small stones in the pot.'},
+     {q:'What is the moral of the story?', a:'Where there is a will, there is a way.'}
+   ]},
+  {emoji:'🦁', title:'The Lion and the Mouse', bg:'linear-gradient(135deg,#fff3e0,#ffcc80)',
+   lines:[
+     ['A lion was sleeping in the forest.', '🦁'],
+     ['A little mouse ran over him.', '🐭'],
+     ['The lion woke up and caught the mouse.', '😠'],
+     ['"Please let me go," said the mouse.', '🙏'],
+     ['"One day I will help you," he promised.', '🤝'],
+     ['The lion laughed and let him go.', '😄'],
+     ['Later, the lion was caught in a net.', '🕸️'],
+     ['The mouse came and cut the net with his teeth.', '✂️'],
+     ['The lion was free and thanked the mouse.', '😊'],
+     ['Moral: Even the smallest friend can help.', '⭐']
+   ],
+   questions:[
+     {q:'Who caught the mouse?', a:'The lion caught the mouse.'},
+     {q:'What did the mouse promise?', a:'He promised to help the lion one day.'},
+     {q:'How did the mouse help the lion?', a:'He cut the net with his teeth.'},
+     {q:'What is the moral?', a:'Even the smallest friend can help.'}
+   ]},
+  {emoji:'🐢', title:'The Hare and the Tortoise', bg:'linear-gradient(135deg,#c8e6c9,#81c784)',
+   lines:[
+     ['A hare and a tortoise lived in a forest.', '🐢'],
+     ['The hare was very fast.', '🐇'],
+     ['He always laughed at the slow tortoise.', '😜'],
+     ['They decided to have a race.', '🏁'],
+     ['The hare ran very fast.', '💨'],
+     ['He thought, "I will rest for a while."', '😴'],
+     ['The hare fell asleep under a tree.', '🌳'],
+     ['The tortoise kept walking slowly.', '🚶'],
+     ['The tortoise reached the finish line first.', '🏆'],
+     ['The hare woke up and saw the tortoise had won.', '😮'],
+     ['Moral: Slow and steady wins the race.', '⭐']
+   ],
+   questions:[
+     {q:'Who was fast?', a:'The hare was very fast.'},
+     {q:'What did the hare do during the race?', a:'He slept under a tree.'},
+     {q:'Who won the race?', a:'The tortoise won the race.'},
+     {q:'What is the moral?', a:'Slow and steady wins the race.'}
+   ]},
+  {emoji:'👨‍👩‍👧', title:'My Family', bg:'linear-gradient(135deg,#f8bbd0,#f48fb1)',
+   lines:[
+     ['I live with my family.', '🏠'],
+     ['My father is a kind man.', '👨'],
+     ['My mother is very loving.', '👩'],
+     ['I have one little sister.', '👶'],
+     ['We have a pet dog named Tommy.', '🐶'],
+     ['We eat dinner together every night.', '🍽️'],
+     ['We love each other very much.', '❤️']
+   ],
+   questions:[
+     {q:'How many sisters do I have?', a:'One little sister.'},
+     {q:'What is the name of the pet dog?', a:'Tommy.'},
+     {q:'When do we eat together?', a:'Every night at dinner.'}
+   ]},
+  {emoji:'🌳', title:'The Big Tree', bg:'linear-gradient(135deg,#dcedc8,#aed581)',
+   lines:[
+     ['There was a big tree in the garden.', '🌳'],
+     ['It had many green leaves.', '🍃'],
+     ['Birds made nests in the tree.', '🐦'],
+     ['Children played under the tree.', '🧒'],
+     ['On hot days, the tree gave cool shade.', '☀️'],
+     ['The tree gave us fruits.', '🍎'],
+     ['Trees are our best friends.', '💚']
+   ],
+   questions:[
+     {q:'Where was the tree?', a:'In the garden.'},
+     {q:'Who made nests in the tree?', a:'Birds made nests.'},
+     {q:'What did the tree give on hot days?', a:'Cool shade.'}
+   ]}
+];
+
+/* ---------- WRITING PRACTICE ---------- */
+const WRITING = [
+  {emoji:'🔠', title:'A to Z (Capital)',
+   instruction:'Bade akshar A se Z tak likho',
+   items:['A','B','C','D','E','F','G','H','I','J','K','L','M',
+          'N','O','P','Q','R','S','T','U','V','W','X','Y','Z']},
+  {emoji:'🔡', title:'a to z (Small)',
+   instruction:'Chhote akshar a se z tak likho',
+   items:['a','b','c','d','e','f','g','h','i','j','k','l','m',
+          'n','o','p','q','r','s','t','u','v','w','x','y','z']},
+  {emoji:'🔢', title:'Numbers 1 to 20',
+   instruction:'Numbers 1 se 20 tak likho',
+   items:['1','2','3','4','5','6','7','8','9','10',
+          '11','12','13','14','15','16','17','18','19','20']},
+  {emoji:'✍️', title:'3 Letter Words',
+   instruction:'Ye words copy mein 5 baar likho',
+   items:['cat','dog','sun','bat','pen','cup','hat','bus']},
+  {emoji:'📝', title:'4 Letter Words',
+   instruction:'Ye words copy mein 5 baar likho',
+   items:['apple','ball','book','fish','moon','star','tree','bird']},
+  {emoji:'💐', title:'Fruit Names',
+   instruction:'Fruits ke naam likho',
+   items:['mango','banana','grapes','orange','apple','cherry']},
+  {emoji:'🐘', title:'Animal Names',
+   instruction:'Animals ke naam likho',
+   items:['lion','tiger','dog','cat','cow','horse','deer','fox']}
+];
+
+/* ---------- POEMS ---------- */
 const POEMS = {
   nursery:[
    {emoji:'⭐', title:'Twinkle Twinkle Little Star', author:'Jane Taylor',
     bg:'linear-gradient(135deg,#1a237e,#4a148c,#880e4f)', heroPic:'🌟',
     lines:[
-     ['Twinkle twinkle little star','⭐'],
-     ['How I wonder what you are','🤔'],
-     ['Up above the world so high','☁️'],
-     ['Like a diamond in the sky','💎'],
-     ['Twinkle twinkle little star','⭐'],
-     ['How I wonder what you are','✨']
+     ['Twinkle twinkle little star','⭐'],['How I wonder what you are','🤔'],
+     ['Up above the world so high','☁️'],['Like a diamond in the sky','💎'],
+     ['Twinkle twinkle little star','⭐'],['How I wonder what you are','✨']
     ]},
    {emoji:'👶', title:'Johny Johny Yes Papa', author:'Traditional',
     bg:'linear-gradient(135deg,#fff3e0,#ffe0b2,#ffcc80)', heroPic:'👶',
     lines:[
-     ['Johny Johny yes papa','👦'],
-     ['Eating sugar no papa','🍬'],
-     ['Telling lies no papa','🙅'],
-     ['Open your mouth ha ha ha','😄']
+     ['Johny Johny yes papa','👦'],['Eating sugar no papa','🍬'],
+     ['Telling lies no papa','🙅'],['Open your mouth ha ha ha','😄']
     ]},
    {emoji:'🐑', title:'Baa Baa Black Sheep', author:'Traditional',
     bg:'linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9)', heroPic:'🐑',
@@ -623,32 +666,26 @@ const POEMS = {
    {emoji:'🥚', title:'Humpty Dumpty', author:'Traditional',
     bg:'linear-gradient(135deg,#fff9c4,#ffe082,#ffcc80)', heroPic:'🥚',
     lines:[
-     ['Humpty Dumpty sat on a wall','🧱'],
-     ['Humpty Dumpty had a great fall','💥'],
+     ['Humpty Dumpty sat on a wall','🧱'],['Humpty Dumpty had a great fall','💥'],
      ['All the kings horses and all the kings men','👑'],
      ['Could not put Humpty together again','🥚']
     ]},
    {emoji:'🌧️', title:'Rain Rain Go Away', author:'Traditional',
     bg:'linear-gradient(135deg,#b3e5fc,#81d4fa,#4fc3f7)', heroPic:'🌧️',
     lines:[
-     ['Rain rain go away','🌧️'],
-     ['Come again another day','☀️'],
-     ['Little children want to play','🧒'],
-     ['Rain rain go away','☔']
+     ['Rain rain go away','🌧️'],['Come again another day','☀️'],
+     ['Little children want to play','🧒'],['Rain rain go away','☔']
     ]},
    {emoji:'🐑', title:'Mary Had a Little Lamb', author:'Sarah J. Hale',
     bg:'linear-gradient(135deg,#f8bbd0,#f48fb1,#ec407a)', heroPic:'🐑',
     lines:[
-     ['Mary had a little lamb','🐑'],
-     ['Its fleece was white as snow','❄️'],
-     ['And everywhere that Mary went','👧'],
-     ['The lamb was sure to go','🐏']
+     ['Mary had a little lamb','🐑'],['Its fleece was white as snow','❄️'],
+     ['And everywhere that Mary went','👧'],['The lamb was sure to go','🐏']
     ]},
    {emoji:'🦆', title:'Five Little Ducks', author:'Traditional',
     bg:'linear-gradient(135deg,#fffde7,#fff59d,#ffeb3b)', heroPic:'🦆',
     lines:[
-     ['Five little ducks went out one day','🦆'],
-     ['Over the hill and far away','⛰️'],
+     ['Five little ducks went out one day','🦆'],['Over the hill and far away','⛰️'],
      ['Mother duck said quack quack quack','📣'],
      ['But only four little ducks came back','4️⃣']
     ]}
@@ -667,39 +704,29 @@ const POEMS = {
    {emoji:'☁️', title:'Clouds', author:'Christina Rossetti',
     bg:'linear-gradient(135deg,#e1f5fe,#b3e5fc,#81d4fa)', heroPic:'☁️',
     lines:[
-     ['White sheep, white sheep','☁️'],
-     ['On a blue hill','🏔️'],
-     ['When the wind stops','🌬️'],
-     ['You all stand still','🧍'],
-     ['When the wind blows','💨'],
-     ['You walk away slow','🚶'],
-     ['White sheep, white sheep','🐑'],
-     ['Where do you go?','❓']
+     ['White sheep, white sheep','☁️'],['On a blue hill','🏔️'],
+     ['When the wind stops','🌬️'],['You all stand still','🧍'],
+     ['When the wind blows','💨'],['You walk away slow','🚶'],
+     ['White sheep, white sheep','🐑'],['Where do you go?','❓']
     ]},
    {emoji:'🌧️', title:'Little Raindrops', author:'Anonymous',
     bg:'linear-gradient(135deg,#b3e5fc,#4fc3f7,#0288d1)', heroPic:'💧',
     lines:[
-     ['Little raindrops falling down','🌧️'],
-     ['On the roofs and on the ground','🏠'],
-     ['Dancing, playing all the day','💃'],
-     ['Washing all the dust away','✨'],
-     ['Little raindrops, come again','🔄'],
-     ['You are welcome, gentle rain','☔']
+     ['Little raindrops falling down','🌧️'],['On the roofs and on the ground','🏠'],
+     ['Dancing, playing all the day','💃'],['Washing all the dust away','✨'],
+     ['Little raindrops, come again','🔄'],['You are welcome, gentle rain','☔']
     ]},
    {emoji:'🌙', title:'चंदा मामा', author:'लोकगीत', lang:'hi-IN',
     bg:'linear-gradient(135deg,#1a237e,#283593,#3949ab)', heroPic:'🌙',
     lines:[
-     ['चंदा मामा दूर के','🌙'],
-     ['पुए पकाएँ बूर के','🥮'],
-     ['आप खाएँ थाली में','🍽️'],
-     ['मुन्ने को दें प्याली में','🥣'],
-     ['प्याली गई टूट','💔'],
-     ['मुन्ने को दें छूट','👟']
+     ['चंदा मामा दूर के','🌙'],['पुए पकाएँ बूर के','🥮'],
+     ['आप खाएँ थाली में','🍽️'],['मुन्ने को दें प्याली में','🥣'],
+     ['प्याली गई टूट','💔'],['मुन्ने को दें छूट','👟']
     ]}
   ]
 };
 
-/* 4.12 LESSONS */
+/* ---------- LESSONS ---------- */
 const LESSON_BODY = {
   emoji:'🖐️', title:'Parts of Body', chapter:'Nursery – Class 4',
   points:[
@@ -722,7 +749,6 @@ const LESSON_BODY = {
    {q:'Which organ pumps blood?', a:'The heart.'}
   ]
 };
-
 const LESSON_AAN = {
   emoji:'📝', title:'A, An, The', chapter:'Class 1 – Grammar',
   points:[
@@ -740,7 +766,6 @@ const LESSON_AAN = {
    {q:'___ moon is bright tonight.', a:'The moon.'}
   ]
 };
-
 const LESSON_NOUNS = {
   emoji:'🏷️', title:'Nouns (Naming Words)', chapter:'Class 2 – Grammar',
   points:[
@@ -759,7 +784,6 @@ const LESSON_NOUNS = {
    {q:'Is "book" a noun?', a:'Yes, it is a thing — so it is a noun.'}
   ]
 };
-
 const LESSON_VERBS = {
   emoji:'🏃', title:'Verbs (Action Words)', chapter:'Class 3 – Grammar',
   points:[
@@ -777,7 +801,6 @@ const LESSON_VERBS = {
    {q:'Change "play" to past tense.', a:'Played.'}
   ]
 };
-
 const LESSON_NUMBERS = {
   emoji:'🔢', title:'Numbers 1 to 100', chapter:'Class 1 – Maths',
   points:[
@@ -794,7 +817,6 @@ const LESSON_NUMBERS = {
    {q:'What is between 29 and 31?', a:'30 — Thirty.'}
   ]
 };
-
 const LESSON_MULT = {
   emoji:'✖️', title:'Multiplication Tables', chapter:'Class 2 – Maths',
   points:[
@@ -812,8 +834,6 @@ const LESSON_MULT = {
    {q:'What is 12 × 12?', a:'144.'}
   ]
 };
-
-/* ---- SQUARE LESSONS ---- */
 const LESSON_SQUARE_5 = {
   emoji:'🔲', title:'Square of Numbers (1 to 15)', chapter:'Class 5 – Maths',
   points:[
@@ -833,7 +853,6 @@ const LESSON_SQUARE_5 = {
    {q:'What is the square of 15?', a:'15 × 15 = 225.'}
   ]
 };
-
 const LESSON_SQUARE_6 = {
   emoji:'🔲', title:'Square of Numbers (16 to 30)', chapter:'Class 6 – Maths',
   points:[
@@ -852,7 +871,6 @@ const LESSON_SQUARE_6 = {
    {q:'What is the square of 30?', a:'900.'}
   ]
 };
-
 const LESSON_SQUARE_7 = {
   emoji:'🔲', title:'Square of Numbers (31 to 40)', chapter:'Class 7 – Maths',
   points:[
@@ -871,8 +889,6 @@ const LESSON_SQUARE_7 = {
    {q:'What is the square of 33?', a:'1089.'}
   ]
 };
-
-/* ---- CUBE LESSONS ---- */
 const LESSON_CUBE_5 = {
   emoji:'🧊', title:'Cube of Numbers (1 to 15)', chapter:'Class 5 – Maths',
   points:[
@@ -892,7 +908,6 @@ const LESSON_CUBE_5 = {
    {q:'What is the cube of 10?', a:'10 × 10 × 10 = 1000.'}
   ]
 };
-
 const LESSON_CUBE_6 = {
   emoji:'🧊', title:'Cube of Numbers (16 to 30)', chapter:'Class 6 – Maths',
   points:[
@@ -911,7 +926,6 @@ const LESSON_CUBE_6 = {
    {q:'What is the cube of 30?', a:'27000.'}
   ]
 };
-
 const LESSON_CUBE_7 = {
   emoji:'🧊', title:'Cube of Numbers (31 to 40)', chapter:'Class 7 – Maths',
   points:[
@@ -931,7 +945,7 @@ const LESSON_CUBE_7 = {
   ]
 };
 
-/* 4.13 INFO CARDS */
+/* ---------- INFO CARDS ---------- */
 const INFO_CARDS = {
  science:[
   {emoji:'🌍', main:'Solar System', text:'Our solar system has eight planets that go around the Sun.'},
@@ -991,7 +1005,7 @@ const INFO_CARDS = {
  ]
 };
 
-/* 4.14 QUIZZES */
+/* ---------- QUIZZES ---------- */
 const QUIZ_MATH_1 = [
  {q:'2 + 3 = ?', options:['4','5','6'], answer:'5'},
  {q:'7 − 2 = ?', options:['4','5','6'], answer:'5'},
@@ -1004,7 +1018,6 @@ const QUIZ_MATH_1 = [
  {q:'12 + 5 = ?', options:['16','17','18'], answer:'17'},
  {q:'20 − 10 = ?', options:['5','10','15'], answer:'10'}
 ];
-
 const QUIZ_MATH_2 = [
  {q:'12 × 3 = ?', options:['36','32','42'], answer:'36'},
  {q:'48 ÷ 6 = ?', options:['6','7','8'], answer:'8'},
@@ -1017,7 +1030,6 @@ const QUIZ_MATH_2 = [
  {q:'Prime number?', options:['9','11','15'], answer:'11'},
  {q:'Round 47 to nearest ten', options:['40','50','45'], answer:'50'}
 ];
-
 const QUIZ_MATH_3 = [
  {q:'Solve: x + 7 = 15', options:['6','7','8'], answer:'8'},
  {q:'What is 5 + (−3)?', options:['2','8','−2'], answer:'2'},
@@ -1030,7 +1042,6 @@ const QUIZ_MATH_3 = [
  {q:'Volume of cube side 4 cm?', options:['16 cm³','48 cm³','64 cm³'], answer:'64 cm³'},
  {q:'15% of 200', options:['20','30','40'], answer:'30'}
 ];
-
 const QUIZ_ENG_1 = [
  {q:'Which is a noun?', options:['run','book','quickly'], answer:'book'},
  {q:'Pronoun for a girl?', options:['He','She','It'], answer:'She'},
@@ -1043,7 +1054,6 @@ const QUIZ_ENG_1 = [
  {q:'Which is proper noun?', options:['city','Delhi','river'], answer:'Delhi'},
  {q:'End of question?', options:['Full stop','Question mark','Comma'], answer:'Question mark'}
 ];
-
 const QUIZ_ENG_2 = [
  {q:'Past tense of "write"?', options:['writed','wrote','written'], answer:'wrote'},
  {q:'Comparative of "tall"?', options:['Taller','Tallest','More tall'], answer:'Taller'},
@@ -1056,7 +1066,6 @@ const QUIZ_ENG_2 = [
  {q:'Add punctuation: what is your name', options:['What is your name.','What is your name?','What is your name!'], answer:'What is your name?'},
  {q:'Abstract noun?', options:['Bravery','Table','Delhi'], answer:'Bravery'}
 ];
-
 const QUIZ_ENG_3 = [
  {q:'Passive: The boy broke the window.', options:['The window was broken by the boy.','The window is broken.','The boy was broken.'], answer:'The window was broken by the boy.'},
  {q:'Indirect: She said, "I am happy."', options:['She said she is happy.','She said that she was happy.','She says she was happy.'], answer:'She said that she was happy.'},
@@ -1069,7 +1078,6 @@ const QUIZ_ENG_3 = [
  {q:'Formal letters go to?', options:['Friends','Officials','Family'], answer:'Officials'},
  {q:'Clause must have?', options:['Only subject','Only verb','Subject and verb'], answer:'Subject and verb'}
 ];
-
 const QUIZ_GK_1 = [
  {q:'National animal of India?', options:['Lion','Tiger','Elephant'], answer:'Tiger'},
  {q:'Days in a week?', options:['5','6','7'], answer:'7'},
@@ -1082,7 +1090,6 @@ const QUIZ_GK_1 = [
  {q:'Tallest animal?', options:['Elephant','Giraffe','Horse'], answer:'Giraffe'},
  {q:'We see with?', options:['Ear','Eye','Nose'], answer:'Eye'}
 ];
-
 const QUIZ_GK_2 = [
  {q:'Longest river in India?', options:['Yamuna','Ganga','Godavari'], answer:'Ganga'},
  {q:'Wrote national anthem?', options:['Tagore','Bankim Chandra','Gandhi'], answer:'Tagore'},
@@ -1095,7 +1102,6 @@ const QUIZ_GK_2 = [
  {q:'Cricket team players?', options:['9','10','11'], answer:'11'},
  {q:'Hardest natural substance?', options:['Iron','Diamond','Gold'], answer:'Diamond'}
 ];
-
 const QUIZ_GK_3 = [
  {q:'First PM of India?', options:['Patel','Nehru','Rajendra Prasad'], answer:'Nehru'},
  {q:'Chemical symbol of water?', options:['H2O','CO2','O2'], answer:'H2O'},
@@ -1132,6 +1138,8 @@ const CATS = {
   body:{n:'Body Parts', e:'🖐️', c:'#8D6E63'},
   opposites:{n:'Opposites', e:'↔️', c:'#EF5350'},
   rhymes:{n:'Rhymes', e:'🎵', c:'#7E57C2'},
+  stories:{n:'Reading Stories', e:'📖', c:'#FF6F00'},
+  writing:{n:'Writing Practice', e:'✍️', c:'#5C6BC0'},
   tables10:{n:'Tables 2-10', e:'✖️', c:'#5C6BC0'},
   tables15:{n:'Tables 2-15', e:'✖️', c:'#5C6BC0'},
   tables20:{n:'Tables 2-20', e:'✖️', c:'#5C6BC0'},
@@ -1179,34 +1187,34 @@ const CATS = {
 const LEVELS = {
   nursery:{name:'Nursery', sub:'Age 3-4 Years', emoji:'🧸', color:'#FF6B9D',
     cats:['alphabet','twoletter','numbers10','numword10','colors','shapes',
-          'fruits','animals','flowers','body','opposites','rhymes']},
+          'fruits','animals','flowers','body','opposites','rhymes','stories']},
   jr:{name:'JR KG', sub:'Junior KG • Age 4-5', emoji:'🎈', color:'#00C2A8',
     cats:['twoletter','numbers50','numword50','missingletter','missingnumber',
-          'fruits','animals','flowers','body','opposites','rhymes']},
+          'fruits','animals','flowers','body','opposites','rhymes','stories']},
   sr:{name:'SR KG', sub:'Senior KG • Age 5-6', emoji:'🎒', color:'#FFA726',
     cats:['threeletter','numbers100','numword100','missingletter','missingnumber',
-          'opposites','rhymes']},
+          'opposites','rhymes','stories','writing']},
   class1:{name:'Class 1', sub:'Age 6-7 Years', emoji:'📚', color:'#9B72FF',
     cats:['threeletter','aan','matching','missingletter','missingnumber',
-          'numbers100','tables10','mathlesson1','poems1','body']},
+          'numbers100','tables10','mathlesson1','poems1','stories','writing','body']},
   class2:{name:'Class 2', sub:'Age 7-8 Years', emoji:'✏️', color:'#EF5350',
     cats:['nouns','aan','matching','tables15','mathlesson2',
-          'mathquiz1','engquiz1','gkquiz1','poems2']},
+          'mathquiz1','engquiz1','gkquiz1','poems2','stories','writing']},
   class3:{name:'Class 3', sub:'Age 8-9 Years', emoji:'📖', color:'#26A69A',
-    cats:['verbs','tables20','mathquiz1','engquiz2','gkquiz2','poems2','body']},
+    cats:['verbs','tables20','mathquiz1','engquiz2','gkquiz2','poems2','stories','writing','body']},
   class4:{name:'Class 4', sub:'Age 9-10 Years', emoji:'🎯', color:'#5C6BC0',
-    cats:['tables20','mathquiz2','engquiz2','gkquiz2','science','computer','poems3']},
+    cats:['tables20','mathquiz2','engquiz2','gkquiz2','science','computer','poems3','stories','writing']},
   class5:{name:'Class 5', sub:'Age 10-11 Years', emoji:'🔬', color:'#AB47BC',
     cats:['sqlesson5','squares5','cubelesson5','cubes5',
-          'tables20','mathquiz2','engquiz3','gkquiz2','science','computer']},
+          'tables20','mathquiz2','engquiz3','gkquiz2','science','computer','stories','writing']},
   class6:{name:'Class 6', sub:'Age 11-12 Years', emoji:'🌏', color:'#29B6F6',
     cats:['sqlesson6','squares6','cubelesson6','cubes6',
-          'mathquiz2','engquiz3','gkquiz3','science','history','geography','computer']},
+          'mathquiz2','engquiz3','gkquiz3','science','history','geography','computer','stories','writing']},
   class7:{name:'Class 7', sub:'Age 12-13 Years', emoji:'⚛️', color:'#66BB6A',
     cats:['sqlesson7','squares7','cubelesson7','cubes7',
-          'mathquiz3','engquiz3','gkquiz3','science2','history','geography','computer2']},
+          'mathquiz3','engquiz3','gkquiz3','science2','history','geography','computer2','writing']},
   class8:{name:'Class 8', sub:'Age 13-14 Years', emoji:'🎓', color:'#FF7043',
-    cats:['mathquiz3','engquiz3','gkquiz3','science2','history','geography','computer2']}
+    cats:['mathquiz3','engquiz3','gkquiz3','science2','history','geography','computer2','writing']}
 };
 
 /* =========================================================
@@ -1224,7 +1232,6 @@ function cubeCards(from, to){
 }
 
 const CONTENT = {
-  /* Nursery */
   alphabet:{type:'cards', items: ALPHABET.map(([l,w,e]) => ({emoji:e, badge:l, sub:w, say:`${l} for ${w}`}))},
   twoletter:{type:'cards', items: TWO_LETTER.map(([w,e]) => ({emoji:e, sub:w, say:w}))},
   threeletter:{type:'cards', items: THREE_LETTER.map(([w,e]) => ({emoji:e, sub:w, say:w}))},
@@ -1248,12 +1255,10 @@ const CONTENT = {
   opposites:{type:'opposites', items: OPPOSITES},
   body:{type:'lesson', items:[LESSON_BODY]},
   rhymes:{type:'poemlist', items: POEMS.nursery},
-
-  /* JR/SR */
+  stories:{type:'story', items: STORIES},
+  writing:{type:'writing', items: WRITING},
   missingletter:{type:'missing-letter', items: MISSING_WORDS},
   missingnumber:{type:'missing-number', items: makeNumbers(20)},
-
-  /* Class 1 */
   aan:{type:'lesson', items:[LESSON_AAN]},
   matching:{type:'matching', items: [
     {left:'🍎 Apple', right:'Fruit'}, {left:'🐶 Dog', right:'Animal'},
@@ -1262,52 +1267,42 @@ const CONTENT = {
     {left:'🍌 Banana', right:'Fruit'}, {left:'🌻 Sunflower', right:'Flower'}
   ]},
   tables10:{type:'tablelist', items: makeTables(2,10)},
-  mathlesson1:{type:'lesson', items:[LESSON_NUMBERS]},
-  poems1:{type:'poemlist', items: POEMS.class1},
-
-  /* Class 2 */
-  nouns:{type:'lesson', items:[LESSON_NOUNS]},
   tables15:{type:'tablelist', items: makeTables(2,15)},
-  mathlesson2:{type:'lesson', items:[LESSON_MULT]},
-  mathquiz1:{type:'quiz', questions: QUIZ_MATH_1},
-  engquiz1:{type:'quiz', questions: QUIZ_ENG_1},
-  gkquiz1:{type:'quiz', questions: QUIZ_GK_1},
-  poems2:{type:'poemlist', items: POEMS.class1},
-
-  /* Class 3 */
-  verbs:{type:'lesson', items:[LESSON_VERBS]},
   tables20:{type:'tablelist', items: makeTables(2,20)},
-  mathquiz2:{type:'quiz', questions: QUIZ_MATH_2},
-  engquiz2:{type:'quiz', questions: QUIZ_ENG_2},
-  gkquiz2:{type:'quiz', questions: QUIZ_GK_2},
-
-  /* Class 5,6,7 - SQUARES */
+  mathlesson1:{type:'lesson', items:[LESSON_NUMBERS]},
+  mathlesson2:{type:'lesson', items:[LESSON_MULT]},
+  poems1:{type:'poemlist', items: POEMS.class1},
+  poems2:{type:'poemlist', items: POEMS.class1},
+  poems3:{type:'poemlist', items: POEMS.class1},
+  nouns:{type:'lesson', items:[LESSON_NOUNS]},
+  verbs:{type:'lesson', items:[LESSON_VERBS]},
   sqlesson5:{type:'lesson', items:[LESSON_SQUARE_5]},
   sqlesson6:{type:'lesson', items:[LESSON_SQUARE_6]},
   sqlesson7:{type:'lesson', items:[LESSON_SQUARE_7]},
   squares5:{type:'square', items: squareCards(1, 15)},
   squares6:{type:'square', items: squareCards(16, 30)},
   squares7:{type:'square', items: squareCards(31, 40)},
-
-  /* Class 5,6,7 - CUBES */
   cubelesson5:{type:'lesson', items:[LESSON_CUBE_5]},
   cubelesson6:{type:'lesson', items:[LESSON_CUBE_6]},
   cubelesson7:{type:'lesson', items:[LESSON_CUBE_7]},
   cubes5:{type:'cube', items: cubeCards(1, 15)},
   cubes6:{type:'cube', items: cubeCards(16, 30)},
   cubes7:{type:'cube', items: cubeCards(31, 40)},
-
-  /* Class 4-8 */
+  mathquiz1:{type:'quiz', questions: QUIZ_MATH_1},
+  mathquiz2:{type:'quiz', questions: QUIZ_MATH_2},
   mathquiz3:{type:'quiz', questions: QUIZ_MATH_3},
+  engquiz1:{type:'quiz', questions: QUIZ_ENG_1},
+  engquiz2:{type:'quiz', questions: QUIZ_ENG_2},
   engquiz3:{type:'quiz', questions: QUIZ_ENG_3},
+  gkquiz1:{type:'quiz', questions: QUIZ_GK_1},
+  gkquiz2:{type:'quiz', questions: QUIZ_GK_2},
   gkquiz3:{type:'quiz', questions: QUIZ_GK_3},
   science:{type:'info', items: INFO_CARDS.science},
   science2:{type:'info', items: INFO_CARDS.science2},
   history:{type:'info', items: INFO_CARDS.history},
   geography:{type:'info', items: INFO_CARDS.geography},
   computer:{type:'info', items: INFO_CARDS.computer},
-  computer2:{type:'info', items: INFO_CARDS.computer2},
-  poems3:{type:'poemlist', items: POEMS.class1}
+  computer2:{type:'info', items: INFO_CARDS.computer2}
 };
 
 /* =========================================================
@@ -1323,6 +1318,8 @@ let currentItems = [];
 let currentPoem  = null;
 let currentLesson= null;
 let currentTable = null;
+let currentStory = null;
+let currentWriting = null;
 let quizState = null;
 let matchState = null;
 let missingState = null;
@@ -1420,6 +1417,22 @@ function renderCategory(){
           <span class="emo">${it.emoji}</span>
           <span class="ttl">${it.title}</span>
           <span class="sub">Tap to listen 🎧</span>
+        </button>`).join('') + `</div>`;
+  } else if(data.type === 'story'){
+    screen.innerHTML = `<div class="grid">` +
+      currentItems.map((it,i) => `
+        <button class="card" style="--c:${cat.c}" onclick="openStory(${i})">
+          <span class="emo">${it.emoji}</span>
+          <span class="ttl">${it.title}</span>
+          <span class="sub">Tap to read 📖</span>
+        </button>`).join('') + `</div>`;
+  } else if(data.type === 'writing'){
+    screen.innerHTML = `<div class="grid">` +
+      currentItems.map((it,i) => `
+        <button class="card" style="--c:${cat.c}" onclick="openWriting(${i})">
+          <span class="emo">${it.emoji}</span>
+          <span class="ttl">${it.title}</span>
+          <span class="sub">${it.items.length} items</span>
         </button>`).join('') + `</div>`;
   } else if(data.type === 'lesson'){
     screen.innerHTML = `<div class="grid">` +
@@ -1560,7 +1573,6 @@ function drawMissingLetter(){
     </div>`;
   speak('Which letter is missing in ' + word.split('').join(' '));
 }
-
 function answerMissingLetter(opt, correct){
   const btns = document.querySelectorAll('.mopt');
   btns.forEach(b => b.disabled = true);
@@ -1577,7 +1589,6 @@ function answerMissingLetter(opt, correct){
   }
   setTimeout(() => { missingState.idx++; drawMissingLetter(); }, 1600);
 }
-
 function drawMissingNumber(){
   if(missingState.idx >= missingState.list.length){
     screen.innerHTML = `<div class="result">
@@ -1613,7 +1624,6 @@ function drawMissingNumber(){
     </div>`;
   speak('Which number is missing?');
 }
-
 function answerMissingNumber(opt, correct){
   const btns = document.querySelectorAll('.mopt');
   btns.forEach(b => b.disabled = true);
@@ -1654,7 +1664,6 @@ function drawMatching(){
     </div>`;
   window.scrollTo(0,0);
 }
-
 function clickMatch(btn){
   if(btn.classList.contains('done')) return;
   const side = btn.dataset.side;
@@ -1769,6 +1778,128 @@ function playLesson(){
   speakSequence(seq, 'en-IN', idx => {
     document.querySelectorAll('.point').forEach((e,k) =>
       e.classList.toggle('active', k === idx));
+  });
+  addStar();
+}
+
+function openStory(i){
+  currentStory = currentItems[i];
+  state.view = 'story';
+  setHeader(currentStory.title, 'Reading Time 📖');
+  const bg = currentStory.bg || 'linear-gradient(135deg,#a8e6ff,#ffd6ec)';
+  screen.innerHTML = `
+    <div class="poem">
+      <div class="poem-hero" style="background:${bg}">
+        <div class="hero-pic">${currentStory.emoji}</div>
+        <h2>${currentStory.title}</h2>
+        <div class="author">Read along with me 📖</div>
+      </div>
+      <div class="poem-body">
+        <div class="lines">
+          ${currentStory.lines.map((l,j) =>
+            `<button class="line" onclick="speakStoryLine(${j})">
+              <span class="pic">${l[1]}</span>
+              <span>${l[0]}</span>
+            </button>`).join('')}
+        </div>
+        <div class="sec-title" style="margin-top:26px">❓ Questions</div>
+        ${currentStory.questions.map((q,j) => `
+          <div class="qa-item">
+            <div class="qa-q" onclick="speakStoryQ(${j})">Q${j+1}. ${q.q} 🔊</div>
+            <button class="ans-btn" onclick="revealStoryAns(${j})">👉 Answer Dekho</button>
+            <div class="qa-a" id="sans-${j}">${q.a}</div>
+          </div>`).join('')}
+        <div class="poem-actions">
+          <button class="btn primary" onclick="playStory()">▶️ Poori Story Suno</button>
+          <button class="btn" onclick="renderCategory()">↩️ Wapas</button>
+        </div>
+      </div>
+    </div>`;
+  window.scrollTo(0,0);
+}
+function speakStoryLine(j){
+  speak(currentStory.lines[j][0]);
+  document.querySelectorAll('.line').forEach((e,k) => {
+    e.classList.toggle('active', k === j);
+    if(k === j) e.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+  addStar();
+}
+function speakStoryQ(j){ speak(currentStory.questions[j].q); addStar(); }
+function revealStoryAns(j){
+  const el = document.getElementById('sans-'+j);
+  if(!el) return;
+  el.classList.toggle('show');
+  if(el.classList.contains('show')) speak(currentStory.questions[j].a);
+  addStar();
+}
+function playStory(){
+  const texts = currentStory.lines.map(l => l[0]);
+  speakSequence(texts, 'en-IN', idx => {
+    document.querySelectorAll('.line').forEach((e,k) => {
+      e.classList.toggle('active', k === idx);
+      if(k === idx) e.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  });
+  addStar();
+}
+
+function openWriting(i){
+  currentWriting = currentItems[i];
+  state.view = 'writing';
+  setHeader(currentWriting.title, 'Writing Practice ✍️');
+  screen.innerHTML = `
+    <div class="lesson">
+      <h2>${currentWriting.emoji} ${currentWriting.title}</h2>
+      <div class="chapter">${currentWriting.instruction}</div>
+      <div style="text-align:center;padding:14px;background:#fff8ee;
+                  border-radius:14px;margin-bottom:18px;color:#8B5A2B;
+                  font-weight:700;border:2px dashed #d4a373">
+        📝 Copy mein likho — har item ko tap karo aur 5 baar likho
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:12px">
+        ${currentWriting.items.map((item,j) => `
+          <button id="wr-${j}" onclick="tapWriting(${j})"
+            style="border:2px dashed #d4a373;background:#fffefb;
+                   border-radius:14px;padding:18px 8px;font-family:inherit;
+                   font-size:1.5rem;font-weight:800;color:#5a3a1a;
+                   cursor:pointer;transition:.2s;min-height:75px">
+            ${item}
+          </button>`).join('')}
+      </div>
+      <div class="poem-actions">
+        <button class="btn primary" onclick="playAllWriting()">▶️ Sab Suno</button>
+        <button class="btn" onclick="renderCategory()">↩️ Wapas</button>
+      </div>
+    </div>`;
+  window.scrollTo(0,0);
+}
+function tapWriting(j){
+  const item = currentWriting.items[j];
+  speak(item);
+  const el = document.getElementById('wr-'+j);
+  if(el){
+    el.style.background = 'linear-gradient(135deg,#34C759,#28a745)';
+    el.style.color = '#fff';
+    el.style.borderColor = '#28a745';
+    el.style.borderStyle = 'solid';
+  }
+  addStar();
+}
+function playAllWriting(){
+  const texts = currentWriting.items;
+  speakSequence(texts, 'en-IN', idx => {
+    const el = document.getElementById('wr-'+idx);
+    if(el){
+      el.style.background = 'linear-gradient(135deg,#7c5cff,#ff5f9e)';
+      el.style.color = '#fff';
+    }
+    if(idx === -1){
+      document.querySelectorAll('[id^="wr-"]').forEach(e => {
+        e.style.background = '#fffefb';
+        e.style.color = '#5a3a1a';
+      });
+    }
   });
   addStar();
 }
