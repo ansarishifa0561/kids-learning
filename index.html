@@ -323,7 +323,86 @@ main{padding:22px 20px 60px}
 
 <script>
 /* =========================================================
-   SECTION 1: SPEECH ENGINE (Better Voice)
+   SECTION 1: ROMAN URDU → HINDI CONVERTER
+   ========================================================= */
+const ROMAN_TO_HINDI = {
+  'hai':'है','hain':'हैं','tha':'था','thi':'थी','the':'थे',
+  'mein':'में','me':'में','ek':'एक','yeh':'यह','ye':'यह','woh':'वह','wo':'वह','vo':'वह',
+  'kya':'क्या','kaise':'कैसे','kyun':'क्यों','kyu':'क्यों',
+  'kab':'कब','kaun':'कौन','kahan':'कहाँ','jahan':'जहाँ',
+  'yahan':'यहाँ','wahan':'वहाँ','abhi':'अभी','tabhi':'तभी','kabhi':'कभी',
+  'yehi':'यही','wahi':'वही','lagta':'लगता','lagti':'लगती','lagte':'लगते',
+  'aata':'आता','aati':'आती','aate':'आते','jaata':'जाता','jaati':'जाती','jaate':'जाते',
+  'karta':'करता','karti':'करती','karte':'करते','hota':'होता','hoti':'होती','hote':'होते',
+  'raha':'रहा','rahi':'रही','rahe':'रहे','matlab':'मतलब','jaise':'जैसे','waise':'वैसे',
+  'sirf':'सिर्फ','bahut':'बहुत','thoda':'थोड़ा','thodi':'थोड़ी','thode':'थोड़े',
+  'accha':'अच्छा','achha':'अच्छा','acchi':'अच्छी','bura':'बुरा','buri':'बुरी',
+  'bada':'बड़ा','badi':'बड़ी','bade':'बड़े','chhota':'छोटा','chhoti':'छोटी','chhote':'छोटे',
+  'naya':'नया','nayi':'नयी','naye':'नये','purana':'पुराना','purani':'पुरानी',
+  'sahi':'सही','galat':'गलत','haan':'हाँ','han':'हाँ','nahi':'नहीं','nahin':'नहीं',
+  'kuch':'कुछ','sab':'सब','sabhi':'सभी','log':'लोग','sabse':'सबसे',
+  'bachche':'बच्चे','bachcha':'बच्चा','bachchi':'बच्ची','bachcho':'बच्चों',
+  'padhai':'पढ़ाई','likhna':'लिखना','likho':'लिखो','likha':'लिखा','likhte':'लिखते','likhti':'लिखती','likhta':'लिखता',
+  'padhna':'पढ़ना','padho':'पढ़ो','padha':'पढ़ा','padhte':'पढ़ते','padhti':'पढ़ती',
+  'sunna':'सुनना','suno':'सुनो','suna':'सुना','sunte':'सुनते','sunti':'सुनती',
+  'bolna':'बोलना','bolo':'बोलो','bola':'बोला','bolte':'बोलते','bolti':'बोलती',
+  'khelna':'खेलना','khelo':'खेलो','khela':'खेला','khelte':'खेलते','khelti':'खेलती',
+  'khana':'खाना','khao':'खाओ','khaya':'खाया','khate':'खाते','khati':'खाती',
+  'peena':'पीना','piyo':'पियो','piya':'पिया','sona':'सोना','uthna':'उठना','baithna':'बैठना',
+  'chalna':'चलना','chalte':'चलते','chalti':'चलती','daudna':'दौड़ना',
+  'dena':'देना','lena':'लेना','aana':'आना','jaana':'जाना',
+  'maa':'माँ','ma':'माँ','mummy':'मम्मी','papa':'पापा','pita':'पिता','pitaji':'पिताजी',
+  'bhai':'भाई','bhaiya':'भैया','behen':'बहन','behn':'बहन','didi':'दीदी',
+  'beta':'बेटा','beti':'बेटी','dada':'दादा','dadi':'दादी','nana':'नाना','nani':'नानी',
+  'teen':'तीन','chaar':'चार','char':'चार','paanch':'पाँच','panch':'पाँच',
+  'chhe':'छह','chhah':'छह','saat':'सात','aath':'आठ','nau':'नौ','das':'दस',
+  'aaj':'आज','kal':'कल','subah':'सुबह','shaam':'शाम','raat':'रात',
+  'phir':'फिर','fir':'फिर','lekin':'लेकिन','magar':'मगर','isliye':'इसलिए','kyunki':'क्योंकि',
+  'wala':'वाला','wali':'वाली','wale':'वाले','tarah':'तरह','taraf':'तरफ',
+  'saath':'साथ','liye':'लिए','bina':'बिना','zyada':'ज़्यादा','kam':'कम',
+  'pehle':'पहले','baad':'बाद','upar':'ऊपर','neeche':'नीचे','andar':'अंदर','bahar':'बाहर',
+  'aage':'आगे','peeche':'पीछे','paas':'पास','dur':'दूर','khub':'खूब',
+  'yaad':'याद','rakho':'रखो','rakhna':'रखना','maslan':'मसलन','nahi':'नहीं',
+  'aankh':'आँख','aankhen':'आँखें','aankhon':'आँखों','kaan':'कान','kannon':'कानों',
+  'naak':'नाक','nak':'नाक','muh':'मुँह','munh':'मुँह','haath':'हाथ','hath':'हाथ',
+  'haathon':'हाथों','pair':'पैर','pairon':'पैरों','dant':'दाँत','daant':'दाँत',
+  'jeebh':'जीभ','jibh':'जीभ','dimaag':'दिमाग','dimag':'दिमाग','dil':'दिल',
+  'sir':'सिर','sar':'सिर','pet':'पेट','kamar':'कमर','gala':'गला',
+  'ungli':'उँगली','ungliyan':'उँगलियाँ','jism':'जिस्म','shareer':'शरीर',
+  'dekhte':'देखते','dekhti':'देखती','dekhta':'देखता','sochte':'सोचते','sochti':'सोचती',
+  'jate':'जाते','jati':'जाती','aate':'आते','aati':'आती',
+  'kapda':'कपड़ा','kapde':'कपड़े','ghar':'घर','school':'स्कूल','kitab':'किताब',
+  'kitaab':'किताब','kitabein':'किताबें','copy':'कॉपी','kalam':'कलम','pencil':'पेंसिल',
+  'rang':'रंग','rangon':'रंगों','phool':'फूल','phoolon':'फूलों',
+  'ped':'पेड़','pedon':'पेड़ों','patte':'पत्ते','patta':'पत्ता',
+  'pani':'पानी','paani':'पानी','doodh':'दूध','chai':'चाय','khaana':'खाना',
+  'sooraj':'सूरज','chanda':'चंदा','tara':'तारा','tare':'तारे','taare':'तारे',
+  'aasman':'आसमान','zameen':'ज़मीन','chand':'चाँद','sitara':'सितारा'
+};
+
+function fixRomanUrdu(text){
+  if(!text) return text;
+  let result = String(text);
+  const keys = Object.keys(ROMAN_TO_HINDI).sort((a,b) => b.length - a.length);
+  for(const key of keys){
+    const regex = new RegExp('\\b' + key + '\\b', 'gi');
+    result = result.replace(regex, () => ROMAN_TO_HINDI[key]);
+  }
+  return result;
+}
+
+function prepareSpeech(text){
+  let t = String(text);
+  /* Fix Baa -> बा */
+  t = t.replace(/\bBaa\b/gi, 'बा');
+  t = t.replace(/\bba\b/gi, 'बा');
+  /* Roman Urdu -> Hindi */
+  t = fixRomanUrdu(t);
+  return t;
+}
+
+/* =========================================================
+   SECTION 2: SPEECH ENGINE (Better Voice)
    ========================================================= */
 let voices = [];
 let soundOn = true;
@@ -334,7 +413,8 @@ function pickVoice(lang){
   const base = lang.split('-')[0];
   const isHindi = base === 'hi';
   const preferredNames = isHindi
-    ? ['Google हिन्दी','Microsoft Swara','Microsoft Kalpana','Lekha','Aditi']
+    ? ['Google हिन्दी','Microsoft Swara','Microsoft Kalpana','Lekha','Aditi',
+       'Google UK English Female','Microsoft Zira','Microsoft Heera']
     : ['Google UK English Female','Microsoft Zira','Samantha','Microsoft Heera',
        'Google US English','Microsoft Aria','Karen','Tessa'];
   for(const name of preferredNames){
@@ -349,27 +429,29 @@ function pickVoice(lang){
   return voices.find(v => v.lang.replace('_','-').startsWith(base)) || null;
 }
 
-function speak(text, lang='en-IN', rate=0.78){
+function speak(text, lang='hi-IN', rate=0.75){
   if(!soundOn || !('speechSynthesis' in window) || !text) return;
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(String(text));
+  const processed = prepareSpeech(text);
+  const u = new SpeechSynthesisUtterance(String(processed));
   u.lang = lang;
   u.rate = rate;
-  u.pitch = 1.25;
+  u.pitch = 1.2;
   u.volume = 1;
   const v = pickVoice(lang);
   if(v) u.voice = v;
   speechSynthesis.speak(u);
 }
-function speakSequence(lines, lang='en-IN', onLine){
+function speakSequence(lines, lang='hi-IN', onLine){
   if(!soundOn || !('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
   let i = 0;
   const go = () => {
     if(i >= lines.length){ if(onLine) onLine(-1); return; }
     if(onLine) onLine(i);
-    const u = new SpeechSynthesisUtterance(lines[i]);
-    u.lang = lang; u.rate = 0.72; u.pitch = 1.3;
+    const processed = prepareSpeech(lines[i]);
+    const u = new SpeechSynthesisUtterance(processed);
+    u.lang = lang; u.rate = 0.7; u.pitch = 1.25;
     const v = pickVoice(lang); if(v) u.voice = v;
     u.onend = () => { i++; setTimeout(go, 320); };
     speechSynthesis.speak(u);
@@ -383,7 +465,7 @@ function toggleSound(){
 }
 
 /* =========================================================
-   SECTION 2: STARS
+   SECTION 3: STARS
    ========================================================= */
 let stars = parseInt(localStorage.getItem('klh_stars') || '0', 10);
 function addStar(){
@@ -394,7 +476,7 @@ function addStar(){
 document.getElementById('starCount').textContent = stars;
 
 /* =========================================================
-   SECTION 3: HELPERS
+   SECTION 4: HELPERS
    ========================================================= */
 function numToWord(n){
   const ones = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine',
@@ -428,14 +510,9 @@ function shuffle(arr){
   }
   return arr;
 }
-function fixPoemText(t){
-  return String(t)
-    .replace(/\bBaa\b/gi, 'Bah')
-    .replace(/\bba\b/gi, 'bah');
-}
 
 /* =========================================================
-   SECTION 4: DATA
+   SECTION 5: DATA
    ========================================================= */
 const NUM_COLORS = ['#FF3B30','#FF9500','#FFC300','#34C759','#00C2A8',
                     '#0A84FF','#5C6BC0','#AF52DE','#FF2D95','#8B5A2B'];
@@ -520,7 +597,6 @@ const MISSING_WORDS = [
  {word:'MANGO', emoji:'🥭'},{word:'GRAPE', emoji:'🍇'}
 ];
 
-/* ---------- READING STORIES ---------- */
 const STORIES = [
   {emoji:'🐦', title:'The Thirsty Crow', bg:'linear-gradient(135deg,#ffe0b2,#ffb74d)',
    lines:[
@@ -611,7 +687,6 @@ const STORIES = [
    ]}
 ];
 
-/* ---------- WRITING PRACTICE ---------- */
 const WRITING = [
   {emoji:'🔠', title:'A to Z (Capital)',
    instruction:'Bade akshar A se Z tak likho',
@@ -639,7 +714,6 @@ const WRITING = [
    items:['lion','tiger','dog','cat','cow','horse','deer','fox']}
 ];
 
-/* ---------- POEMS ---------- */
 const POEMS = {
   nursery:[
    {emoji:'⭐', title:'Twinkle Twinkle Little Star', author:'Jane Taylor',
@@ -730,33 +804,33 @@ const POEMS = {
 const LESSON_BODY = {
   emoji:'🖐️', title:'Parts of Body', chapter:'Nursery – Class 4',
   points:[
-   '👁️ Eyes — hum dekhte hain. I have two eyes.',
-   '👂 Ears — hum sunte hain. I have two ears.',
-   '👃 Nose — hum sungh te hain. I have one nose.',
-   '👄 Mouth — hum khate hain aur bolte hain.',
-   '✋ Hands — hum likhte hain, khelte hain.',
-   '🦶 Feet — hum chalte hain.',
-   '🦷 Teeth — hum chabate hain.',
-   '👅 Tongue — hum swad lete hain.',
-   '🧠 Brain — hum sochte hain.',
-   '❤️ Heart — khoon pump karta hai.'
+   '👁️ Aankh — hum dekhte hain. I have two eyes.',
+   '👂 Kaan — hum sunte hain. I have two ears.',
+   '👃 Naak — hum sungh te hain. I have one nose.',
+   '👄 Muh — hum khate hain aur bolte hain.',
+   '✋ Haath — hum likhte hain, khelte hain.',
+   '🦶 Pair — hum chalte hain.',
+   '🦷 Daant — hum chabate hain.',
+   '👅 Jeebh — hum swad lete hain.',
+   '🧠 Dimaag — hum sochte hain.',
+   '❤️ Dil — khoon pump karta hai.'
   ],
   qa:[
-   {q:'How many eyes do we have?', a:'Two eyes.'},
-   {q:'What do we do with our ears?', a:'We hear with our ears.'},
-   {q:'Which part helps us smell?', a:'The nose.'},
-   {q:'How many hands do we have?', a:'Two hands.'},
-   {q:'Which organ pumps blood?', a:'The heart.'}
+   {q:'Aankh se hum kya karte hain?', a:'Aankh se hum dekhte hain.'},
+   {q:'Kaan se hum kya karte hain?', a:'Kaan se hum sunte hain.'},
+   {q:'Naak se hum kya karte hain?', a:'Naak se hum sungh te hain.'},
+   {q:'Haath se hum kya karte hain?', a:'Haath se hum likhte hain aur khelte hain.'},
+   {q:'Khoon kaun pump karta hai?', a:'Dil khoon pump karta hai.'}
   ]
 };
 const LESSON_AAN = {
   emoji:'📝', title:'A, An, The', chapter:'Class 1 – Grammar',
   points:[
-   '"A" lagta hai consonant sound se pehle. Example: a boy, a cat, a book.',
-   '"An" lagta hai vowel sound se pehle (A, E, I, O, U). Example: an apple, an elephant.',
-   '"The" lagta hai kisi khaas cheez ke liye. Example: the sun, the moon.',
-   'A / An sirf ek cheez ke liye. "The" ek ya ek se zyada — dono ke liye.',
-   'Yaad rakho: A / An = koi bhi ek. The = wo khaas wala.'
+   'A lagta hai consonant sound se pehle. Example: a boy, a cat, a book.',
+   'An lagta hai vowel sound se pehle (A, E, I, O, U). Example: an apple, an elephant.',
+   'The lagta hai kisi khaas cheez ke liye. Example: the sun, the moon.',
+   'A aur An sirf ek cheez ke liye. The ek ya ek se zyada — dono ke liye.',
+   'Yaad rakho: A / An matlab koi bhi ek. The matlab wo khaas wala.'
   ],
   qa:[
    {q:'___ apple a day keeps doctor away.', a:'An apple.'},
@@ -770,35 +844,35 @@ const LESSON_NOUNS = {
   emoji:'🏷️', title:'Nouns (Naming Words)', chapter:'Class 2 – Grammar',
   points:[
    'Noun matlab naam — kisi bhi person, place, animal ya thing ka.',
-   'Person: Riya, teacher, doctor, mother.',
-   'Place: Delhi, school, park, home.',
+   'Person: Riya, teacher, doctor, maa.',
+   'Place: Delhi, school, park, ghar.',
    'Animal: dog, cat, elephant, lion.',
    'Thing: book, ball, chair, table.',
    'Har sentence mein kam se kam ek noun hota hai.'
   ],
   qa:[
-   {q:'What is a noun?', a:'A noun is the name of a person, place, animal or thing.'},
-   {q:'Find the noun: The dog is running.', a:'Dog.'},
-   {q:'Find the noun: I live in Mumbai.', a:'Mumbai.'},
-   {q:'Give two noun examples of places.', a:'Delhi and school.'},
-   {q:'Is "book" a noun?', a:'Yes, it is a thing — so it is a noun.'}
+   {q:'Noun kya hai?', a:'Noun matlab kisi person, place, animal ya thing ka naam.'},
+   {q:'The dog is running. Isme noun kaun sa hai?', a:'Dog.'},
+   {q:'I live in Mumbai. Isme noun kaun sa hai?', a:'Mumbai.'},
+   {q:'Place ke do noun batao.', a:'Delhi aur school.'},
+   {q:'Book ek noun hai kya?', a:'Haan, book ek thing hai — isliye noun hai.'}
   ]
 };
 const LESSON_VERBS = {
   emoji:'🏃', title:'Verbs (Action Words)', chapter:'Class 3 – Grammar',
   points:[
-   'Verb = action word. Jo kaam dikhata hai.',
+   'Verb matlab action word. Jo kaam dikhata hai.',
    'Run, eat, write, sing, play, sleep, dance — sab verbs hain.',
    'Har sentence mein ek verb zaroor hota hai.',
-   'Example: The boy runs fast. Yahan "runs" verb hai.',
-   'Verb time ke saath badalta hai: play → played → will play.'
+   'Example: The boy runs fast. Yahan runs verb hai.',
+   'Verb time ke saath badalta hai: play se played, phir will play.'
   ],
   qa:[
-   {q:'What is a verb?', a:'A verb is an action word.'},
-   {q:'Find the verb: She sings a song.', a:'Sings.'},
-   {q:'Find the verb: Birds fly in the sky.', a:'Fly.'},
-   {q:'Give three examples of verbs.', a:'Run, eat, sleep.'},
-   {q:'Change "play" to past tense.', a:'Played.'}
+   {q:'Verb kya hai?', a:'Verb matlab action word.'},
+   {q:'She sings a song. Isme verb kaun sa hai?', a:'Sings.'},
+   {q:'Birds fly in the sky. Isme verb kaun sa hai?', a:'Fly.'},
+   {q:'Teen verbs batao.', a:'Run, eat, sleep.'},
+   {q:'Play ka past tense kya hai?', a:'Played.'}
   ]
 };
 const LESSON_NUMBERS = {
@@ -807,145 +881,144 @@ const LESSON_NUMBERS = {
    'Numbers se hum ginti karte hain. 1, 2, 3, ... 100 tak.',
    'Ek digit: 1 se 9. Do digit: 10 se 99. Teen digit: 100.',
    '9 ke baad 10 aata hai. 19 ke baad 20. 99 ke baad 100.',
-   'Numbers ko words mein bhi likhte hain. 5 = Five. 15 = Fifteen.'
+   'Numbers ko words mein bhi likhte hain. 5 matlab Five. 15 matlab Fifteen.'
   ],
   qa:[
-   {q:'What comes after 19?', a:'20 — Twenty.'},
-   {q:'How many digits in 100?', a:'Three — 1, 0, 0.'},
-   {q:'Write 15 in words.', a:'Fifteen.'},
-   {q:'What comes before 50?', a:'49 — Forty nine.'},
-   {q:'What is between 29 and 31?', a:'30 — Thirty.'}
+   {q:'19 ke baad kya aata hai?', a:'20 — Twenty.'},
+   {q:'100 mein kitne digits hain?', a:'Teen — 1, 0, 0.'},
+   {q:'15 ko words mein likho.', a:'Fifteen.'},
+   {q:'50 se pehle kya aata hai?', a:'49 — Forty nine.'},
+   {q:'29 aur 31 ke beech kya hai?', a:'30 — Thirty.'}
   ]
 };
 const LESSON_MULT = {
   emoji:'✖️', title:'Multiplication Tables', chapter:'Class 2 – Maths',
   points:[
-   'Multiplication matlab repeated addition. 4 × 3 = 4 + 4 + 4 = 12.',
+   'Multiplication matlab repeated addition. 4 × 3 matlab 4 + 4 + 4 = 12.',
    'Answer ko product kehte hain.',
    'Kisi bhi number ko 0 se multiply karo — answer 0.',
    'Kisi bhi number ko 1 se multiply karo — wahi number.',
    'Table yaad karne se calculation fast hoti hai.'
   ],
   qa:[
-   {q:'What is 6 × 7?', a:'42 — Forty two.'},
-   {q:'What is 25 × 0?', a:'Zero.'},
-   {q:'What is 8 × 1?', a:'8 — Eight.'},
-   {q:'Product of 9 and 5?', a:'45 — Forty five.'},
-   {q:'What is 12 × 12?', a:'144.'}
+   {q:'6 × 7 kitna hota hai?', a:'42 — Forty two.'},
+   {q:'25 × 0 kitna hoga?', a:'Zero.'},
+   {q:'8 × 1 kitna hoga?', a:'8 — Eight.'},
+   {q:'9 aur 5 ka product batao.', a:'45 — Forty five.'},
+   {q:'12 × 12 kitna hota hai?', a:'144.'}
   ]
 };
 const LESSON_SQUARE_5 = {
   emoji:'🔲', title:'Square of Numbers (1 to 15)', chapter:'Class 5 – Maths',
   points:[
-   'Square of a number = number × number (khud se multiply).',
+   'Square of a number matlab number × number (khud se multiply).',
    'Square ka symbol hai chhota 2 upar (jaise 5²).',
    'Formula: n² = n × n',
-   'Example: 5² = 5 × 5 = 25. Isliye 5 ka square 25 hai.',
-   'Example: 7² = 7 × 7 = 49.',
-   'Square ke answer ko "perfect square" kehte hain.',
-   'Square of 1 = 1, 2 = 4, 3 = 9, 4 = 16, 5 = 25, ..., 15 = 225.'
+   'Example: 5² matlab 5 × 5 = 25. Isliye 5 ka square 25 hai.',
+   'Example: 7² matlab 7 × 7 = 49.',
+   'Square ke answer ko perfect square kehte hain.',
+   'Square of 1 = 1, 2 = 4, 3 = 9, 4 = 16, 5 = 25, ... 15 = 225.'
   ],
   qa:[
-   {q:'What is the square of 5?', a:'5 × 5 = 25.'},
-   {q:'What is the square of 10?', a:'10 × 10 = 100.'},
-   {q:'What is the square of 12?', a:'12 × 12 = 144.'},
-   {q:'Write the formula for square of n.', a:'n² = n × n.'},
-   {q:'What is the square of 15?', a:'15 × 15 = 225.'}
+   {q:'5 ka square kya hai?', a:'5 × 5 = 25.'},
+   {q:'10 ka square kya hai?', a:'10 × 10 = 100.'},
+   {q:'12 ka square kya hai?', a:'12 × 12 = 144.'},
+   {q:'Square ka formula likho.', a:'n² = n × n.'},
+   {q:'15 ka square kya hai?', a:'15 × 15 = 225.'}
   ]
 };
 const LESSON_SQUARE_6 = {
   emoji:'🔲', title:'Square of Numbers (16 to 30)', chapter:'Class 6 – Maths',
   points:[
-   'Square of a number = number × number.',
+   'Square of a number matlab number × number.',
    'Formula: n² = n × n.',
-   'Example: 16² = 16 × 16 = 256.',
-   'Example: 20² = 20 × 20 = 400.',
-   'Example: 25² = 25 × 25 = 625.',
-   'Square of 30 = 30 × 30 = 900.'
+   'Example: 16² matlab 16 × 16 = 256.',
+   'Example: 20² matlab 20 × 20 = 400.',
+   'Example: 25² matlab 25 × 25 = 625.',
+   'Square of 30 matlab 30 × 30 = 900.'
   ],
   qa:[
-   {q:'What is the square of 16?', a:'256.'},
-   {q:'What is the square of 20?', a:'400.'},
-   {q:'What is the square of 25?', a:'625.'},
-   {q:'What is the square of 28?', a:'784.'},
-   {q:'What is the square of 30?', a:'900.'}
+   {q:'16 ka square kya hai?', a:'256.'},
+   {q:'20 ka square kya hai?', a:'400.'},
+   {q:'25 ka square kya hai?', a:'625.'},
+   {q:'28 ka square kya hai?', a:'784.'},
+   {q:'30 ka square kya hai?', a:'900.'}
   ]
 };
 const LESSON_SQUARE_7 = {
   emoji:'🔲', title:'Square of Numbers (31 to 40)', chapter:'Class 7 – Maths',
   points:[
-   'Square of a number = number × number.',
+   'Square of a number matlab number × number.',
    'Formula: n² = n × n.',
-   'Example: 31² = 31 × 31 = 961.',
-   'Example: 35² = 35 × 35 = 1225.',
-   'Example: 40² = 40 × 40 = 1600.',
-   'Ye badi numbers ke squares hain — table yaad rakho.'
+   'Example: 31² matlab 31 × 31 = 961.',
+   'Example: 35² matlab 35 × 35 = 1225.',
+   'Example: 40² matlab 40 × 40 = 1600.',
+   'Ye badi numbers ke square hain — table yaad rakho.'
   ],
   qa:[
-   {q:'What is the square of 31?', a:'961.'},
-   {q:'What is the square of 35?', a:'1225.'},
-   {q:'What is the square of 38?', a:'1444.'},
-   {q:'What is the square of 40?', a:'1600.'},
-   {q:'What is the square of 33?', a:'1089.'}
+   {q:'31 ka square kya hai?', a:'961.'},
+   {q:'35 ka square kya hai?', a:'1225.'},
+   {q:'38 ka square kya hai?', a:'1444.'},
+   {q:'40 ka square kya hai?', a:'1600.'},
+   {q:'33 ka square kya hai?', a:'1089.'}
   ]
 };
 const LESSON_CUBE_5 = {
   emoji:'🧊', title:'Cube of Numbers (1 to 15)', chapter:'Class 5 – Maths',
   points:[
-   'Cube of a number = number × number × number (khud se 3 baar multiply).',
+   'Cube of a number matlab number × number × number (khud se 3 baar multiply).',
    'Cube ka symbol hai chhota 3 upar (jaise 5³).',
    'Formula: n³ = n × n × n',
-   'Example: 2³ = 2 × 2 × 2 = 8.',
-   'Example: 3³ = 3 × 3 × 3 = 27.',
-   'Example: 5³ = 5 × 5 × 5 = 125.',
-   'Cube of 1 = 1, 2 = 8, 3 = 27, 4 = 64, 5 = 125, ..., 15 = 3375.'
+   'Example: 2³ matlab 2 × 2 × 2 = 8.',
+   'Example: 3³ matlab 3 × 3 × 3 = 27.',
+   'Example: 5³ matlab 5 × 5 × 5 = 125.',
+   'Cube of 1 = 1, 2 = 8, 3 = 27, 4 = 64, 5 = 125, ... 15 = 3375.'
   ],
   qa:[
-   {q:'What is the cube of 2?', a:'2 × 2 × 2 = 8.'},
-   {q:'What is the cube of 3?', a:'3 × 3 × 3 = 27.'},
-   {q:'What is the cube of 5?', a:'5 × 5 × 5 = 125.'},
-   {q:'Write the formula for cube of n.', a:'n³ = n × n × n.'},
-   {q:'What is the cube of 10?', a:'10 × 10 × 10 = 1000.'}
+   {q:'2 ka cube kya hai?', a:'2 × 2 × 2 = 8.'},
+   {q:'3 ka cube kya hai?', a:'3 × 3 × 3 = 27.'},
+   {q:'5 ka cube kya hai?', a:'5 × 5 × 5 = 125.'},
+   {q:'Cube ka formula likho.', a:'n³ = n × n × n.'},
+   {q:'10 ka cube kya hai?', a:'10 × 10 × 10 = 1000.'}
   ]
 };
 const LESSON_CUBE_6 = {
   emoji:'🧊', title:'Cube of Numbers (16 to 30)', chapter:'Class 6 – Maths',
   points:[
-   'Cube of a number = number × number × number.',
+   'Cube of a number matlab number × number × number.',
    'Formula: n³ = n × n × n.',
-   'Example: 16³ = 16 × 16 × 16 = 4096.',
-   'Example: 20³ = 20 × 20 × 20 = 8000.',
-   'Example: 25³ = 25 × 25 × 25 = 15625.',
-   'Cube of 30 = 30 × 30 × 30 = 27000.'
+   'Example: 16³ matlab 16 × 16 × 16 = 4096.',
+   'Example: 20³ matlab 20 × 20 × 20 = 8000.',
+   'Example: 25³ matlab 25 × 25 × 25 = 15625.',
+   'Cube of 30 matlab 30 × 30 × 30 = 27000.'
   ],
   qa:[
-   {q:'What is the cube of 16?', a:'4096.'},
-   {q:'What is the cube of 20?', a:'8000.'},
-   {q:'What is the cube of 25?', a:'15625.'},
-   {q:'What is the cube of 28?', a:'21952.'},
-   {q:'What is the cube of 30?', a:'27000.'}
+   {q:'16 ka cube kya hai?', a:'4096.'},
+   {q:'20 ka cube kya hai?', a:'8000.'},
+   {q:'25 ka cube kya hai?', a:'15625.'},
+   {q:'28 ka cube kya hai?', a:'21952.'},
+   {q:'30 ka cube kya hai?', a:'27000.'}
   ]
 };
 const LESSON_CUBE_7 = {
   emoji:'🧊', title:'Cube of Numbers (31 to 40)', chapter:'Class 7 – Maths',
   points:[
-   'Cube of a number = number × number × number.',
+   'Cube of a number matlab number × number × number.',
    'Formula: n³ = n × n × n.',
-   'Example: 31³ = 31 × 31 × 31 = 29791.',
-   'Example: 35³ = 35 × 35 × 35 = 42875.',
-   'Example: 40³ = 40 × 40 × 40 = 64000.',
+   'Example: 31³ matlab 31 × 31 × 31 = 29791.',
+   'Example: 35³ matlab 35 × 35 × 35 = 42875.',
+   'Example: 40³ matlab 40 × 40 × 40 = 64000.',
    'Ye badi numbers ke cube hain — calculator se check kar sakte ho.'
   ],
   qa:[
-   {q:'What is the cube of 31?', a:'29791.'},
-   {q:'What is the cube of 35?', a:'42875.'},
-   {q:'What is the cube of 38?', a:'54872.'},
-   {q:'What is the cube of 40?', a:'64000.'},
-   {q:'What is the cube of 33?', a:'35937.'}
+   {q:'31 ka cube kya hai?', a:'29791.'},
+   {q:'35 ka cube kya hai?', a:'42875.'},
+   {q:'38 ka cube kya hai?', a:'54872.'},
+   {q:'40 ka cube kya hai?', a:'64000.'},
+   {q:'33 ka cube kya hai?', a:'35937.'}
   ]
 };
 
-/* ---------- INFO CARDS ---------- */
 const INFO_CARDS = {
  science:[
   {emoji:'🌍', main:'Solar System', text:'Our solar system has eight planets that go around the Sun.'},
@@ -1005,7 +1078,6 @@ const INFO_CARDS = {
  ]
 };
 
-/* ---------- QUIZZES ---------- */
 const QUIZ_MATH_1 = [
  {q:'2 + 3 = ?', options:['4','5','6'], answer:'5'},
  {q:'7 − 2 = ?', options:['4','5','6'], answer:'5'},
@@ -1116,7 +1188,7 @@ const QUIZ_GK_3 = [
 ];
 
 /* =========================================================
-   SECTION 5: CATEGORIES
+   SECTION 6: CATEGORIES
    ========================================================= */
 const CATS = {
   alphabet:{n:'ABCD', e:'🔤', c:'#FF6B9D'},
@@ -1182,7 +1254,7 @@ const CATS = {
 };
 
 /* =========================================================
-   SECTION 6: LEVELS
+   SECTION 7: LEVELS
    ========================================================= */
 const LEVELS = {
   nursery:{name:'Nursery', sub:'Age 3-4 Years', emoji:'🧸', color:'#FF6B9D',
@@ -1218,7 +1290,7 @@ const LEVELS = {
 };
 
 /* =========================================================
-   SECTION 7: CONTENT MAP
+   SECTION 8: CONTENT MAP
    ========================================================= */
 function squareCards(from, to){
   const arr = [];
@@ -1306,7 +1378,7 @@ const CONTENT = {
 };
 
 /* =========================================================
-   SECTION 8: ROUTER
+   SECTION 9: ROUTER
    ========================================================= */
 const screen   = document.getElementById('screen');
 const hTitle   = document.getElementById('hTitle');
@@ -1518,7 +1590,7 @@ function tap(i){
 function tapOpposite(i){
   const it = currentItems[i];
   if(!it) return;
-  speak(`${it.left} and ${it.right}`);
+  speak(`${it.left} aur ${it.right}`);
   addStar();
 }
 function tapInfo(i){
@@ -1531,9 +1603,9 @@ function tapSquare(i, mode){
   const it = currentItems[i];
   if(!it) return;
   if(mode === 'sq'){
-    speak(`${it.n} squared equals ${it.val}`);
+    speak(`${it.n} ka square equals ${it.val}`);
   } else {
-    speak(`${it.n} cubed equals ${it.val}`);
+    speak(`${it.n} ka cube equals ${it.val}`);
   }
   addStar();
 }
@@ -1775,7 +1847,7 @@ function playLesson(){
     seq.push('Question '+(k+1)+'. '+qa.q);
     seq.push('Answer. '+qa.a);
   });
-  speakSequence(seq, 'en-IN', idx => {
+  speakSequence(seq, 'hi-IN', idx => {
     document.querySelectorAll('.point').forEach((e,k) =>
       e.classList.toggle('active', k === idx));
   });
@@ -1890,123 +1962,3 @@ function playAllWriting(){
   const texts = currentWriting.items;
   speakSequence(texts, 'en-IN', idx => {
     const el = document.getElementById('wr-'+idx);
-    if(el){
-      el.style.background = 'linear-gradient(135deg,#7c5cff,#ff5f9e)';
-      el.style.color = '#fff';
-    }
-    if(idx === -1){
-      document.querySelectorAll('[id^="wr-"]').forEach(e => {
-        e.style.background = '#fffefb';
-        e.style.color = '#5a3a1a';
-      });
-    }
-  });
-  addStar();
-}
-
-function openPoem(i){
-  currentPoem = currentItems[i];
-  state.view = 'poem';
-  setHeader(currentPoem.title, 'Rhyme Time 🎵');
-  const bg = currentPoem.bg || 'linear-gradient(135deg,#a8e6ff,#ffd6ec,#e0d4ff)';
-  const heroPic = currentPoem.heroPic || currentPoem.emoji;
-  screen.innerHTML = `
-    <div class="poem">
-      <div class="poem-hero" style="background:${bg}">
-        <div class="hero-pic">${heroPic}</div>
-        <h2>${currentPoem.emoji} ${currentPoem.title}</h2>
-        <div class="author">— ${currentPoem.author}</div>
-      </div>
-      <div class="poem-body">
-        <div class="lines">
-          ${currentPoem.lines.map((l,j) =>
-            `<button class="line" onclick="speakLine(${j})">
-              <span class="pic">${l[1]}</span>
-              <span>${l[0]}</span>
-            </button>`).join('')}
-        </div>
-        <div class="poem-actions">
-          <button class="btn primary" onclick="playPoem()">▶️ Poori Poem</button>
-          <button class="btn" onclick="renderCategory()">↩️ Wapas</button>
-        </div>
-      </div>
-    </div>`;
-  window.scrollTo(0,0);
-}
-function speakLine(j){
-  const text = fixPoemText(currentPoem.lines[j][0]);
-  speak(text, currentPoem.lang || 'en-IN');
-  document.querySelectorAll('.line').forEach((e,k) => {
-    e.classList.toggle('active', k === j);
-    if(k === j) e.scrollIntoView({behavior:'smooth', block:'center'});
-  });
-  addStar();
-}
-function playPoem(){
-  const texts = currentPoem.lines.map(l => fixPoemText(l[0]));
-  speakSequence(texts, currentPoem.lang || 'en-IN', idx => {
-    document.querySelectorAll('.line').forEach((e,k) => {
-      e.classList.toggle('active', k === idx);
-      if(k === idx) e.scrollIntoView({behavior:'smooth', block:'center'});
-    });
-  });
-  addStar();
-}
-
-function drawQuiz(){
-  const box = document.getElementById('quizBox');
-  if(!box) return;
-  if(quizState.idx >= quizState.questions.length){
-    const perfect = quizState.score === quizState.questions.length;
-    box.innerHTML = `<div class="result">
-      <div style="font-size:4rem">${perfect?'🏆':'🌟'}</div>
-      <h2>Score: ${quizState.score} / ${quizState.questions.length}</h2>
-      <button class="btn primary" onclick="renderCategory()">🔄 Phir Se</button>
-    </div>`;
-    speak(perfect ? 'Perfect score!' : `You scored ${quizState.score} out of ${quizState.questions.length}.`);
-    return;
-  }
-  const q = quizState.questions[quizState.idx];
-  box.innerHTML = `
-    <div class="quiz">
-      <div class="qmeta">Question ${quizState.idx+1} / ${quizState.questions.length} • ⭐ ${quizState.score}</div>
-      <h2 class="qtext">${q.q}</h2>
-      <div class="options">
-        ${q.options.map(o => `<button class="opt" onclick="answer('${o.replace(/'/g,"\\'")}')">${o}</button>`).join('')}
-      </div>
-    </div>`;
-  speak(q.q);
-}
-function answer(opt){
-  const q = quizState.questions[quizState.idx];
-  const opts = document.querySelectorAll('.opt');
-  opts.forEach(o => o.disabled = true);
-  if(opt === q.answer){
-    quizState.score++;
-    opts.forEach(o => { if(o.textContent.trim() === opt) o.classList.add('right'); });
-    speak('Correct!'); addStar();
-  } else {
-    opts.forEach(o => {
-      if(o.textContent.trim() === opt) o.classList.add('wrong');
-      if(o.textContent.trim() === q.answer) o.classList.add('right');
-    });
-    speak('Correct answer is ' + q.answer);
-  }
-  setTimeout(() => { quizState.idx++; drawQuiz(); }, 1500);
-}
-
-/* =========================================================
-   SECTION 9: START
-   ========================================================= */
-renderHome();
-document.body.addEventListener('touchstart', function unlock(){
-  if('speechSynthesis' in window){
-    const u = new SpeechSynthesisUtterance(' ');
-    u.volume = 0;
-    speechSynthesis.speak(u);
-  }
-  document.body.removeEventListener('touchstart', unlock);
-}, {once:true});
-</script>
-</body>
-</html>
