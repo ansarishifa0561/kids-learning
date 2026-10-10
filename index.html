@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kids Learning Hub 🎈</title>
+<title>Shifa's Learning Hub 🎓✨</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -133,7 +133,7 @@ main{padding:20px 16px 60px}
 <div class="frame">
 <header>
   <button class="ibtn" id="backBtn" onclick="goBack()">⬅️</button>
-  <div><h1 id="hTitle">Kids Learning Hub</h1><div class="sub" id="hSub">CBSE Pattern</div></div>
+  <div><h1 id="hTitle">Shifa's Learning Hub </h1><div class="sub" id="hSub">CBSE Pattern</div></div>
   <div class="sp"></div>
   <button class="ibtn" id="muteBtn" onclick="toggleSound()">🔊</button>
   <div class="stars">⭐ <span id="starCount">0</span></div>
@@ -533,7 +533,7 @@ function goBack(){
 }
 
 function renderHome(){
-  setH('Kids Learning Hub','CBSE Pattern • Class Wise');
+  setH('Shifa's Learning Hub ','CBSE Pattern • Class Wise');
   screen.innerHTML=`<div class="hero"><h1>🎈 Welcome to Learning Land!</h1><p>Apni class chuno aur seekhna shuru karo ✨</p></div>
   <div class="grid levels">${Object.entries(LEVELS).map(([k,l])=>`<button class="card" style="--c:${l.color}" onclick="goLevel('${k}')"><span class="emo">${l.emoji}</span><span class="ttl">${l.name}</span><span class="sub">${l.sub}</span></button>`).join('')}</div>`;
   window.scrollTo(0,0);
