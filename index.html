@@ -7,139 +7,234 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
-   STYLES — YAHAN CSS HAI
+   STYLES
    ========================================================= */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+/* ===== BOOK-LIKE BACKGROUND ===== */
+html,body{height:100%}
 body{
   font-family:'Baloo 2','Comic Sans MS',system-ui,sans-serif;
-  min-height:100vh;color:#2b2b3a;
-  background:linear-gradient(135deg,#ffe9f3,#e6f4ff 35%,#fff8e1 65%,#e9fff0);
+  color:#2b2b3a;padding:14px;
+  background:
+    radial-gradient(circle at 20% 20%,#fff5e6,#f0d9b5 60%,#d9b88a 100%);
   background-attachment:fixed;
+  min-height:100vh;
 }
+
+/* ===== PROFESSIONAL BOOK FRAME ===== */
+.book-frame{
+  max-width:1250px;margin:0 auto;position:relative;
+  background:
+    linear-gradient(135deg,#fffefb,#fff8ee 50%,#fffefb);
+  border-radius:14px;
+  box-shadow:
+    0 0 0 3px #fff,
+    0 0 0 10px #8B5A2B,
+    0 0 0 13px #d4a373,
+    0 0 0 16px #8B5A2B,
+    0 25px 60px rgba(80,50,20,.35),
+    0 8px 20px rgba(0,0,0,.2);
+  overflow:hidden;
+  padding:0;
+  margin-top:24px;
+  margin-bottom:24px;
+}
+
+/* ===== DECORATIVE CORNERS ===== */
+.book-frame::before,
+.book-frame::after{
+  content:'';position:absolute;width:60px;height:60px;
+  background:
+    radial-gradient(circle at 30% 30%, #FFD60A 0 25%, transparent 30%),
+    radial-gradient(circle at 70% 30%, #FF3B30 0 25%, transparent 30%),
+    radial-gradient(circle at 30% 70%, #0A84FF 0 25%, transparent 30%),
+    radial-gradient(circle at 70% 70%, #34C759 0 25%, transparent 30%);
+  z-index:5;pointer-events:none;
+}
+.book-frame::before{top:14px;left:14px}
+.book-frame::after{bottom:14px;right:14px}
+
+/* ===== HEADER ===== */
 header{
   position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;
-  padding:10px 14px;background:rgba(255,255,255,.85);
-  backdrop-filter:blur(14px);border-bottom:2px solid #fff;
-  box-shadow:0 4px 20px rgba(0,0,0,.06);
+  padding:12px 16px;
+  background:linear-gradient(135deg,#fffefb,#fff5e6);
+  border-bottom:3px double #8B5A2B;
+  box-shadow:0 4px 20px rgba(139,90,43,.15);
 }
-header h1{font-size:1.05rem;font-weight:800;line-height:1.1}
-header .sub{font-size:.7rem;opacity:.6;font-weight:600}
+header h1{font-size:1.05rem;font-weight:800;line-height:1.1;color:#5a3a1a}
+header .sub{font-size:.7rem;opacity:.75;font-weight:600;color:#8B5A2B}
 .icon-btn{
-  width:44px;height:44px;border-radius:14px;border:none;cursor:pointer;
-  background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.1);font-size:1.25rem;
-  display:grid;place-items:center;transition:.2s;flex:0 0 auto;
+  width:44px;height:44px;border-radius:14px;border:2px solid #d4a373;
+  cursor:pointer;background:#fff;box-shadow:0 3px 8px rgba(139,90,43,.2);
+  font-size:1.25rem;display:grid;place-items:center;transition:.2s;flex:0 0 auto;
 }
-.icon-btn:hover{transform:translateY(-2px)}
+.icon-btn:hover{transform:translateY(-2px);background:#fff8ee}
 .icon-btn:active{transform:scale(.94)}
 .spacer{flex:1}
-.stars{background:#fff5cc;border-radius:14px;padding:8px 14px;font-weight:800;
-  box-shadow:0 4px 12px rgba(0,0,0,.08);white-space:nowrap;font-size:.9rem}
-main{padding:18px 16px 70px;max-width:1200px;margin:0 auto}
+.stars{background:linear-gradient(135deg,#FFF5CC,#FFE066);
+  border:2px solid #d4a373;border-radius:14px;padding:7px 14px;font-weight:800;
+  box-shadow:0 3px 8px rgba(139,90,43,.2);white-space:nowrap;font-size:.9rem;
+  color:#7a4a10}
+
+/* ===== MAIN ===== */
+main{padding:22px 20px 60px}
+
 .hero{text-align:center;padding:18px 10px 26px}
 .hero h1{font-size:clamp(1.5rem,5.5vw,2.6rem);font-weight:800;
   background:linear-gradient(90deg,#ff5f9e,#7c5cff,#00b8d9);
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{margin-top:8px;opacity:.7;font-weight:600;font-size:.98rem}
+.hero p{margin-top:8px;opacity:.75;font-weight:600;font-size:.98rem;color:#5a3a1a}
+
 .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
 .grid.levels{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 .grid.info-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+
+/* ===== CARDS ===== */
 .card,.item{
-  border:none;cursor:pointer;font-family:inherit;background:linear-gradient(145deg,#ffffff,#f5f5ff);
+  border:none;cursor:pointer;font-family:inherit;
+  background:linear-gradient(145deg,#fffefb,#fff5e6);
   display:flex;flex-direction:column;align-items:center;
-  box-shadow:0 10px 25px rgba(80,80,140,.15), 0 4px 8px rgba(80,80,140,.1);
+  box-shadow:0 8px 20px rgba(139,90,43,.18), 0 3px 6px rgba(139,90,43,.1);
   transition:transform .2s cubic-bezier(.34,1.56,.64,1), box-shadow .2s;
-  position:relative;overflow:hidden;text-align:center;border-radius:24px;
+  position:relative;overflow:hidden;text-align:center;border-radius:20px;
 }
 .card{padding:24px 14px;gap:8px}
 .card::after{content:'';position:absolute;inset:0 0 auto 0;height:8px;background:var(--c,#7c5cff)}
 .card:hover,.item:hover{transform:translateY(-8px) scale(1.04);
-  box-shadow:0 20px 40px rgba(80,80,140,.25)}
+  box-shadow:0 20px 40px rgba(139,90,43,.3)}
 .card:active,.item:active{transform:scale(.96)}
 .card .emo{font-size:3rem;line-height:1;filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
-.card .ttl{font-weight:800;font-size:1.05rem}
-.card .sub{font-size:.8rem;opacity:.65;font-weight:600}
-.item{padding:20px 12px;gap:10px;border-radius:26px}
+.card .ttl{font-weight:800;font-size:1.05rem;color:#5a3a1a}
+.card .sub{font-size:.8rem;opacity:.7;font-weight:600;color:#8B5A2B}
+.item{padding:20px 12px;gap:10px;border-radius:22px}
 .item .visual{font-size:5.5rem;line-height:1;
-  filter:drop-shadow(0 8px 12px rgba(0,0,0,.2));
-  transition:transform .3s}
+  filter:drop-shadow(0 8px 12px rgba(0,0,0,.2));transition:transform .3s}
 .item:hover .visual{transform:scale(1.15) rotate(-3deg)}
-.item .bignum{font-size:5rem;font-weight:800;line-height:1;color:#7c5cff;
-  text-shadow:3px 3px 0 #fff, 5px 5px 10px rgba(124,92,255,.3)}
-.item .label{font-weight:800;font-size:1rem;margin-top:4px}
+.item .bignum{font-size:3.5rem;font-weight:800;line-height:1.1;color:#7c5cff;
+  text-shadow:2px 2px 0 #fff, 4px 4px 8px rgba(124,92,255,.3);
+  padding:0 6px;word-break:break-word;max-width:100%;text-align:center}
+.item .label{font-weight:800;font-size:1rem;margin-top:4px;color:#5a3a1a}
 .item .badge{position:absolute;top:10px;left:10px;
-  background:linear-gradient(135deg,#7c5cff,#ff5f9e);
-  color:#fff;border-radius:12px;padding:2px 12px;font-size:.85rem;font-weight:800}
+  background:linear-gradient(135deg,#7c5cff,#ff5f9e);color:#fff;
+  border-radius:12px;padding:2px 12px;font-size:.85rem;font-weight:800}
 .swatch{width:90px;height:90px;border-radius:50%;
   box-shadow:inset 0 -8px 15px rgba(0,0,0,.15), inset 0 8px 15px rgba(255,255,255,.4),
   0 8px 20px rgba(0,0,0,.2)}
 
-/* Opposites */
-.opp-card{grid-column:span 2;border:none;cursor:pointer;font-family:inherit;
-  background:linear-gradient(145deg,#ffffff,#f5f5ff);
-  display:flex;align-items:center;justify-content:space-around;
-  gap:8px;padding:22px 14px;border-radius:26px;
-  box-shadow:0 10px 25px rgba(80,80,140,.15);
-  transition:transform .2s cubic-bezier(.34,1.56,.64,1);position:relative}
-.opp-card::before{content:'';position:absolute;inset:0 0 auto 0;height:7px;
-  background:linear-gradient(90deg,#ff5f9e,#7c5cff);border-radius:26px 26px 0 0}
-.opp-card:hover{transform:translateY(-6px) scale(1.02)}
-.opp-side{display:flex;flex-direction:column;align-items:center;flex:1;gap:6px}
-.opp-pic{line-height:1;filter:drop-shadow(0 6px 12px rgba(0,0,0,.2))}
-.opp-label{font-weight:800;font-size:1rem}
-.opp-arrow{font-size:2rem;color:#7c5cff;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+/* ===== NUMBER TILE ===== */
+.num-tile{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:70px;min-height:70px;border-radius:18px;
+  font-size:clamp(1.6rem,4.5vw,2.6rem);
+  font-weight:800;color:#fff;
+  box-shadow:0 8px 16px rgba(0,0,0,.25), inset 0 -4px 0 rgba(0,0,0,.2);
+  text-shadow:0 2px 4px rgba(0,0,0,.35);
+  padding:6px 14px;white-space:nowrap;
+}
 
-/* Info Cards */
+/* ===== WORD ITEM (Numbers in Words) ===== */
+.item.word-item{
+  grid-column:span 2;padding:22px 16px;min-height:170px;justify-content:center;
+}
+.item .wordtext{
+  font-weight:800;line-height:1.15;text-align:center;
+  word-break:break-word;overflow-wrap:break-word;
+  padding:6px;max-width:100%;color:#5C6BC0;
+}
+.item.word-item[data-len="xs"] .wordtext{font-size:2rem}
+.item.word-item[data-len="s"]  .wordtext{font-size:1.6rem}
+.item.word-item[data-len="m"]  .wordtext{font-size:1.35rem}
+.item.word-item[data-len="l"]  .wordtext{font-size:1.15rem}
+.item.word-item[data-len="xl"] .wordtext{font-size:1rem}
+
+/* ===== SQUARE / CUBE CARDS ===== */
+.sq-card{
+  border:none;cursor:pointer;font-family:inherit;
+  background:linear-gradient(145deg,#ffffff,#f0f4ff);
+  display:flex;flex-direction:column;align-items:center;
+  padding:18px 12px;gap:6px;border-radius:22px;
+  box-shadow:0 8px 20px rgba(80,80,180,.18);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1);
+  position:relative;overflow:hidden;
+}
+.sq-card::before{content:'';position:absolute;inset:0 0 auto 0;height:6px;
+  background:linear-gradient(90deg,#7c5cff,#ff5f9e)}
+.sq-card:hover{transform:translateY(-6px) scale(1.03);
+  box-shadow:0 18px 35px rgba(80,80,180,.3)}
+.sq-card .expr{
+  font-size:1.6rem;font-weight:800;color:#5C6BC0;
+  display:flex;align-items:center;gap:8px;
+}
+.sq-card .expr sup{font-size:.9rem;color:#7c5cff}
+.sq-card .eq{font-size:1rem;color:#8B5A2B;font-weight:700}
+.sq-card .res{
+  font-size:2.2rem;font-weight:800;
+  background:linear-gradient(135deg,#7c5cff,#ff5f9e);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-top:2px;
+}
+
+/* ===== INFO CARDS ===== */
 .card.info{align-items:flex-start;text-align:left;padding:20px 18px;gap:8px}
 .card.info .emo{font-size:2.5rem}
 .card.info .ttl{font-size:1.1rem}
-.card.info .txt{font-size:.88rem;opacity:.78;font-weight:600;line-height:1.4}
+.card.info .txt{font-size:.88rem;opacity:.8;font-weight:600;line-height:1.4;color:#5a3a1a}
 .card.info .play{align-self:flex-start;background:#eef0ff;color:#5c4dff;
   font-weight:800;border-radius:12px;padding:4px 12px;font-size:.78rem;margin-top:4px}
 
-/* Lesson */
-.lesson{background:#fff;border-radius:28px;padding:24px 18px;
-  box-shadow:0 15px 35px rgba(80,80,140,.15);max-width:800px;margin:0 auto}
+/* ===== LESSON ===== */
+.lesson{background:#fffefb;border-radius:22px;padding:24px 20px;
+  box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:820px;margin:0 auto;
+  border:2px solid #e8d5b7}
 .lesson h2{text-align:center;font-size:1.5rem;color:#7c5cff;margin-bottom:6px}
-.lesson .chapter{text-align:center;font-size:.85rem;opacity:.6;font-weight:700;margin-bottom:18px}
-.sec-title{font-size:1.15rem;font-weight:800;margin:20px 0 12px;color:#2b2b3a;
-  display:flex;align-items:center;gap:8px}
-.point{width:100%;border:none;font-family:inherit;cursor:pointer;background:#f6f4ff;
-  border-radius:18px;padding:14px 18px;font-size:1rem;font-weight:700;text-align:left;
-  transition:.2s;color:#2b2b3a;margin-bottom:10px;line-height:1.4;
-  display:flex;gap:10px;align-items:flex-start;box-shadow:0 3px 8px rgba(80,80,140,.08)}
+.lesson .chapter{text-align:center;font-size:.85rem;opacity:.75;
+  font-weight:700;margin-bottom:18px;color:#8B5A2B}
+.sec-title{font-size:1.15rem;font-weight:800;margin:22px 0 12px;color:#5a3a1a;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:2px dashed #e8d5b7;padding-bottom:6px}
+.point{width:100%;border:none;font-family:inherit;cursor:pointer;
+  background:#f6f4ff;border-radius:16px;padding:14px 18px;
+  font-size:1rem;font-weight:700;text-align:left;transition:.2s;color:#2b2b3a;
+  margin-bottom:10px;line-height:1.5;display:flex;gap:10px;align-items:flex-start;
+  box-shadow:0 3px 8px rgba(80,80,140,.08)}
 .point:hover{background:#e9e5ff;transform:translateX(6px)}
 .point.active{background:#7c5cff;color:#fff;transform:scale(1.02)}
 .point .dot{flex:0 0 auto;font-size:1.2rem}
-.qa-item{background:linear-gradient(135deg,#f9f9ff,#f0f0ff);border-radius:18px;
-  padding:14px 16px;margin-bottom:12px;border-left:6px solid #7c5cff}
+.qa-item{background:linear-gradient(135deg,#f9f9ff,#f0f0ff);
+  border-radius:16px;padding:14px 16px;margin-bottom:12px;
+  border-left:6px solid #7c5cff}
 .qa-q{font-weight:800;font-size:1rem;margin-bottom:10px;line-height:1.35;cursor:pointer}
 .qa-q:hover{color:#7c5cff}
 .qa-a{background:linear-gradient(135deg,#e8fff0,#d8ffe8);border-radius:12px;
-  padding:11px 14px;font-size:.95rem;font-weight:700;color:#1b7a45;display:none;line-height:1.4}
+  padding:11px 14px;font-size:.95rem;font-weight:700;color:#1b7a45;
+  display:none;line-height:1.4}
 .qa-a.show{display:block;animation:fade .3s}
 @keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
-.ans-btn{border:none;font-family:inherit;cursor:pointer;background:#eef0ff;color:#5c4dff;
-  font-weight:800;border-radius:12px;padding:8px 16px;font-size:.85rem;transition:.2s}
+.ans-btn{border:none;font-family:inherit;cursor:pointer;
+  background:#eef0ff;color:#5c4dff;font-weight:800;border-radius:12px;
+  padding:8px 16px;font-size:.85rem;transition:.2s}
 .ans-btn:hover{background:#dfe3ff}
 
-/* Table */
-.table-view{background:#fff;border-radius:28px;padding:24px 18px;max-width:540px;margin:0 auto;
-  box-shadow:0 15px 35px rgba(80,80,140,.15)}
+/* ===== TABLE ===== */
+.table-view{background:#fffefb;border-radius:22px;padding:24px 20px;
+  max-width:540px;margin:0 auto;
+  box-shadow:0 12px 30px rgba(139,90,43,.18);border:2px solid #e8d5b7}
 .table-view h2{text-align:center;font-size:1.5rem;color:#7c5cff;margin-bottom:16px}
 .trow{width:100%;border:none;font-family:inherit;cursor:pointer;
   background:linear-gradient(145deg,#f6f4ff,#ece9ff);
   border-radius:16px;padding:14px 18px;font-size:1.2rem;font-weight:800;
-  text-align:center;transition:.2s;color:#2b2b3a;margin-bottom:9px;letter-spacing:.5px;
-  box-shadow:0 4px 10px rgba(80,80,140,.1)}
+  text-align:center;transition:.2s;color:#2b2b3a;margin-bottom:9px;
+  letter-spacing:.5px;box-shadow:0 4px 10px rgba(80,80,140,.1)}
 .trow:hover{background:linear-gradient(145deg,#e9e5ff,#dcd6ff);transform:scale(1.02)}
 .trow.active{background:linear-gradient(135deg,#7c5cff,#5c4dff);color:#fff;transform:scale(1.03)}
 
-/* Poem */
-.poem{background:#fff;border-radius:28px;padding:0;overflow:hidden;
-  box-shadow:0 20px 45px rgba(80,80,140,.25);max-width:750px;margin:0 auto}
-.poem-hero{background:linear-gradient(135deg,#a8e6ff,#ffd6ec,#e0d4ff);
-  padding:28px 20px;text-align:center;position:relative;overflow:hidden}
+/* ===== POEM ===== */
+.poem{background:#fff;border-radius:22px;padding:0;overflow:hidden;
+  box-shadow:0 15px 40px rgba(139,90,43,.25);max-width:750px;margin:0 auto;
+  border:2px solid #e8d5b7}
+.poem-hero{padding:30px 20px;text-align:center;position:relative;overflow:hidden}
 .poem-hero .hero-pic{font-size:5rem;line-height:1;position:relative;z-index:1;
   filter:drop-shadow(0 10px 20px rgba(0,0,0,.25));animation:bounce 2s infinite}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
@@ -151,10 +246,10 @@ main{padding:18px 16px 70px;max-width:1200px;margin:0 auto}
 .lines{display:flex;flex-direction:column;gap:12px}
 .line{border:none;font-family:inherit;cursor:pointer;
   background:linear-gradient(135deg,#f6f4ff,#eef0ff);
-  border-radius:20px;padding:16px 20px;font-size:1.1rem;font-weight:700;
-  text-align:left;transition:.3s cubic-bezier(.34,1.56,.64,1);color:#2b2b3a;line-height:1.5;
-  box-shadow:0 4px 12px rgba(80,80,140,.1);display:flex;gap:14px;align-items:center;
-  border-left:5px solid transparent}
+  border-radius:18px;padding:16px 20px;font-size:1.1rem;font-weight:700;
+  text-align:left;transition:.3s cubic-bezier(.34,1.56,.64,1);color:#2b2b3a;
+  line-height:1.5;box-shadow:0 4px 12px rgba(80,80,140,.1);
+  display:flex;gap:14px;align-items:center;border-left:5px solid transparent}
 .line .pic{font-size:2.2rem;flex:0 0 auto;
   filter:drop-shadow(0 4px 8px rgba(0,0,0,.2))}
 .line:hover{background:linear-gradient(135deg,#e9e5ff,#dcd6ff);transform:translateX(8px)}
@@ -166,41 +261,46 @@ main{padding:18px 16px 70px;max-width:1200px;margin:0 auto}
   border-left:5px solid #fff}
 .line.active .pic{transform:scale(1.3)}
 .poem-actions{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
-.btn{border:none;font-family:inherit;cursor:pointer;border-radius:16px;
-  padding:13px 24px;font-weight:800;font-size:1rem;background:#eef0ff;color:#5c4dff;
-  transition:.2s;box-shadow:0 5px 12px rgba(80,80,140,.12)}
+.btn{border:none;font-family:inherit;cursor:pointer;border-radius:14px;
+  padding:13px 24px;font-weight:800;font-size:1rem;
+  background:#eef0ff;color:#5c4dff;transition:.2s;
+  box-shadow:0 5px 12px rgba(80,80,140,.12)}
 .btn.primary{background:linear-gradient(135deg,#7c5cff,#ff5f9e);color:#fff;
   box-shadow:0 10px 22px rgba(124,92,255,.4)}
 .btn:hover{transform:translateY(-3px)}
 
-/* Quiz */
-.quiz{background:#fff;border-radius:28px;padding:26px 20px;
-  box-shadow:0 15px 35px rgba(80,80,140,.15);max-width:680px;margin:0 auto;text-align:center}
+/* ===== QUIZ ===== */
+.quiz{background:#fffefb;border-radius:22px;padding:26px 20px;
+  box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:680px;margin:0 auto;
+  text-align:center;border:2px solid #e8d5b7}
 .qmeta{font-weight:800;color:#9aa;font-size:.9rem;margin-bottom:12px}
 .qtext{font-size:clamp(1.2rem,4vw,1.7rem);margin:10px 0 24px;color:#2b2b3a;line-height:1.4}
 .options{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px}
-.opt{border:none;font-family:inherit;cursor:pointer;border-radius:20px;padding:20px 14px;
-  font-size:1.2rem;font-weight:800;background:linear-gradient(145deg,#f4f6ff,#e8ecff);
-  color:#3b3b5c;transition:.2s;box-shadow:0 6px 14px rgba(80,80,140,.12)}
+.opt{border:none;font-family:inherit;cursor:pointer;border-radius:18px;
+  padding:20px 14px;font-size:1.2rem;font-weight:800;
+  background:linear-gradient(145deg,#f4f6ff,#e8ecff);color:#3b3b5c;
+  transition:.2s;box-shadow:0 6px 14px rgba(80,80,140,.12)}
 .opt:hover:not(:disabled){transform:translateY(-4px)}
 .opt.right{background:linear-gradient(145deg,#34C759,#28a745);color:#fff}
 .opt.wrong{background:linear-gradient(145deg,#FF3B30,#dc3545);color:#fff}
-.result{background:#fff;border-radius:28px;padding:40px 20px;text-align:center;
-  box-shadow:0 15px 35px rgba(80,80,140,.15);max-width:560px;margin:0 auto}
+.result{background:#fffefb;border-radius:22px;padding:40px 20px;
+  text-align:center;box-shadow:0 12px 30px rgba(139,90,43,.18);
+  max-width:560px;margin:0 auto;border:2px solid #e8d5b7}
 .result h2{margin:16px 0 22px;color:#7c5cff}
 
-/* Missing Game */
-.missing-view{background:#fff;border-radius:28px;padding:26px 20px;
-  box-shadow:0 15px 35px rgba(80,80,140,.15);max-width:680px;margin:0 auto;text-align:center}
+/* ===== MISSING GAME ===== */
+.missing-view{background:#fffefb;border-radius:22px;padding:26px 20px;
+  box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:680px;margin:0 auto;
+  text-align:center;border:2px solid #e8d5b7}
 .missing-view .picture{font-size:7rem;line-height:1;margin:10px 0 20px;
   filter:drop-shadow(0 10px 15px rgba(0,0,0,.2))}
-.missing-view .question{font-size:3.5rem;font-weight:800;color:#2b2b3a;letter-spacing:8px;
-  margin:20px 0}
+.missing-view .question{font-size:3.5rem;font-weight:800;color:#2b2b3a;
+  letter-spacing:8px;margin:20px 0}
 .missing-view .question .blank{color:#7c5cff;background:#f0edff;
   padding:0 15px;border-radius:12px;border-bottom:5px dashed #7c5cff}
 .missing-view .label{font-size:1.2rem;font-weight:700;color:#9aa;margin-bottom:10px}
 .missing-options{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:20px}
-.mopt{border:none;font-family:inherit;cursor:pointer;border-radius:20px;
+.mopt{border:none;font-family:inherit;cursor:pointer;border-radius:18px;
   padding:20px 28px;font-size:1.8rem;font-weight:800;
   background:linear-gradient(145deg,#f4f6ff,#e8ecff);color:#3b3b5c;
   transition:.2s;box-shadow:0 6px 14px rgba(80,80,140,.12);min-width:80px}
@@ -208,9 +308,10 @@ main{padding:18px 16px 70px;max-width:1200px;margin:0 auto}
 .mopt.right{background:linear-gradient(145deg,#34C759,#28a745);color:#fff}
 .mopt.wrong{background:linear-gradient(145deg,#FF3B30,#dc3545);color:#fff}
 
-/* Matching */
-.match-view{background:#fff;border-radius:28px;padding:26px 20px;
-  box-shadow:0 15px 35px rgba(80,80,140,.15);max-width:750px;margin:0 auto}
+/* ===== MATCHING ===== */
+.match-view{background:#fffefb;border-radius:22px;padding:26px 20px;
+  box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:750px;margin:0 auto;
+  border:2px solid #e8d5b7}
 .match-view h2{text-align:center;color:#7c5cff;font-size:1.4rem;margin-bottom:20px}
 .match-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .match-col h3{text-align:center;font-size:.9rem;color:#9aa;margin-bottom:12px;font-weight:800}
@@ -224,19 +325,46 @@ main{padding:18px 16px 70px;max-width:1200px;margin:0 auto}
   opacity:.5;cursor:default}
 .match-btn.err{background:linear-gradient(145deg,#FF3B30,#dc3545);color:#fff}
 
+/* ===== OPPOSITES ===== */
+.opp-card{grid-column:span 2;border:none;cursor:pointer;font-family:inherit;
+  background:linear-gradient(145deg,#fffefb,#fff5e6);
+  display:flex;align-items:center;justify-content:space-around;
+  gap:8px;padding:22px 14px;border-radius:22px;
+  box-shadow:0 8px 20px rgba(139,90,43,.18);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1);position:relative}
+.opp-card::before{content:'';position:absolute;inset:0 0 auto 0;height:7px;
+  background:linear-gradient(90deg,#ff5f9e,#7c5cff);border-radius:22px 22px 0 0}
+.opp-card:hover{transform:translateY(-6px) scale(1.02)}
+.opp-side{display:flex;flex-direction:column;align-items:center;flex:1;gap:6px}
+.opp-pic{line-height:1;filter:drop-shadow(0 6px 12px rgba(0,0,0,.2))}
+.opp-label{font-weight:800;font-size:1rem;color:#5a3a1a}
+.opp-arrow{font-size:2rem;color:#7c5cff;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
 @media(max-width:480px){
+  body{padding:6px}
+  .book-frame{margin-top:14px;margin-bottom:14px;
+    box-shadow:0 0 0 2px #fff,0 0 0 7px #8B5A2B,0 0 0 9px #d4a373,0 0 0 11px #8B5A2B,
+      0 15px 40px rgba(80,50,20,.35)}
+  main{padding:14px 12px 60px}
   .grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
   .item .visual{font-size:4rem}
-  .item .bignum{font-size:3.5rem}
+  .item .bignum{font-size:3rem}
   .card .emo{font-size:2.2rem}
   .swatch{width:70px;height:70px}
-  main{padding:14px 12px 60px}
   .missing-view .picture{font-size:5rem}
   .missing-view .question{font-size:2.5rem;letter-spacing:5px}
+  .item.word-item[data-len="xs"] .wordtext{font-size:1.6rem}
+  .item.word-item[data-len="s"]  .wordtext{font-size:1.3rem}
+  .item.word-item[data-len="m"]  .wordtext{font-size:1.15rem}
+  .item.word-item[data-len="l"]  .wordtext{font-size:1rem}
+  .item.word-item[data-len="xl"] .wordtext{font-size:.9rem}
 }
 </style>
 </head>
 <body>
+
+<div class="book-frame">
 
 <header>
   <button class="icon-btn" id="backBtn" onclick="goBack()">⬅️</button>
@@ -251,9 +379,11 @@ main{padding:18px 16px 70px;max-width:1200px;margin:0 auto}
 
 <main id="screen"></main>
 
+</div>
+
 <script>
 /* =========================================================
-   SECTION 1: SPEECH ENGINE (Voice)
+   SECTION 1: SPEECH ENGINE
    ========================================================= */
 let voices = [];
 let soundOn = true;
@@ -295,7 +425,7 @@ function toggleSound(){
 }
 
 /* =========================================================
-   SECTION 2: STARS / REWARDS
+   SECTION 2: STARS
    ========================================================= */
 let stars = parseInt(localStorage.getItem('klh_stars') || '0', 10);
 function addStar(){
@@ -306,7 +436,7 @@ function addStar(){
 document.getElementById('starCount').textContent = stars;
 
 /* =========================================================
-   SECTION 3: HELPER FUNCTIONS
+   SECTION 3: HELPERS
    ========================================================= */
 function numToWord(n){
   const ones = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine',
@@ -333,6 +463,13 @@ function makeTables(from, to){
   }
   return arr;
 }
+function makeSquares(from, to){
+  const arr = [];
+  for(let i=from; i<=to; i++){
+    arr.push({n:i, sq:i*i, cube:i*i*i});
+  }
+  return arr;
+}
 function shuffle(arr){
   for(let i = arr.length-1; i > 0; i--){
     const j = Math.floor(Math.random()*(i+1));
@@ -340,15 +477,22 @@ function shuffle(arr){
   }
   return arr;
 }
+/* Poem pronunciation fix */
+function fixPoemText(t){
+  return String(t)
+    .replace(/\bBaa\b/gi, 'Bah')
+    .replace(/\bba\b/gi, 'bah');
+}
 
 /* =========================================================
-   SECTION 4: DATA — YAHAN NAYA CONTENT ADD KARO
+   SECTION 4: DATA
    ========================================================= */
 
-/* ---------- 4.1 ALPHABET (A-Z) ----------
-   Naya letter add karna ho to is list mein add karo:
-   ['Letter', 'Word', 'Emoji'],
-------------------------------------------- */
+/* Number colors */
+const NUM_COLORS = ['#FF3B30','#FF9500','#FFC300','#34C759','#00C2A8',
+                    '#0A84FF','#5C6BC0','#AF52DE','#FF2D95','#8B5A2B'];
+
+/* 4.1 ALPHABET */
 const ALPHABET = [
  ['A','Apple','🍎'],['B','Ball','⚽'],['C','Cat','🐱'],['D','Dog','🐶'],
  ['E','Elephant','🐘'],['F','Fish','🐟'],['G','Grapes','🍇'],['H','Hat','👒'],
@@ -359,9 +503,7 @@ const ALPHABET = [
  ['Y','Yak','🐃'],['Z','Zebra','🦓']
 ];
 
-/* ---------- 4.2 TWO LETTER WORDS ----------
-   ['Word', 'Emoji'],
-------------------------------------------- */
+/* 4.2 TWO LETTER */
 const TWO_LETTER = [
  ['At','🎯'],['An','1️⃣'],['In','📥'],['On','🔛'],['Up','⬆️'],['Go','🟢'],
  ['No','❌'],['So','✨'],['My','🙋'],['By','👉'],['Do','✅'],['To','➡️'],
@@ -369,7 +511,7 @@ const TWO_LETTER = [
  ['It','🎁'],['Me','🙋'],['Of','🔗'],['Or','🔀'],['Us','👫'],['We','👨‍👩‍👧']
 ];
 
-/* ---------- 4.3 THREE LETTER WORDS ---------- */
+/* 4.3 THREE LETTER */
 const THREE_LETTER = [
  ['Cat','🐱'],['Dog','🐶'],['Sun','☀️'],['Bat','🦇'],['Pen','🖊️'],
  ['Cup','🥤'],['Box','📦'],['Hat','👒'],['Bus','🚌'],['Jam','🍯'],
@@ -378,7 +520,7 @@ const THREE_LETTER = [
  ['Ant','🐜'],['Cow','🐮'],['Pig','🐷'],['Fox','🦊'],['Jar','🫙']
 ];
 
-/* ---------- 4.4 COLORS ---------- */
+/* 4.4 COLORS */
 const COLORS = [
  ['Red','#FF3B30'],['Blue','#0A84FF'],['Green','#34C759'],['Yellow','#FFD60A'],
  ['Orange','#FF9500'],['Purple','#AF52DE'],['Pink','#FF2D95'],['Brown','#8B5A2B'],
@@ -386,14 +528,14 @@ const COLORS = [
  ['Sky Blue','#87CEEB'],['Lime','#A8E63A'],['Maroon','#800000'],['Navy','#000080']
 ];
 
-/* ---------- 4.5 SHAPES ---------- */
+/* 4.5 SHAPES */
 const SHAPES = [
  ['Circle','⭕'],['Triangle','🔺'],['Square','🟥'],['Star','⭐'],['Heart','❤️'],
  ['Diamond','🔷'],['Rectangle','🟦'],['Oval','🥚'],['Moon','🌙'],['Pentagon','🔶'],
  ['Hexagon','🛑'],['Cross','➕']
 ];
 
-/* ---------- 4.6 FRUITS ---------- */
+/* 4.6 FRUITS */
 const FRUITS = [
  ['Apple','🍎'],['Banana','🍌'],['Grapes','🍇'],['Orange','🍊'],['Mango','🥭'],
  ['Watermelon','🍉'],['Strawberry','🍓'],['Pineapple','🍍'],['Pear','🍐'],
@@ -401,7 +543,7 @@ const FRUITS = [
  ['Blueberry','🫐'],['Papaya','🍈']
 ];
 
-/* ---------- 4.7 ANIMALS ---------- */
+/* 4.7 ANIMALS */
 const ANIMALS = [
  ['Dog','🐶'],['Cat','🐱'],['Elephant','🐘'],['Lion','🦁'],['Tiger','🐯'],
  ['Monkey','🐵'],['Rabbit','🐰'],['Bear','🐻'],['Panda','🐼'],['Horse','🐴'],
@@ -410,7 +552,7 @@ const ANIMALS = [
  ['Deer','🦌'],['Wolf','🐺'],['Camel','🐫'],['Giraffe','🦒'],['Zebra','🦓']
 ];
 
-/* ---------- 4.8 FLOWERS ---------- */
+/* 4.8 FLOWERS */
 const FLOWERS = [
  ['Rose','🌹'],['Sunflower','🌻'],['Tulip','🌷'],['Daisy','🌼'],
  ['Cherry Blossom','🌸'],['Marigold','🏵️'],['Lotus','🪷'],['Hibiscus','🌺'],
@@ -418,9 +560,7 @@ const FLOWERS = [
  ['Lavender','💜'],['Dandelion','🌼']
 ];
 
-/* ---------- 4.9 OPPOSITES (Big vs Small sizes) ----------
-   leftSize / rightSize — jitna bada chahiye
-------------------------------------------- */
+/* 4.9 OPPOSITES */
 const OPPOSITES = [
  {left:'Big', right:'Small', leftEmoji:'🐘', rightEmoji:'🐜', leftSize:'6rem', rightSize:'2rem'},
  {left:'Hot', right:'Cold', leftEmoji:'🔥', rightEmoji:'❄️', leftSize:'5rem', rightSize:'5rem'},
@@ -438,7 +578,7 @@ const OPPOSITES = [
  {left:'Old', right:'New', leftEmoji:'👴', rightEmoji:'👶', leftSize:'5rem', rightSize:'5rem'}
 ];
 
-/* ---------- 4.10 MISSING LETTER WORDS ---------- */
+/* 4.10 MISSING WORDS */
 const MISSING_WORDS = [
  {word:'CAT', emoji:'🐱'},{word:'DOG', emoji:'🐶'},{word:'SUN', emoji:'☀️'},
  {word:'BAT', emoji:'🦇'},{word:'PEN', emoji:'🖊️'},{word:'CUP', emoji:'🥤'},
@@ -451,11 +591,7 @@ const MISSING_WORDS = [
  {word:'MANGO', emoji:'🥭'},{word:'GRAPE', emoji:'🍇'}
 ];
 
-/* ---------- 4.11 POEMS ----------
-   bg — background gradient
-   heroPic — bada emoji top mein
-   lines — har line mein [text, emoji]
-------------------------------------------- */
+/* 4.11 POEMS */
 const POEMS = {
   nursery:[
    {emoji:'⭐', title:'Twinkle Twinkle Little Star', author:'Jane Taylor',
@@ -476,10 +612,10 @@ const POEMS = {
      ['Telling lies no papa','🙅'],
      ['Open your mouth ha ha ha','😄']
     ]},
-   {emoji:'🐑', title:'Ba Ba Black Sheep', author:'Traditional',
+   {emoji:'🐑', title:'Baa Baa Black Sheep', author:'Traditional',
     bg:'linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9)', heroPic:'🐑',
     lines:[
-     ['Ba ba black sheep have you any wool','🐑'],
+     ['Baa baa black sheep have you any wool','🐑'],
      ['Yes sir yes sir three bags full','🎒'],
      ['One for my master and one for my dame','👨'],
      ['And one for the little boy who lives down the lane','👦']
@@ -563,10 +699,7 @@ const POEMS = {
   ]
 };
 
-/* ---------- 4.12 LESSONS ----------
-   Yahan lessons hain. Naya lesson add karo:
-   {emoji, title, chapter, points:[], qa:[{q,a}]}
-------------------------------------------- */
+/* 4.12 LESSONS */
 const LESSON_BODY = {
   emoji:'🖐️', title:'Parts of Body', chapter:'Nursery – Class 4',
   points:[
@@ -594,15 +727,15 @@ const LESSON_AAN = {
   emoji:'📝', title:'A, An, The', chapter:'Class 1 – Grammar',
   points:[
    '"A" lagta hai consonant sound se pehle. Example: a boy, a cat, a book.',
-   '"An" lagta hai vowel sound se pehle (A, E, I, O, U). Example: an apple, an elephant, an orange.',
+   '"An" lagta hai vowel sound se pehle (A, E, I, O, U). Example: an apple, an elephant.',
    '"The" lagta hai kisi khaas cheez ke liye. Example: the sun, the moon.',
    'A / An sirf ek cheez ke liye. "The" ek ya ek se zyada — dono ke liye.',
    'Yaad rakho: A / An = koi bhi ek. The = wo khaas wala.'
   ],
   qa:[
-   {q:'___ apple a day keeps doctor away.', a:'An apple — kyunki Apple vowel sound se shuru hota hai.'},
+   {q:'___ apple a day keeps doctor away.', a:'An apple.'},
    {q:'I saw ___ elephant at the zoo.', a:'An elephant.'},
-   {q:'___ sun rises in the east.', a:'The sun — kyunki sun khaas ek hi hai.'},
+   {q:'___ sun rises in the east.', a:'The sun.'},
    {q:'She has ___ beautiful doll.', a:'A beautiful doll.'},
    {q:'___ moon is bright tonight.', a:'The moon.'}
   ]
@@ -645,7 +778,7 @@ const LESSON_VERBS = {
   ]
 };
 
-const LESSON_MATH_NUMBERS = {
+const LESSON_NUMBERS = {
   emoji:'🔢', title:'Numbers 1 to 100', chapter:'Class 1 – Maths',
   points:[
    'Numbers se hum ginti karte hain. 1, 2, 3, ... 100 tak.',
@@ -662,7 +795,7 @@ const LESSON_MATH_NUMBERS = {
   ]
 };
 
-const LESSON_MATH_MULT = {
+const LESSON_MULT = {
   emoji:'✖️', title:'Multiplication Tables', chapter:'Class 2 – Maths',
   points:[
    'Multiplication matlab repeated addition. 4 × 3 = 4 + 4 + 4 = 12.',
@@ -680,7 +813,125 @@ const LESSON_MATH_MULT = {
   ]
 };
 
-/* ---------- 4.13 INFO CARDS (Science, GK, Computer...) ---------- */
+/* ---- SQUARE LESSONS ---- */
+const LESSON_SQUARE_5 = {
+  emoji:'🔲', title:'Square of Numbers (1 to 15)', chapter:'Class 5 – Maths',
+  points:[
+   'Square of a number = number × number (khud se multiply).',
+   'Square ka symbol hai chhota 2 upar (jaise 5²).',
+   'Formula: n² = n × n',
+   'Example: 5² = 5 × 5 = 25. Isliye 5 ka square 25 hai.',
+   'Example: 7² = 7 × 7 = 49.',
+   'Square ke answer ko "perfect square" kehte hain.',
+   'Square of 1 = 1, 2 = 4, 3 = 9, 4 = 16, 5 = 25, ..., 15 = 225.'
+  ],
+  qa:[
+   {q:'What is the square of 5?', a:'5 × 5 = 25.'},
+   {q:'What is the square of 10?', a:'10 × 10 = 100.'},
+   {q:'What is the square of 12?', a:'12 × 12 = 144.'},
+   {q:'Write the formula for square of n.', a:'n² = n × n.'},
+   {q:'What is the square of 15?', a:'15 × 15 = 225.'}
+  ]
+};
+
+const LESSON_SQUARE_6 = {
+  emoji:'🔲', title:'Square of Numbers (16 to 30)', chapter:'Class 6 – Maths',
+  points:[
+   'Square of a number = number × number.',
+   'Formula: n² = n × n.',
+   'Example: 16² = 16 × 16 = 256.',
+   'Example: 20² = 20 × 20 = 400.',
+   'Example: 25² = 25 × 25 = 625.',
+   'Square of 30 = 30 × 30 = 900.'
+  ],
+  qa:[
+   {q:'What is the square of 16?', a:'256.'},
+   {q:'What is the square of 20?', a:'400.'},
+   {q:'What is the square of 25?', a:'625.'},
+   {q:'What is the square of 28?', a:'784.'},
+   {q:'What is the square of 30?', a:'900.'}
+  ]
+};
+
+const LESSON_SQUARE_7 = {
+  emoji:'🔲', title:'Square of Numbers (31 to 40)', chapter:'Class 7 – Maths',
+  points:[
+   'Square of a number = number × number.',
+   'Formula: n² = n × n.',
+   'Example: 31² = 31 × 31 = 961.',
+   'Example: 35² = 35 × 35 = 1225.',
+   'Example: 40² = 40 × 40 = 1600.',
+   'Ye badi numbers ke squares hain — table yaad rakho.'
+  ],
+  qa:[
+   {q:'What is the square of 31?', a:'961.'},
+   {q:'What is the square of 35?', a:'1225.'},
+   {q:'What is the square of 38?', a:'1444.'},
+   {q:'What is the square of 40?', a:'1600.'},
+   {q:'What is the square of 33?', a:'1089.'}
+  ]
+};
+
+/* ---- CUBE LESSONS ---- */
+const LESSON_CUBE_5 = {
+  emoji:'🧊', title:'Cube of Numbers (1 to 15)', chapter:'Class 5 – Maths',
+  points:[
+   'Cube of a number = number × number × number (khud se 3 baar multiply).',
+   'Cube ka symbol hai chhota 3 upar (jaise 5³).',
+   'Formula: n³ = n × n × n',
+   'Example: 2³ = 2 × 2 × 2 = 8.',
+   'Example: 3³ = 3 × 3 × 3 = 27.',
+   'Example: 5³ = 5 × 5 × 5 = 125.',
+   'Cube of 1 = 1, 2 = 8, 3 = 27, 4 = 64, 5 = 125, ..., 15 = 3375.'
+  ],
+  qa:[
+   {q:'What is the cube of 2?', a:'2 × 2 × 2 = 8.'},
+   {q:'What is the cube of 3?', a:'3 × 3 × 3 = 27.'},
+   {q:'What is the cube of 5?', a:'5 × 5 × 5 = 125.'},
+   {q:'Write the formula for cube of n.', a:'n³ = n × n × n.'},
+   {q:'What is the cube of 10?', a:'10 × 10 × 10 = 1000.'}
+  ]
+};
+
+const LESSON_CUBE_6 = {
+  emoji:'🧊', title:'Cube of Numbers (16 to 30)', chapter:'Class 6 – Maths',
+  points:[
+   'Cube of a number = number × number × number.',
+   'Formula: n³ = n × n × n.',
+   'Example: 16³ = 16 × 16 × 16 = 4096.',
+   'Example: 20³ = 20 × 20 × 20 = 8000.',
+   'Example: 25³ = 25 × 25 × 25 = 15625.',
+   'Cube of 30 = 30 × 30 × 30 = 27000.'
+  ],
+  qa:[
+   {q:'What is the cube of 16?', a:'4096.'},
+   {q:'What is the cube of 20?', a:'8000.'},
+   {q:'What is the cube of 25?', a:'15625.'},
+   {q:'What is the cube of 28?', a:'21952.'},
+   {q:'What is the cube of 30?', a:'27000.'}
+  ]
+};
+
+const LESSON_CUBE_7 = {
+  emoji:'🧊', title:'Cube of Numbers (31 to 40)', chapter:'Class 7 – Maths',
+  points:[
+   'Cube of a number = number × number × number.',
+   'Formula: n³ = n × n × n.',
+   'Example: 31³ = 31 × 31 × 31 = 29791.',
+   'Example: 35³ = 35 × 35 × 35 = 42875.',
+   'Example: 40³ = 40 × 40 × 40 = 64000.',
+   'Ye badi numbers ke cube hain — calculator se check kar sakte ho.'
+  ],
+  qa:[
+   {q:'What is the cube of 31?', a:'29791.'},
+   {q:'What is the cube of 35?', a:'42875.'},
+   {q:'What is the cube of 38?', a:'54872.'},
+   {q:'What is the cube of 40?', a:'64000.'},
+   {q:'What is the cube of 33?', a:'35937.'}
+  ]
+};
+
+/* 4.13 INFO CARDS */
 const INFO_CARDS = {
  science:[
   {emoji:'🌍', main:'Solar System', text:'Our solar system has eight planets that go around the Sun.'},
@@ -707,7 +958,7 @@ const INFO_CARDS = {
   {emoji:'🔒', main:'Online Safety', text:'Never share your password. Ask an adult before opening unknown links.'}
  ],
  science2:[
-  {emoji:'🍏', main:"Newton's Laws", text:'First law — object stays at rest or in motion unless force acts. Second — force equals mass × acceleration. Third — every action has equal and opposite reaction.'},
+  {emoji:'🍏', main:"Newton's Laws", text:'First law — object stays at rest or in motion unless force acts. Second — F = m × a. Third — every action has equal and opposite reaction.'},
   {emoji:'⚛️', main:'Periodic Table', text:'Elements arranged by atomic number. Hydrogen is lightest.'},
   {emoji:'⚡', main:'Electricity', text:"Current is flow of electrons. Ohm's law: V = I × R."},
   {emoji:'🧬', main:'The Cell', text:'Cell is basic unit of life. Nucleus controls it, mitochondria produce energy.'},
@@ -740,10 +991,7 @@ const INFO_CARDS = {
  ]
 };
 
-/* ---------- 4.14 QUIZZES ----------
-   Naya question add karo:
-   {q:'Sawaal?', options:['A','B','C'], answer:'A'}
-------------------------------------------- */
+/* 4.14 QUIZZES */
 const QUIZ_MATH_1 = [
  {q:'2 + 3 = ?', options:['4','5','6'], answer:'5'},
  {q:'7 − 2 = ?', options:['4','5','6'], answer:'5'},
@@ -761,7 +1009,7 @@ const QUIZ_MATH_2 = [
  {q:'12 × 3 = ?', options:['36','32','42'], answer:'36'},
  {q:'48 ÷ 6 = ?', options:['6','7','8'], answer:'8'},
  {q:'What is 1/2 of 20?', options:['5','10','15'], answer:'10'},
- {q:'Perimeter of square with side 5 cm?', options:['10 cm','20 cm','25 cm'], answer:'20 cm'},
+ {q:'Perimeter of square side 5 cm?', options:['10 cm','20 cm','25 cm'], answer:'20 cm'},
  {q:'Area of rectangle 6 × 4?', options:['10','24','20'], answer:'24'},
  {q:'25 × 4 = ?', options:['90','100','110'], answer:'100'},
  {q:'144 ÷ 12 = ?', options:['10','11','12'], answer:'12'},
@@ -778,7 +1026,7 @@ const QUIZ_MATH_3 = [
  {q:'Solve: 3x = 27', options:['6','9','12'], answer:'9'},
  {q:'Mean of 4,6,8,10?', options:['6','7','8'], answer:'7'},
  {q:'Value of 2³?', options:['6','8','9'], answer:'8'},
- {q:'Right triangle base 3, height 4 → hypotenuse?', options:['5','6','7'], answer:'5'},
+ {q:'Right triangle base 3 height 4 → hypotenuse?', options:['5','6','7'], answer:'5'},
  {q:'Volume of cube side 4 cm?', options:['16 cm³','48 cm³','64 cm³'], answer:'64 cm³'},
  {q:'15% of 200', options:['20','30','40'], answer:'30'}
 ];
@@ -862,9 +1110,7 @@ const QUIZ_GK_3 = [
 ];
 
 /* =========================================================
-   SECTION 5: CATEGORIES (Har card ka naam/emoji/color)
-   Yahan nayi category add karo:
-   catName:{n:'Naam', e:'Emoji', c:'#Color'},
+   SECTION 5: CATEGORIES
    ========================================================= */
 const CATS = {
   alphabet:{n:'ABCD', e:'🔤', c:'#FF6B9D'},
@@ -889,6 +1135,18 @@ const CATS = {
   tables10:{n:'Tables 2-10', e:'✖️', c:'#5C6BC0'},
   tables15:{n:'Tables 2-15', e:'✖️', c:'#5C6BC0'},
   tables20:{n:'Tables 2-20', e:'✖️', c:'#5C6BC0'},
+  squares5:{n:'Square 1-15', e:'🔲', c:'#3F51B5'},
+  squares6:{n:'Square 16-30', e:'🔲', c:'#3F51B5'},
+  squares7:{n:'Square 31-40', e:'🔲', c:'#3F51B5'},
+  cubes5:{n:'Cube 1-15', e:'🧊', c:'#00838F'},
+  cubes6:{n:'Cube 16-30', e:'🧊', c:'#00838F'},
+  cubes7:{n:'Cube 31-40', e:'🧊', c:'#00838F'},
+  sqlesson5:{n:'Square Lesson', e:'📗', c:'#3F51B5'},
+  sqlesson6:{n:'Square Lesson', e:'📗', c:'#3F51B5'},
+  sqlesson7:{n:'Square Lesson', e:'📗', c:'#3F51B5'},
+  cubelesson5:{n:'Cube Lesson', e:'📗', c:'#00838F'},
+  cubelesson6:{n:'Cube Lesson', e:'📗', c:'#00838F'},
+  cubelesson7:{n:'Cube Lesson', e:'📗', c:'#00838F'},
   aan:{n:'A, An, The', e:'📝', c:'#9C27B0'},
   matching:{n:'Matching Game', e:'🎯', c:'#FF6F00'},
   nouns:{n:'Nouns', e:'🏷️', c:'#26A69A'},
@@ -916,10 +1174,7 @@ const CATS = {
 };
 
 /* =========================================================
-   SECTION 6: LEVELS (Class-wise)
-   Yahan naya class add karo:
-   className:{name:'Class 9', sub:'...', emoji:'📕', color:'#...',
-              cats:['cat1', 'cat2']},
+   SECTION 6: LEVELS
    ========================================================= */
 const LEVELS = {
   nursery:{name:'Nursery', sub:'Age 3-4 Years', emoji:'🧸', color:'#FF6B9D',
@@ -942,41 +1197,49 @@ const LEVELS = {
   class4:{name:'Class 4', sub:'Age 9-10 Years', emoji:'🎯', color:'#5C6BC0',
     cats:['tables20','mathquiz2','engquiz2','gkquiz2','science','computer','poems3']},
   class5:{name:'Class 5', sub:'Age 10-11 Years', emoji:'🔬', color:'#AB47BC',
-    cats:['tables20','mathquiz2','engquiz3','gkquiz2','science','computer','poems3']},
+    cats:['sqlesson5','squares5','cubelesson5','cubes5',
+          'tables20','mathquiz2','engquiz3','gkquiz2','science','computer']},
   class6:{name:'Class 6', sub:'Age 11-12 Years', emoji:'🌏', color:'#29B6F6',
-    cats:['mathquiz2','engquiz3','gkquiz3','science','history','geography','computer','poems3']},
+    cats:['sqlesson6','squares6','cubelesson6','cubes6',
+          'mathquiz2','engquiz3','gkquiz3','science','history','geography','computer']},
   class7:{name:'Class 7', sub:'Age 12-13 Years', emoji:'⚛️', color:'#66BB6A',
-    cats:['mathquiz3','engquiz3','gkquiz3','science2','history','geography','computer2']},
+    cats:['sqlesson7','squares7','cubelesson7','cubes7',
+          'mathquiz3','engquiz3','gkquiz3','science2','history','geography','computer2']},
   class8:{name:'Class 8', sub:'Age 13-14 Years', emoji:'🎓', color:'#FF7043',
     cats:['mathquiz3','engquiz3','gkquiz3','science2','history','geography','computer2']}
 };
 
 /* =========================================================
-   SECTION 7: CONTENT MAP — Category ko data se jodta hai
-   Yahan batao kaunsi category kis type ki hai:
-   - cards       → simple tap cards
-   - opposites   → big vs small
-   - info        → long info cards
-   - lesson      → lesson with Q&A
-   - poemlist    → poems list
-   - tablelist   → tables list
-   - quiz        → MCQ quiz
-   - missing-letter / missing-number
-   - matching
+   SECTION 7: CONTENT MAP
    ========================================================= */
+function squareCards(from, to){
+  const arr = [];
+  for(let i=from; i<=to; i++) arr.push({n:i, val:i*i});
+  return arr;
+}
+function cubeCards(from, to){
+  const arr = [];
+  for(let i=from; i<=to; i++) arr.push({n:i, val:i*i*i});
+  return arr;
+}
+
 const CONTENT = {
   /* Nursery */
   alphabet:{type:'cards', items: ALPHABET.map(([l,w,e]) => ({emoji:e, badge:l, sub:w, say:`${l} for ${w}`}))},
   twoletter:{type:'cards', items: TWO_LETTER.map(([w,e]) => ({emoji:e, sub:w, say:w}))},
   threeletter:{type:'cards', items: THREE_LETTER.map(([w,e]) => ({emoji:e, sub:w, say:w}))},
   numbers10:{type:'cards', items: makeNumbers(10).map(o => ({
-    emoji: o.n < 10 ? ['0️⃣','1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣'][o.n] : '🔟',
-    main:String(o.n), sub:o.word, say:o.word}))},
-  numbers50:{type:'cards', items: makeNumbers(50).map(o => ({main:String(o.n), sub:o.word, say:o.word}))},
-  numbers100:{type:'cards', items: makeNumbers(100).map(o => ({main:String(o.n), sub:o.word, say:o.word}))},
-  numword10:{type:'cards', items: makeNumbers(10).map(o => ({main:o.word, sub:'= '+o.n, say:o.word}))},
-  numword50:{type:'cards', items: makeNumbers(50).map(o => ({main:o.word, sub:'= '+o.n, say:o.word}))},
-  numword100:{type:'cards', items: makeNumbers(100).map(o => ({main:o.word, sub:'= '+o.n, say:o.word}))},
+    numTile: NUM_COLORS[o.n % 10], main:String(o.n), sub:o.word, say:o.word}))},
+  numbers50:{type:'cards', items: makeNumbers(50).map(o => ({
+    numTile: NUM_COLORS[o.n % 10], main:String(o.n), sub:o.word, say:o.word}))},
+  numbers100:{type:'cards', items: makeNumbers(100).map(o => ({
+    numTile: NUM_COLORS[o.n % 10], main:String(o.n), sub:o.word, say:o.word}))},
+  numword10:{type:'cards', items: makeNumbers(10).map(o => ({
+    isWord:true, main:o.word, sub:'= '+o.n, say:o.word}))},
+  numword50:{type:'cards', items: makeNumbers(50).map(o => ({
+    isWord:true, main:o.word, sub:'= '+o.n, say:o.word}))},
+  numword100:{type:'cards', items: makeNumbers(100).map(o => ({
+    isWord:true, main:o.word, sub:'= '+o.n, say:o.word}))},
   colors:{type:'cards', items: COLORS.map(([n,c]) => ({color:c, sub:n, say:n+' colour'}))},
   shapes:{type:'cards', items: SHAPES.map(([n,e]) => ({emoji:e, sub:n, say:n}))},
   fruits:{type:'cards', items: FRUITS.map(([n,e]) => ({emoji:e, sub:n, say:n}))},
@@ -999,13 +1262,13 @@ const CONTENT = {
     {left:'🍌 Banana', right:'Fruit'}, {left:'🌻 Sunflower', right:'Flower'}
   ]},
   tables10:{type:'tablelist', items: makeTables(2,10)},
-  mathlesson1:{type:'lesson', items:[LESSON_MATH_NUMBERS]},
+  mathlesson1:{type:'lesson', items:[LESSON_NUMBERS]},
   poems1:{type:'poemlist', items: POEMS.class1},
 
   /* Class 2 */
   nouns:{type:'lesson', items:[LESSON_NOUNS]},
   tables15:{type:'tablelist', items: makeTables(2,15)},
-  mathlesson2:{type:'lesson', items:[LESSON_MATH_MULT]},
+  mathlesson2:{type:'lesson', items:[LESSON_MULT]},
   mathquiz1:{type:'quiz', questions: QUIZ_MATH_1},
   engquiz1:{type:'quiz', questions: QUIZ_ENG_1},
   gkquiz1:{type:'quiz', questions: QUIZ_GK_1},
@@ -1017,6 +1280,22 @@ const CONTENT = {
   mathquiz2:{type:'quiz', questions: QUIZ_MATH_2},
   engquiz2:{type:'quiz', questions: QUIZ_ENG_2},
   gkquiz2:{type:'quiz', questions: QUIZ_GK_2},
+
+  /* Class 5,6,7 - SQUARES */
+  sqlesson5:{type:'lesson', items:[LESSON_SQUARE_5]},
+  sqlesson6:{type:'lesson', items:[LESSON_SQUARE_6]},
+  sqlesson7:{type:'lesson', items:[LESSON_SQUARE_7]},
+  squares5:{type:'square', items: squareCards(1, 15)},
+  squares6:{type:'square', items: squareCards(16, 30)},
+  squares7:{type:'square', items: squareCards(31, 40)},
+
+  /* Class 5,6,7 - CUBES */
+  cubelesson5:{type:'lesson', items:[LESSON_CUBE_5]},
+  cubelesson6:{type:'lesson', items:[LESSON_CUBE_6]},
+  cubelesson7:{type:'lesson', items:[LESSON_CUBE_7]},
+  cubes5:{type:'cube', items: cubeCards(1, 15)},
+  cubes6:{type:'cube', items: cubeCards(16, 30)},
+  cubes7:{type:'cube', items: cubeCards(31, 40)},
 
   /* Class 4-8 */
   mathquiz3:{type:'quiz', questions: QUIZ_MATH_3},
@@ -1032,7 +1311,7 @@ const CONTENT = {
 };
 
 /* =========================================================
-   SECTION 8: ROUTER & RENDERING (YAHAN KUCH CHANGE NAHI KARNA)
+   SECTION 8: ROUTER
    ========================================================= */
 const screen   = document.getElementById('screen');
 const hTitle   = document.getElementById('hTitle');
@@ -1157,6 +1436,22 @@ function renderCategory(){
           <span class="emo">✖️</span>
           <span class="ttl">Table of ${t.n}</span>
         </button>`).join('') + `</div>`;
+  } else if(data.type === 'square'){
+    screen.innerHTML = `<div class="grid">` +
+      currentItems.map((it,i) => `
+        <button class="sq-card" onclick="tapSquare(${i}, 'sq')">
+          <span class="expr">${it.n}<sup>2</sup></span>
+          <span class="eq">${it.n} × ${it.n}</span>
+          <span class="res">= ${it.val}</span>
+        </button>`).join('') + `</div>`;
+  } else if(data.type === 'cube'){
+    screen.innerHTML = `<div class="grid">` +
+      currentItems.map((it,i) => `
+        <button class="sq-card" onclick="tapSquare(${i}, 'cube')">
+          <span class="expr">${it.n}<sup>3</sup></span>
+          <span class="eq">${it.n} × ${it.n} × ${it.n}</span>
+          <span class="res">= ${it.val}</span>
+        </button>`).join('') + `</div>`;
   } else if(data.type === 'quiz'){
     screen.innerHTML = `<div id="quizBox"></div>`;
     quizState = { idx:0, score:0, questions: shuffle([...data.questions]).slice(0,10) };
@@ -1175,12 +1470,26 @@ function renderCategory(){
 }
 
 function cardHTML(it, i){
-  const visual = it.color
-    ? `<span class="swatch" style="background:${it.color}"></span>`
-    : it.emoji
-      ? `<span class="visual">${it.emoji}</span>`
-      : `<span class="bignum">${it.main}</span>`;
-  return `<button class="item" onclick="tap(${i})">
+  let visual, extraClass = '', dataLen = '';
+  if(it.numTile){
+    visual = `<span class="num-tile" style="background:${it.numTile}">${it.main}</span>`;
+  } else if(it.isWord){
+    extraClass = 'word-item';
+    const len = it.main.length;
+    if(len <= 5) dataLen = 'xs';
+    else if(len <= 7) dataLen = 's';
+    else if(len <= 9) dataLen = 'm';
+    else if(len <= 11) dataLen = 'l';
+    else dataLen = 'xl';
+    visual = `<span class="wordtext">${it.main}</span>`;
+  } else if(it.color && !it.badge && !it.emoji){
+    visual = `<span class="swatch" style="background:${it.color}"></span>`;
+  } else if(it.emoji){
+    visual = `<span class="visual">${it.emoji}</span>`;
+  } else {
+    visual = `<span class="bignum">${it.main}</span>`;
+  }
+  return `<button class="item ${extraClass}" data-len="${dataLen}" onclick="tap(${i})">
     ${it.badge ? `<span class="badge">${it.badge}</span>` : ''}
     ${visual}
     <span class="label">${it.sub || it.main}</span>
@@ -1203,6 +1512,16 @@ function tapInfo(i){
   const it = currentItems[i];
   if(!it) return;
   speak(it.main + '. ' + it.text);
+  addStar();
+}
+function tapSquare(i, mode){
+  const it = currentItems[i];
+  if(!it) return;
+  if(mode === 'sq'){
+    speak(`${it.n} squared equals ${it.val}`);
+  } else {
+    speak(`${it.n} cubed equals ${it.val}`);
+  }
   addStar();
 }
 
@@ -1355,8 +1674,7 @@ function clickMatch(btn){
       btn.classList.add('done');
       matchState.selLeft = null;
       matchState.done++;
-      speak('Correct!');
-      addStar();
+      speak('Correct!'); addStar();
       if(matchState.done === matchState.items.length){
         setTimeout(() => { speak('Excellent!'); alert('🎉 Shabaash!'); }, 400);
       }
@@ -1485,7 +1803,8 @@ function openPoem(i){
   window.scrollTo(0,0);
 }
 function speakLine(j){
-  speak(currentPoem.lines[j][0], currentPoem.lang || 'en-IN');
+  const text = fixPoemText(currentPoem.lines[j][0]);
+  speak(text, currentPoem.lang || 'en-IN');
   document.querySelectorAll('.line').forEach((e,k) => {
     e.classList.toggle('active', k === j);
     if(k === j) e.scrollIntoView({behavior:'smooth', block:'center'});
@@ -1493,7 +1812,7 @@ function speakLine(j){
   addStar();
 }
 function playPoem(){
-  const texts = currentPoem.lines.map(l => l[0]);
+  const texts = currentPoem.lines.map(l => fixPoemText(l[0]));
   speakSequence(texts, currentPoem.lang || 'en-IN', idx => {
     document.querySelectorAll('.line').forEach((e,k) => {
       e.classList.toggle('active', k === idx);
