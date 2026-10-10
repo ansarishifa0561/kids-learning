@@ -533,7 +533,7 @@ function goBack(){
 }
 
 function renderHome(){
-  setH('Shifa's Learning Hub ','CBSE Pattern • Class Wise');
+  setH("Shifa's Learning Hub",'✨ Learn • Play • Grow ✨');
   screen.innerHTML=`<div class="hero"><h1>🎈 Welcome to Learning Land!</h1><p>Apni class chuno aur seekhna shuru karo ✨</p></div>
   <div class="grid levels">${Object.entries(LEVELS).map(([k,l])=>`<button class="card" style="--c:${l.color}" onclick="goLevel('${k}')"><span class="emo">${l.emoji}</span><span class="ttl">${l.name}</span><span class="sub">${l.sub}</span></button>`).join('')}</div>`;
   window.scrollTo(0,0);
