@@ -127,6 +127,37 @@ main{padding:20px 16px 60px}
   .swatch{width:65px;height:65px}
   .missing-view .question{font-size:2.2rem;letter-spacing:4px}
 }
+/* ADVANCED LESSONS CSS */
+.adv-hero{background:linear-gradient(135deg,#7c5cff,#ff5f9e);color:#fff;text-align:center;padding:32px 20px;border-radius:24px;margin-bottom:24px;box-shadow:0 15px 35px rgba(124,92,255,.35);position:relative;overflow:hidden}
+.adv-hero h1{font-size:1.9rem;font-weight:800;margin-bottom:8px;position:relative}
+.adv-hero p{opacity:.95;font-weight:700;position:relative}
+.adv-badge{display:inline-block;background:rgba(255,255,255,.25);padding:4px 14px;border-radius:14px;font-size:.78rem;font-weight:800;margin-bottom:12px;position:relative}
+.adv-card-home{background:linear-gradient(135deg,#FFD60A,#FF9500);border-radius:26px;padding:26px 20px;margin:24px auto 0;max-width:600px;text-align:center;cursor:pointer;box-shadow:0 15px 40px rgba(255,149,0,.4);transition:.25s;border:none;font-family:inherit;width:100%;display:block}
+.adv-card-home:hover{transform:translateY(-6px) scale(1.02)}
+.adv-card-home .icon{font-size:3.5rem;display:block;margin-bottom:10px}
+.adv-card-home .title{font-size:1.4rem;font-weight:800;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.25)}
+.adv-card-home .sub{font-size:.85rem;color:#fff;opacity:.95;font-weight:700;margin-top:6px}
+.chapter-view{background:#fffefb;border-radius:22px;padding:22px 18px;box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:850px;margin:0 auto;border:2px solid #e8d5b7}
+.chapter-view h2{text-align:center;font-size:1.5rem;color:#7c5cff;margin-bottom:4px}
+.chapter-view .meta{text-align:center;font-size:.82rem;opacity:.75;font-weight:700;margin-bottom:18px;color:#8B5A2B}
+.chapter-sec{margin-bottom:22px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#f9f9ff,#f0f0ff);border-left:5px solid #7c5cff}
+.chapter-sec h3{font-size:1.1rem;font-weight:800;margin-bottom:10px;color:#5a3a1a}
+.chapter-sec .text{background:#fff;padding:12px 14px;border-radius:12px;font-size:1rem;font-weight:700;color:#3b3b5c;line-height:1.6;cursor:pointer}
+.chapter-step{background:#fff;border-radius:12px;padding:11px 14px;margin-bottom:8px;font-size:.95rem;font-weight:700;color:#2b2b3a;display:flex;gap:10px;align-items:flex-start;line-height:1.5;cursor:pointer;border-left:4px solid #FFC300}
+.chapter-step:hover{background:#fff8ee}
+.chapter-step .n{background:#7c5cff;color:#fff;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.85rem;flex:0 0 auto}
+.chapter-ex{background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:4px solid #34C759}
+.chapter-ex .q{font-size:1.02rem;font-weight:800;color:#5a3a1a;margin-bottom:6px;cursor:pointer}
+.chapter-ex .s{background:#e8fff0;padding:10px 12px;border-radius:10px;font-size:.92rem;font-weight:700;color:#1b7a45;line-height:1.5;display:none}
+.chapter-ex .s.show{display:block}
+.chapter-pr{background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;border-left:4px solid #2196F3;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.chapter-pr .q{font-size:.98rem;font-weight:800;color:#5a3a1a}
+.chapter-pr .a{background:#eef0ff;color:#5c4dff;padding:6px 14px;border-radius:10px;font-weight:800;font-size:.92rem;cursor:pointer}
+.chapter-pr .a.revealed{background:#e8fff0;color:#1b7a45}
+.chapter-word{background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:4px solid #FF6F00}
+.chapter-word .q{font-size:.98rem;font-weight:800;color:#5a3a1a;margin-bottom:6px;cursor:pointer;line-height:1.5}
+.chapter-word .a{background:#fff8ee;padding:10px 12px;border-radius:10px;font-size:.92rem;font-weight:700;color:#8B5A2B;display:none;line-height:1.5}
+.chapter-word .a.show{display:block}
 </style>
 </head>
 <body>
@@ -518,7 +549,7 @@ const hTitle=document.getElementById('hTitle');
 const hSub=document.getElementById('hSub');
 const backBtn=document.getElementById('backBtn');
 
-let state={level:null,cat:null,view:'home'};
+let state={level:null,cat:null,view:'home',advsubj:null,advchap:null};
 let curItems=[],curPoem=null,curLesson=null,curTable=null,curStory=null,curWriting=null,curQuiz=null,curMatch=null,curMiss=null;
 
 function setH(t,s){ hTitle.textContent=t; hSub.textContent=s; backBtn.style.visibility = state.view==='home'?'hidden':'visible'; }
@@ -528,15 +559,23 @@ function goCat(c){ state.cat=c; state.view='cat'; renderCategory(); }
 function goBack(){
   if(window.speechSynthesis) speechSynthesis.cancel();
   if(state.view==='home') return;
-  if(state.view==='level'){ state={level:null,cat:null,view:'home'}; renderHome(); return; }
+  if(state.view==='level'){state={level:null,cat:null,view:'home'};renderHome();return;}
+  if(state.view==='advanced'){state={level:null,cat:null,view:'home',advSubj:null,advChap:null};renderHome();return;}
+  if(state.view==='adv-subj'){state.view='advanced';renderAdvancedLessons();return;}
+  if(state.view==='adv-chap'){state.view='adv-subj';renderAdvSubject();return;}
   state.view='level'; state.cat=null; renderLevel();
 }
-
 function renderHome(){
   setH("Shifa's Learning Hub",'✨ Learn • Play • Grow ✨');
   screen.innerHTML=`<div class="hero"><h1>🎈 Welcome to Learning Land!</h1><p>Apni class chuno aur seekhna shuru karo ✨</p></div>
   <div class="grid levels">${Object.entries(LEVELS).map(([k,l])=>`<button class="card" style="--c:${l.color}" onclick="goLevel('${k}')"><span class="emo">${l.emoji}</span><span class="ttl">${l.name}</span><span class="sub">${l.sub}</span></button>`).join('')}</div>`;
   window.scrollTo(0,0);
+    screen.innerHTML += `
+    <button class="adv-card-home" onclick="goAdvancedLessons()">
+      <span class="icon">🎓</span>
+      <span class="title">Advanced Lessons</span>
+      <span class="sub">Class 8+ • Maths Science English Computer</span>
+    </button>`;
 }
 
 function renderLevel(){
@@ -858,6 +897,466 @@ function ansQuiz(o){
   setTimeout(()=>{ curQuiz.idx++; drawQuiz(); },1500);
 }
 
+/* =========================================================
+   ADVANCED LESSONS — Class 8+
+   Ye purane code ko bilkul nahi chhedta
+   ========================================================= */
+
+const ADVANCED_LESSONS = {
+  maths:{
+    name:'Advanced Maths', emoji:'🧮', color:'#00BCD4',
+    desc:'Algebra • Equations • Mensuration • Statistics',
+    chapters:[
+      {emoji:'🔤', title:'Algebra Basics',
+       def:'Algebra mein hum numbers ki jagah letters (jaise x, y, a, b) use karte hain. Ye letters unknown numbers ko dikhate hain.',
+       steps:['Variable matlab unknown number — jaise x.',
+              'Constant matlab fixed number — jaise 5, 10.',
+              'Expression matlab numbers + variables ka mix — jaise 3x + 5.',
+              'Coefficient matlab variable ke aage ka number — 3x mein 3.',
+              'Equation matlab do expressions barabar — jaise 2x + 3 = 7.'],
+       ex:[
+         {q:'3x + 5 mein coefficient kya hai?', s:'3 (kyunki x ke aage 3 hai)'},
+         {q:'x = 4 to 2x + 3 = ?', s:'2(4) + 3 = 8 + 3 = 11'},
+         {q:'Simplify: 2x + 3x', s:'Dono mein x hai. 2+3 = 5. Answer: 5x'},
+         {q:'Simplify: 5y + 2y − 3y', s:'5+2−3 = 4. Answer: 4y'},
+         {q:'x = 2 to x² + 1 = ?', s:'(2)² + 1 = 4 + 1 = 5'}
+       ],
+       pr:[
+         {q:'4x + 7 mein coefficient?', a:'4'},
+         {q:'x = 5 to 3x = ?', a:'15'},
+         {q:'Simplify: 7a + 2a', a:'9a'},
+         {q:'Simplify: 10b − 4b', a:'6b'},
+         {q:'x = 3 to x² + 2x = ?', a:'9 + 6 = 15'}
+       ],
+       word:[
+         {q:'Ek number ka double karke 5 joda, to 17 aata hai. Number kya?', a:'2x + 5 = 17 → 2x = 12 → x = 6'},
+         {q:'Riya ke paas x chocolate hain. Maa ne 3x aur diye. Total kitni?', a:'x + 3x = 4x chocolate'}
+       ]},
+      {emoji:'⚖️', title:'Linear Equations',
+       def:'Linear equation matlab aisi equation jisme variable ki power 1 ho. Jaise 2x + 3 = 7.',
+       steps:['Equation mein = sign ke dono taraf balance rakho.',
+              'Variable ko ek taraf laao, numbers doosri taraf.',
+              'Jo bhi karo, dono taraf karo.',
+              'Example: 2x + 3 = 7. Dono taraf 3 minus karo. 2x = 4. x = 2.'],
+       ex:[
+         {q:'Solve: x + 5 = 12', s:'Dono taraf 5 minus. x = 12 − 5 = 7'},
+         {q:'Solve: 3x = 21', s:'Dono taraf 3 se divide. x = 21 ÷ 3 = 7'},
+         {q:'Solve: 2x + 4 = 10', s:'2x = 10 − 4 = 6. x = 6 ÷ 2 = 3'},
+         {q:'Solve: 5x − 3 = 12', s:'5x = 12 + 3 = 15. x = 15 ÷ 5 = 3'},
+         {q:'Solve: x/2 + 3 = 7', s:'x/2 = 7 − 3 = 4. x = 4 × 2 = 8'}
+       ],
+       pr:[
+         {q:'x + 8 = 15', a:'x = 7'},
+         {q:'4x = 32', a:'x = 8'},
+         {q:'2x + 5 = 13', a:'x = 4'},
+         {q:'3x − 2 = 10', a:'x = 4'},
+         {q:'x/3 = 6', a:'x = 18'}
+       ],
+       word:[
+         {q:'Ek number mein 4 jodne par 15 aata hai. Number?', a:'x + 4 = 15 → x = 11'},
+         {q:'3 pen ka price ₹45 hai. Ek pen kitne ka?', a:'3x = 45 → x = ₹15'}
+       ]},
+      {emoji:'📦', title:'Mensuration',
+       def:'Mensuration matlab shapes ka area, perimeter aur volume nikalna.',
+       steps:['Perimeter = charon taraf ki lambai ka jod.',
+              'Area = andar ki jagah (square units mein).',
+              'Volume = 3D shape ki andar ki jagah (cubic units mein).',
+              'Rectangle: Area = l × b, Perimeter = 2(l+b).',
+              'Square: Area = a², Perimeter = 4a.',
+              'Circle: Area = πr², Circumference = 2πr.'],
+       ex:[
+         {q:'Rectangle 8 × 5 ka area?', s:'Area = 8 × 5 = 40 sq cm'},
+         {q:'Rectangle 8 × 5 ka perimeter?', s:'2(8+5) = 2×13 = 26 cm'},
+         {q:'Square side 6 ka area?', s:'6² = 36 sq cm'},
+         {q:'Circle radius 7 ka area? (π=22/7)', s:'(22/7) × 7 × 7 = 154 sq cm'},
+         {q:'Cube side 3 ka volume?', s:'3³ = 27 cubic cm'}
+       ],
+       pr:[
+         {q:'Rectangle 10×4 area?', a:'40 sq cm'},
+         {q:'Square side 5 perimeter?', a:'20 cm'},
+         {q:'Circle radius 14 circumference? (π=22/7)', a:'88 cm'},
+         {q:'Cube side 4 volume?', a:'64 cubic cm'},
+         {q:'Rectangle 15×6 perimeter?', a:'42 cm'}
+       ],
+       word:[
+         {q:'Ek kamre ki lambai 10m, chaudai 8m. Floor ka area?', a:'10 × 8 = 80 sq m'},
+         {q:'Ek plot square shape ka hai, side 12m. Perimeter?', a:'4 × 12 = 48 m'}
+       ]},
+      {emoji:'📊', title:'Statistics',
+       def:'Statistics matlab data ko collect karke uska matlab nikalna — Mean, Median, Mode.',
+       steps:['Mean = Sum of all values ÷ Number of values.',
+              'Median = Sab values ko order mein lagao, beech wali.',
+              'Mode = Jo value sabse zyada baar aaye.',
+              'Range = Max − Min.'],
+       ex:[
+         {q:'Mean of 4, 6, 8, 10?', s:'Sum = 28. Count = 4. Mean = 28 ÷ 4 = 7'},
+         {q:'Median of 3, 1, 5, 2, 4?', s:'Order: 1,2,3,4,5. Beech wala = 3'},
+         {q:'Mode of 2, 3, 3, 5, 3?', s:'3 sabse zyada baar (3 baar). Mode = 3'},
+         {q:'Range of 10, 25, 5, 30?', s:'Max=30, Min=5. Range = 25'}
+       ],
+       pr:[
+         {q:'Mean of 2,4,6?', a:'4'},
+         {q:'Median of 5,3,8,1,9?', a:'5'},
+         {q:'Mode of 1,1,2,3,3,3?', a:'3'},
+         {q:'Range of 4,9,2,7?', a:'7'},
+         {q:'Mean of 10,20,30,40?', a:'25'}
+       ],
+       word:[
+         {q:'5 bachchon ke marks: 60, 70, 80, 90, 100. Average?', a:'Sum = 400. Mean = 80'}
+       ]}
+    ]
+  },
+  science:{
+    name:'Advanced Science', emoji:'🔬', color:'#26C6DA',
+    desc:'Physics • Chemistry • Biology',
+    chapters:[
+      {emoji:'⚡', title:'Force and Motion',
+       def:'Force matlab dhakka ya kheench. Motion matlab cheez ka hilna.',
+       steps:['Force ke bina kuch nahi hilta.',
+              'Newton ka 1st law: Cheez apni state mein rehti hai jab tak force na lage.',
+              'Newton ka 2nd law: F = m × a.',
+              'Newton ka 3rd law: Har action ka equal opposite reaction hota hai.',
+              'Force ki SI unit Newton (N) hai.'],
+       ex:[
+         {q:'Mass 5 kg, acceleration 2 m/s². Force?', s:'F = 5 × 2 = 10 N'},
+         {q:'Newton ka 3rd law example?', s:'Rocket chalna — gas neeche, rocket upar'},
+         {q:'Force ki unit?', s:'Newton (N)'},
+         {q:'Inertia kya hai?', s:'Cheez ka apni state mein rehna'}
+       ],
+       pr:[
+         {q:'F ki unit?', a:'Newton'},
+         {q:'Mass 10 kg, a = 5 m/s², F?', a:'50 N'},
+         {q:'Ball roll karke rukti hai kyunki?', a:'Friction force'},
+         {q:'Push aur pull matlab?', a:'Force'},
+         {q:'Newton ke laws kitne?', a:'3'}
+       ],
+       word:[
+         {q:'Tum cycle chalate ho aur ruk jaate ho. Kaunsa force?', a:'Friction (rukawat)'}
+       ]},
+      {emoji:'🧲', title:'Friction',
+       def:'Friction matlab do cheezon ke beech ka force jo unhe rukta hai.',
+       steps:['Friction hamesha motion ke opposite hoti hai.',
+              'Smooth surfaces par kam friction, rough par zyada.',
+              'Friction heat paida karti hai.',
+              'Isliye machine mein oil dalte hain.',
+              'Bina friction ke chal nahi sakte.'],
+       ex:[
+         {q:'Friction kam kaise karein?', s:'Oil ya lubricant lagao'},
+         {q:'Friction zyada kahan?', s:'Rough surface par'},
+         {q:'Friction se heat kyun?', s:'Energy transfer hoti hai'},
+         {q:'Bina friction kya hota?', s:'Chal nahi paate'}
+       ],
+       pr:[
+         {q:'Friction ki direction?', a:'Motion ke opposite'},
+         {q:'Cycle ke brake mein kya?', a:'Friction'},
+         {q:'Ice par kyun fisalte hain?', a:'Kam friction'},
+         {q:'Machine mein oil kyun?', a:'Friction kam karne'},
+         {q:'Shoes mein sole kyun?', a:'Friction badhane'}
+       ],
+       word:[
+         {q:'Barish ke baad sadak par kyun fisalte hain?', a:'Kam friction'}
+       ]},
+      {emoji:'🔊', title:'Sound',
+       def:'Sound matlab awaaz. Ye waves ki form mein travel karti hai.',
+       steps:['Sound waves se travel karti hai.',
+              'Solid mein sabse tez, gas mein sabse dheemi.',
+              'Vacuum mein sound nahi travel karti.',
+              'Frequency = pitch (high/low).',
+              'Amplitude = volume (loud/soft).'],
+       ex:[
+         {q:'Sound kis mein tez?', s:'Solid'},
+         {q:'Sound kis mein dheemi?', s:'Gas'},
+         {q:'Vacuum mein kyun nahi?', s:'Koi medium nahi'},
+         {q:'High pitch matlab?', s:'High frequency'}
+       ],
+       pr:[
+         {q:'Sound ki speed solid mein?', a:'Fastest'},
+         {q:'Frequency unit?', a:'Hertz (Hz)'},
+         {q:'Amplitude se kya?', a:'Volume'},
+         {q:'Sound travel karne ke liye kya?', a:'Medium'},
+         {q:'Human hearing range?', a:'20 Hz to 20000 Hz'}
+       ],
+       word:[
+         {q:'Space mein astronaut aawaz kyun nahi sun sakte?', a:'Vacuum hai, sound travel nahi karti'}
+       ]}
+    ]
+  },
+  english:{
+    name:'Advanced English', emoji:'📖', color:'#FF6B9D',
+    desc:'Grammar • Writing • Comprehension',
+    chapters:[
+      {emoji:'⏳', title:'Tenses (Detailed)',
+       def:'Tense matlab time dikhana — Present, Past, Future.',
+       steps:['Present: Aaj ka kaam. I eat.',
+              'Past: Kal ka kaam. I ate.',
+              'Future: Aane wala. I will eat.',
+              'Continuous: Chal raha hai. I am eating.',
+              'Perfect: Poora ho gaya. I have eaten.',
+              'Perfect Continuous: Chal raha tha. I have been eating.'],
+       ex:[
+         {q:'Change: She writes → Past', s:'She wrote'},
+         {q:'Change: I play → Future', s:'I will play'},
+         {q:'Change: He eats → Continuous', s:'He is eating'},
+         {q:'Change: We go → Perfect', s:'We have gone'},
+         {q:'Change: I read → Past Continuous', s:'I was reading'}
+       ],
+       pr:[
+         {q:'Go → Past?', a:'Went'},
+         {q:'Write → Past?', a:'Wrote'},
+         {q:'Eat → Past?', a:'Ate'},
+         {q:'See → Past?', a:'Saw'},
+         {q:'Take → Past?', a:'Took'}
+       ],
+       word:[
+         {q:'"Main kal school gaya" — English mein?', a:'I went to school yesterday.'}
+       ]},
+      {emoji:'🔁', title:'Active & Passive Voice',
+       def:'Active: Subject kaam karta hai. Passive: Kaam subject ke saath hota hai.',
+       steps:['Active: Riya writes a letter.',
+              'Passive: A letter is written by Riya.',
+              'Object → Subject ban jaata hai.',
+              'Verb "be" + past participle.',
+              'Doer ke liye "by" use karo.'],
+       ex:[
+         {q:'Passive: Ram eats mango.', s:'Mango is eaten by Ram.'},
+         {q:'Passive: She sings song.', s:'Song is sung by her.'},
+         {q:'Passive: He broke window.', s:'Window was broken by him.'},
+         {q:'Passive: They play cricket.', s:'Cricket is played by them.'}
+       ],
+       pr:[
+         {q:'Passive: She writes.', a:'It is written by her.'},
+         {q:'Passive: He helps me.', a:'I am helped by him.'},
+         {q:'Passive: They won match.', a:'Match was won by them.'},
+         {q:'Passive: We do work.', a:'Work is done by us.'},
+         {q:'Passive: She reads book.', a:'Book is read by her.'}
+       ],
+       word:[
+         {q:'"Kitaab padhi gayi" — English?', a:'The book was read.'}
+       ]},
+      {emoji:'📝', title:'Letter Writing',
+       def:'Formal letters officials ko, Informal family/friends ko.',
+       steps:['Formal: Sender address, Date, Receiver, Subject, Salutation, Body, Closing.',
+              'Informal: Address, Date, Salutation, Body, Closing.',
+              'Formal mein "Dear Sir/Madam", informal mein "Dear friend".',
+              'Formal: "Yours faithfully", Informal: "Yours lovingly".'],
+       ex:[
+         {q:'Formal letter ka Salutation?', s:'Dear Sir / Madam'},
+         {q:'Informal letter ka Salutation?', s:'Dear friend / My dear...'},
+         {q:'Formal closing?', s:'Yours faithfully'},
+         {q:'Informal closing?', s:'Yours lovingly'}
+       ],
+       pr:[
+         {q:'Letter mein date kahan?', a:'Top pe, address ke baad'},
+         {q:'Subject kahan?', a:'Salutation ke baad, formal mein'},
+         {q:'Formal letter kisko?', a:'Officials, Principal'},
+         {q:'Informal kisko?', a:'Friends, family'},
+         {q:'Closing ka matlab?', a:'Signature se pehle ka line'}
+       ],
+       word:[
+         {q:'Principal ko leave letter likhna hai. Formal ya Informal?', a:'Formal'}
+       ]}
+    ]
+  },
+  computer:{
+    name:'Advanced Computer', emoji:'💻', color:'#78909C',
+    desc:'Programming • Internet • Cyber Safety',
+    chapters:[
+      {emoji:'🌐', title:'HTML Basics',
+       def:'HTML matlab HyperText Markup Language. Website banane ki bhasha.',
+       steps:['Har HTML page <!DOCTYPE html> se shuru hota hai.',
+              '<html>, <head>, <body> main tags hain.',
+              '<h1> heading, <p> paragraph, <img> image.',
+              'Tags always close karo — <h1>Hello</h1>.',
+              'Browser HTML ko padhkar page banata hai.'],
+       ex:[
+         {q:'Heading ka tag?', s:'<h1> to <h6>'},
+         {q:'Paragraph ka tag?', s:'<p>'},
+         {q:'Image ka tag?', s:'<img src="...">'},
+         {q:'Link ka tag?', s:'<a href="...">'},
+         {q:'HTML ka full form?', s:'HyperText Markup Language'}
+       ],
+       pr:[
+         {q:'Sabse bada heading?', a:'<h1>'},
+         {q:'Line break?', a:'<br>'},
+         {q:'Bold text?', a:'<b>'},
+         {q:'List?', a:'<ul> ya <ol>'},
+         {q:'HTML ki file extension?', a:'.html'}
+       ],
+       word:[
+         {q:'Ek simple page ka code?', a:'<!DOCTYPE html><html><body><h1>Hello</h1></body></html>'}
+       ]},
+      {emoji:'🤖', title:'Programming Logic',
+       def:'Programming matlab computer ko step-by-step instructions dena.',
+       steps:['Variable: Data store karne ki jagah — jaise x = 5.',
+              'Loop: Ek kaam baar-baar karna.',
+              'Condition: Agar-kya-to — if (x > 5).',
+              'Function: Code ka group jise baar-baar use kar sakte hain.',
+              'Input/Output: Data lena aur dikhana.'],
+       ex:[
+         {q:'Variable kya?', s:'Data store karne ki jagah'},
+         {q:'Loop kya?', s:'Baar-baar chalna'},
+         {q:'If-else kya?', s:'Condition check karna'},
+         {q:'Function kya?', s:'Code ka reusable block'}
+       ],
+       pr:[
+         {q:'x = 5 + 3, x = ?', a:'8'},
+         {q:'Loop ka kaam?', a:'Repeat karna'},
+         {q:'Condition ke liye?', a:'if-else'},
+         {q:'Function ka fayda?', a:'Code reuse'},
+         {q:'Variable ka naam?', a:'Kuch bhi — x, a, name'}
+       ],
+       word:[
+         {q:'1 se 10 tak numbers print karne ka logic?', a:'Loop use karo: for i=1 to 10'}
+       ]},
+      {emoji:'🔐', title:'Cyber Safety',
+       def:'Internet par safe rehna.',
+       steps:['Strong password rakho — capital + small + number + symbol.',
+              'Kisi se password share mat karo.',
+              'Unknown links pe click mat karo.',
+              'Personal info online mat daalo.',
+              'Parents ko batao agar kuch ajeeb ho.'],
+       ex:[
+         {q:'Strong password example?', s:'Jaise: Shifa@2026'},
+         {q:'Weak password?', s:'123456, password, shifa'},
+         {q:'Unknown link?', s:'Click mat karo'},
+         {q:'Password kisko batana?', s:'Kisi ko nahi'}
+       ],
+       pr:[
+         {q:'Password length?', a:'8+ characters'},
+         {q:'Password mein kya?', a:'Capital, small, number, symbol'},
+         {q:'Unknown email?', a:'Delete karo'},
+         {q:'Personal info?', a:'Share mat karo'},
+         {q:'Kuch ajeeb ho?', a:'Parents ko batao'}
+       ],
+       word:[
+         {q:'Koi anjaan aapka address maange, kya karo?', a:'Mat do. Parents ko batao.'}
+       ]}
+    ]
+  }
+};
+
+function goAdvancedLessons(){
+  state.view='advanced';
+  renderAdvancedLessons();
+}
+function renderAdvancedLessons(){
+  setH('🎓 Advanced Lessons','Class 8 • Higher Level');
+  screen.innerHTML=`
+    <div class="adv-hero">
+      <div class="adv-badge">🎓 CLASS 8 AND ABOVE</div>
+      <h1>Advanced Lessons</h1>
+      <p>Maths • Science • English • Computer</p>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
+      ${Object.entries(ADVANCED_LESSONS).map(([k,s])=>`
+        <button class="card" style="--c:${s.color}" onclick="goAdvSubject('${k}')">
+          <span class="emo">${s.emoji}</span>
+          <span class="ttl">${s.name}</span>
+          <span class="sub">${s.desc}</span>
+        </button>`).join('')}
+    </div>`;
+  window.scrollTo(0,0);
+}
+function goAdvSubject(k){
+  state.advSubj=k;
+  state.view='adv-subj';
+  renderAdvSubject();
+}
+function renderAdvSubject(){
+  const s=ADVANCED_LESSONS[state.advSubj];
+  setH(s.name, s.desc);
+  screen.innerHTML=`
+    <div class="adv-hero">
+      <div class="adv-badge">${s.emoji} ${s.name}</div>
+      <h1>${s.name}</h1>
+      <p>Chapter chuno 👇</p>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
+      ${s.chapters.map((c,i)=>`
+        <button class="card" style="--c:${s.color}" onclick="goAdvChapter(${i})">
+          <span class="emo">${c.emoji}</span>
+          <span class="ttl">${c.title}</span>
+        </button>`).join('')}
+    </div>`;
+  window.scrollTo(0,0);
+}
+function goAdvChapter(i){
+  state.advChap=i;
+  state.view='adv-chap';
+  renderAdvChapter();
+}
+function renderAdvChapter(){
+  const s=ADVANCED_LESSONS[state.advSubj];
+  const c=s.chapters[state.advChap];
+  setH(c.title, s.name);
+  let html=`<div class="chapter-view">
+    <h2>${c.emoji} ${c.title}</h2>
+    <div class="meta">${s.name} • Advanced</div>`;
+  html+=`<div class="chapter-sec"><h3>📖 Definition</h3>
+    <div class="text" onclick="speak('${c.def.replace(/'/g,"\\'")}')">${c.def} 🔊</div>
+  </div>`;
+  html+=`<div class="chapter-sec"><h3>🔢 Steps</h3>
+    ${c.steps.map((st,i)=>`<div class="chapter-step" onclick="speak('${st.replace(/'/g,"\\'")}')">
+      <span class="n">${i+1}</span><span>${st}</span></div>`).join('')}
+  </div>`;
+  html+=`<div class="chapter-sec"><h3>💡 Examples</h3>
+    ${c.ex.map((e,i)=>`<div class="chapter-ex">
+      <div class="q" onclick="speak('${e.q.replace(/'/g,"\\'")}')">${i+1}. ${e.q} 🔊</div>
+      <button class="ans-btn" onclick="revAdvEx(${i})">👉 Solution</button>
+      <div class="s" id="adv-ex-${i}">${e.s}</div>
+    </div>`).join('')}
+  </div>`;
+  html+=`<div class="chapter-sec"><h3>❓ Practice</h3>
+    ${c.pr.map((p,i)=>`<div class="chapter-pr">
+      <span class="q">Q${i+1}. ${p.q}</span>
+      <span class="a" id="adv-pr-${i}" onclick="revAdvPr(${i},'${p.a.replace(/'/g,"\\'")}')">Show</span>
+    </div>`).join('')}
+  </div>`;
+  html+=`<div class="chapter-sec"><h3>📝 Word Problems</h3>
+    ${c.word.map((w,i)=>`<div class="chapter-word">
+      <div class="q" onclick="speak('${w.q.replace(/'/g,"\\'")}')">${i+1}. ${w.q} 🔊</div>
+      <button class="ans-btn" onclick="revAdvWd(${i})">👉 Answer</button>
+      <div class="a" id="adv-wd-${i}">${w.a}</div>
+    </div>`).join('')}
+  </div>`;
+  html+=`<div class="poem-actions">
+    <button class="btn primary" onclick="playAdvChapter()">▶️ Poora Chapter Suno</button>
+    <button class="btn" onclick="renderAdvSubject()">↩️ Wapas</button>
+  </div></div>`;
+  screen.innerHTML=html;
+  window.scrollTo(0,0);
+}
+function revAdvEx(i){
+  const el=document.getElementById('adv-ex-'+i);
+  if(!el) return;
+  el.classList.toggle('show');
+  if(el.classList.contains('show')) speak(el.textContent);
+  addStar();
+}
+function revAdvPr(i,ans){
+  const el=document.getElementById('adv-pr-'+i);
+  if(!el) return;
+  el.textContent=ans;
+  el.classList.add('revealed');
+  speak(ans);
+  addStar();
+}
+function revAdvWd(i){
+  const el=document.getElementById('adv-wd-'+i);
+  if(!el) return;
+  el.classList.toggle('show');
+  if(el.classList.contains('show')) speak(el.textContent);
+  addStar();
+}
+function playAdvChapter(){
+  const s=ADVANCED_LESSONS[state.advSubj];
+  const c=s.chapters[state.advChap];
+  const seq=[c.def];
+  c.steps.forEach(st=>seq.push(st));
+  c.ex.forEach(e=>seq.push(e.q+' Answer: '+e.s));
+  speakSeq(seq,'hi-IN');
+  addStar();
+}
 /* START */
 renderHome();
 document.body.addEventListener('touchstart',function u(){
