@@ -136,8 +136,7 @@ main{padding:20px 16px 60px}
 .adv-card-home:hover{transform:translateY(-6px) scale(1.02)}
 .adv-card-home .icon{font-size:3.5rem;display:block;margin-bottom:10px}
 .adv-card-home .title{font-size:1.4rem;font-weight:800;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.25)}
-.adv-card-home .sub{font-size:.85rem;color:#fff;opacity:.95;font-weight:700;margin-top:6px}
-.chapter-view{background:#fffefb;border-radius:22px;padding:22px 18px;box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:850px;margin:0 auto;border:2px solid #e8d5b7}
+.chapter-view{background:#fbfffb;border-radius:22px;padding:22px 18px;box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:850px;margin:0 auto;border:2px solid #e8d5b7}
 .chapter-view h2{text-align:center;font-size:1.5rem;color:#7c5cff;margin-bottom:4px}
 .chapter-view .meta{text-align:center;font-size:.82rem;opacity:.75;font-weight:700;margin-bottom:18px;color:#8B5A2B}
 .chapter-sec{margin-bottom:22px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#f9f9ff,#f0f0ff);border-left:5px solid #7c5cff}
@@ -150,6 +149,69 @@ main{padding:20px 16px 60px}
 .chapter-ex .q{font-size:1.02rem;font-weight:800;color:#5a3a1a;margin-bottom:6px;cursor:pointer}
 .chapter-ex .s{background:#e8fff0;padding:10px 12px;border-radius:10px;font-size:.92rem;font-weight:700;color:#1b7a45;line-height:1.5;display:none}
 .chapter-ex .s.show{display:block}
+/* ===== PREMIUM GREEN ADVANCED CARD ===== */
+.adv-card-home {
+  background: linear-gradient(135deg, #10b981, #059669) !important; /* Premium Green */
+  border-radius: 24px !important;
+  padding: 35px 25px !important;
+  margin: 35px auto 20px !important;
+  max-width: 600px !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.5) !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.adv-card-home:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.7) !important;
+}
+
+/* Bada Emoji */
+.adv-card-home .icon {
+  font-size: 4rem !important;
+  display: block !important;
+  margin-bottom: 15px !important;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)) !important;
+  animation: floatIcon 3s ease-in-out infinite !important;
+}
+
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Bada Title */
+.adv-card-home .title {
+  font-size: 2.2rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
+  margin-bottom: 15px !important;
+  display: block !important;
+  line-height: 1.2 !important;
+}
+
+/* Badi aur Sundar Subtitle (Subjects wali line) */
+.adv-card-home .sub {
+  font-size: 1.2rem !important; /* Yahan size badi hai */
+  color: #ecfdf5 !important; 
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  display: block !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  padding: 10px 25px !important;
+  border-radius: 30px !important;
+  backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
 .chapter-pr{background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;border-left:4px solid #2196F3;display:flex;justify-content:space-between;align-items:center;gap:10px}
 .chapter-pr .q{font-size:.98rem;font-weight:800;color:#5a3a1a}
 .chapter-pr .a{background:#eef0ff;color:#5c4dff;padding:6px 14px;border-radius:10px;font-weight:800;font-size:.92rem;cursor:pointer}
@@ -1597,7 +1659,7 @@ Step 6: +6 hatao
 
 _linEq.word = [
   {q:'Ek number mein 4 jodne par 15 aata hai. Number?',
-   s:`📝 Question: Ek number mein 4 jodne par 15 aata hai. Number?
+   a:`📝 Question: Ek number mein 4 jodne par 15 aata hai. Number?
 
 🎯 Kya dhoondhna hai?
 Wo number
@@ -1627,7 +1689,7 @@ Step 5: x = 11
 - Keywords pehchano: joda (+), ghata (−)`},
   
   {q:'3 pen ka price ₹45 hai. Ek pen kitne ka?',
-   s:`📝 Question: 3 pen ka price ₹45 hai. Ek pen kitne ka?
+   a:`📝 Question: 3 pen ka price ₹45 hai. Ek pen kitne ka?
 
 🎯 Kya dhoondhna hai?
 Ek pen ka price
