@@ -151,7 +151,7 @@ main{padding:20px 16px 60px}
 .chapter-ex .s.show{display:block}
 /* ===== PREMIUM GREEN ADVANCED CARD ===== */
 .adv-card-home {
-  background: linear-gradient(135deg, #10b981, #059669) !important; /* Premium Green */
+  background: linear-gradient(135deg, #41ce05, #37cb0a) !important; /* Premium Green */
   border-radius: 24px !important;
   padding: 35px 25px !important;
   margin: 35px auto 20px !important;
@@ -171,7 +171,7 @@ main{padding:20px 16px 60px}
 
 .adv-card-home:hover {
   transform: translateY(-8px) scale(1.02) !important;
-  box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.7) !important;
+  box-shadow: 0 25px 50px -12px rgba(5, 230, 9, 0.7) !important;
 }
 
 /* Bada Emoji */
@@ -190,7 +190,7 @@ main{padding:20px 16px 60px}
 
 /* Bada Title */
 .adv-card-home .title {
-  font-size: 2.2rem !important;
+  font-size: 3.2rem !important;
   font-weight: 800 !important;
   color: #ffffff !important;
   text-shadow: 0 2px 10px rgba(0,0,0,0.3) !important;
@@ -201,7 +201,7 @@ main{padding:20px 16px 60px}
 
 /* Badi aur Sundar Subtitle (Subjects wali line) */
 .adv-card-home .sub {
-  font-size: 1.2rem !important; /* Yahan size badi hai */
+  font-size: 3.2rem !important; /* Yahan size badi hai */
   color: #ecfdf5 !important; 
   font-weight: 700 !important;
   letter-spacing: 0.5px !important;
@@ -233,7 +233,6 @@ main{padding:20px 16px 60px}
 </header>
 <main id="screen"></main>
 </div>
-
 <script>
 /* ===== ROMAN URDU → HINDI ===== */
 const RH = {
@@ -1719,6 +1718,752 @@ Step 5: x = 15
 ];
 
 console.log('✅ Linear Equations detailed solutions loaded!');
+</script>
+<!-- ====================================================
+     MENSURATION FULL DETAILS (50 Questions + SVG Diagrams)
+     ==================================================== -->
+<script>
+/* Chapter index 2 = Mensuration */
+const _mensuration = ADVANCED_LESSONS.maths.chapters[2];
+
+/* ===== UPDATED DEFINITION WITH FORMULAS ===== */
+_mensuration.def = `
+<div style="text-align:left; font-size: 1.05rem; line-height: 1.8;">
+<b>Mensuration</b> matlab geometry mein shapes ka <b>Area (Kshetrfal)</b>, <b>Perimeter (Parimap)</b> aur <b>Volume (Aayatan)</b> nikalna.<br><br>
+<b>📐 Zaroori Formulas:</b><br>
+• <b>Rectangle (Aayat):</b><br>
+&nbsp;&nbsp;Area = L × B<br>
+&nbsp;&nbsp;Perimeter = 2(L + B)<br>
+• <b>Square (Varg):</b><br>
+&nbsp;&nbsp;Area = Side²<br>
+&nbsp;&nbsp;Perimeter = 4 × Side<br>
+• <b>Circle (Vritt):</b><br>
+&nbsp;&nbsp;Area = πr²<br>
+&nbsp;&nbsp;Circumference (Perimeter) = 2πr<br>
+• <b>Cube (Ghan):</b><br>
+&nbsp;&nbsp;Volume = Side³<br>
+• <b>Cuboid (Ghanabh):</b><br>
+&nbsp;&nbsp;Volume = L × B × H<br>
+• <b>Cylinder (Belan):</b><br>
+&nbsp;&nbsp;Volume = πr²h<br>
+</div>`;
+
+/* ===== 50 DETAILED EXAMPLES ===== */
+_mensuration.ex = [
+  // Level 1 - Basic
+  {q:'Rectangle ki length 8 cm aur breadth 5 cm hai. Area nikalo.',
+   s:`📝 Question: L = 8 cm, B = 5 cm, Area = ?
+
+🎯 Kya dhoondhna hai?
+Area (kshetrfal)
+
+📖 Concept / Formula:
+Area = Length × Breadth
+
+🔢 Step-by-Step:
+Step 1: Diya hai → L = 8, B = 5
+Step 2: Formula → Area = L × B
+Step 3: Multiply → 8 × 5 = 40
+Step 4: Unit → cm²
+
+<div style="text-align:center; margin: 15px 0;">
+<svg width="220" height="150" viewBox="0 0 220 150" style="background:#f8f9ff; border-radius:10px; border:1px solid #dcd6ff;">
+  <rect x="30" y="30" width="160" height="90" fill="rgba(124,92,255,0.1)" stroke="#7c5cff" stroke-width="3" stroke-dasharray="5,5"/>
+  <text x="110" y="20" text-anchor="middle" fill="#333" font-weight="bold">L = 8 cm</text>
+  <text x="200" y="80" text-anchor="middle" fill="#333" font-weight="bold" transform="rotate(90 200 80)">B = 5 cm</text>
+</svg>
+</div>
+
+✅ Answer: Area = 40 cm²
+
+💡 Yaad Rakho:
+- Area matlab "andar ki jagah". Isliye unit square (cm²) hota hai.`},
+
+  {q:'Rectangle ki length 10 cm aur breadth 4 cm hai. Perimeter nikalo.',
+   s:`📝 Question: L = 10 cm, B = 4 cm, Perimeter = ?
+
+🎯 Kya dhoondhna hai?
+Perimeter (charon taraf ki lambai)
+
+📖 Concept / Formula:
+Perimeter = 2 × (L + B)
+
+🔢 Step-by-Step:
+Step 1: Diya hai → L = 10, B = 4
+Step 2: Formula → P = 2 × (10 + 4)
+Step 3: Bracket pehle → 10 + 4 = 14
+Step 4: Multiply → 2 × 14 = 28
+Step 5: Unit → cm
+
+✅ Answer: Perimeter = 28 cm
+
+💡 Yaad Rakho:
+- Perimeter matlab "boundary ki lambai". Isliye unit simple (cm) hota hai.`},
+
+  {q:'Square ki side 6 cm hai. Area nikalo.',
+   s:`📝 Question: Side = 6 cm, Area = ?
+
+🎯 Kya dhoondhna hai?
+Area
+
+📖 Concept / Formula:
+Area = Side × Side = Side²
+
+🔢 Step-by-Step:
+Step 1: Diya hai → Side = 6
+Step 2: Formula → Area = 6²
+Step 3: Multiply → 6 × 6 = 36
+Step 4: Unit → cm²
+
+✅ Answer: Area = 36 cm²
+
+💡 Yaad Rakho:
+- Square ki saari 4 sides barabar hoti hain.`},
+
+  {q:'Square ki side 9 cm hai. Perimeter nikalo.',
+   s:`📝 Question: Side = 9 cm, Perimeter = ?
+
+🎯 Kya dhoondhna hai?
+Perimeter
+
+📖 Concept / Formula:
+Perimeter = 4 × Side
+
+🔢 Step-by-Step:
+Step 1: Diya hai → Side = 9
+Step 2: Formula → P = 4 × 9
+Step 3: Multiply → P = 36
+Step 4: Unit → cm
+
+✅ Answer: Perimeter = 36 cm
+
+💡 Yaad Rakho:
+- 4 sides hain, isliye 4 se multiply.`},
+
+  {q:'Circle ka radius 7 cm hai. Area nikalo (π = 22/7).',
+   s:`📝 Question: r = 7 cm, Area = ?
+
+🎯 Kya dhoondhna hai?
+Circle ka Area
+
+📖 Concept / Formula:
+Area = πr²
+
+🔢 Step-by-Step:
+Step 1: Diya hai → r = 7, π = 22/7
+Step 2: Formula → Area = (22/7) × 7 × 7
+Step 3: 7 aur 7 mein se ek 7 cancel ho jayega
+Step 4: Bacha → 22 × 7 = 154
+Step 5: Unit → cm²
+
+<div style="text-align:center; margin: 15px 0;">
+<svg width="150" height="150" viewBox="0 0 150 150" style="background:#f8f9ff; border-radius:10px; border:1px solid #dcd6ff;">
+  <circle cx="75" cy="75" r="50" fill="rgba(0,194,168,0.1)" stroke="#00c2a8" stroke-width="3"/>
+  <line x1="75" y1="75" x2="125" y2="75" stroke="#333" stroke-width="2" stroke-dasharray="4,4"/>
+  <text x="100" y="70" text-anchor="middle" fill="#333" font-weight="bold">r = 7</text>
+  <circle cx="75" cy="75" r="3" fill="#333"/>
+</svg>
+</div>
+
+✅ Answer: Area = 154 cm²`},
+
+  {q:'Circle ka radius 14 cm hai. Circumference nikalo (π = 22/7).',
+   s:`📝 Question: r = 14 cm, Circumference = ?
+
+🎯 Kya dhoondhna hai?
+Circumference (ghera / perimeter)
+
+📖 Concept / Formula:
+Circumference = 2πr
+
+🔢 Step-by-Step:
+Step 1: Diya hai → r = 14, π = 22/7
+Step 2: Formula → C = 2 × (22/7) × 14
+Step 3: 14 ko 7 se divide karo → 2
+Step 4: C = 2 × 22 × 2
+Step 5: Multiply → 88
+Step 6: Unit → cm
+
+✅ Answer: Circumference = 88 cm`},
+
+  {q:'Circle ka diameter 20 cm hai. Radius nikalo.',
+   s:`📝 Question: d = 20 cm, r = ?
+
+🎯 Kya dhoondhna hai?
+Radius
+
+📖 Concept / Formula:
+Radius = Diameter ÷ 2
+
+🔢 Step-by-Step:
+Step 1: Diya hai → d = 20
+Step 2: Formula → r = d / 2
+Step 3: Divide → 20 / 2 = 10
+Step 4: Unit → cm
+
+✅ Answer: Radius = 10 cm
+
+💡 Yaad Rakho:
+- Diameter circle ke center se hokar guzarta hai.
+- Radius aadha hota hai diameter ka.`},
+
+  {q:'Rectangle ki length 12 m aur breadth 3 m hai. Area nikalo.',
+   s:`📝 Question: L = 12 m, B = 3 m, Area = ?
+
+🎯 Kya dhoondhna hai?
+Area
+
+📖 Concept / Formula:
+Area = L × B
+
+🔢 Step-by-Step:
+Step 1: Diya hai → L = 12, B = 3
+Step 2: Formula → 12 × 3
+Step 3: Multiply → 36
+Step 4: Unit → m²
+
+✅ Answer: Area = 36 m²`},
+
+  {q:'Square ki side 12 cm hai. Area nikalo.',
+   s:`📝 Question: Side = 12 cm, Area = ?
+
+🎯 Kya dhoondhna hai?
+Area
+
+📖 Concept / Formula:
+Area = Side²
+
+🔢 Step-by-Step:
+Step 1: Diya hai → Side = 12
+Step 2: Formula → 12² = 12 × 12
+Step 3: Multiply → 144
+Step 4: Unit → cm²
+
+✅ Answer: Area = 144 cm²`},
+
+  {q:'Ek cube ki side 3 cm hai. Volume nikalo.',
+   s:`📝 Question: Side = 3 cm, Volume = ?
+
+🎯 Kya dhoondhna hai?
+Volume (aayatan)
+
+📖 Concept / Formula:
+Volume = Side³
+
+🔢 Step-by-Step:
+Step 1: Diya hai → Side = 3
+Step 2: Formula → V = 3³ = 3 × 3 × 3
+Step 3: Multiply → 9 × 3 = 27
+Step 4: Unit → cm³ (cubic cm)
+
+<div style="text-align:center; margin: 15px 0;">
+<svg width="160" height="160" viewBox="0 0 160 160" style="background:#f8f9ff; border-radius:10px; border:1px solid #dcd6ff;">
+  <polygon points="30,60 90,60 90,120 30,120" fill="rgba(255,111,0,0.2)" stroke="#ff6f00" stroke-width="2"/>
+  <polygon points="30,60 60,30 120,30 90,60" fill="rgba(255,111,0,0.1)" stroke="#ff6f00" stroke-width="2"/>
+  <polygon points="90,60 120,30 120,90 90,120" fill="rgba(255,111,0,0.15)" stroke="#ff6f00" stroke-width="2"/>
+  <text x="60" y="135" text-anchor="middle" fill="#333" font-weight="bold">3</text>
+  <text x="120" y="105" text-anchor="middle" fill="#333" font-weight="bold">3</text>
+  <text x="90" y="25" text-anchor="middle" fill="#333" font-weight="bold">3</text>
+</svg>
+</div>
+
+✅ Answer: Volume = 27 cm³`},
+
+  {q:'Cuboid ki length 5 cm, breadth 4 cm aur height 3 cm hai. Volume nikalo.',
+   s:`📝 Question: L = 5, B = 4, H = 3, Volume = ?
+
+🎯 Kya dhoondhna hai?
+Volume
+
+📖 Concept / Formula:
+Volume = L × B × H
+
+🔢 Step-by-Step:
+Step 1: Diya hai → 5, 4, 3
+Step 2: Formula → 5 × 4 × 3
+Step 3: Pehle 5 × 4 = 20
+Step 4: Phir 20 × 3 = 60
+Step 5: Unit → cm³
+
+✅ Answer: Volume = 60 cm³`},
+
+  {q:'Circle ka radius 3 cm hai. Area nikalo (π = 3.14).',
+   s:`📝 Question: r = 3 cm, Area = ?
+
+🎯 Kya dhoondhna hai?
+Area
+
+📖 Concept / Formula:
+Area = πr²
+
+🔢 Step-by-Step:
+Step 1: Diya hai → r = 3, π = 3.14
+Step 2: Formula → 3.14 × (3)²
+Step 3: Square pehle → 3² = 9
+Step 4: Multiply → 3.14 × 9 = 28.26
+Step 5: Unit → cm²
+
+✅ Answer: Area = 28.26 cm²`},
+
+  {q:'Rectangle ki length 7 cm aur breadth 6 cm hai. Perimeter nikalo.',
+   s:`📝 Question: L = 7, B = 6, Perimeter = ?
+
+🎯 Kya dhoondhna hai?
+Perimeter
+
+📖 Concept / Formula:
+Perimeter = 2 × (L + B)
+
+🔢 Step-by-Step:
+Step 1: Diya hai → L = 7, B = 6
+Step 2: Bracket → 7 + 6 = 13
+Step 3: Multiply → 2 × 13 = 26
+Step 4: Unit → cm
+
+✅ Answer: Perimeter = 26 cm`},
+
+  {q:'Square ki side 15 m hai. Perimeter nikalo.',
+   s:`📝 Question: Side = 15 m, Perimeter = ?
+
+🎯 Kya dhoondhna hai?
+Perimeter
+
+📖 Concept / Formula:
+Perimeter = 4 × Side
+
+🔢 Step-by-Step:
+Step 1: Side = 15
+Step 2: Formula → 4 × 15
+Step 3: Multiply → 60
+Step 4: Unit → m
+
+✅ Answer: Perimeter = 60 m`},
+
+  {q:'Ek cube ki side 5 m hai. Volume nikalo.',
+   s:`📝 Question: Side = 5 m, Volume = ?
+
+🎯 Kya dhoondhna hai?
+Volume
+
+📖 Concept / Formula:
+Volume = Side³
+
+🔢 Step-by-Step:
+Step 1: Side = 5
+Step 2: Formula → 5³ = 5 × 5 × 5
+Step 3: 25 × 5 = 125
+Step 4: Unit → m³
+
+✅ Answer: Volume = 125 m³`},
+
+  // Level 2 - Intermediate (16-30)
+  {q:'Rectangle ka area 96 cm² aur breadth 8 cm hai. Length nikalo.',
+   s:`📝 Question: Area = 96, B = 8, L = ?
+
+🎯 Kya dhoondhna hai?
+Length
+
+📖 Concept / Formula:
+Area = L × B, isliye L = Area ÷ B
+
+🔢 Step-by-Step:
+Step 1: Area = 96, B = 8
+Step 2: Formula → L = 96 ÷ 8
+Step 3: Divide → 12
+Step 4: Unit → cm
+
+✅ Answer: Length = 12 cm`},
+
+  {q:'Square ka area 196 cm² hai. Side nikalo.',
+   s:`📝 Question: Area = 196, Side = ?
+
+🎯 Kya dhoondhna hai?
+Side
+
+📖 Concept / Formula:
+Area = Side², isliye Side = √Area
+
+🔢 Step-by-Step:
+Step 1: Area = 196
+Step 2: Side = √196
+Step 3: Kaun sa number khud se multiply hokar 196 deta hai? (14 × 14 = 196)
+Step 4: Unit → cm
+
+✅ Answer: Side = 14 cm`},
+
+  {q:'Rectangle ki length 15 cm aur breadth 9 cm hai. Area aur perimeter dono nikalo.',
+   s:`📝 Question: L = 15, B = 9. Area & Perimeter = ?
+
+🎯 Kya dhoondhna hai?
+Area aur Perimeter dono
+
+🔢 Step-by-Step:
+<b>Area ke liye:</b>
+Step 1: A = L × B
+Step 2: 15 × 9 = 135 cm²
+
+<b>Perimeter ke liye:</b>
+Step 1: P = 2(L+B)
+Step 2: 15 + 9 = 24
+Step 3: 2 × 24 = 48 cm
+
+✅ Answer: Area = 135 cm², Perimeter = 48 cm`},
+
+  {q:'Square ka perimeter 64 m hai. Area nikalo.',
+   s:`📝 Question: Perimeter = 64, Area = ?
+
+🎯 Kya dhoondhna hai?
+Area (par pehle side nikalna hoga)
+
+🔢 Step-by-Step:
+Step 1: P = 4 × Side
+Step 2: 64 = 4 × Side
+Step 3: Side = 64 ÷ 4 = 16 m
+Step 4: Ab Area = Side² = 16 × 16
+Step 5: Area = 256 m²
+
+✅ Answer: Area = 256 m²`},
+
+  {q:'Circle ka diameter 28 cm hai. Area nikalo (π = 22/7).',
+   s:`📝 Question: d = 28, Area = ?
+
+🎯 Kya dhoondhna hai?
+Area
+
+🔢 Step-by-Step:
+Step 1: Radius nikaalo → r = 28 ÷ 2 = 14
+Step 2: Formula → Area = πr²
+Step 3: (22/7) × 14 × 14
+Step 4: 14 ko 7 se divide karo = 2
+Step 5: 22 × 2 × 14 = 44 × 14 = 616
+✅ Answer: Area = 616 cm²`},
+
+  {q:'Circle ka area 154 cm² hai. Radius nikalo (π = 22/7).',
+   s:`📝 Question: Area = 154, r = ?
+
+🎯 Kya dhoondhna hai?
+Radius
+
+🔢 Step-by-Step:
+Step 1: Area = πr²
+Step 2: 154 = (22/7) × r²
+Step 3: r² = (154 × 7) / 22
+Step 4: (1078) / 22 = 49
+Step 5: r = √49 = 7 cm
+✅ Answer: Radius = 7 cm`},
+
+  {q:'Rectangle ka perimeter 50 cm aur length 15 cm hai. Breadth nikalo.',
+   s:`📝 Question: P = 50, L = 15, B = ?
+
+🔢 Step-by-Step:
+Step 1: P = 2(L+B)
+Step 2: 50 = 2(15 + B)
+Step 3: 25 = 15 + B
+Step 4: B = 25 − 15 = 10
+✅ Answer: Breadth = 10 cm`},
+
+  {q:'Cube ka volume 216 cm³ hai. Side nikalo.',
+   s:`📝 Question: Volume = 216, Side = ?
+
+🔢 Step-by-Step:
+Step 1: Volume = Side³
+Step 2: Side = ∛216
+Step 3: Kaun sa number 3 baar khud se multiply hoke 216 deta hai? (6 × 6 × 6 = 216)
+✅ Answer: Side = 6 cm`},
+
+  {q:'Cuboid ki length 10 cm, breadth 6 cm aur volume 300 cm³ hai. Height nikalo.',
+   s:`📝 Question: L = 10, B = 6, V = 300, H = ?
+
+🔢 Step-by-Step:
+Step 1: V = L × B × H
+Step 2: 300 = 10 × 6 × H
+Step 3: 300 = 60 × H
+Step 4: H = 300 ÷ 60 = 5
+✅ Answer: Height = 5 cm`},
+
+  {q:'Cylinder ka radius 7 cm aur height 10 cm hai. Volume nikalo (π = 22/7).',
+   s:`📝 Question: r = 7, h = 10, V = ?
+
+🔢 Step-by-Step:
+Step 1: Formula → V = πr²h
+Step 2: (22/7) × 7 × 7 × 10
+Step 3: Ek 7 cancel ho jayega → 22 × 7 × 10
+Step 4: 154 × 10 = 1540
+✅ Answer: Volume = 1540 cm³`},
+
+  {q:'Ek garden 25 m lamba aur 12 m chauda hai. Uska area nikalo.',
+   s:`📝 Question: L = 25, B = 12
+
+🔢 Step-by-Step:
+Step 1: Garden rectangle shape ka hai
+Step 2: Area = L × B = 25 × 12
+Step 3: 25 × 12 = 300
+✅ Answer: Area = 300 m²`},
+
+  {q:'Ek square field ki side 20 m hai. Boundary ke around ek round lagane par kitni doori chalega?',
+   s:`📝 Question: Side = 20 m, Round = 1, Distance = ?
+
+🔢 Step-by-Step:
+Step 1: Boundary ke around chalna matlab Perimeter nikalna
+Step 2: P = 4 × Side
+Step 3: P = 4 × 20 = 80
+✅ Answer: Doori = 80 m`},
+
+  {q:'Circle ka radius 10 cm hai. Circumference nikalo (π = 3.14).',
+   s:`📝 Question: r = 10, C = ?
+
+🔢 Step-by-Step:
+Step 1: C = 2πr
+Step 2: 2 × 3.14 × 10
+Step 3: 6.28 × 10 = 62.8
+✅ Answer: Circumference = 62.8 cm`},
+
+  {q:'Ek rectangle ka area 180 m² aur length 20 m hai. Breadth nikalo.',
+   s:`📝 Question: Area = 180, L = 20, B = ?
+
+🔢 Step-by-Step:
+Step 1: Area = L × B
+Step 2: 180 = 20 × B
+Step 3: B = 180 ÷ 20 = 9
+✅ Answer: Breadth = 9 m`},
+
+  {q:'Ek cuboid ki dimensions 8 cm × 5 cm × 4 cm hain. Volume nikalo.',
+   s:`📝 Question: L=8, B=5, H=4, V = ?
+
+🔢 Step-by-Step:
+Step 1: V = L × B × H
+Step 2: 8 × 5 = 40
+Step 3: 40 × 4 = 160
+✅ Answer: Volume = 160 cm³`},
+
+  // Level 3 - Advanced (31-40)
+  {q:'Rectangle ka perimeter 74 cm hai aur length 22 cm hai. Breadth aur area nikalo.',
+   s:`📝 Question: P = 74, L = 22. B & Area = ?
+
+🔢 Step-by-Step:
+<b>Breadth ke liye:</b>
+Step 1: P = 2(L+B)
+Step 2: 74 = 2(22 + B)
+Step 3: 37 = 22 + B
+Step 4: B = 15 cm
+
+<b>Area ke liye:</b>
+Step 1: A = L × B
+Step 2: 22 × 15 = 330
+✅ Answer: Breadth = 15 cm, Area = 330 cm²`},
+
+  {q:'Square ka area 324 cm² hai. Uska perimeter nikalo.',
+   s:`📝 Question: Area = 324, Perimeter = ?
+
+🔢 Step-by-Step:
+Step 1: Side = √324 = 18 cm
+Step 2: Perimeter = 4 × Side
+Step 3: 4 × 18 = 72
+✅ Answer: Perimeter = 72 cm`},
+
+  {q:'Ek circular park ka radius 21 m hai. Area aur circumference nikalo (π = 22/7).',
+   s:`📝 Question: r = 21. Area & Circumference = ?
+
+🔢 Step-by-Step:
+<b>Area:</b>
+Step 1: A = (22/7) × 21 × 21
+Step 2: 21 ko 7 se divide = 3
+Step 3: 22 × 3 × 21 = 66 × 21 = 1386 m²
+
+<b>Circumference:</b>
+Step 1: C = 2 × (22/7) × 21
+Step 2: 21 / 7 = 3
+Step 3: 2 × 22 × 3 = 132 m
+✅ Answer: Area = 1386 m², Circumference = 132 m`},
+
+  {q:'Ek rectangle ki length uski breadth se 3 guna hai. Perimeter 64 cm hai. Dimensions aur area nikalo.',
+   s:`📝 Question: L = 3B, P = 64. Dimensions & Area = ?
+
+🔢 Step-by-Step:
+Step 1: Let Breadth = x
+Step 2: Length = 3x
+Step 3: P = 2(L + B) → 64 = 2(3x + x)
+Step 4: 64 = 2(4x) → 64 = 8x
+Step 5: x = 8 cm (Breadth)
+Step 6: Length = 3 × 8 = 24 cm
+Step 7: Area = L × B = 24 × 8 = 192 cm²
+✅ Answer: Length = 24 cm, Breadth = 8 cm, Area = 192 cm²`},
+
+  {q:'Ek cube ki side double kar di jaati hai. Naya volume purane volume ka kitna guna hoga?',
+   s:`📝 Question: Side = 2 × original. V2/V1 = ?
+
+🔢 Step-by-Step:
+Step 1: Let original side = a
+Step 2: Original Volume (V1) = a³
+Step 3: New side = 2a
+Step 4: New Volume (V2) = (2a)³ = 8a³
+Step 5: Ratio = V2 / V1 = 8a³ / a³ = 8
+✅ Answer: Volume 8 guna ho jayega.`},
+
+  {q:'Ek cuboid ka volume 720 cm³ hai. Length 12 cm aur breadth 5 cm hai. Height nikalo.',
+   s:`📝 Question: V = 720, L = 12, B = 5, H = ?
+
+🔢 Step-by-Step:
+Step 1: V = L × B × H
+Step 2: 720 = 12 × 5 × H
+Step 3: 720 = 60 × H
+Step 4: H = 720 / 60 = 12
+✅ Answer: Height = 12 cm`},
+
+  {q:'Ek circular table ka diameter 1.4 m hai. Area nikalo (π = 22/7).',
+   s:`📝 Question: d = 1.4, Area = ?
+
+🔢 Step-by-Step:
+Step 1: r = 1.4 / 2 = 0.7 m
+Step 2: Area = (22/7) × 0.7 × 0.7
+Step 3: 0.7 / 7 = 0.1
+Step 4: 22 × 0.1 × 0.7 = 2.2 × 0.7 = 1.54
+✅ Answer: Area = 1.54 m²`},
+
+  {q:'Ek square aur rectangle ka perimeter same, 40 cm hai. Rectangle ki length 12 cm hai. Dono ke areas compare karo.',
+   s:`📝 Question: P(sq) = P(rect) = 40. L(rect) = 12. Compare Areas = ?
+
+🔢 Step-by-Step:
+<b>Square ke liye:</b>
+Step 1: P = 40 → 4 × side = 40
+Step 2: side = 10 cm
+Step 3: Area = 10 × 10 = 100 cm²
+
+<b>Rectangle ke liye:</b>
+Step 1: P = 40 → 2(L+B) = 40
+Step 2: L = 12 → 2(12+B) = 40
+Step 3: 12 + B = 20 → B = 8 cm
+Step 4: Area = 12 × 8 = 96 cm²
+
+✅ Answer: Square ka area (100) > Rectangle ka area (96). Square ka area 4 cm² zyada hai.`},
+
+  {q:'Cylinder ka volume 1232 cm³ aur radius 7 cm hai. Height nikalo (π = 22/7).',
+   s:`📝 Question: V = 1232, r = 7, h = ?
+
+🔢 Step-by-Step:
+Step 1: V = πr²h
+Step 2: 1232 = (22/7) × 7 × 7 × h
+Step 3: 1232 = 22 × 7 × h
+Step 4: 1232 = 154 × h
+Step 5: h = 1232 / 154 = 8
+✅ Answer: Height = 8 cm`},
+
+  {q:'Ek cube ka volume 1000 cm³ hai. Uska total surface area nikalo.',
+   s:`📝 Question: V = 1000, TSA = ?
+
+🔢 Step-by-Step:
+Step 1: Side = ∛1000 = 10 cm
+Step 2: Cube ke 6 faces hote hain
+Step 3: TSA = 6 × Side²
+Step 4: 6 × 10² = 6 × 100 = 600
+✅ Answer: Total Surface Area = 600 cm²`},
+
+  // Level 4 - Challenge (41-50)
+  {q:'Ek rectangle ka area 240 m² hai. Length aur breadth whole numbers hain aur length breadth se 4 m zyada hai. Dimensions aur perimeter nikalo.',
+   s:`📝 Question: Area = 240, L = B + 4. Find L, B, Perimeter.
+
+🔢 Step-by-Step:
+Step 1: Let B = x, L = x + 4
+Step 2: Area = x(x + 4) = 240
+Step 3: x² + 4x - 240 = 0
+Step 4: Factors dhoondo: 12 × 20 = 240, diff = 8
+Step 5: 16 × 15 = 240, diff = 1
+Step 6: x² + 20x - 12x - 240 = 0 → x(x+20) -12(x+20) → (x-12)(x+20)
+Step 7: x = 12 (kyunki -20 nahi ho sakta)
+Step 8: B = 12, L = 16
+Step 9: Perimeter = 2(16+12) = 56 m
+✅ Answer: L=16m, B=12m, Perimeter=56m`},
+
+  {q:'Ek circular running track ka radius 35 m hai. 5 complete rounds ki distance nikalo (π = 22/7).',
+   s:`📝 Question: r=35, rounds=5. Distance = ?
+
+🔢 Step-by-Step:
+Step 1: 1 round = Circumference
+Step 2: C = 2 × (22/7) × 35 = 2 × 22 × 5 = 220 m
+Step 3: 5 rounds = 5 × 220
+Step 4: 1100
+✅ Answer: Distance = 1100 m`},
+
+  {q:'Ek cube ka total surface area 864 cm² hai. Uska volume nikalo.',
+   s:`📝 Question: TSA = 864, V = ?
+
+🔢 Step-by-Step:
+Step 1: TSA = 6 × side²
+Step 2: 864 = 6 × side²
+Step 3: side² = 144
+Step 4: side = 12 cm
+Step 5: V = side³ = 12³ = 1728
+✅ Answer: Volume = 1728 cm³`},
+
+  {q:'Ek cuboid ka volume 960 cm³ hai. Length 16 cm aur height 5 cm hai. Breadth nikalo.',
+   s:`📝 Question: V = 960, L = 16, H = 5, B = ?
+
+🔢 Step-by-Step:
+Step 1: V = L × B × H
+Step 2: 960 = 16 × B × 5
+Step 3: 960 = 80 × B
+Step 4: B = 960 / 80 = 12
+✅ Answer: Breadth = 12 cm`},
+
+  {q:'Ek square garden ki side 28 m hai. Beech mein radius 7 m ka circular flower bed hai. Flower bed ko chhodkar grass ka area nikalo (π = 22/7).',
+   s:`📝 Question: Square side=28, Circle r=7. Grass Area = ?
+
+🔢 Step-by-Step:
+Step 1: Square Area = 28² = 784 m²
+Step 2: Circle Area = (22/7) × 7² = 154 m²
+Step 3: Grass Area = Square Area - Circle Area
+Step 4: 784 - 154 = 630
+✅ Answer: Grass Area = 630 m²`},
+
+  {q:'Ek rectangle ki length 30% badhayi jaati hai aur breadth same rehti hai. Area kitne percent badhega?',
+   s:`📝 Question: L increases by 30%, B same. % change in Area = ?
+
+🔢 Step-by-Step:
+Step 1: Let original L = 100, B = 100 → Original Area = 10000
+Step 2: New L = 130, B = 100 → New Area = 13000
+Step 3: Increase = 13000 - 10000 = 3000
+Step 4: % Increase = (3000/10000) × 100 = 30%
+✅ Answer: Area 30% badhega.`},
+
+  {q:'Ek cylinder ka radius double aur height same rehti hai. Volume kitne guna ho jayega?',
+   s:`📝 Question: r = 2r, h same. V ratio = ?
+
+🔢 Step-by-Step:
+Step 1: Original V = πr²h
+Step 2: New V = π(2r)²h = 4πr²h
+Step 3: Ratio = 4πr²h / πr²h = 4
+✅ Answer: Volume 4 guna ho jayega.`},
+
+  {q:'Ek rectangle 24 cm × 10 cm hai. Isi perimeter ka square banaya jata hai. Square ka area nikalo aur dono areas compare karo.',
+   s:`📝 Question: Rect 24×10. Same P square. Compare Areas.
+
+🔢 Step-by-Step:
+Step 1: P(rect) = 2(24+10) = 68 cm
+Step 2: P(sq) = 4 × side = 68 → side = 17 cm
+Step 3: Area(rect) = 240 cm²
+Step 4: Area(sq) = 17² = 289 cm²
+✅ Answer: Square area = 289 cm². Square ka area rectangle se zyada hai.`},
+
+  {q:'Ek cylindrical tank ka radius 3.5 m aur height 4 m hai. Uski capacity cubic metres mein nikalo (π = 22/7).',
+   s:`📝 Question: r = 3.5, h = 4, V = ?
+
+🔢 Step-by-Step:
+Step 1: V = (22/7) × 3.5 × 3.5 × 4
+Step 2: 3.5 = 7/2. So, (22/7) × (7/2) = 11
+Step 3: 11 × 3.5 × 4 = 11 × 14 = 154
+✅ Answer: Capacity = 154 m³`},
+
+  {q:'Ek cuboid 12 cm × 10 cm × 8 cm ko 2 cm side wale chhote cubes mein kaata jaata hai. Kitne cubes milenge?',
+   s:`📝 Question: Cuboid 12×10×8, Small cube side 2. Total cubes = ?
+
+🔢 Step-by-Step:
+Step 1: Cuboid Volume = 12 × 10 × 8 = 960 cm³
+Step 2: Small cube Volume = 2³ = 8 cm³
+Step 3: Total cubes = 960 / 8 = 120
+✅ Answer: 120 chhote cubes milenge.`}
+];
+
+console.log('✅ Mensuration 50 Questions Loaded!');
 </script>
 </body>
 </html>
