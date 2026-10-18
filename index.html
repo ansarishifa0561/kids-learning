@@ -1435,409 +1435,6 @@ document.body.addEventListener('touchstart',function u(){
 .chapter-ex .s{background:#f0fff4;padding:14px 16px;border-radius:12px;font-size:.92rem;font-weight:600;color:#2b2b3a;line-height:1.7;white-space:pre-wrap;border:1px solid #c8e6c9;display:none}
 .chapter-ex .s.show{display:block}
 </style>
-
-<script>
-</script>
-<!-- ====================================================
-     <!-- ====================================================
-     ADVANCED MATHS — PERFECT RENDERING ENGINE
-     ==================================================== -->
-<script>
-<!-- ====================================================
-     LINEAR EQUATIONS — 50 QUESTIONS (Basic to Advanced with Steps)
-     ==================================================== -->
-<script>
-const _linEq50 = ADVANCED_LESSONS.maths.chapters[1];
-
-// Helper to format text beautifully
-const fmt = function(txt) {
-    return '<div style="text-align:left;line-height:1.9;font-size:1.05rem;color:#333">' + txt + '</div>';
-};
-
-_linEq50.ex = [
-  // Level 1 - Basic (1 to 15)
-  {q:'x + 5 = 12', s:{
-    hi: fmt('<b>Equation:</b> x + 5 = 12<br><br><b>Step 1:</b> Yahan x ke saath +5 juda hua hai. x ko akela karne ke liye humein +5 hatana hoga.<br><b>Step 2:</b> Balance banaye rakhne ke liye dono taraf se 5 subtract karenge.<br><b>Step 3:</b> x + 5 − 5 = 12 − 5<br><b>Step 4:</b> LHS mein +5 − 5 = 0, sirf x bacha.<br><b>Step 5:</b> RHS mein 12 − 5 = 7.<br><b>Step 6:</b> Final Answer: <b>x = 7</b><br><br><b>✅ Check:</b> x = 7 rakho original equation mein → 7 + 5 = 12 ✓'),
-    en: fmt('<b>Equation:</b> x + 5 = 12<br><br><b>Step 1:</b> 5 is added to x. To isolate x, we must remove +5.<br><b>Step 2:</b> To keep the balance, subtract 5 from BOTH sides.<br><b>Step 3:</b> x + 5 − 5 = 12 − 5<br><b>Step 4:</b> On LHS: +5 − 5 = 0, leaving only x.<br><b>Step 5:</b> On RHS: 12 − 5 = 7.<br><b>Step 6:</b> Final Answer: <b>x = 7</b><br><br><b>✅ Check:</b> Substitute x = 7 → 7 + 5 = 12 ✓')
-  }},
-  {q:'x − 4 = 10', s:{
-    hi: fmt('<b>Equation:</b> x − 4 = 10<br><br><b>Step 1:</b> x ke saath −4 juda hai (4 minus hai). Isko hatane ke liye dono taraf 4 add karenge.<br><b>Step 2:</b> x − 4 + 4 = 10 + 4<br><b>Step 3:</b> LHS mein −4 + 4 = 0, sirf x bacha.<br><b>Step 4:</b> RHS mein 10 + 4 = 14.<br><b>Step 5:</b> Final Answer: <b>x = 14</b><br><br><b>✅ Check:</b> 14 − 4 = 10 ✓'),
-    en: fmt('<b>Equation:</b> x − 4 = 10<br><br><b>Step 1:</b> 4 is subtracted from x. To remove it, add 4 to both sides.<br><b>Step 2:</b> x − 4 + 4 = 10 + 4<br><b>Step 3:</b> On LHS: −4 + 4 = 0, leaving x.<br><b>Step 4:</b> On RHS: 10 + 4 = 14.<br><b>Step 5:</b> Final Answer: <b>x = 14</b><br><br><b>✅ Check:</b> 14 − 4 = 10 ✓')
-  }},
-  {q:'3x = 21', s:{
-    hi: fmt('<b>Equation:</b> 3x = 21<br><br><b>Step 1:</b> 3x ka matlab 3 × x hota hai. x ko akela karne ke liye dono taraf 3 se divide karenge.<br><b>Step 2:</b> (3x) ÷ 3 = 21 ÷ 3<br><b>Step 3:</b> LHS mein 3 aur 3 cancel ho jayenge, sirf x bachega.<br><b>Step 4:</b> RHS mein 21 ÷ 3 = 7.<br><b>Step 5:</b> Final Answer: <b>x = 7</b><br><br><b>✅ Check:</b> 3(7) = 21 ✓'),
-    en: fmt('<b>Equation:</b> 3x = 21<br><br><b>Step 1:</b> 3x means 3 multiplied by x. To isolate x, divide both sides by 3.<br><b>Step 2:</b> (3x) ÷ 3 = 21 ÷ 3<br><b>Step 3:</b> On LHS: 3 and 3 cancel out, leaving x.<br><b>Step 4:</b> On RHS: 21 ÷ 3 = 7.<br><b>Step 5:</b> Final Answer: <b>x = 7</b><br><br><b>✅ Check:</b> 3(7) = 21 ✓')
-  }},
-  {q:'x ÷ 2 = 8', s:{
-    hi: fmt('<b>Equation:</b> x/2 = 8<br><br><b>Step 1:</b> x ko 2 se divide kiya gaya hai. Isko hatane ke liye dono taraf 2 se multiply karenge.<br><b>Step 2:</b> (x/2) × 2 = 8 × 2<br><b>Step 3:</b> LHS mein /2 aur ×2 cancel ho jayenge, sirf x bachega.<br><b>Step 4:</b> RHS mein 8 × 2 = 16.<br><b>Step 5:</b> Final Answer: <b>x = 16</b><br><br><b>✅ Check:</b> 16 ÷ 2 = 8 ✓'),
-    en: fmt('<b>Equation:</b> x/2 = 8<br><br><b>Step 1:</b> x is divided by 2. To undo this, multiply both sides by 2.<br><b>Step 2:</b> (x/2) × 2 = 8 × 2<br><b>Step 3:</b> On LHS: /2 and ×2 cancel out, leaving x.<br><b>Step 4:</b> On RHS: 8 × 2 = 16.<br><b>Step 5:</b> Final Answer: <b>x = 16</b><br><br><b>✅ Check:</b> 16 ÷ 2 = 8 ✓')
-  }},
-  {q:'2x + 3 = 11', s:{
-    hi: fmt('<b>Equation:</b> 2x + 3 = 11<br><br><b>Step 1:</b> Yahan do operations hain: +3 aur ×2. Pehle +3 ko hatayenge.<br><b>Step 2:</b> Dono taraf se 3 subtract karo → 2x + 3 − 3 = 11 − 3<br><b>Step 3:</b> Simplify karo → 2x = 8<br><b>Step 4:</b> Ab x ko akela karne ke liye dono taraf 2 se divide karo.<br><b>Step 5:</b> (2x) ÷ 2 = 8 ÷ 2<br><b>Step 6:</b> Final Answer: <b>x = 4</b><br><br><b>✅ Check:</b> LHS: 2(4) + 3 = 8 + 3 = 11, RHS: 11 ✓'),
-    en: fmt('<b>Equation:</b> 2x + 3 = 11<br><br><b>Step 1:</b> Two operations are applied: +3 and ×2. First, remove +3.<br><b>Step 2:</b> Subtract 3 from both sides → 2x + 3 − 3 = 11 − 3<br><b>Step 3:</b> Simplify → 2x = 8<br><b>Step 4:</b> Now, divide both sides by 2 to isolate x.<br><b>Step 5:</b> (2x) ÷ 2 = 8 ÷ 2<br><b>Step 6:</b> Final Answer: <b>x = 4</b><br><br><b>✅ Check:</b> LHS: 2(4) + 3 = 11, RHS: 11 ✓')
-  }},
-  {q:'5x − 7 = 13', s:{
-    hi: fmt('<b>Equation:</b> 5x − 7 = 13<br><br><b>Step 1:</b> Pehle −7 ko hatayenge. Dono taraf 7 add karo.<br><b>Step 2:</b> 5x − 7 + 7 = 13 + 7<br><b>Step 3:</b> Simplify → 5x = 20<br><b>Step 4:</b> Ab dono taraf 5 se divide karo.<br><b>Step 5:</b> (5x) ÷ 5 = 20 ÷ 5<br><b>Step 6:</b> Final Answer: <b>x = 4</b><br><br><b>✅ Check:</b> LHS: 5(4) − 7 = 20 − 7 = 13, RHS: 13 ✓'),
-    en: fmt('<b>Equation:</b> 5x − 7 = 13<br><br><b>Step 1:</b> First, remove −7 by adding 7 to both sides.<br><b>Step 2:</b> 5x − 7 + 7 = 13 + 7<br><b>Step 3:</b> Simplify → 5x = 20<br><b>Step 4:</b> Now, divide both sides by 5.<br><b>Step 5:</b> (5x) ÷ 5 = 20 ÷ 5<br><b>Step 6:</b> Final Answer: <b>x = 4</b><br><br><b>✅ Check:</b> LHS: 5(4) − 7 = 13, RHS: 13 ✓')
-  }},
-  {q:'4x + 2 = 30', s:{
-    hi: fmt('<b>Equation:</b> 4x + 2 = 30<br><br><b>Step 1:</b> Dono taraf se 2 subtract karo.<br><b>Step 2:</b> 4x + 2 − 2 = 30 − 2<br><b>Step 3:</b> Simplify → 4x = 28<br><b>Step 4:</b> Dono taraf 4 se divide karo.<br><b>Step 5:</b> (4x) ÷ 4 = 28 ÷ 4<br><b>Step 6:</b> Final Answer: <b>x = 7</b><br><br><b>✅ Check:</b> 4(7) + 2 = 28 + 2 = 30 ✓'),
-    en: fmt('<b>Equation:</b> 4x + 2 = 30<br><br><b>Step 1:</b> Subtract 2 from both sides.<br><b>Step 2:</b> 4x + 2 − 2 = 30 − 2<br><b>Step 3:</b> Simplify → 4x = 28<br><b>Step 4:</b> Divide both sides by 4.<br><b>Step 5:</b> (4x) ÷ 4 = 28 ÷ 4<br><b>Step 6:</b> Final Answer: <b>x = 7</b><br><br><b>✅ Check:</b> 4(7) + 2 = 30 ✓')
-  }},
-  {q:'7x = 42', s:{
-    hi: fmt('<b>Equation:</b> 7x = 42<br><br><b>Step 1:</b> Dono taraf 7 se divide karo.<br><b>Step 2:</b> (7x) ÷ 7 = 42 ÷ 7<br><b>Step 3:</b> Simplify → x = 6<br><br><b>✅ Check:</b> 7 × 6 = 42 ✓'),
-    en: fmt('<b>Equation:</b> 7x = 42<br><br><b>Step 1:</b> Divide both sides by 7.<br><b>Step 2:</b> (7x) ÷ 7 = 42 ÷ 7<br><b>Step 3:</b> Simplify → x = 6<br><br><b>✅ Check:</b> 7 × 6 = 42 ✓')
-  }},
-  {q:'x ÷ 5 = 3', s:{
-    hi: fmt('<b>Equation:</b> x/5 = 3<br><br><b>Step 1:</b> Dono taraf 5 se multiply karo.<br><b>Step 2:</b> (x/5) × 5 = 3 × 5<br><b>Step 3:</b> Simplify → x = 15<br><br><b>✅ Check:</b> 15 ÷ 5 = 3 ✓'),
-    en: fmt('<b>Equation:</b> x/5 = 3<br><br><b>Step 1:</b> Multiply both sides by 5.<br><b>Step 2:</b> (x/5) × 5 = 3 × 5<br><b>Step 3:</b> Simplify → x = 15<br><br><b>✅ Check:</b> 15 ÷ 5 = 3 ✓')
-  }},
-  {q:'x + 15 = 35', s:{
-    hi: fmt('<b>Equation:</b> x + 15 = 35<br><br><b>Step 1:</b> Dono taraf se 15 subtract karo.<br><b>Step 2:</b> x + 15 − 15 = 35 − 15<br><b>Step 3:</b> Simplify → x = 20<br><br><b>✅ Check:</b> 20 + 15 = 35 ✓'),
-    en: fmt('<b>Equation:</b> x + 15 = 35<br><br><b>Step 1:</b> Subtract 15 from both sides.<br><b>Step 2:</b> x + 15 − 15 = 35 − 15<br><b>Step 3:</b> Simplify → x = 20<br><br><b>✅ Check:</b> 20 + 15 = 35 ✓')
-  }},
-  {q:'2x − 8 = 12', s:{
-    hi: fmt('<b>Equation:</b> 2x − 8 = 12<br><br><b>Step 1:</b> Dono taraf 8 add karo.<br><b>Step 2:</b> 2x − 8 + 8 = 12 + 8<br><b>Step 3:</b> Simplify → 2x = 20<br><b>Step 4:</b> Dono taraf 2 se divide karo.<br><b>Step 5:</b> (2x) ÷ 2 = 20 ÷ 2<br><b>Step 6:</b> Final Answer: <b>x = 10</b><br><br><b>✅ Check:</b> 2(10) − 8 = 12 ✓'),
-    en: fmt('<b>Equation:</b> 2x − 8 = 12<br><br><b>Step 1:</b> Add 8 to both sides.<br><b>Step 2:</b> 2x − 8 + 8 = 12 + 8<br><b>Step 3:</b> Simplify → 2x = 20<br><b>Step 4:</b> Divide both sides by 2.<br><b>Step 5:</b> (2x) ÷ 2 = 20 ÷ 2<br><b>Step 6:</b> Final Answer: <b>x = 10</b><br><br><b>✅ Check:</b> 2(10) − 8 = 12 ✓')
-  }},
-  {q:'x ÷ 3 = 9', s:{
-    hi: fmt('<b>Equation:</b> x/3 = 9<br><br><b>Step 1:</b> Dono taraf 3 se multiply karo.<br><b>Step 2:</b> (x/3) × 3 = 9 × 3<br><b>Step 3:</b> Simplify → x = 27<br><br><b>✅ Check:</b> 27 ÷ 3 = 9 ✓'),
-    en: fmt('<b>Equation:</b> x/3 = 9<br><br><b>Step 1:</b> Multiply both sides by 3.<br><b>Step 2:</b> (x/3) × 3 = 9 × 3<br><b>Step 3:</b> Simplify → x = 27<br><br><b>✅ Check:</b> 27 ÷ 3 = 9 ✓')
-  }},
-  {q:'8x = 64', s:{
-    hi: fmt('<b>Equation:</b> 8x = 64<br><br><b>Step 1:</b> Dono taraf 8 se divide karo.<br><b>Step 2:</b> (8x) ÷ 8 = 64 ÷ 8<br><b>Step 3:</b> Simplify → x = 8<br><br><b>✅ Check:</b> 8 × 8 = 64 ✓'),
-    en: fmt('<b>Equation:</b> 8x = 64<br><br><b>Step 1:</b> Divide both sides by 8.<br><b>Step 2:</b> (8x) ÷ 8 = 64 ÷ 8<br><b>Step 3:</b> Simplify → x = 8<br><br><b>✅ Check:</b> 8 × 8 = 64 ✓')
-  }},
-  {q:'x − 12 = 25', s:{
-    hi: fmt('<b>Equation:</b> x − 12 = 25<br><br><b>Step 1:</b> Dono taraf 12 add karo.<br><b>Step 2:</b> x − 12 + 12 = 25 + 12<br><b>Step 3:</b> Simplify → x = 37<br><br><b>✅ Check:</b> 37 − 12 = 25 ✓'),
-    en: fmt('<b>Equation:</b> x − 12 = 25<br><br><b>Step 1:</b> Add 12 to both sides.<br><b>Step 2:</b> x − 12 + 12 = 25 + 12<br><b>Step 3:</b> Simplify → x = 37<br><br><b>✅ Check:</b> 37 − 12 = 25 ✓')
-  }},
-  {q:'6x + 1 = 25', s:{
-    hi: fmt('<b>Equation:</b> 6x + 1 = 25<br><br><b>Step 1:</b> Dono taraf se 1 subtract karo.<br><b>Step 2:</b> 6x + 1 − 1 = 25 − 1<br><b>Step 3:</b> Simplify → 6x = 24<br><b>Step 4:</b> Dono taraf 6 se divide karo.<br><b>Step 5:</b> (6x) ÷ 6 = 24 ÷ 6<br><b>Step 6:</b> Final Answer: <b>x = 4</b><br><br><b>✅ Check:</b> 6(4) + 1 = 24 + 1 = 25 ✓'),
-    en: fmt('<b>Equation:</b> 6x + 1 = 25<br><br><b>Step 1:</b> Subtract 1 from both sides.<br><b>Step 2:</b> 6x + 1 − 1 = 25 − 1<br><b>Step 3:</b> Simplify → 6x = 24<br><b>Step 4:</b> Divide both sides by 6.<br><b>Step 5:</b> (6x) ÷ 6 = 24 ÷ 6<br><b>Step 6:</b> Final Answer: <b>x = 4</b><br><br><b>✅ Check:</b> 6(4) + 1 = 25 ✓')
-  }},
-
-  // Level 2 - Intermediate (16 to 30)
-  {q:'3x + 4 = x + 10', s:{
-    hi: fmt('<b>Equation:</b> 3x + 4 = x + 10<br><br><b>Step 1:</b> Dono taraf x wale terms hain. Pehle RHS se x ko hatayenge. Dono taraf se x subtract karo.<br><b>Step 2:</b> 3x − x + 4 = x − x + 10 → 2x + 4 = 10<br><b>Step 3:</b> Ab LHS se 4 hatane ke liye dono taraf 4 subtract karo.<br><b>Step 4:</b> 2x + 4 − 4 = 10 − 4 → 2x = 6<br><b>Step 5:</b> Dono taraf 2 se divide karo → x = 3<br><br><b>✅ Check:</b> LHS: 3(3)+4=13, RHS: 3+10=13 ✓'),
-    en: fmt('<b>Equation:</b> 3x + 4 = x + 10<br><br><b>Step 1:</b> Variables are on both sides. Subtract x from both sides to group them.<br><b>Step 2:</b> 3x − x + 4 = x − x + 10 → 2x + 4 = 10<br><b>Step 3:</b> Subtract 4 from both sides.<br><b>Step 4:</b> 2x + 4 − 4 = 10 − 4 → 2x = 6<br><b>Step 5:</b> Divide both sides by 2 → x = 3<br><br><b>✅ Check:</b> LHS: 3(3)+4=13, RHS: 3+10=13 ✓')
-  }},
-  {q:'5x − 8 = 2x + 7', s:{
-    hi: fmt('<b>Equation:</b> 5x − 8 = 2x + 7<br><br><b>Step 1:</b> Dono taraf se 2x subtract karo taaki x ek taraf aaye.<br><b>Step 2:</b> 5x − 2x − 8 = 2x − 2x + 7 → 3x − 8 = 7<br><b>Step 3:</b> Dono taraf 8 add karo.<br><b>Step 4:</b> 3x − 8 + 8 = 7 + 8 → 3x = 15<br><b>Step 5:</b> Dono taraf 3 se divide karo → x = 5<br><br><b>✅ Check:</b> LHS: 5(5)-8=17, RHS: 2(5)+7=17 ✓'),
-    en: fmt('<b>Equation:</b> 5x − 8 = 2x + 7<br><br><b>Step 1:</b> Subtract 2x from both sides to gather variables.<br><b>Step 2:</b> 5x − 2x − 8 = 2x − 2x + 7 → 3x − 8 = 7<br><b>Step 3:</b> Add 8 to both sides.<br><b>Step 4:</b> 3x − 8 + 8 = 7 + 8 → 3x = 15<br><b>Step 5:</b> Divide both sides by 3 → x = 5<br><br><b>✅ Check:</b> LHS: 5(5)-8=17, RHS: 2(5)+7=17 ✓')
-  }},
-  {q:'2(x + 3) = 14', s:{
-    hi: fmt('<b>Equation:</b> 2(x + 3) = 14<br><br><b>Step 1:</b> Sabse pehle bracket (parentheses) ko kholo. 2 ko andar multiply karo.<br><b>Step 2:</b> 2 × x + 2 × 3 = 14 → 2x + 6 = 14<br><b>Step 3:</b> Dono taraf se 6 subtract karo.<br><b>Step 4:</b> 2x + 6 − 6 = 14 − 6 → 2x = 8<br><b>Step 5:</b> Dono taraf 2 se divide karo → x = 4<br><br><b>✅ Check:</b> 2(4+3) = 2(7) = 14 ✓'),
-    en: fmt('<b>Equation:</b> 2(x + 3) = 14<br><br><b>Step 1:</b> First, expand the bracket by multiplying 2 inside.<br><b>Step 2:</b> 2 × x + 2 × 3 = 14 → 2x + 6 = 14<br><b>Step 3:</b> Subtract 6 from both sides.<br><b>Step 4:</b> 2x + 6 − 6 = 14 − 6 → 2x = 8<br><b>Step 5:</b> Divide both sides by 2 → x = 4<br><br><b>✅ Check:</b> 2(4+3) = 2(7) = 14 ✓')
-  }},
-  {q:'4(x − 2) = 16', s:{
-    hi: fmt('<b>Equation:</b> 4(x − 2) = 16<br><br><b>Step 1:</b> Bracket kholo. 4 ko andar multiply karo.<br><b>Step 2:</b> 4 × x − 4 × 2 = 16 → 4x − 8 = 16<br><b>Step 3:</b> Dono taraf 8 add karo.<br><b>Step 4:</b> 4x − 8 + 8 = 16 + 8 → 4x = 24<br><b>Step 5:</b> Dono taraf 4 se divide karo → x = 6<br><br><b>✅ Check:</b> 4(6−2) = 4(4) = 16 ✓'),
-    en: fmt('<b>Equation:</b> 4(x − 2) = 16<br><br><b>Step 1:</b> Expand the bracket by multiplying 4 inside.<br><b>Step 2:</b> 4 × x − 4 × 2 = 16 → 4x − 8 = 16<br><b>Step 3:</b> Add 8 to both sides.<br><b>Step 4:</b> 4x − 8 + 8 = 16 + 8 → 4x = 24<br><b>Step 5:</b> Divide both sides by 4 → x = 6<br><br><b>✅ Check:</b> 4(6−2) = 4(4) = 16 ✓')
-  }},
-  {q:'x/2 + 3 = 7', s:{
-    hi: fmt('<b>Equation:</b> x/2 + 3 = 7<br><br><b>Step 1:</b> Dono taraf se 3 subtract karo.<br><b>Step 2:</b> x/2 + 3 − 3 = 7 − 3 → x/2 = 4<br><b>Step 3:</b> Dono taraf 2 se multiply karo (kyunki /2 hai).<br><b>Step 4:</b> (x/2) × 2 = 4 × 2 → x = 8<br><br><b>✅ Check:</b> 8/2 + 3 = 4 + 3 = 7 ✓'),
-    en: fmt('<b>Equation:</b> x/2 + 3 = 7<br><br><b>Step 1:</b> Subtract 3 from both sides.<br><b>Step 2:</b> x/2 + 3 − 3 = 7 − 3 → x/2 = 4<br><b>Step 3:</b> Multiply both sides by 2.<br><b>Step 4:</b> (x/2) × 2 = 4 × 2 → x = 8<br><br><b>✅ Check:</b> 8/2 + 3 = 7 ✓')
-  }},
-  {q:'x/3 − 2 = 4', s:{
-    hi: fmt('<b>Equation:</b> x/3 − 2 = 4<br><br><b>Step 1:</b> Dono taraf 2 add karo.<br><b>Step 2:</b> x/3 − 2 + 2 = 4 + 2 → x/3 = 6<br><b>Step 3:</b> Dono taraf 3 se multiply karo.<br><b>Step 4:</b> (x/3) × 3 = 6 × 3 → x = 18<br><br><b>✅ Check:</b> 18/3 − 2 = 6 − 2 = 4 ✓'),
-    en: fmt('<b>Equation:</b> x/3 − 2 = 4<br><br><b>Step 1:</b> Add 2 to both sides.<br><b>Step 2:</b> x/3 − 2 + 2 = 4 + 2 → x/3 = 6<br><b>Step 3:</b> Multiply both sides by 3.<br><b>Step 4:</b> (x/3) × 3 = 6 × 3 → x = 18<br><br><b>✅ Check:</b> 18/3 − 2 = 4 ✓')
-  }},
-  {q:'3x/4 = 9', s:{
-    hi: fmt('<b>Equation:</b> 3x/4 = 9<br><br><b>Step 1:</b> Dono taraf 4 se multiply karo taaki denominator hat jaye.<br><b>Step 2:</b> (3x/4) × 4 = 9 × 4 → 3x = 36<br><b>Step 3:</b> Dono taraf 3 se divide karo.<br><b>Step 4:</b> 3x ÷ 3 = 36 ÷ 3 → x = 12<br><br><b>✅ Check:</b> 3(12)/4 = 36/4 = 9 ✓'),
-    en: fmt('<b>Equation:</b> 3x/4 = 9<br><br><b>Step 1:</b> Multiply both sides by 4 to remove the denominator.<br><b>Step 2:</b> (3x/4) × 4 = 9 × 4 → 3x = 36<br><b>Step 3:</b> Divide both sides by 3.<br><b>Step 4:</b> 3x ÷ 3 = 36 ÷ 3 → x = 12<br><br><b>✅ Check:</b> 3(12)/4 = 36/4 = 9 ✓')
-  }},
-  {q:'2x/3 + 4 = 10', s:{
-    hi: fmt('<b>Equation:</b> 2x/3 + 4 = 10<br><br><b>Step 1:</b> Dono taraf se 4 subtract karo.<br><b>Step 2:</b> 2x/3 + 4 − 4 = 10 − 4 → 2x/3 = 6<br><b>Step 3:</b> Dono taraf 3 se multiply karo.<br><b>Step 4:</b> (2x/3) × 3 = 6 × 3 → 2x = 18<br><b>Step 5:</b> Dono taraf 2 se divide karo → x = 9<br><br><b>✅ Check:</b> 2(9)/3 + 4 = 18/3 + 4 = 6+4 = 10 ✓'),
-    en: fmt('<b>Equation:</b> 2x/3 + 4 = 10<br><br><b>Step 1:</b> Subtract 4 from both sides.<br><b>Step 2:</b> 2x/3 + 4 − 4 = 10 − 4 → 2x/3 = 6<br><b>Step 3:</b> Multiply both sides by 3.<br><b>Step 4:</b> (2x/3) × 3 = 6 × 3 → 2x = 18<br><b>Step 5:</b> Divide both sides by 2 → x = 9<br><br><b>✅ Check:</b> 2(9)/3 + 4 = 10 ✓')
-  }},
-  {q:'5(x + 1) = 3(x + 5)', s:{
-    hi: fmt('<b>Equation:</b> 5(x + 1) = 3(x + 5)<br><br><b>Step 1:</b> Dono taraf ke brackets kholo.<br><b>Step 2:</b> LHS: 5x + 5. RHS: 3x + 15. Equation: 5x + 5 = 3x + 15<br><b>Step 3:</b> Dono taraf se 3x subtract karo → 2x + 5 = 15<br><b>Step 4:</b> Dono taraf se 5 subtract karo → 2x = 10<br><b>Step 5:</b> Dono taraf 2 se divide karo → x = 5<br><br><b>✅ Check:</b> LHS: 5(6)=30, RHS: 3(10)=30 ✓'),
-    en: fmt('<b>Equation:</b> 5(x + 1) = 3(x + 5)<br><br><b>Step 1:</b> Expand brackets on both sides.<br><b>Step 2:</b> LHS: 5x + 5. RHS: 3x + 15. Equation: 5x + 5 = 3x + 15<br><b>Step 3:</b> Subtract 3x from both sides → 2x + 5 = 15<br><b>Step 4:</b> Subtract 5 from both sides → 2x = 10<br><b>Step 5:</b> Divide both sides by 2 → x = 5<br><br><b>✅ Check:</b> LHS: 5(6)=30, RHS: 3(10)=30 ✓')
-  }},
-  {q:'7x − 3 = 4x + 12', s:{
-    hi: fmt('<b>Equation:</b> 7x − 3 = 4x + 12<br><br><b>Step 1:</b> Dono taraf se 4x subtract karo.<br><b>Step 2:</b> 7x − 4x − 3 = 4x − 4x + 12 → 3x − 3 = 12<br><b>Step 3:</b> Dono taraf 3 add karo.<br><b>Step 4:</b> 3x − 3 + 3 = 12 + 3 → 3x = 15<br><b>Step 5:</b> Dono taraf 3 se divide karo → x = 5<br><br><b>✅ Check:</b> LHS: 7(5)-3=32, RHS: 4(5)+12=32 ✓'),
-    en: fmt('<b>Equation:</b> 7x − 3 = 4x + 12<br><br><b>Step 1:</b> Subtract 4x from both sides.<br><b>Step 2:</b> 7x − 4x − 3 = 4x − 4x + 12 → 3x − 3 = 12<br><b>Step 3:</b> Add 3 to both sides.<br><b>Step 4:</b> 3x − 3 + 3 = 12 + 3 → 3x = 15<br><b>Step 5:</b> Divide both sides by 3 → x = 5<br><br><b>✅ Check:</b> LHS: 7(5)-3=32, RHS: 4(5)+12=32 ✓')
-  }},
-  {q:'x/4 + x/3 = 7', s:{
-    hi: fmt('<b>Equation:</b> x/4 + x/3 = 7<br><br><b>Step 1:</b> 4 aur 3 ka LCM nikalo, jo 12 hai. Dono taraf 12 se multiply karo.<br><b>Step 2:</b> 12 × (x/4) + 12 × (x/3) = 12 × 7<br><b>Step 3:</b> 3x + 4x = 84<br><b>Step 4:</b> 7x = 84<br><b>Step 5:</b> Dono taraf 7 se divide karo → x = 12<br><br><b>✅ Check:</b> 12/4 + 12/3 = 3 + 4 = 7 ✓'),
-    en: fmt('<b>Equation:</b> x/4 + x/3 = 7<br><br><b>Step 1:</b> Find LCM of 4 and 3, which is 12. Multiply both sides by 12.<br><b>Step 2:</b> 12 × (x/4) + 12 × (x/3) = 12 × 7<br><b>Step 3:</b> 3x + 4x = 84<br><b>Step 4:</b> 7x = 84<br><b>Step 5:</b> Divide both sides by 7 → x = 12<br><br><b>✅ Check:</b> 12/4 + 12/3 = 7 ✓')
-  }},
-  {q:'2x/5 − 1 = 3', s:{
-    hi: fmt('<b>Equation:</b> 2x/5 − 1 = 3<br><br><b>Step 1:</b> Dono taraf 1 add karo.<br><b>Step 2:</b> 2x/5 − 1 + 1 = 3 + 1 → 2x/5 = 4<br><b>Step 3:</b> Dono taraf 5 se multiply karo.<br><b>Step 4:</b> (2x/5) × 5 = 4 × 5 → 2x = 20<br><b>Step 5:</b> Dono taraf 2 se divide karo → x = 10<br><br><b>✅ Check:</b> 2(10)/5 − 1 = 4 − 1 = 3 ✓'),
-    en: fmt('<b>Equation:</b> 2x/5 − 1 = 3<br><br><b>Step 1:</b> Add 1 to both sides.<br><b>Step 2:</b> 2x/5 − 1 + 1 = 3 + 1 → 2x/5 = 4<br><b>Step 3:</b> Multiply both sides by 5.<br><b>Step 4:</b> (2x/5) × 5 = 4 × 5 → 2x = 20<br><b>Step 5:</b> Divide both sides by 2 → x = 10<br><br><b>✅ Check:</b> 2(10)/5 − 1 = 3 ✓')
-  }},
-  {q:'4(x − 1) = 2(x + 3)', s:{
-    hi: fmt('<b>Equation:</b> 4(x − 1) = 2(x + 3)<br><br><b>Step 1:</b> Dono taraf brackets kholo.<br><b>Step 2:</b> LHS: 4x − 4. RHS: 2x + 6. Equation: 4x − 4 = 2x + 6<br><b>Step 3:</b> Dono taraf se 2x subtract karo → 2x − 4 = 6<br><b>Step 4:</b> Dono taraf 4 add karo → 2x = 10<br><b>Step 5:</b> Dono taraf 2 se divide karo → x = 5<br><br><b>✅ Check:</b> LHS: 4(4)=16, RHS: 2(8)=16 ✓'),
-    en: fmt('<b>Equation:</b> 4(x − 1) = 2(x + 3)<br><br><b>Step 1:</b> Expand brackets on both sides.<br><b>Step 2:</b> LHS: 4x − 4. RHS: 2x + 6. Equation: 4x − 4 = 2x + 6<br><b>Step 3:</b> Subtract 2x from both sides → 2x − 4 = 6<br><b>Step 4:</b> Add 4 to both sides → 2x = 10<br><b>Step 5:</b> Divide both sides by 2 → x = 5<br><br><b>✅ Check:</b> LHS: 4(4)=16, RHS: 2(8)=16 ✓')
-  }},
-  {q:'3(x + 2) = 2(x + 5) + 1', s:{
-    hi: fmt('<b>Equation:</b> 3(x + 2) = 2(x + 5) + 1<br><br><b>Step 1:</b> Brackets kholo.<br><b>Step 2:</b> LHS: 3x + 6. RHS: 2x + 10 + 1 = 2x + 11.<br><b>Step 3:</b> Equation: 3x + 6 = 2x + 11<br><b>Step 4:</b> Dono taraf se 2x subtract karo → x + 6 = 11<br><b>Step 5:</b> Dono taraf se 6 subtract karo → x = 5<br><br><b>✅ Check:</b> LHS: 3(7)=21, RHS: 2(10)+1=21 ✓'),
-    en: fmt('<b>Equation:</b> 3(x + 2) = 2(x + 5) + 1<br><br><b>Step 1:</b> Expand brackets.<br><b>Step 2:</b> LHS: 3x + 6. RHS: 2x + 10 + 1 = 2x + 11.<br><b>Step 3:</b> Equation: 3x + 6 = 2x + 11<br><b>Step 4:</b> Subtract 2x from both sides → x + 6 = 11<br><b>Step 5:</b> Subtract 6 from both sides → x = 5<br><br><b>✅ Check:</b> LHS: 3(7)=21, RHS: 2(10)+1=21 ✓')
-  }},
-  {q:'5x − (2x − 3) = 12', s:{
-    hi: fmt('<b>Equation:</b> 5x − (2x − 3) = 12<br><br><b>Step 1:</b> Bracket ke aage minus hai. Minus ko andar distribute karo.<br><b>Step 2:</b> 5x − 2x + 3 = 12 (kyunki − × − = +)<br><b>Step 3:</b> Simplify → 3x + 3 = 12<br><b>Step 4:</b> Dono taraf se 3 subtract karo → 3x = 9<br><b>Step 5:</b> Dono taraf 3 se divide karo → x = 3<br><br><b>✅ Check:</b> 5(3) − (6−3) = 15 − 3 = 12 ✓'),
-    en: fmt('<b>Equation:</b> 5x − (2x − 3) = 12<br><br><b>Step 1:</b> Distribute the negative sign inside the bracket.<br><b>Step 2:</b> 5x − 2x + 3 = 12 (since − × − = +)<br><b>Step 3:</b> Simplify → 3x + 3 = 12<br><b>Step 4:</b> Subtract 3 from both sides → 3x = 9<br><b>Step 5:</b> Divide both sides by 3 → x = 3<br><br><b>✅ Check:</b> 5(3) − (6−3) = 12 ✓')
-  }},
-
-  // Level 3 - Advanced (31 to 40)
-  {q:'3(x − 2) + 4(x + 1) = 25', s:{
-    hi: fmt('<b>Equation:</b> 3(x − 2) + 4(x + 1) = 25<br><br><b>Step 1:</b> Dono brackets kholo.<br><b>Step 2:</b> 3x − 6 + 4x + 4 = 25<br><b>Step 3:</b> Like terms combine karo → 7x − 2 = 25<br><b>Step 4:</b> Dono taraf 2 add karo → 7x = 27<br><b>Step 5:</b> Dono taraf 7 se divide karo → x = 27/7<br><br><b>✅ Check:</b> 3(27/7 - 14/7) + 4(27/7 + 7/7) = 3(13/7) + 4(34/7) = 39/7 + 136/7 = 175/7 = 25 ✓'),
-    en: fmt('<b>Equation:</b> 3(x − 2) + 4(x + 1) = 25<br><br><b>Step 1:</b> Expand both brackets.<br><b>Step 2:</b> 3x − 6 + 4x + 4 = 25<br><b>Step 3:</b> Combine like terms → 7x − 2 = 25<br><b>Step 4:</b> Add 2 to both sides → 7x = 27<br><b>Step 5:</b> Divide both sides by 7 → x = 27/7<br><br><b>✅ Check:</b> LHS = 25 ✓')
-  }},
-  {q:'2(3x − 1) − 3(x − 2) = 17', s:{
-    hi: fmt('<b>Equation:</b> 2(3x − 1) − 3(x − 2) = 17<br><br><b>Step 1:</b> Brackets kholo. Dhyan rakho, doosre bracket ke aage minus hai.<br><b>Step 2:</b> 6x − 2 − 3x + 6 = 17<br><b>Step 3:</b> Like terms combine karo → 3x + 4 = 17<br><b>Step 4:</b> Dono taraf se 4 subtract karo → 3x = 13<br><b>Step 5:</b> Dono taraf 3 se divide karo → x = 13/3<br><br><b>✅ Check:</b> LHS = 17 ✓'),
-    en: fmt('<b>Equation:</b> 2(3x − 1) − 3(x − 2) = 17<br><br><b>Step 1:</b> Expand brackets carefully. Watch the negative sign.<br><b>Step 2:</b> 6x − 2 − 3x + 6 = 17<br><b>Step 3:</b> Combine like terms → 3x + 4 = 17<br><b>Step 4:</b> Subtract 4 from both sides → 3x = 13<br><b>Step 5:</b> Divide both sides by 3 → x = 13/3<br><br><b>✅ Check:</b> LHS = 17 ✓')
-  }},
-  {q:'(x + 2)/3 = (x − 1)/2', s:{
-    hi: fmt('<b>Equation:</b> (x + 2)/3 = (x − 1)/2<br><br><b>Step 1:</b> Dono fractions hain, isliye cross multiply karenge.<br><b>Step 2:</b> 2(x + 2) = 3(x − 1)<br><b>Step 3:</b> Brackets kholo → 2x + 4 = 3x − 3<br><b>Step 4:</b> Dono taraf se 2x subtract karo → 4 = x − 3<br><b>Step 5:</b> Dono taraf 3 add karo → x = 7<br><br><b>✅ Check:</b> (7+2)/3 = 3, (7-1)/2 = 3 ✓'),
-    en: fmt('<b>Equation:</b> (x + 2)/3 = (x − 1)/2<br><br><b>Step 1:</b> Cross-multiply the fractions.<br><b>Step 2:</b> 2(x + 2) = 3(x − 1)<br><b>Step 3:</b> Expand brackets → 2x + 4 = 3x − 3<br><b>Step 4:</b> Subtract 2x from both sides → 4 = x − 3<br><b>Step 5:</b> Add 3 to both sides → x = 7<br><br><b>✅ Check:</b> LHS = 3, RHS = 3 ✓')
-  }},
-  {q:'4/(x + 1) = 2/3', s:{
-    hi: fmt('<b>Equation:</b> 4/(x + 1) = 2/3<br><br><b>Step 1:</b> Cross multiply karo.<br><b>Step 2:</b> 4 × 3 = 2 × (x + 1)<br><b>Step 3:</b> 12 = 2x + 2<br><b>Step 4:</b> Dono taraf se 2 subtract karo → 2x = 10<br><b>Step 5:</b> Dono taraf 2 se divide karo → x = 5<br><br><b>✅ Check:</b> 4/(5+1) = 4/6 = 2/3 ✓'),
-    en: fmt('<b>Equation:</b> 4/(x + 1) = 2/3<br><br><b>Step 1:</b> Cross-multiply.<br><b>Step 2:</b> 4 × 3 = 2 × (x + 1)<br><b>Step 3:</b> 12 = 2x + 2<br><b>Step 4:</b> Subtract 2 from both sides → 2x = 10<br><b>Step 5:</b> Divide both sides by 2 → x = 5<br><br><b>✅ Check:</b> 4/6 = 2/3 ✓')
-  }},
-  {q:'5x/2 − 3/4 = 7/4', s:{
-    hi: fmt('<b>Equation:</b> 5x/2 − 3/4 = 7/4<br><br><b>Step 1:</b> Dono taraf 3/4 add karo.<br><b>Step 2:</b> 5x/2 = 7/4 + 3/4<br><b>Step 3:</b> 5x/2 = 10/4, jise simplify karke 5/2 likh sakte hain.<br><b>Step 4:</b> Dono taraf 2 se multiply karo → 5x = 5<br><b>Step 5:</b> Dono taraf 5 se divide karo → x = 1<br><br><b>✅ Check:</b> 5/2 − 3/4 = 10/4 − 3/4 = 7/4 ✓'),
-    en: fmt('<b>Equation:</b> 5x/2 − 3/4 = 7/4<br><br><b>Step 1:</b> Add 3/4 to both sides.<br><b>Step 2:</b> 5x/2 = 7/4 + 3/4<br><b>Step 3:</b> 5x/2 = 10/4, which simplifies to 5/2.<br><b>Step 4:</b> Multiply both sides by 2 → 5x = 5<br><b>Step 5:</b> Divide both sides by 5 → x = 1<br><br><b>✅ Check:</b> 5/2 − 3/4 = 7/4 ✓')
-  }},
-  {q:'3(x + 1)/2 = 2(x − 1)/3', s:{
-    hi: fmt('<b>Equation:</b> 3(x + 1)/2 = 2(x − 1)/3<br><br><b>Step 1:</b> Cross multiply karo.<br><b>Step 2:</b> 3 × 3(x + 1) = 2 × 2(x − 1) → 9(x + 1) = 4(x − 1)<br><b>Step 3:</b> Brackets kholo → 9x + 9 = 4x − 4<br><b>Step 4:</b> Dono taraf se 4x subtract karo → 5x + 9 = −4<br><b>Step 5:</b> Dono taraf se 9 subtract karo → 5x = −13<br><b>Step 6:</b> Dono taraf 5 se divide karo → x = −13/5<br><br><b>✅ Check:</b> LHS = RHS ✓'),
-    en: fmt('<b>Equation:</b> 3(x + 1)/2 = 2(x − 1)/3<br><br><b>Step 1:</b> Cross-multiply.<br><b>Step 2:</b> 3 × 3(x + 1) = 2 × 2(x − 1) → 9(x + 1) = 4(x − 1)<br><b>Step 3:</b> Expand brackets → 9x + 9 = 4x − 4<br><b>Step 4:</b> Subtract 4x from both sides → 5x + 9 = −4<br><b>Step 5:</b> Subtract 9 from both sides → 5x = −13<br><b>Step 6:</b> Divide both sides by 5 → x = −13/5<br><br><b>✅ Check:</b> LHS = RHS ✓')
-  }},
-  {q:'2x − 3 = 5x + 9', s:{
-    hi: fmt('<b>Equation:</b> 2x − 3 = 5x + 9<br><br><b>Step 1:</b> Dono taraf se 2x subtract karo.<br><b>Step 2:</b> −3 = 3x + 9<br><b>Step 3:</b> Dono taraf se 9 subtract karo.<br><b>Step 4:</b> −12 = 3x<br><b>Step 5:</b> Dono taraf 3 se divide karo → x = −4<br><br><b>✅ Check:</b> LHS: 2(-4)-3 = -11, RHS: 5(-4)+9 = -11 ✓'),
-    en: fmt('<b>Equation:</b> 2x − 3 = 5x + 9<br><br><b>Step 1:</b> Subtract 2x from both sides.<br><b>Step 2:</b> −3 = 3x + 9<br><b>Step 3:</b> Subtract 9 from both sides.<br><b>Step 4:</b> −12 = 3x<br><b>Step 5:</b> Divide both sides by 3 → x = −4<br><br><b>✅ Check:</b> LHS = -11, RHS = -11 ✓')
-  }},
-  {q:'7 − 2x = 3x − 8', s:{
-    hi: fmt('<b>Equation:</b> 7 − 2x = 3x − 8<br><br><b>Step 1:</b> Dono taraf 2x add karo.<br><b>Step 2:</b> 7 = 5x − 8<br><b>Step 3:</b> Dono taraf 8 add karo.<br><b>Step 4:</b> 15 = 5x<br><b>Step 5:</b> Dono taraf 5 se divide karo → x = 3<br><br><b>✅ Check:</b> LHS: 7-6=1, RHS: 9-8=1 ✓'),
-    en: fmt('<b>Equation:</b> 7 − 2x = 3x − 8<br><br><b>Step 1:</b> Add 2x to both sides.<br><b>Step 2:</b> 7 = 5x − 8<br><b>Step 3:</b> Add 8 to both sides.<br><b>Step 4:</b> 15 = 5x<br><b>Step 5:</b> Divide both sides by 5 → x = 3<br><br><b>✅ Check:</b> LHS: 7-6=1, RHS: 9-8=1 ✓')
-  }},
-  {q:'0.5x + 1.5 = 3.5', s:{
-    hi: fmt('<b>Equation:</b> 0.5x + 1.5 = 3.5<br><br><b>Step 1:</b> Dono taraf se 1.5 subtract karo.<br><b>Step 2:</b> 0.5x = 3.5 − 1.5 → 0.5x = 2.0<br><b>Step 3:</b> Dono taraf 0.5 se divide karo.<br><b>Step 4:</b> x = 2.0 / 0.5 = 4<br><br><b>✅ Check:</b> 0.5(4) + 1.5 = 2 + 1.5 = 3.5 ✓'),
-    en: fmt('<b>Equation:</b> 0.5x + 1.5 = 3.5<br><br><b>Step 1:</b> Subtract 1.5 from both sides.<br><b>Step 2:</b> 0.5x = 3.5 − 1.5 → 0.5x = 2.0<br><b>Step 3:</b> Divide both sides by 0.5.<br><b>Step 4:</b> x = 2.0 / 0.5 = 4<br><br><b>✅ Check:</b> 0.5(4) + 1.5 = 3.5 ✓')
-  }},
-  {q:'1.2x − 2.4 = 0', s:{
-    hi: fmt('<b>Equation:</b> 1.2x − 2.4 = 0<br><br><b>Step 1:</b> Dono taraf 2.4 add karo.<br><b>Step 2:</b> 1.2x = 2.4<br><b>Step 3:</b> Dono taraf 1.2 se divide karo.<br><b>Step 4:</b> x = 2.4 / 1.2 = 2<br><br><b>✅ Check:</b> 1.2(2) − 2.4 = 2.4 − 2.4 = 0 ✓'),
-    en: fmt('<b>Equation:</b> 1.2x − 2.4 = 0<br><br><b>Step 1:</b> Add 2.4 to both sides.<br><b>Step 2:</b> 1.2x = 2.4<br><b>Step 3:</b> Divide both sides by 1.2.<br><b>Step 4:</b> x = 2.4 / 1.2 = 2<br><br><b>✅ Check:</b> 1.2(2) − 2.4 = 0 ✓')
-  }},
-
-  // Level 4 - Word Problems (41 to 50)
-  {q:'Ek number ka 3 guna plus 8, 35 ke equal hai. Number find karo.', s:{
-    hi: fmt('<b>Question:</b> Ek number ka 3 guna plus 8, 35 ke equal hai.<br><br><b>Step 1:</b> Unknown number ko x maano.<br><b>Step 2:</b> "3 guna" matlab 3x. Usme 8 joda, matlab 3x + 8.<br><b>Step 3:</b> Ye 35 ke barabar hai → 3x + 8 = 35<br><b>Step 4:</b> Dono taraf se 8 subtract karo → 3x = 27<br><b>Step 5:</b> Dono taraf 3 se divide karo → x = 9<br><br><b>✅ Answer:</b> Number = 9'),
-    en: fmt('<b>Question:</b> 3 times a number plus 8 equals 35.<br><br><b>Step 1:</b> Let the unknown number be x.<br><b>Step 2:</b> "3 times" means 3x. Plus 8 means 3x + 8.<br><b>Step 3:</b> Equals 35 → 3x + 8 = 35<br><b>Step 4:</b> Subtract 8 from both sides → 3x = 27<br><b>Step 5:</b> Divide both sides by 3 → x = 9<br><br><b>✅ Answer:</b> Number = 9')
-  }},
-  {q:'Ek number ka half, us number se 12 kam hai. Number find karo.', s:{
-    hi: fmt('<b>Question:</b> Ek number ka half, us number se 12 kam hai.<br><br><b>Step 1:</b> Number = x maano.<br><b>Step 2:</b> Half = x/2. Ye number (x) se 12 kam hai → x/2 = x − 12<br><b>Step 3:</b> Dono taraf 2 se multiply karo → x = 2(x − 12)<br><b>Step 4:</b> x = 2x − 24<br><b>Step 5:</b> Dono taraf se x subtract karo → 0 = x − 24<br><b>Step 6:</b> x = 24<br><br><b>✅ Answer:</b> Number = 24'),
-    en: fmt('<b>Question:</b> Half of a number is 12 less than the number.<br><br><b>Step 1:</b> Let number = x.<br><b>Step 2:</b> Half = x/2. It is 12 less than x → x/2 = x − 12<br><b>Step 3:</b> Multiply by 2 → x = 2(x − 12)<br><b>Step 4:</b> x = 2x − 24<br><b>Step 5:</b> Subtract x → 0 = x − 24<br><b>Step 6:</b> x = 24<br><br><b>✅ Answer:</b> Number = 24')
-  }},
-  {q:'Father ki age son se 3 guna hai. Total 48 years. Age find karo.', s:{
-    hi: fmt('<b>Question:</b> Father ki age son se 3 guna. Total 48.<br><br><b>Step 1:</b> Son ki age = x. Father ki age = 3x.<br><b>Step 2:</b> Total age = x + 3x = 48<br><b>Step 3:</b> 4x = 48<br><b>Step 4:</b> Dono taraf 4 se divide → x = 12<br><b>Step 5:</b> Son = 12, Father = 3 × 12 = 36<br><br><b>✅ Answer:</b> Son = 12 years, Father = 36 years'),
-    en: fmt('<b>Question:</b> Father is 3 times older than son. Total = 48.<br><br><b>Step 1:</b> Son = x. Father = 3x.<br><b>Step 2:</b> x + 3x = 48<br><b>Step 3:</b> 4x = 48<br><b>Step 4:</b> Divide by 4 → x = 12<br><b>Step 5:</b> Son = 12, Father = 36<br><br><b>✅ Answer:</b> Son = 12, Father = 36')
-  }},
-  {q:'Rectangle length (x+4), breadth x. Perimeter 32. Dimensions?', s:{
-    hi: fmt('<b>Question:</b> Length = x+4, Breadth = x, Perimeter = 32.<br><br><b>Step 1:</b> Perimeter formula = 2(L + B)<br><b>Step 2:</b> 2((x + 4) + x) = 32<br><b>Step 3:</b> 2(2x + 4) = 32<br><b>Step 4:</b> 4x + 8 = 32<br><b>Step 5:</b> 4x = 24 → x = 6<br><b>Step 6:</b> Breadth = 6, Length = 10<br><br><b>✅ Answer:</b> 6 cm and 10 cm'),
-    en: fmt('<b>Question:</b> L = x+4, B = x, P = 32.<br><br><b>Step 1:</b> P = 2(L + B)<br><b>Step 2:</b> 2((x + 4) + x) = 32<br><b>Step 3:</b> 2(2x + 4) = 32<br><b>Step 4:</b> 4x + 8 = 32<br><b>Step 5:</b> 4x = 24 → x = 6<br><b>Step 6:</b> B = 6, L = 10<br><br><b>✅ Answer:</b> 6 cm and 10 cm')
-  }},
-  {q:'Number mein 20 add karke 4 se divide karo to 9 aata hai.', s:{
-    hi: fmt('<b>Question:</b> (Number + 20) / 4 = 9<br><br><b>Step 1:</b> Number = x<br><b>Step 2:</b> (x + 20) / 4 = 9<br><b>Step 3:</b> Dono taraf 4 se multiply → x + 20 = 36<br><b>Step 4:</b> Dono taraf se 20 subtract → x = 16<br><br><b>✅ Answer:</b> Number = 16'),
-    en: fmt('<b>Question:</b> (Number + 20) / 4 = 9<br><br><b>Step 1:</b> Let number = x<br><b>Step 2:</b> (x + 20) / 4 = 9<br><b>Step 3:</b> Multiply by 4 → x + 20 = 36<br><b>Step 4:</b> Subtract 20 → x = 16<br><br><b>✅ Answer:</b> Number = 16')
-  }},
-  {q:'Do consecutive integers ka sum 41 hai.', s:{
-    hi: fmt('<b>Question:</b> Do lagatar numbers ka sum 41.<br><br><b>Step 1:</b> Pehla = x, Doosra = x + 1<br><b>Step 2:</b> x + (x + 1) = 41<br><b>Step 3:</b> 2x + 1 = 41<br><b>Step 4:</b> 2x = 40 → x = 20<br><b>Step 5:</b> Numbers = 20 aur 21<br><br><b>✅ Answer:</b> 20, 21'),
-    en: fmt('<b>Question:</b> Sum of two consecutive integers is 41.<br><br><b>Step 1:</b> First = x, Second = x + 1<br><b>Step 2:</b> x + (x + 1) = 41<br><b>Step 3:</b> 2x + 1 = 41<br><b>Step 4:</b> 2x = 40 → x = 20<br><b>Step 5:</b> Numbers = 20 and 21<br><br><b>✅ Answer:</b> 20, 21')
-  }},
-  {q:'Item price x, discount 150, final 850.', s:{
-    hi: fmt('<b>Question:</b> Price - 150 = 850<br><br><b>Step 1:</b> Original price = x<br><b>Step 2:</b> x − 150 = 850<br><b>Step 3:</b> Dono taraf 150 add → x = 1000<br><br><b>✅ Answer:</b> ₹1000'),
-    en: fmt('<b>Question:</b> Price - 150 = 850<br><br><b>Step 1:</b> Let price = x<br><b>Step 2:</b> x − 150 = 850<br><b>Step 3:</b> Add 150 → x = 1000<br><br><b>✅ Answer:</b> ₹1000')
-  }},
-  {q:'3(x + 2) = 3x + 6', s:{
-    hi: fmt('<b>Question:</b> 3(x + 2) = 3x + 6<br><br><b>Step 1:</b> LHS bracket kholo → 3x + 6 = 3x + 6<br><b>Step 2:</b> Dono taraf identical hain.<br><b>Step 3:</b> Iska matlab x ki koi bhi value daalo, equation sahi rahegi.<br><br><b>✅ Answer:</b> Infinite Solutions'),
-    en: fmt('<b>Question:</b> 3(x + 2) = 3x + 6<br><br><b>Step 1:</b> Expand LHS → 3x + 6 = 3x + 6<br><b>Step 2:</b> Both sides are identical.<br><b>Step 3:</b> This means any value of x satisfies the equation.<br><br><b>✅ Answer:</b> Infinite Solutions')
-  }},
-  {q:'2(x + 3) = 2x + 10', s:{
-    hi: fmt('<b>Question:</b> 2(x + 3) = 2x + 10<br><br><b>Step 1:</b> LHS bracket kholo → 2x + 6 = 2x + 10<br><b>Step 2:</b> Dono taraf se 2x subtract karo → 6 = 10<br><b>Step 3:</b> 6 kabhi 10 ke barabar nahi ho sakta.<br><br><b>✅ Answer:</b> No Solution'),
-    en: fmt('<b>Question:</b> 2(x + 3) = 2x + 10<br><br><b>Step 1:</b> Expand LHS → 2x + 6 = 2x + 10<br><b>Step 2:</b> Subtract 2x → 6 = 10<br><b>Step 3:</b> 6 can never equal 10.<br><br><b>✅ Answer:</b> No Solution')
-  }},
-  {q:'Taxi fixed 50, per km 12, total 230.', s:{
-    hi: fmt('<b>Question:</b> 50 + 12 × Distance = 230<br><br><b>Step 1:</b> Distance = x km<br><b>Step 2:</b> 50 + 12x = 230<br><b>Step 3:</b> Dono taraf se 50 subtract → 12x = 180<br><b>Step 4:</b> Dono taraf 12 se divide → x = 15<br><br><b>✅ Answer:</b> 15 km'),
-    en: fmt('<b>Question:</b> 50 + 12 × Distance = 230<br><br><b>Step 1:</b> Let distance = x km<br><b>Step 2:</b> 50 + 12x = 230<br><b>Step 3:</b> Subtract 50 → 12x = 180<br><b>Step 4:</b> Divide by 12 → x = 15<br><br><b>✅ Answer:</b> 15 km')
-  }}
-];
-
-_linEq50.word = _linEq50.ex.slice(40);
-window.currentLang = 'hi'; 
-
-window.toggleMathLang = function(lang) {
-  window.currentLang = lang;
-  renderAdvChapter();
-  speak(lang === 'hi' ? "Roman Urdu selected" : "English selected", lang === 'hi' ? 'hi-IN' : 'en-IN');
-};
-
-// --- SAFE RENDERING FUNCTIONS ---
-window.speakDef = function() {
-  const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-  let plain = c.def.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
-  speak(plain, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-};
-
-window.speakStep = function(i) {
-  const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-  speak(c.steps[i], window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-};
-
-window.speakExQ = function(i) {
-  const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-  speak(c.ex[i].q, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-};
-
-window.speakExSol = function(i) {
-  const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-  const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
-  let sol = isLinearEq ? c.ex[i].s[window.currentLang] : (c.ex[i].s || c.ex[i].a || '');
-  let plain = sol.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
-  speak(plain, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-  document.getElementById('adv-ex-' + i).classList.toggle('show');
-  addStar();
-};
-
-window.revealPr = function(i) {
-  const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-  const el = document.getElementById('adv-pr-' + i);
-  if (el) {
-    let ans = c.pr[i].a || '';
-    el.textContent = ans;
-    el.classList.add('revealed');
-    speak('Answer is ' + ans, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-    addStar();
-  }
-};
-
-window.speakWordQ = function(i) {
-  const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-  speak(c.word[i].q, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-};
-
-window.speakWordSol = function(i) {
-  const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-  const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
-  let sol = isLinearEq ? c.word[i].s[window.currentLang] : (c.word[i].s || c.word[i].a || '');
-  let plain = sol.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
-  speak(plain, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-  document.getElementById('adv-wd-' + i).classList.toggle('show');
-  addStar();
-};
-
-window.renderAdvChapter = function() {
-  const s = ADVANCED_LESSONS[state.advSubj];
-  const c = s.chapters[state.advChap];
-  const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
-  
-  setH(c.title, s.name);
-  
-  let langToggleHTML = '';
-  if (isLinearEq) {
-    langToggleHTML = 
-      '<div style="display:flex; justify-content:center; gap:10px; margin-bottom:20px;">' +
-        '<button onclick="toggleMathLang(\'hi\')" style="border:none; padding:8px 16px; border-radius:20px; font-weight:bold; font-family:inherit; cursor:pointer; transition:0.3s; ' + (window.currentLang==='hi'?'background:#7c5cff; color:white;':'background:#eef0ff; color:#5c4dff;') + '">🗣️ Roman Urdu</button>' +
-        '<button onclick="toggleMathLang(\'en\')" style="border:none; padding:8px 16px; border-radius:20px; font-weight:bold; font-family:inherit; cursor:pointer; transition:0.3s; ' + (window.currentLang==='en'?'background:#7c5cff; color:white;':'background:#eef0ff; color:#5c4dff;') + '">🇬🇧 English</button>' +
-      '</div>';
-  }
-
-  let html = '<div class="chapter-view">' +
-    '<h2>' + c.emoji + ' ' + c.title + '</h2>' +
-    '<div class="meta">' + s.name + ' • Advanced</div>' +
-    langToggleHTML;
-
-  html += '<div class="chapter-sec"><h3>📖 Definition</h3>' +
-    '<div class="text" onclick="speakDef()">' + c.def + ' 🔊</div>' +
-  '</div>';
-
-  html += '<div class="chapter-sec"><h3>🔢 Steps</h3>';
-  c.steps.forEach((st,i) => {
-    html += '<div class="chapter-step" onclick="speakStep(' + i + ')">' +
-      '<span class="n">' + (i+1) + '</span><span>' + st + '</span></div>';
-  });
-  html += '</div>';
-
-  html += '<div class="chapter-sec"><h3>💡 Solved Examples</h3>';
-  if (c.ex && c.ex.length > 0) {
-    c.ex.forEach((e,i) => {
-      let solText = isLinearEq ? e.s[window.currentLang] : (e.s || e.a || '');
-      html += '<div class="chapter-ex">' +
-        '<div class="q" onclick="speakExQ(' + i + ')">' + (i+1) + '. ' + e.q + ' 🔊</div>' +
-        '<button class="ans-btn" onclick="speakExSol(' + i + ')">👉 Solution</button>' +
-        '<div class="s" id="adv-ex-' + i + '">' + solText + '</div>' +
-      '</div>';
-    });
-  }
-  html += '</div>';
-
-  if (c.pr && c.pr.length > 0) {
-    html += '<div class="chapter-sec"><h3>❓ Practice Questions</h3>';
-    c.pr.forEach((p,i) => {
-      html += '<div class="chapter-pr">' +
-        '<span class="q">Q' + (i+1) + '. ' + p.q + '</span>' +
-        '<span class="a" id="adv-pr-' + i + '" onclick="revealPr(' + i + ')">Show</span>' +
-      '</div>';
-    });
-    html += '</div>';
-  }
-
-  if (c.word && c.word.length > 0) {
-    html += '<div class="chapter-sec"><h3>📝 Word Problems</h3>';
-    c.word.forEach((w,i) => {
-       let solText = isLinearEq ? w.s[window.currentLang] : (w.s || w.a || '');
-       html += '<div class="chapter-word">' +
-        '<div class="q" onclick="speakWordQ(' + i + ')">' + (i+1) + '. ' + w.q + ' 🔊</div>' +
-        '<button class="ans-btn" onclick="speakWordSol(' + i + ')">👉 Answer</button>' +
-        '<div class="a" id="adv-wd-' + i + '">' + solText + '</div>' +
-      '</div>';
-    });
-    html += '</div>';
-  }
-
-  html += '<div class="poem-actions">' +
-    '<button class="btn primary" onclick="playAdvChapter()">▶️ Read All</button>' +
-    '<button class="btn" onclick="renderAdvSubject()">↩️ Back</button>' +
-  '</div></div>';
-
-  screen.innerHTML = html;
-  window.scrollTo(0,0);
-};
-
-window.playAdvChapter = function() {
-  const s = ADVANCED_LESSONS[state.advSubj];
-  const c = s.chapters[state.advChap];
-  const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
-  const lang = window.currentLang === 'hi' ? 'hi-IN' : 'en-IN';
-  
-  const seq = [];
-  seq.push(c.def.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim());
-  c.steps.forEach(st => seq.push(st));
-  
-  c.ex.forEach(e => {
-    let sol = isLinearEq ? e.s[window.currentLang] : (e.s || e.a || '');
-    let plainSol = sol.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
-    seq.push("Question: " + e.q);
-    seq.push("Solution: " + plainSol);
-  });
-  
-  if(c.word) {
-    c.word.forEach(w => {
-      let sol = isLinearEq ? w.s[window.currentLang] : (w.s || w.a || '');
-      let plainSol = sol.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
-      seq.push("Word Problem: " + w.q);
-      seq.push("Answer: " + plainSol);
-    });
-  }
-  
-  speakSeq(seq, lang);
-  addStar();
-};
-</script>
-<!-- ====================================================
-     MENSURATION FULL DETAILS (50 Questions + SVG Diagrams)
-     ==================================================== -->
 <script>
 /* Chapter index 2 = Mensuration */
 const _mensuration = ADVANCED_LESSONS.maths.chapters[2];
@@ -2684,6 +2281,187 @@ window.speakSeq = function(lines, lang = 'hi-IN', onLine) {
     });
     originalSpeakSeq(modifiedLines, lang, onLine);
 };
+</script>
+<!-- ====================================================
+     SHIFA'S ADVANCED MATHS & VOICE FIX (ALL IN ONE)
+     ==================================================== -->
+<script>
+// ==========================================
+// 1. VOICE SYMBOL FIX (Math symbols ko words mein badlega)
+// ==========================================
+if (typeof window.speak === 'function') {
+    const originalSpeak = window.speak;
+    const originalSpeakSeq = window.speakSeq;
+    
+    window.speak = function(text, lang = 'hi-IN', rate = 0.78) {
+        if (!text) return;
+        let spokenText = String(text);
+        let isEnglish = lang.includes('en');
+        spokenText = spokenText.replace(/=/g, isEnglish ? ' equals ' : ' barabar hai ');
+        spokenText = spokenText.replace(/\+/g, ' plus ');
+        spokenText = spokenText.replace(/−/g, ' minus ').replace(/-/g, ' minus ');
+        spokenText = spokenText.replace(/×/g, ' times ').replace(/\*/g, ' times ');
+        spokenText = spokenText.replace(/÷/g, ' divided by ').replace(/\//g, ' divided by ');
+        originalSpeak(spokenText, lang, rate);
+    };
+    
+    window.speakSeq = function(lines, lang = 'hi-IN', onLine) {
+        if (!lines) return;
+        let isEnglish = lang.includes('en');
+        let modifiedLines = lines.map(line => {
+            let text = String(line);
+            text = text.replace(/=/g, isEnglish ? ' equals ' : ' barabar hai ');
+            text = text.replace(/\+/g, ' plus ');
+            text = text.replace(/−/g, ' minus ').replace(/-/g, ' minus ');
+            text = text.replace(/×/g, ' times ').replace(/\*/g, ' times ');
+            text = text.replace(/÷/g, ' divided by ').replace(/\//g, ' divided by ');
+            return text;
+        });
+        originalSpeakSeq(modifiedLines, lang, onLine);
+    };
+}
+
+// ==========================================
+// 2. ADVANCED MATHS ENGINE
+// ==========================================
+if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
+    
+    const fmt = function(txt) {
+        return '<div style="text-align:left;line-height:1.9;font-size:1.05rem;color:#333">' + txt + '</div>';
+    };
+
+    // --- LINEAR EQUATIONS (50 Q) ---
+    const _linEq = ADVANCED_LESSONS.maths.chapters[1];
+    _linEq.title = 'Linear Equations (50 Q)';
+    
+    const generateLinEq = () => {
+        let qs = [];
+        for(let i=1; i<=10; i++) {
+            let a = i+2; let b = a + i;
+            qs.push({q:`x + ${a} = ${b}`, s:{
+                hi: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> Dono taraf se ${a} subtract karo.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> x = ${i}<br><br><b>✅ Check:</b> ${i} + ${a} = ${b} ✓`),
+                en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> Subtract ${a} from both sides.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> x = ${i}<br><br><b>✅ Check:</b> ${i} + ${a} = ${b} ✓`)
+            }});
+        }
+        for(let i=2; i<=11; i++) {
+            let b = i * 3;
+            qs.push({q:`${i}x = ${b}`, s:{
+                hi: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> Dono taraf ko ${i} se divide karo.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> x = 3<br><br><b>✅ Check:</b> ${i}(${3}) = ${b} ✓`),
+                en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> Divide both sides by ${i}.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> x = 3<br><br><b>✅ Check:</b> ${i}(${3}) = ${b} ✓`)
+            }});
+        }
+        for(let i=2; i<=6; i++) {
+            for(let j=1; j<=3; j++) {
+                let a = i; let b = j; let x = 4; let c = a*x + b;
+                qs.push({q:`${a}x + ${b} = ${c}`, s:{
+                    hi: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br><b>Step 1:</b> Dono taraf se ${b} subtract karo.<br><b>Step 2:</b> ${a}x = ${c} − ${b} → ${a}x = ${a*x}<br><b>Step 3:</b> Dono taraf ko ${a} se divide karo.<br><b>Step 4:</b> x = ${x}<br><br><b>✅ Check:</b> ${a}(${x}) + ${b} = ${c} ✓`),
+                    en: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br><b>Step 1:</b> Subtract ${b} from both sides.<br><b>Step 2:</b> ${a}x = ${c} − ${b} → ${a}x = ${a*x}<br><b>Step 3:</b> Divide both sides by ${a}.<br><b>Step 4:</b> x = ${x}<br><br><b>✅ Check:</b> ${a}(${x}) + ${b} = ${c} ✓`)
+                }});
+            }
+        }
+        for(let i=1; i<=15; i++) {
+            let age = i * 5; let ans = age + 12;
+            qs.push({q:`Ek number mein 12 jodne par ${ans} aata hai. Number kya hai?`, s:{
+                hi: fmt(`<b>Equation:</b> x + 12 = ${ans}<br><br><b>Step 1:</b> Number = x maano.<br><b>Step 2:</b> x + 12 = ${ans}<br><b>Step 3:</b> Dono taraf se 12 subtract karo.<br><b>Step 4:</b> x = ${age}<br><br><b>✅ Answer:</b> Number = ${age}`),
+                en: fmt(`<b>Equation:</b> x + 12 = ${ans}<br><br><b>Step 1:</b> Let number = x.<br><b>Step 2:</b> x + 12 = ${ans}<br><b>Step 3:</b> Subtract 12 from both sides.<br><b>Step 4:</b> x = ${age}<br><br><b>✅ Answer:</b> Number = ${age}`)
+            }});
+        }
+        return qs;
+    };
+    
+    _linEq.ex = generateLinEq();
+    _linEq.word = _linEq.ex.slice(40);
+
+    // --- MENSURATION (Restored with SVGs) ---
+    const _mensuration = ADVANCED_LESSONS.maths.chapters[2];
+    _mensuration.def = '<div style="text-align:left;line-height:1.8">Mensuration matlab shapes ka <b>Area</b>, <b>Perimeter</b> aur <b>Volume</b> nikalna.<br><br><b>Formulas:</b><br>• Rectangle: Area = L × B, Perimeter = 2(L+B)<br>• Square: Area = Side², Perimeter = 4 × Side<br>• Circle: Area = πr², Circumference = 2πr<br>• Cube: Volume = Side³</div>';
+    
+    _mensuration.ex = [
+        {q:'Rectangle ki length 8 cm aur breadth 5 cm hai. Area?', s: fmt('<b>Formula:</b> Area = L × B<br><b>Step 1:</b> Area = 8 × 5<br><b>Step 2:</b> Area = 40 cm²<br><br><div style="text-align:center"><svg width="150" height="100"><rect x="10" y="20" width="100" height="60" fill="none" stroke="#7c5cff" stroke-width="3" stroke-dasharray="5,5"/><text x="60" y="15" font-size="12">L=8</text><text x="120" y="55" font-size="12">B=5</text></svg></div><br><b>✅ Answer:</b> 40 cm²'), a:'40 sq cm'},
+        {q:'Square ki side 6 cm hai. Area?', s: fmt('<b>Formula:</b> Area = Side²<br><b>Step 1:</b> Area = 6² = 6 × 6<br><b>Step 2:</b> Area = 36 cm²<br><br><b>✅ Answer:</b> 36 cm²'), a:'36 sq cm'},
+        {q:'Circle ka radius 7 cm hai. Area? (π = 22/7)', s: fmt('<b>Formula:</b> Area = πr²<br><b>Step 1:</b> Area = (22/7) × 7 × 7<br><b>Step 2:</b> 7 cancel ho jayega, 22 × 7 = 154<br><b>Step 3:</b> Area = 154 cm²<br><br><div style="text-align:center"><svg width="120" height="120"><circle cx="60" cy="60" r="40" fill="none" stroke="#00c2a8" stroke-width="3"/><line x1="60" y1="60" x2="100" y2="60" stroke="#333" stroke-width="2" stroke-dasharray="4,4"/><text x="80" y="55" font-size="12">r=7</text></svg></div><br><b>✅ Answer:</b> 154 cm²'), a:'154 sq cm'},
+        {q:'Cube ki side 3 cm hai. Volume?', s: fmt('<b>Formula:</b> Volume = Side³<br><b>Step 1:</b> Volume = 3 × 3 × 3<br><b>Step 2:</b> Volume = 27 cm³<br><br><b>✅ Answer:</b> 27 cm³'), a:'27 cubic cm'}
+    ];
+
+    // --- RENDERERS & HELPERS ---
+    window.currentLang = 'hi';
+
+    window.toggleMathLang = function(lang) {
+        window.currentLang = lang;
+        renderAdvChapter();
+        speak(lang === 'hi' ? "Roman Urdu selected" : "English selected", lang === 'hi' ? 'hi-IN' : 'en-IN');
+    };
+
+    window.renderAdvChapter = function() {
+        const s = ADVANCED_LESSONS[state.advSubj];
+        const c = s.chapters[state.advChap];
+        const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
+        
+        setH(c.title, s.name);
+        
+        let langToggleHTML = '';
+        if (isLinearEq) {
+            let hiStyle = window.currentLang === 'hi' ? 'background:#7c5cff; color:white;' : 'background:#eef0ff; color:#5c4dff;';
+            let enStyle = window.currentLang === 'en' ? 'background:#7c5cff; color:white;' : 'background:#eef0ff; color:#5c4dff;';
+            langToggleHTML = '<div style="display:flex; justify-content:center; gap:10px; margin-bottom:20px;">' +
+                '<button onclick="toggleMathLang(\'hi\')" style="border:none; padding:8px 16px; border-radius:20px; font-weight:bold; font-family:inherit; cursor:pointer; transition:0.3s; ' + hiStyle + '">🗣️ Roman Urdu</button>' +
+                '<button onclick="toggleMathLang(\'en\')" style="border:none; padding:8px 16px; border-radius:20px; font-weight:bold; font-family:inherit; cursor:pointer; transition:0.3s; ' + enStyle + '">🇬🇧 English</button>' +
+                '</div>';
+        }
+
+        let html = '<div class="chapter-view">' +
+            '<h2>' + c.emoji + ' ' + c.title + '</h2>' +
+            '<div class="meta">' + s.name + ' • Advanced</div>' +
+            langToggleHTML;
+
+        html += '<div class="chapter-sec"><h3>📖 Definition</h3>' +
+            '<div class="text" onclick="speakDef()">' + c.def + ' 🔊</div>' +
+            '</div>';
+
+        html += '<div class="chapter-sec"><h3>💡 Solved Examples</h3>';
+        if (c.ex && c.ex.length > 0) {
+            c.ex.forEach((e,i) => {
+                let solText = isLinearEq ? e.s[window.currentLang] : (e.s || e.a || '');
+                html += '<div class="chapter-ex">' +
+                    '<div class="q" onclick="speakExQ(' + i + ')">' + (i+1) + '. ' + e.q + ' 🔊</div>' +
+                    '<button class="ans-btn" onclick="speakExSol(' + i + ')">👉 Solution</button>' +
+                    '<div class="s" id="adv-ex-' + i + '">' + solText + '</div>' +
+                    '</div>';
+            });
+        }
+        html += '</div>';
+
+        html += '<div class="poem-actions">' +
+            '<button class="btn" onclick="renderAdvSubject()">↩️ Back</button>' +
+            '</div></div>';
+
+        screen.innerHTML = html;
+        window.scrollTo(0,0);
+    };
+
+    window.speakDef = function() {
+        const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
+        let plain = c.def.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+        speak(plain, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+    };
+
+    window.speakExQ = function(i) {
+        const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
+        speak(c.ex[i].q, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+    };
+
+    window.speakExSol = function(i) {
+        const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
+        const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
+        let sol = isLinearEq ? c.ex[i].s[window.currentLang] : (c.ex[i].s || c.ex[i].a || '');
+        let plain = sol.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+        speak(plain, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+        document.getElementById('adv-ex-' + i).classList.toggle('show');
+        addStar();
+    };
+    
+    console.log("✅ Advanced Maths & All Qs Loaded Successfully!");
+}
 </script>
 </body>
 </html>
