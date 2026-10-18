@@ -1438,286 +1438,77 @@ document.body.addEventListener('touchstart',function u(){
 
 <script>
 /* ============================================================
-   MATHS — LINEAR EQUATIONS (Detailed Solutions)
-   ============================================================ */
-
+<!-- ====================================================
+     LINEAR EQUATIONS — 50 QUESTIONS (Basic to Advanced)
+     ==================================================== -->
+<script>
 /* Chapter index 1 = Linear Equations */
-const _linEq = ADVANCED_LESSONS.maths.chapters[1];
+const _linEq50 = ADVANCED_LESSONS.maths.chapters[1];
 
-_linEq.ex = [
-  {q:'Solve: x + 5 = 12',
-   s:`📝 Question: Solve: x + 5 = 12
+_linEq50.ex = [
+  // Level 1 - Basic (1 to 15)
+  {q:'x + 5 = 12', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x + 5 = 12<br><b>Step 2:</b> Dono taraf 5 ghatao → x + 5 − 5 = 12 − 5<br><b>Step 3:</b> x = 7<br><br><b>✅ Check:</b> 7 + 5 = 12 ✓</div>`},
+  {q:'x − 4 = 10', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x − 4 = 10<br><b>Step 2:</b> Dono taraf 4 jodo → x − 4 + 4 = 10 + 4<br><b>Step 3:</b> x = 14<br><br><b>✅ Check:</b> 14 − 4 = 10 ✓</div>`},
+  {q:'3x = 21', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 3x = 21<br><b>Step 2:</b> Dono taraf 3 se divide karo → 3x ÷ 3 = 21 ÷ 3<br><b>Step 3:</b> x = 7<br><br><b>✅ Check:</b> 3 × 7 = 21 ✓</div>`},
+  {q:'x ÷ 2 = 8', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x/2 = 8<br><b>Step 2:</b> Dono taraf 2 se multiply karo → (x/2) × 2 = 8 × 2<br><b>Step 3:</b> x = 16<br><br><b>✅ Check:</b> 16 ÷ 2 = 8 ✓</div>`},
+  {q:'2x + 3 = 11', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 2x + 3 = 11<br><b>Step 2:</b> +3 hatao (3 ghatao) → 2x = 8<br><b>Step 3:</b> 2 se divide → x = 4<br><br><b>✅ Check:</b> 2(4) + 3 = 8 + 3 = 11 ✓</div>`},
+  {q:'5x − 7 = 13', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 5x − 7 = 13<br><b>Step 2:</b> −7 hatao (7 jodo) → 5x = 20<br><b>Step 3:</b> 5 se divide → x = 4<br><br><b>✅ Check:</b> 5(4) − 7 = 20 − 7 = 13 ✓</div>`},
+  {q:'4x + 2 = 30', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 4x + 2 = 30<br><b>Step 2:</b> 2 ghatao → 4x = 28<br><b>Step 3:</b> 4 se divide → x = 7<br><br><b>✅ Check:</b> 4(7) + 2 = 28 + 2 = 30 ✓</div>`},
+  {q:'7x = 42', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 7x = 42<br><b>Step 2:</b> Dono taraf 7 se divide → x = 6<br><br><b>✅ Check:</b> 7 × 6 = 42 ✓</div>`},
+  {q:'x ÷ 5 = 3', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x/5 = 3<br><b>Step 2:</b> Dono taraf 5 se multiply → x = 15<br><br><b>✅ Check:</b> 15 ÷ 5 = 3 ✓</div>`},
+  {q:'x + 15 = 35', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x + 15 = 35<br><b>Step 2:</b> 15 ghatao → x = 20<br><br><b>✅ Check:</b> 20 + 15 = 35 ✓</div>`},
+  {q:'2x − 8 = 12', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 2x − 8 = 12<br><b>Step 2:</b> 8 jodo → 2x = 20<br><b>Step 3:</b> 2 se divide → x = 10<br><br><b>✅ Check:</b> 2(10) − 8 = 20 − 8 = 12 ✓</div>`},
+  {q:'x ÷ 3 = 9', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x/3 = 9<br><b>Step 2:</b> Dono taraf 3 se multiply → x = 27<br><br><b>✅ Check:</b> 27 ÷ 3 = 9 ✓</div>`},
+  {q:'8x = 64', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 8x = 64<br><b>Step 2:</b> 8 se divide → x = 8<br><br><b>✅ Check:</b> 8 × 8 = 64 ✓</div>`},
+  {q:'x − 12 = 25', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x − 12 = 25<br><b>Step 2:</b> 12 jodo → x = 37<br><br><b>✅ Check:</b> 37 − 12 = 25 ✓</div>`},
+  {q:'6x + 1 = 25', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 6x + 1 = 25<br><b>Step 2:</b> 1 ghatao → 6x = 24<br><b>Step 3:</b> 6 se divide → x = 4<br><br><b>✅ Check:</b> 6(4) + 1 = 24 + 1 = 25 ✓</div>`},
 
-🎯 Kya dhoondhna hai?
-x ki value nikalni hai
+  // Level 2 - Intermediate (16 to 30)
+  {q:'3x + 4 = x + 10', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 3x + 4 = x + 10<br><b>Step 2:</b> x ko left le jao → 2x + 4 = 10<br><b>Step 3:</b> 4 ghatao → 2x = 6<br><b>Step 4:</b> 2 se divide → x = 3<br><br><b>✅ Check:</b> LHS: 3(3)+4=13, RHS: 3+10=13 ✓</div>`},
+  {q:'5x − 8 = 2x + 7', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 5x − 8 = 2x + 7<br><b>Step 2:</b> 2x ko left le jao → 3x − 8 = 7<br><b>Step 3:</b> 8 jodo → 3x = 15<br><b>Step 4:</b> 3 se divide → x = 5<br><br><b>✅ Check:</b> LHS: 5(5)-8=17, RHS: 2(5)+7=17 ✓</div>`},
+  {q:'2(x + 3) = 14', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 2(x + 3) = 14<br><b>Step 2:</b> Bracket kholo → 2x + 6 = 14<br><b>Step 3:</b> 6 ghatao → 2x = 8<br><b>Step 4:</b> 2 se divide → x = 4<br><br><b>✅ Check:</b> 2(4+3) = 2(7) = 14 ✓</div>`},
+  {q:'4(x − 2) = 16', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 4(x − 2) = 16<br><b>Step 2:</b> Bracket kholo → 4x − 8 = 16<br><b>Step 3:</b> 8 jodo → 4x = 24<br><b>Step 4:</b> 4 se divide → x = 6<br><br><b>✅ Check:</b> 4(6−2) = 4(4) = 16 ✓</div>`},
+  {q:'x/2 + 3 = 7', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x/2 + 3 = 7<br><b>Step 2:</b> 3 ghatao → x/2 = 4<br><b>Step 3:</b> 2 se multiply → x = 8<br><br><b>✅ Check:</b> 8/2 + 3 = 4 + 3 = 7 ✓</div>`},
+  {q:'x/3 − 2 = 4', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x/3 − 2 = 4<br><b>Step 2:</b> 2 jodo → x/3 = 6<br><b>Step 3:</b> 3 se multiply → x = 18<br><br><b>✅ Check:</b> 18/3 − 2 = 6 − 2 = 4 ✓</div>`},
+  {q:'3x/4 = 9', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 3x/4 = 9<br><b>Step 2:</b> 4 se multiply → 3x = 36<br><b>Step 3:</b> 3 se divide → x = 12<br><br><b>✅ Check:</b> 3(12)/4 = 36/4 = 9 ✓</div>`},
+  {q:'2x/3 + 4 = 10', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 2x/3 + 4 = 10<br><b>Step 2:</b> 4 ghatao → 2x/3 = 6<br><b>Step 3:</b> 3 se multiply → 2x = 18<br><b>Step 4:</b> 2 se divide → x = 9<br><br><b>✅ Check:</b> 2(9)/3 + 4 = 18/3 + 4 = 6+4 = 10 ✓</div>`},
+  {q:'5(x + 1) = 3(x + 5)', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 5(x + 1) = 3(x + 5)<br><b>Step 2:</b> Bracket kholo → 5x + 5 = 3x + 15<br><b>Step 3:</b> 3x ko left → 2x + 5 = 15<br><b>Step 4:</b> 5 ghatao → 2x = 10<br><b>Step 5:</b> 2 se divide → x = 5<br><br><b>✅ Check:</b> LHS: 5(6)=30, RHS: 3(10)=30 ✓</div>`},
+  {q:'7x − 3 = 4x + 12', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 7x − 3 = 4x + 12<br><b>Step 2:</b> 4x ko left → 3x − 3 = 12<br><b>Step 3:</b> 3 jodo → 3x = 15<br><b>Step 4:</b> 3 se divide → x = 5<br><br><b>✅ Check:</b> LHS: 7(5)-3=32, RHS: 4(5)+12=32 ✓</div>`},
+  {q:'x/4 + x/3 = 7', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> x/4 + x/3 = 7<br><b>Step 2:</b> LCM of 4,3 = 12. Dono taraf 12 se multiply → 3x + 4x = 84<br><b>Step 3:</b> 7x = 84<br><b>Step 4:</b> 7 se divide → x = 12<br><br><b>✅ Check:</b> 12/4 + 12/3 = 3 + 4 = 7 ✓</div>`},
+  {q:'2x/5 − 1 = 3', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 2x/5 − 1 = 3<br><b>Step 2:</b> 1 jodo → 2x/5 = 4<br><b>Step 3:</b> 5 se multiply → 2x = 20<br><b>Step 4:</b> 2 se divide → x = 10<br><br><b>✅ Check:</b> 2(10)/5 − 1 = 20/5 − 1 = 4 − 1 = 3 ✓</div>`},
+  {q:'4(x − 1) = 2(x + 3)', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 4(x − 1) = 2(x + 3)<br><b>Step 2:</b> Brackets kholo → 4x − 4 = 2x + 6<br><b>Step 3:</b> 2x ko left → 2x − 4 = 6<br><b>Step 4:</b> 4 jodo → 2x = 10<br><b>Step 5:</b> 2 se divide → x = 5<br><br><b>✅ Check:</b> LHS: 4(4)=16, RHS: 2(8)=16 ✓</div>`},
+  {q:'3(x + 2) = 2(x + 5) + 1', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 3(x + 2) = 2(x + 5) + 1<br><b>Step 2:</b> Bracket kholo → 3x + 6 = 2x + 10 + 1<br><b>Step 3:</b> Right side simplify → 3x + 6 = 2x + 11<br><b>Step 4:</b> 2x ko left → x + 6 = 11<br><b>Step 5:</b> 6 ghatao → x = 5<br><br><b>✅ Check:</b> LHS: 3(7)=21, RHS: 2(10)+1=21 ✓</div>`},
+  {q:'5x − (2x − 3) = 12', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 5x − (2x − 3) = 12<br><b>Step 2:</b> Minus sign distribute karo → 5x − 2x + 3 = 12<br><b>Step 3:</b> Simplify → 3x + 3 = 12<br><b>Step 4:</b> 3 ghatao → 3x = 9<br><b>Step 5:</b> 3 se divide → x = 3<br><br><b>✅ Check:</b> 5(3) − (2(3)−3) = 15 − 3 = 12 ✓</div>`},
 
-📖 Concept:
-x ko akela karna hai — ek taraf x, doosri taraf numbers
+  // Level 3 - Advanced (31 to 40)
+  {q:'3(x − 2) + 4(x + 1) = 25', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 3(x − 2) + 4(x + 1) = 25<br><b>Step 2:</b> Brackets kholo → 3x − 6 + 4x + 4 = 25<br><b>Step 3:</b> Simplify → 7x − 2 = 25<br><b>Step 4:</b> 2 jodo → 7x = 27<br><b>Step 5:</b> x = 27/7<br><br><b>✅ Check:</b> 3(27/7 - 14/7) + 4(27/7 + 7/7) = 3(13/7) + 4(34/7) = 39/7 + 136/7 = 175/7 = 25 ✓</div>`},
+  {q:'2(3x − 1) − 3(x − 2) = 17', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 2(3x − 1) − 3(x − 2) = 17<br><b>Step 2:</b> Kholo → 6x − 2 − 3x + 6 = 17<br><b>Step 3:</b> Simplify → 3x + 4 = 17<br><b>Step 4:</b> 4 ghatao → 3x = 13<br><b>Step 5:</b> x = 13/3<br><br><b>✅ Check:</b> 2(13-1) - 3(13/3 - 6/3) = 2(12) - 3(7/3) = 24 - 7 = 17 ✓</div>`},
+  {q:'(x + 2)/3 = (x − 1)/2', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> (x+2)/3 = (x-1)/2<br><b>Step 2:</b> Cross multiply → 2(x + 2) = 3(x − 1)<br><b>Step 3:</b> Kholo → 2x + 4 = 3x − 3<br><b>Step 4:</b> 2x right le jao → 4 = x − 3<br><b>Step 5:</b> 3 jodo → x = 7<br><br><b>✅ Check:</b> (7+2)/3 = 9/3 = 3, (7-1)/2 = 6/2 = 3 ✓</div>`},
+  {q:'4/(x + 1) = 2/3', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 4/(x+1) = 2/3<br><b>Step 2:</b> Cross multiply → 4 × 3 = 2 × (x + 1)<br><b>Step 3:</b> 12 = 2x + 2<br><b>Step 4:</b> 2 ghatao → 2x = 10<br><b>Step 5:</b> 2 se divide → x = 5<br><br><b>✅ Check:</b> 4/(5+1) = 4/6 = 2/3 ✓</div>`},
+  {q:'5x/2 − 3/4 = 7/4', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 5x/2 − 3/4 = 7/4<br><b>Step 2:</b> Dono taraf 3/4 jodo → 5x/2 = 10/4<br><b>Step 3:</b> 10/4 simplify = 5/2. So, 5x/2 = 5/2<br><b>Step 4:</b> 2 se multiply → 5x = 5<br><b>Step 5:</b> 5 se divide → x = 1<br><br><b>✅ Check:</b> 5/2 − 3/4 = 10/4 − 3/4 = 7/4 ✓</div>`},
+  {q:'3(x + 1)/2 = 2(x − 1)/3', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 3(x+1)/2 = 2(x-1)/3<br><b>Step 2:</b> Cross multiply → 9(x + 1) = 4(x − 1)<br><b>Step 3:</b> Kholo → 9x + 9 = 4x − 4<br><b>Step 4:</b> 4x ko left → 5x + 9 = −4<br><b>Step 5:</b> 9 ghatao → 5x = −13<br><b>Step 6:</b> x = −13/5<br><br><b>✅ Check:</b> 3(-13/5+5/5)/2 = 3(-8/5)/2 = -24/10 = -12/5. RHS: 2(-13/5-5/5)/3 = 2(-18/5)/3 = -36/15 = -12/5 ✓</div>`},
+  {q:'2x − 3 = 5x + 9', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 2x − 3 = 5x + 9<br><b>Step 2:</b> 2x right le jao → −3 = 3x + 9<br><b>Step 3:</b> 9 ghatao → −12 = 3x<br><b>Step 4:</b> 3 se divide → x = −4<br><br><b>✅ Check:</b> LHS: 2(-4)-3 = -11, RHS: 5(-4)+9 = -11 ✓</div>`},
+  {q:'7 − 2x = 3x − 8', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 7 − 2x = 3x − 8<br><b>Step 2:</b> 3x left le jao → 7 − 5x = −8<br><b>Step 3:</b> 7 ghatao → −5x = −15<br><b>Step 4:</b> -5 se divide → x = 3<br><br><b>✅ Check:</b> LHS: 7-6=1, RHS: 9-8=1 ✓</div>`},
+  {q:'0.5x + 1.5 = 3.5', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 0.5x + 1.5 = 3.5<br><b>Step 2:</b> 1.5 ghatao → 0.5x = 2.0<br><b>Step 3:</b> 0.5 se divide → x = 4<br><br><b>✅ Check:</b> 0.5(4) + 1.5 = 2 + 1.5 = 3.5 ✓</div>`},
+  {q:'1.2x − 2.4 = 0', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 1.2x − 2.4 = 0<br><b>Step 2:</b> 2.4 jodo → 1.2x = 2.4<br><b>Step 3:</b> 1.2 se divide → x = 2<br><br><b>✅ Check:</b> 1.2(2) − 2.4 = 2.4 − 2.4 = 0 ✓</div>`},
 
-🔢 Step-by-Step:
-
-Step 1: Equation likho
-        x + 5 = 12
-
-Step 2: +5 ko hatao
-        Dono taraf 5 ghatao
-        x + 5 − 5 = 12 − 5
-
-Step 3: Simplify karo
-        Left: +5 − 5 = 0, sirf x bacha
-        Right: 12 − 5 = 7
-
-Step 4: Answer
-        x = 7
-
-✅ Check Karo:
-        x = 7 rakho original equation mein
-        7 + 5 = 12 ✓
-
-💡 Yaad Rakho:
-- Ek taraf variable, doosri taraf number
-- Jo bhi karo, dono taraf karo
-- Answer ko check karna mat bhoolo`},
-  
-  {q:'Solve: 3x = 21',
-   s:`📝 Question: Solve: 3x = 21
-
-🎯 Kya dhoondhna hai?
-x ki value
-
-📖 Concept:
-3x matlab 3 × x. x akela karne ke liye 3 se divide karo.
-
-🔢 Step-by-Step:
-
-Step 1: Equation likho
-        3x = 21
-
-Step 2: 3x ka matlab
-        3 × x
-
-Step 3: x akela karne ke liye
-        Dono taraf 3 se divide karo
-        3x ÷ 3 = 21 ÷ 3
-
-Step 4: Simplify
-        Left: sirf x bacha
-        Right: 21 ÷ 3 = 7
-
-Step 5: Answer
-        x = 7
-
-✅ Check Karo:
-        3(7) = 21 ✓
-
-💡 Yaad Rakho:
-- Multiply ho to divide karo
-- Divide ho to multiply karo`},
-  
-  {q:'Solve: 2x + 4 = 10',
-   s:`📝 Question: Solve: 2x + 4 = 10
-
-🎯 Kya dhoondhna hai?
-x ki value
-
-📖 Concept:
-Pehle number hatao (+4), phir coefficient hatao (2)
-
-🔢 Step-by-Step:
-
-Step 1: Equation likho
-        2x + 4 = 10
-
-Step 2: +4 hatao
-        Dono taraf 4 ghatao
-        2x + 4 − 4 = 10 − 4
-
-Step 3: Simplify
-        2x = 6
-
-Step 4: 2 se divide karo
-        2x ÷ 2 = 6 ÷ 2
-
-Step 5: Answer
-        x = 3
-
-✅ Check Karo:
-        2(3) + 4 = 6 + 4 = 10 ✓
-
-💡 Yaad Rakho:
-- Pehle numbers hatao
-- Phir coefficient hatao`},
-  
-  {q:'Solve: 5x − 3 = 12',
-   s:`📝 Question: Solve: 5x − 3 = 12
-
-🎯 Kya dhoondhna hai?
-x ki value
-
-📖 Concept:
-−3 ko hatao (+3 se), phir 5 se divide karo
-
-🔢 Step-by-Step:
-
-Step 1: Equation likho
-        5x − 3 = 12
-
-Step 2: −3 hatao
-        Dono taraf 3 jodo
-        5x − 3 + 3 = 12 + 3
-
-Step 3: Simplify
-        5x = 15
-
-Step 4: 5 se divide karo
-        5x ÷ 5 = 15 ÷ 5
-
-Step 5: Answer
-        x = 3
-
-✅ Check Karo:
-        5(3) − 3 = 15 − 3 = 12 ✓
-
-💡 Yaad Rakho:
-- Minus ho to plus karo
-- Plus ho to minus karo`},
-  
-  {q:'Solve: x/2 + 3 = 7',
-   s:`📝 Question: Solve: x/2 + 3 = 7
-
-🎯 Kya dhoondhna hai?
-x ki value
-
-📖 Concept:
-Pehle +3 hatao, phir 2 se multiply karo
-
-🔢 Step-by-Step:
-
-Step 1: Equation likho
-        x/2 + 3 = 7
-
-Step 2: +3 hatao
-        Dono taraf 3 ghatao
-        x/2 + 3 − 3 = 7 − 3
-
-Step 3: Simplify
-        x/2 = 4
-
-Step 4: 2 se multiply karo
-        (x/2) × 2 = 4 × 2
-
-Step 5: Answer
-        x = 8
-
-✅ Check Karo:
-        8/2 + 3 = 4 + 3 = 7 ✓`},
-  
-  {q:'Solve: 3(x + 2) = 2(x + 5) + 1',
-   s:`📝 Question: Solve: 3(x + 2) = 2(x + 5) + 1
-
-🎯 Kya dhoondhna hai?
-x ki value
-
-📖 Concept:
-Pehle brackets kholne hain, phir x wale terms ek taraf, numbers doosri taraf
-
-🔢 Step-by-Step:
-
-Step 1: Equation likho
-        3(x + 2) = 2(x + 5) + 1
-
-Step 2: Left bracket kholo
-        3 × x + 3 × 2 = 3x + 6
-
-Step 3: Right bracket kholo
-        2 × x + 2 × 5 = 2x + 10
-        Ab: 3x + 6 = 2x + 10 + 1
-
-Step 4: Right side simplify
-        10 + 1 = 11
-        3x + 6 = 2x + 11
-
-Step 5: 2x ko left le jao
-        Dono taraf 2x ghatao
-        x + 6 = 11
-
-Step 6: +6 hatao
-        x + 6 − 6 = 11 − 6
-        x = 5
-
-✅ Check Karo:
-        LHS: 3(5+2) = 3 × 7 = 21
-        RHS: 2(5+5) + 1 = 2 × 10 + 1 = 21
-        21 = 21 ✓
-
-💡 Yaad Rakho:
-- Pehle brackets kholo
-- Phir x wale ek taraf
-- Phir numbers doosri taraf`}
+  // Level 4 - Word Problems (41 to 50)
+  {q:'Ek number ka 3 guna plus 8, 35 ke equal hai. Number find karo.', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> Number ko x maano.<br><b>Step 2:</b> 3 guna + 8 = 35 → 3x + 8 = 35<br><b>Step 3:</b> 8 ghatao → 3x = 27<br><b>Step 4:</b> 3 se divide → x = 9<br><br><b>✅ Answer:</b> Number = 9</div>`},
+  {q:'Ek number ka half, us number se 12 kam hai. Number find karo.', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> Number = x<br><b>Step 2:</b> Half = x/2. Ye number se 12 kam hai → x/2 = x − 12<br><b>Step 3:</b> 2 se multiply → x = 2x − 24<br><b>Step 4:</b> x right le jao → 0 = x − 24<br><b>Step 5:</b> x = 24<br><br><b>✅ Answer:</b> Number = 24</div>`},
+  {q:'Ek father ki age uske son ki age se 3 guna hai. Dono ki total age 48 years hai. Dono ki age find karo.', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> Son ki age = x, Father ki age = 3x<br><b>Step 2:</b> Total = 48 → x + 3x = 48<br><b>Step 3:</b> 4x = 48<br><b>Step 4:</b> x = 12<br><br><b>✅ Answer:</b> Son = 12 years, Father = 36 years</div>`},
+  {q:'Ek rectangle ki length (x + 4) cm aur breadth x cm hai. Perimeter 32 cm hai. Dimensions find karo.', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> Perimeter = 2(L + B)<br><b>Step 2:</b> 32 = 2((x+4) + x) → 32 = 2(2x + 4)<br><b>Step 3:</b> 32 = 4x + 8<br><b>Step 4:</b> 8 ghatao → 24 = 4x<br><b>Step 5:</b> 4 se divide → x = 6<br><br><b>✅ Answer:</b> Breadth = 6 cm, Length = 10 cm</div>`},
+  {q:'Ek number mein 20 add karke result ko 4 se divide karne par 9 milta hai. Number find karo.', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> Number = x<br><b>Step 2:</b> Equation: (x + 20) / 4 = 9<br><b>Step 3:</b> 4 se multiply → x + 20 = 36<br><b>Step 4:</b> 20 ghatao → x = 16<br><br><b>✅ Answer:</b> Number = 16</div>`},
+  {q:'Do consecutive integers ka sum 41 hai. Numbers find karo.', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> Pehla number = x, Doosra = x + 1<br><b>Step 2:</b> Equation: x + (x + 1) = 41<br><b>Step 3:</b> 2x + 1 = 41<br><b>Step 4:</b> 2x = 40<br><b>Step 5:</b> x = 20<br><br><b>✅ Answer:</b> Numbers = 20 aur 21</div>`},
+  {q:'Ek item ki original price x hai. ₹150 discount ke baad price ₹850 hai. Original price find karo.', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> Original price = x<br><b>Step 2:</b> x − 150 = 850<br><b>Step 3:</b> 150 jodo → x = 1000<br><br><b>✅ Answer:</b> Original Price = ₹1000</div>`},
+  {q:'Equation solve karo: 3(x + 2) = 3x + 6', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 3(x + 2) = 3x + 6<br><b>Step 2:</b> LHS kholo → 3x + 6 = 3x + 6<br><b>Step 3:</b> Dono taraf same hai. Iska matlab x ki koi bhi value rakh lo, equation sahi rahegi.<br><br><b>✅ Answer:</b> Infinite Solutions (x ki koi bhi value)</div>`},
+  {q:'Equation solve karo: 2(x + 3) = 2x + 10', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> 2(x + 3) = 2x + 10<br><b>Step 2:</b> LHS kholo → 2x + 6 = 2x + 10<br><b>Step 3:</b> 2x ko dono taraf se ghatao → 6 = 10<br><b>Step 4:</b> 6 aur 10 kabhi barabar nahi ho sakte.<br><br><b>✅ Answer:</b> No Solution (Koi solution nahi hai)</div>`},
+  {q:'Ek taxi ka fixed charge ₹50 aur per km charge ₹12 hai. Total bill ₹230 hai. Distance find karo.', s:`<div style="text-align:left;line-height:1.8"><b>🔢 Step-by-Step:</b><br><b>Step 1:</b> Distance = x km<br><b>Step 2:</b> Fixed charge + (per km × distance) = Total → 50 + 12x = 230<br><b>Step 3:</b> 50 ghatao → 12x = 180<br><b>Step 4:</b> 12 se divide → x = 15<br><br><b>✅ Answer:</b> Distance = 15 km</div>`}
 ];
 
-_linEq.word = [
-  {q:'Ek number mein 4 jodne par 15 aata hai. Number?',
-   a:`📝 Question: Ek number mein 4 jodne par 15 aata hai. Number?
+/* Word problems ka data bhi update kar rahe hain (agar purana tha to) */
+_linEq50.word = _linEq50.ex.slice(40); 
 
-🎯 Kya dhoondhna hai?
-Wo number
-
-📖 Concept:
-Unknown number = x maano, equation banao
-
-🔢 Step-by-Step:
-
-Step 1: Number = x maano
-
-Step 2: "4 joda" matlab x + 4
-
-Step 3: "15 aata hai" matlab = 15
-        x + 4 = 15
-
-Step 4: 4 hatao
-        x + 4 − 4 = 15 − 4
-
-Step 5: x = 11
-
-✅ Check Karo:
-        11 + 4 = 15 ✓
-
-💡 Yaad Rakho:
-- Unknown ko x maano
-- Keywords pehchano: joda (+), ghata (−)`},
-  
-  {q:'3 pen ka price ₹45 hai. Ek pen kitne ka?',
-   a:`📝 Question: 3 pen ka price ₹45 hai. Ek pen kitne ka?
-
-🎯 Kya dhoondhna hai?
-Ek pen ka price
-
-📖 Concept:
-Ek pen = x, phir 3x = 45 banao
-
-🔢 Step-by-Step:
-
-Step 1: Ek pen = x maano
-
-Step 2: 3 pen = 3x
-
-Step 3: 3x = 45 (total ₹45)
-
-Step 4: Dono taraf 3 se divide
-        3x ÷ 3 = 45 ÷ 3
-
-Step 5: x = 15
-
-✅ Check Karo:
-        3 × 15 = 45 ✓
-
-💡 Yaad Rakho:
-- Total = number × per unit price
-- Answer ka unit likho (₹)`}
-];
-
-console.log('✅ Linear Equations detailed solutions loaded!');
+console.log('✅ Linear Equations 50 Questions Loaded Cleanly!');
 </script>
 <!-- ====================================================
      MENSURATION FULL DETAILS (50 Questions + SVG Diagrams)
