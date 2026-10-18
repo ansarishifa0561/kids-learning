@@ -2578,5 +2578,50 @@ Step 3: Total cubes = 960 / 8 = 120
 
 console.log('✅ Mensuration 50 Questions Loaded!');
 </script>
+<!-- ====================================================
+     MATH SYMBOLS TO SPEECH FIX
+     (Voice ko symbols ki jagah words bolne ke liye majboor karta hai)
+     ==================================================== -->
+<script>
+// Purane speak function ko save karo
+const originalSpeak = window.speak;
+const originalSpeakSeq = window.speakSeq;
+
+// Naya speak function jo symbols ko words mein badlega
+window.speak = function(text, lang = 'hi-IN', rate = 0.78) {
+    if (!text) return;
+    let spokenText = String(text);
+    
+    // Symbols ko words mein badlo (Agar English select hai to English words, warna Hindi)
+    let isEnglish = lang.includes('en');
+    
+    spokenText = spokenText.replace(/=/g, isEnglish ? ' equals ' : ' barabar hai ');
+    spokenText = spokenText.replace(/\+/g, isEnglish ? ' plus ' : ' plus ');
+    spokenText = spokenText.replace(/−/g, isEnglish ? ' minus ' : ' minus ').replace(/-/g, isEnglish ? ' minus ' : ' minus ');
+    spokenText = spokenText.replace(/×/g, isEnglish ? ' times ' : ' times ').replace(/\*/g, isEnglish ? ' times ' : ' times ');
+    spokenText = spokenText.replace(/÷/g, isEnglish ? ' divided by ' : ' divided by ');
+    spokenText = spokenText.replace(/\//g, isEnglish ? ' divided by ' : ' divided by '); 
+    
+    // Purane function ko naye text ke saath call karo
+    originalSpeak(spokenText, lang, rate);
+};
+
+// Sequence (Read All) ke liye bhi same fix lagao
+window.speakSeq = function(lines, lang = 'hi-IN', onLine) {
+    if (!lines) return;
+    let isEnglish = lang.includes('en');
+    let modifiedLines = lines.map(line => {
+        let text = String(line);
+        text = text.replace(/=/g, isEnglish ? ' equals ' : ' barabar hai ');
+        text = text.replace(/\+/g, isEnglish ? ' plus ' : ' plus ');
+        text = text.replace(/−/g, isEnglish ? ' minus ' : ' minus ').replace(/-/g, isEnglish ? ' minus ' : ' minus ');
+        text = text.replace(/×/g, isEnglish ? ' times ' : ' times ').replace(/\*/g, isEnglish ? ' times ' : ' times ');
+        text = text.replace(/÷/g, isEnglish ? ' divided by ' : ' divided by ');
+        text = text.replace(/\//g, isEnglish ? ' divided by ' : ' divided by ');
+        return text;
+    });
+    originalSpeakSeq(modifiedLines, lang, onLine);
+};
+</script>
 </body>
 </html>
