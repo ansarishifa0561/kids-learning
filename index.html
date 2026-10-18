@@ -2283,12 +2283,11 @@ window.speakSeq = function(lines, lang = 'hi-IN', onLine) {
 };
 </script>
 <!-- ====================================================
-     SHIFA'S ADVANCED MATHS & VOICE FIX (ALL IN ONE)
+     <!-- ====================================================
+     SHIFA'S MASTER CODE — ALGEBRA & LINEAR EQUATIONS (50 Qs)
      ==================================================== -->
 <script>
-// ==========================================
-// 1. VOICE SYMBOL FIX (Math symbols ko words mein badlega)
-// ==========================================
+// 1. VOICE SYMBOL FIX
 if (typeof window.speak === 'function') {
     const originalSpeak = window.speak;
     const originalSpeakSeq = window.speakSeq;
@@ -2321,21 +2320,73 @@ if (typeof window.speak === 'function') {
     };
 }
 
-// ==========================================
-// 2. ADVANCED MATHS ENGINE
-// ==========================================
+// 2. MATH ENGINE
 if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     
     const fmt = function(txt) {
         return '<div style="text-align:left;line-height:1.9;font-size:1.05rem;color:#333">' + txt + '</div>';
     };
 
-    // --- LINEAR EQUATIONS (50 Q) ---
+    // --- ALGEBRA BASICS (Chapter 0) ---
+    const _algebra = ADVANCED_LESSONS.maths.chapters[0];
+    _algebra.title = 'Algebra Basics (50 Q)';
+    
+    const genAlgebra = () => {
+        let qs = [];
+        // 1-10: Coefficients
+        for(let i=1; i<=10; i++) {
+            let a = i + 2;
+            qs.push({q:`${a}x + 5 mein coefficient kya hai?`, s:{
+                hi: fmt(`<b>Step 1:</b> Expression: ${a}x + 5<br><b>Step 2:</b> Coefficient matlab variable (x) ke aage ka number.<br><b>Step 3:</b> x ke aage ${a} hai.<br><br><b>✅ Answer:</b> ${a}`),
+                en: fmt(`<b>Step 1:</b> Expression: ${a}x + 5<br><b>Step 2:</b> Coefficient is the number before the variable (x).<br><b>Step 3:</b> The number before x is ${a}.<br><br><b>✅ Answer:</b> ${a}`)
+            }});
+        }
+        // 11-20: Evaluation
+        for(let i=1; i<=10; i++) {
+            let a = i + 1; let x = 3; let b = 2; let res = a*x + b;
+            qs.push({q:`x = ${x} to ${a}x + ${b} = ?`, s:{
+                hi: fmt(`<b>Step 1:</b> x ki jagah ${x} rakho.<br><b>Step 2:</b> ${a}(${x}) + ${b}<br><b>Step 3:</b> Pehle multiply: ${a*x}<br><b>Step 4:</b> Phir add: ${a*x} + ${b} = ${res}<br><br><b>✅ Answer:</b> ${res}`),
+                en: fmt(`<b>Step 1:</b> Substitute x = ${x}.<br><b>Step 2:</b> ${a}(${x}) + ${b}<br><b>Step 3:</b> Multiply first: ${a*x}<br><b>Step 4:</b> Then add: ${a*x} + ${b} = ${res}<br><br><b>✅ Answer:</b> ${res}`)
+            }});
+        }
+        // 21-30: Simplification (Addition)
+        for(let i=1; i<=10; i++) {
+            let a = i + 2; let b = i + 3; let res = a + b;
+            qs.push({q:`Simplify: ${a}x + ${b}x`, s:{
+                hi: fmt(`<b>Step 1:</b> Dono mein same variable x hai.<br><b>Step 2:</b> Coefficients ko add karo: ${a} + ${b} = ${res}<br><b>Step 3:</b> x laga do.<br><br><b>✅ Answer:</b> ${res}x`),
+                en: fmt(`<b>Step 1:</b> Both terms have the same variable x.<br><b>Step 2:</b> Add coefficients: ${a} + ${b} = ${res}<br><b>Step 3:</b> Add x.<br><br><b>✅ Answer:</b> ${res}x`)
+            }});
+        }
+        // 31-40: Simplification (Subtraction)
+        for(let i=1; i<=10; i++) {
+            let a = i + 5; let b = i + 1; let res = a - b;
+            qs.push({q:`Simplify: ${a}y - ${b}y`, s:{
+                hi: fmt(`<b>Step 1:</b> Dono mein same variable y hai.<br><b>Step 2:</b> Coefficients ko subtract karo: ${a} - ${b} = ${res}<br><b>Step 3:</b> y laga do.<br><br><b>✅ Answer:</b> ${res}y`),
+                en: fmt(`<b>Step 1:</b> Both terms have the same variable y.<br><b>Step 2:</b> Subtract coefficients: ${a} - ${b} = ${res}<br><b>Step 3:</b> Add y.<br><br><b>✅ Answer:</b> ${res}y`)
+            }});
+        }
+        // 41-50: Substitution with Square
+        for(let i=1; i<=10; i++) {
+            let x = i; let res = x*x + 2;
+            qs.push({q:`x = ${x} to x² + 2 = ?`, s:{
+                hi: fmt(`<b>Step 1:</b> x² matlab x × x.<br><b>Step 2:</b> x = ${x} rakho: ${x} × ${x} = ${x*x}<br><b>Step 3:</b> Ab 2 add karo: ${x*x} + 2 = ${res}<br><br><b>✅ Answer:</b> ${res}`),
+                en: fmt(`<b>Step 1:</b> x² means x × x.<br><b>Step 2:</b> Substitute x = ${x}: ${x} × ${x} = ${x*x}<br><b>Step 3:</b> Add 2: ${x*x} + 2 = ${res}<br><br><b>✅ Answer:</b> ${res}`)
+            }});
+        }
+        return qs;
+    };
+    
+    _algebra.ex = genAlgebra();
+    _algebra.word = _algebra.ex.slice(40); // Last 10 as word problems
+
+
+    // --- LINEAR EQUATIONS (Chapter 1) ---
     const _linEq = ADVANCED_LESSONS.maths.chapters[1];
     _linEq.title = 'Linear Equations (50 Q)';
     
-    const generateLinEq = () => {
+    const genLinEq = () => {
         let qs = [];
+        // 1-10: x + a = b
         for(let i=1; i<=10; i++) {
             let a = i+2; let b = a + i;
             qs.push({q:`x + ${a} = ${b}`, s:{
@@ -2343,6 +2394,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> Subtract ${a} from both sides.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> x = ${i}<br><br><b>✅ Check:</b> ${i} + ${a} = ${b} ✓`)
             }});
         }
+        // 11-20: ax = b
         for(let i=2; i<=11; i++) {
             let b = i * 3;
             qs.push({q:`${i}x = ${b}`, s:{
@@ -2350,6 +2402,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> Divide both sides by ${i}.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> x = 3<br><br><b>✅ Check:</b> ${i}(${3}) = ${b} ✓`)
             }});
         }
+        // 21-35: ax + b = c
         for(let i=2; i<=6; i++) {
             for(let j=1; j<=3; j++) {
                 let a = i; let b = j; let x = 4; let c = a*x + b;
@@ -2359,6 +2412,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 }});
             }
         }
+        // 36-50: Word problems
         for(let i=1; i<=15; i++) {
             let age = i * 5; let ans = age + 12;
             qs.push({q:`Ek number mein 12 jodne par ${ans} aata hai. Number kya hai?`, s:{
@@ -2369,19 +2423,9 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
         return qs;
     };
     
-    _linEq.ex = generateLinEq();
-    _linEq.word = _linEq.ex.slice(40);
+    _linEq.ex = genLinEq();
+    _linEq.word = _linEq.ex.slice(35); // Last 15 as word problems
 
-    // --- MENSURATION (Restored with SVGs) ---
-    const _mensuration = ADVANCED_LESSONS.maths.chapters[2];
-    _mensuration.def = '<div style="text-align:left;line-height:1.8">Mensuration matlab shapes ka <b>Area</b>, <b>Perimeter</b> aur <b>Volume</b> nikalna.<br><br><b>Formulas:</b><br>• Rectangle: Area = L × B, Perimeter = 2(L+B)<br>• Square: Area = Side², Perimeter = 4 × Side<br>• Circle: Area = πr², Circumference = 2πr<br>• Cube: Volume = Side³</div>';
-    
-    _mensuration.ex = [
-        {q:'Rectangle ki length 8 cm aur breadth 5 cm hai. Area?', s: fmt('<b>Formula:</b> Area = L × B<br><b>Step 1:</b> Area = 8 × 5<br><b>Step 2:</b> Area = 40 cm²<br><br><div style="text-align:center"><svg width="150" height="100"><rect x="10" y="20" width="100" height="60" fill="none" stroke="#7c5cff" stroke-width="3" stroke-dasharray="5,5"/><text x="60" y="15" font-size="12">L=8</text><text x="120" y="55" font-size="12">B=5</text></svg></div><br><b>✅ Answer:</b> 40 cm²'), a:'40 sq cm'},
-        {q:'Square ki side 6 cm hai. Area?', s: fmt('<b>Formula:</b> Area = Side²<br><b>Step 1:</b> Area = 6² = 6 × 6<br><b>Step 2:</b> Area = 36 cm²<br><br><b>✅ Answer:</b> 36 cm²'), a:'36 sq cm'},
-        {q:'Circle ka radius 7 cm hai. Area? (π = 22/7)', s: fmt('<b>Formula:</b> Area = πr²<br><b>Step 1:</b> Area = (22/7) × 7 × 7<br><b>Step 2:</b> 7 cancel ho jayega, 22 × 7 = 154<br><b>Step 3:</b> Area = 154 cm²<br><br><div style="text-align:center"><svg width="120" height="120"><circle cx="60" cy="60" r="40" fill="none" stroke="#00c2a8" stroke-width="3"/><line x1="60" y1="60" x2="100" y2="60" stroke="#333" stroke-width="2" stroke-dasharray="4,4"/><text x="80" y="55" font-size="12">r=7</text></svg></div><br><b>✅ Answer:</b> 154 cm²'), a:'154 sq cm'},
-        {q:'Cube ki side 3 cm hai. Volume?', s: fmt('<b>Formula:</b> Volume = Side³<br><b>Step 1:</b> Volume = 3 × 3 × 3<br><b>Step 2:</b> Volume = 27 cm³<br><br><b>✅ Answer:</b> 27 cm³'), a:'27 cubic cm'}
-    ];
 
     // --- RENDERERS & HELPERS ---
     window.currentLang = 'hi';
@@ -2395,12 +2439,13 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     window.renderAdvChapter = function() {
         const s = ADVANCED_LESSONS[state.advSubj];
         const c = s.chapters[state.advChap];
-        const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
+        // Both Algebra (0) and Linear Eq (1) have bilingual data
+        const isBilingual = (state.advSubj === 'maths' && (state.advChap === 0 || state.advChap === 1));
         
         setH(c.title, s.name);
         
         let langToggleHTML = '';
-        if (isLinearEq) {
+        if (isBilingual) {
             let hiStyle = window.currentLang === 'hi' ? 'background:#7c5cff; color:white;' : 'background:#eef0ff; color:#5c4dff;';
             let enStyle = window.currentLang === 'en' ? 'background:#7c5cff; color:white;' : 'background:#eef0ff; color:#5c4dff;';
             langToggleHTML = '<div style="display:flex; justify-content:center; gap:10px; margin-bottom:20px;">' +
@@ -2415,13 +2460,13 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             langToggleHTML;
 
         html += '<div class="chapter-sec"><h3>📖 Definition</h3>' +
-            '<div class="text" onclick="speakDef()">' + c.def + ' 🔊</div>' +
+            '<div class="text" onclick="speakDef()">' + (c.def || '') + ' 🔊</div>' +
             '</div>';
 
-        html += '<div class="chapter-sec"><h3>💡 Solved Examples</h3>';
+        html += '<div class="chapter-sec"><h3>💡 Solved Examples (50 Questions)</h3>';
         if (c.ex && c.ex.length > 0) {
             c.ex.forEach((e,i) => {
-                let solText = isLinearEq ? e.s[window.currentLang] : (e.s || e.a || '');
+                let solText = isBilingual ? e.s[window.currentLang] : (e.s || e.a || '');
                 html += '<div class="chapter-ex">' +
                     '<div class="q" onclick="speakExQ(' + i + ')">' + (i+1) + '. ' + e.q + ' 🔊</div>' +
                     '<button class="ans-btn" onclick="speakExSol(' + i + ')">👉 Solution</button>' +
@@ -2441,8 +2486,8 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
 
     window.speakDef = function() {
         const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-        let plain = c.def.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
-        speak(plain, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+        let plain = (c.def || '').replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
+        if(plain) speak(plain, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
     };
 
     window.speakExQ = function(i) {
@@ -2452,16 +2497,17 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
 
     window.speakExSol = function(i) {
         const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-        const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
-        let sol = isLinearEq ? c.ex[i].s[window.currentLang] : (c.ex[i].s || c.ex[i].a || '');
+        const isBilingual = (state.advSubj === 'maths' && (state.advChap === 0 || state.advChap === 1));
+        let sol = isBilingual ? c.ex[i].s[window.currentLang] : (c.ex[i].s || c.ex[i].a || '');
         let plain = sol.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
         speak(plain, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
         document.getElementById('adv-ex-' + i).classList.toggle('show');
         addStar();
     };
     
-    console.log("✅ Advanced Maths & All Qs Loaded Successfully!");
+    console.log("✅ Master Code: Algebra & Linear Equations (50 Qs) Loaded!");
 }
+</script>
 </script>
 </body>
 </html>
