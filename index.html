@@ -2283,11 +2283,12 @@ window.speakSeq = function(lines, lang = 'hi-IN', onLine) {
 };
 </script>
 <!-- ====================================================
-     <!-- ====================================================
-     SHIFA'S MASTER CODE — ALGEBRA & LINEAR EQUATIONS (50 Qs)
+     SHIFA'S ULTIMATE MATH CODE — FULL DETAILED STEPS
      ==================================================== -->
 <script>
-// 1. VOICE SYMBOL FIX
+// ==========================================
+// 1. VOICE SYMBOL FIX (Math symbols ko words mein badlega)
+// ==========================================
 if (typeof window.speak === 'function') {
     const originalSpeak = window.speak;
     const originalSpeakSeq = window.speakSeq;
@@ -2301,6 +2302,7 @@ if (typeof window.speak === 'function') {
         spokenText = spokenText.replace(/−/g, ' minus ').replace(/-/g, ' minus ');
         spokenText = spokenText.replace(/×/g, ' times ').replace(/\*/g, ' times ');
         spokenText = spokenText.replace(/÷/g, ' divided by ').replace(/\//g, ' divided by ');
+        spokenText = spokenText.replace(/²/g, isEnglish ? ' squared ' : ' squared ');
         originalSpeak(spokenText, lang, rate);
     };
     
@@ -2314,13 +2316,16 @@ if (typeof window.speak === 'function') {
             text = text.replace(/−/g, ' minus ').replace(/-/g, ' minus ');
             text = text.replace(/×/g, ' times ').replace(/\*/g, ' times ');
             text = text.replace(/÷/g, ' divided by ').replace(/\//g, ' divided by ');
+            text = text.replace(/²/g, isEnglish ? ' squared ' : ' squared ');
             return text;
         });
         originalSpeakSeq(modifiedLines, lang, onLine);
     };
 }
 
-// 2. MATH ENGINE
+// ==========================================
+// 2. ADVANCED MATHS ENGINE (DETAILED STEPS)
+// ==========================================
 if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     
     const fmt = function(txt) {
@@ -2333,52 +2338,140 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     
     const genAlgebra = () => {
         let qs = [];
+        
         // 1-10: Coefficients
         for(let i=1; i<=10; i++) {
             let a = i + 2;
             qs.push({q:`${a}x + 5 mein coefficient kya hai?`, s:{
-                hi: fmt(`<b>Step 1:</b> Expression: ${a}x + 5<br><b>Step 2:</b> Coefficient matlab variable (x) ke aage ka number.<br><b>Step 3:</b> x ke aage ${a} hai.<br><br><b>✅ Answer:</b> ${a}`),
-                en: fmt(`<b>Step 1:</b> Expression: ${a}x + 5<br><b>Step 2:</b> Coefficient is the number before the variable (x).<br><b>Step 3:</b> The number before x is ${a}.<br><br><b>✅ Answer:</b> ${a}`)
+                hi: fmt(`<b>Question:</b> ${a}x + 5 mein coefficient kya hai?<br><br>
+                <b>Step 1: Understand the concept</b><br>
+                Coefficient matlab variable (jaise x, y) ke theek aage jo number likha hota hai.<br><br>
+                <b>Step 2: Identify the variable</b><br>
+                Yahan variable 'x' hai.<br><br>
+                <b>Step 3: Find the number before it</b><br>
+                x ke theek pehle ${a} likha hai.<br><br>
+                <b>✅ Final Answer:</b> ${a}`),
+                en: fmt(`<b>Question:</b> What is the coefficient in ${a}x + 5?<br><br>
+                <b>Step 1: Understand the concept</b><br>
+                A coefficient is the number multiplied by a variable (like x, y).<br><br>
+                <b>Step 2: Identify the variable</b><br>
+                Here, the variable is 'x'.<br><br>
+                <b>Step 3: Find the number before it</b><br>
+                The number right before x is ${a}.<br><br>
+                <b>✅ Final Answer:</b> ${a}`)
             }});
         }
-        // 11-20: Evaluation
+        
+        // 11-20: Evaluation (ax + b)
         for(let i=1; i<=10; i++) {
             let a = i + 1; let x = 3; let b = 2; let res = a*x + b;
             qs.push({q:`x = ${x} to ${a}x + ${b} = ?`, s:{
-                hi: fmt(`<b>Step 1:</b> x ki jagah ${x} rakho.<br><b>Step 2:</b> ${a}(${x}) + ${b}<br><b>Step 3:</b> Pehle multiply: ${a*x}<br><b>Step 4:</b> Phir add: ${a*x} + ${b} = ${res}<br><br><b>✅ Answer:</b> ${res}`),
-                en: fmt(`<b>Step 1:</b> Substitute x = ${x}.<br><b>Step 2:</b> ${a}(${x}) + ${b}<br><b>Step 3:</b> Multiply first: ${a*x}<br><b>Step 4:</b> Then add: ${a*x} + ${b} = ${res}<br><br><b>✅ Answer:</b> ${res}`)
+                hi: fmt(`<b>Question:</b> Find the value of ${a}x + ${b}, when x = ${x}.<br><br>
+                <b>Step 1: Understand the question</b><br>
+                Humein x ki jagah ${x} rakhna hai.<br><br>
+                <b>Step 2: Substitute the value</b><br>
+                Expression: ${a}x + ${b}<br>
+                x ki jagah ${x} rakho: = ${a}(${x}) + ${b}<br><br>
+                <b>Step 3: Multiply first (BODMAS)</b><br>
+                ${a} × ${x} = ${a*x}<br><br>
+                <b>Step 4: Add the constant</b><br>
+                ${a*x} + ${b} = ${res}<br><br>
+                <b>✅ Final Answer:</b> ${res}`),
+                en: fmt(`<b>Question:</b> Find the value of ${a}x + ${b}, when x = ${x}.<br><br>
+                <b>Step 1: Understand the question</b><br>
+                We need to substitute x with ${x}.<br><br>
+                <b>Step 2: Substitute the value</b><br>
+                Expression: ${a}x + ${b}<br>
+                Replace x with ${x}: = ${a}(${x}) + ${b}<br><br>
+                <b>Step 3: Multiply first (BODMAS)</b><br>
+                ${a} × ${x} = ${a*x}<br><br>
+                <b>Step 4: Add the constant</b><br>
+                ${a*x} + ${b} = ${res}<br><br>
+                <b>✅ Final Answer:</b> ${res}`)
             }});
         }
-        // 21-30: Simplification (Addition)
+        
+        // 21-30: Simplification (ax + bx)
         for(let i=1; i<=10; i++) {
             let a = i + 2; let b = i + 3; let res = a + b;
             qs.push({q:`Simplify: ${a}x + ${b}x`, s:{
-                hi: fmt(`<b>Step 1:</b> Dono mein same variable x hai.<br><b>Step 2:</b> Coefficients ko add karo: ${a} + ${b} = ${res}<br><b>Step 3:</b> x laga do.<br><br><b>✅ Answer:</b> ${res}x`),
-                en: fmt(`<b>Step 1:</b> Both terms have the same variable x.<br><b>Step 2:</b> Add coefficients: ${a} + ${b} = ${res}<br><b>Step 3:</b> Add x.<br><br><b>✅ Answer:</b> ${res}x`)
+                hi: fmt(`<b>Question:</b> Simplify ${a}x + ${b}x<br><br>
+                <b>Step 1: Understand the concept</b><br>
+                Jab same variable (x) ho, to hum unke numbers (coefficients) ko add kar sakte hain.<br><br>
+                <b>Step 2: Add the coefficients</b><br>
+                ${a} + ${b} = ${res}<br><br>
+                <b>Step 3: Attach the variable</b><br>
+                Result ke saath x laga do.<br><br>
+                <b>✅ Final Answer:</b> ${res}x`),
+                en: fmt(`<b>Question:</b> Simplify ${a}x + ${b}x<br><br>
+                <b>Step 1: Understand the concept</b><br>
+                When variables are the same (x), we can add their coefficients.<br><br>
+                <b>Step 2: Add the coefficients</b><br>
+                ${a} + ${b} = ${res}<br><br>
+                <b>Step 3: Attach the variable</b><br>
+                Add x to the result.<br><br>
+                <b>✅ Final Answer:</b> ${res}x`)
             }});
         }
-        // 31-40: Simplification (Subtraction)
+        
+        // 31-40: Simplification (ay - by)
         for(let i=1; i<=10; i++) {
             let a = i + 5; let b = i + 1; let res = a - b;
             qs.push({q:`Simplify: ${a}y - ${b}y`, s:{
-                hi: fmt(`<b>Step 1:</b> Dono mein same variable y hai.<br><b>Step 2:</b> Coefficients ko subtract karo: ${a} - ${b} = ${res}<br><b>Step 3:</b> y laga do.<br><br><b>✅ Answer:</b> ${res}y`),
-                en: fmt(`<b>Step 1:</b> Both terms have the same variable y.<br><b>Step 2:</b> Subtract coefficients: ${a} - ${b} = ${res}<br><b>Step 3:</b> Add y.<br><br><b>✅ Answer:</b> ${res}y`)
+                hi: fmt(`<b>Question:</b> Simplify ${a}y - ${b}y<br><br>
+                <b>Step 1: Understand the concept</b><br>
+                Same variable (y) ke coefficients ko subtract kiya ja sakta hai.<br><br>
+                <b>Step 2: Subtract the coefficients</b><br>
+                ${a} - ${b} = ${res}<br><br>
+                <b>Step 3: Attach the variable</b><br>
+                Result ke saath y laga do.<br><br>
+                <b>✅ Final Answer:</b> ${res}y`),
+                en: fmt(`<b>Question:</b> Simplify ${a}y - ${b}y<br><br>
+                <b>Step 1: Understand the concept</b><br>
+                Coefficients of the same variable (y) can be subtracted.<br><br>
+                <b>Step 2: Subtract the coefficients</b><br>
+                ${a} - ${b} = ${res}<br><br>
+                <b>Step 3: Attach the variable</b><br>
+                Add y to the result.<br><br>
+                <b>✅ Final Answer:</b> ${res}y`)
             }});
         }
-        // 41-50: Substitution with Square
+        
+        // 41-50: Substitution with Square (x² + 2) - EXACTLY LIKE USER'S EXAMPLE
         for(let i=1; i<=10; i++) {
-            let x = i; let res = x*x + 2;
+            let x = i + 4; // starts from 5
+            if(x === 7) x = 7; 
+            let res = x*x + 2;
             qs.push({q:`x = ${x} to x² + 2 = ?`, s:{
-                hi: fmt(`<b>Step 1:</b> x² matlab x × x.<br><b>Step 2:</b> x = ${x} rakho: ${x} × ${x} = ${x*x}<br><b>Step 3:</b> Ab 2 add karo: ${x*x} + 2 = ${res}<br><br><b>✅ Answer:</b> ${res}`),
-                en: fmt(`<b>Step 1:</b> x² means x × x.<br><b>Step 2:</b> Substitute x = ${x}: ${x} × ${x} = ${x*x}<br><b>Step 3:</b> Add 2: ${x*x} + 2 = ${res}<br><br><b>✅ Answer:</b> ${res}`)
+                hi: fmt(`<b>Question:</b> Find the value of x² + 2, when x = ${x}.<br><br>
+                <b>Step 1: Understand the meaning of x²</b><br>
+                x² ka matlab x × x hota hai (x ko khud se multiply karna). Ye x × 2 nahi hota.<br><br>
+                <b>Step 2: Substitute the value</b><br>
+                Diya gaya hai: x = ${x}. Isliye x² + 2 mein x ki jagah ${x} rakho.<br>
+                = (${x})² + 2<br><br>
+                <b>Step 3: Calculate the square</b><br>
+                ${x}² = ${x} × ${x} = ${x*x}<br><br>
+                <b>Step 4: Add 2</b><br>
+                ${x*x} + 2 = ${res}<br><br>
+                <b>✅ Final Answer:</b> x² + 2 = ${res}`),
+                en: fmt(`<b>Question:</b> Find the value of x² + 2, when x = ${x}.<br><br>
+                <b>Step 1: Understand the meaning of x²</b><br>
+                x² means x × x (multiplying x by itself). It does NOT mean x × 2.<br><br>
+                <b>Step 2: Substitute the value</b><br>
+                Given: x = ${x}. Replace x with ${x} in the expression.<br>
+                = (${x})² + 2<br><br>
+                <b>Step 3: Calculate the square</b><br>
+                ${x}² = ${x} × ${x} = ${x*x}<br><br>
+                <b>Step 4: Add 2</b><br>
+                ${x*x} + 2 = ${res}<br><br>
+                <b>✅ Final Answer:</b> x² + 2 = ${res}`)
             }});
         }
         return qs;
     };
     
     _algebra.ex = genAlgebra();
-    _algebra.word = _algebra.ex.slice(40); // Last 10 as word problems
-
+    _algebra.word = _algebra.ex.slice(40); 
 
     // --- LINEAR EQUATIONS (Chapter 1) ---
     const _linEq = ADVANCED_LESSONS.maths.chapters[1];
@@ -2386,46 +2479,135 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     
     const genLinEq = () => {
         let qs = [];
+        
         // 1-10: x + a = b
         for(let i=1; i<=10; i++) {
             let a = i+2; let b = a + i;
             qs.push({q:`x + ${a} = ${b}`, s:{
-                hi: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> Dono taraf se ${a} subtract karo.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> x = ${i}<br><br><b>✅ Check:</b> ${i} + ${a} = ${b} ✓`),
-                en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> Subtract ${a} from both sides.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> x = ${i}<br><br><b>✅ Check:</b> ${i} + ${a} = ${b} ✓`)
+                hi: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br>
+                <b>Step 1: Understand the equation</b><br>
+                x ke saath +${a} juda hua hai. x ko akela karne ke liye humein +${a} hatana hoga.<br><br>
+                <b>Step 2: Balance the equation</b><br>
+                Dono taraf se ${a} subtract karenge taaki equation balance rahe.<br>
+                x + ${a} − ${a} = ${b} − ${a}<br><br>
+                <b>Step 3: Simplify</b><br>
+                LHS: +${a} − ${a} = 0 (sirf x bacha)<br>
+                RHS: ${b} − ${a} = ${i}<br><br>
+                <b>✅ Final Answer:</b> x = ${i}<br><br>
+                <b>Check:</b> ${i} + ${a} = ${b} ✓`),
+                en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br>
+                <b>Step 1: Understand the equation</b><br>
+                ${a} is added to x. To isolate x, we must remove +${a}.<br><br>
+                <b>Step 2: Balance the equation</b><br>
+                Subtract ${a} from both sides.<br>
+                x + ${a} − ${a} = ${b} − ${a}<br><br>
+                <b>Step 3: Simplify</b><br>
+                LHS: +${a} − ${a} = 0 (only x remains)<br>
+                RHS: ${b} − ${a} = ${i}<br><br>
+                <b>✅ Final Answer:</b> x = ${i}<br><br>
+                <b>Check:</b> ${i} + ${a} = ${b} ✓`)
             }});
         }
+        
         // 11-20: ax = b
         for(let i=2; i<=11; i++) {
             let b = i * 3;
             qs.push({q:`${i}x = ${b}`, s:{
-                hi: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> Dono taraf ko ${i} se divide karo.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> x = 3<br><br><b>✅ Check:</b> ${i}(${3}) = ${b} ✓`),
-                en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> Divide both sides by ${i}.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> x = 3<br><br><b>✅ Check:</b> ${i}(${3}) = ${b} ✓`)
+                hi: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br>
+                <b>Step 1: Understand the equation</b><br>
+                ${i}x ka matlab ${i} × x hota hai. x ko akela karne ke liye ${i} ko hatana hoga.<br><br>
+                <b>Step 2: Balance the equation</b><br>
+                Dono taraf ko ${i} se divide karenge.<br>
+                ${i}x ÷ ${i} = ${b} ÷ ${i}<br><br>
+                <b>Step 3: Simplify</b><br>
+                LHS: ${i} aur ${i} cancel ho jayenge, sirf x bachega.<br>
+                RHS: ${b} ÷ ${i} = 3<br><br>
+                <b>✅ Final Answer:</b> x = 3<br><br>
+                <b>Check:</b> ${i} × 3 = ${b} ✓`),
+                en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br>
+                <b>Step 1: Understand the equation</b><br>
+                ${i}x means ${i} × x. To isolate x, we must remove ${i}.<br><br>
+                <b>Step 2: Balance the equation</b><br>
+                Divide both sides by ${i}.<br>
+                ${i}x ÷ ${i} = ${b} ÷ ${i}<br><br>
+                <b>Step 3: Simplify</b><br>
+                LHS: ${i} and ${i} cancel out, leaving x.<br>
+                RHS: ${b} ÷ ${i} = 3<br><br>
+                <b>✅ Final Answer:</b> x = 3<br><br>
+                <b>Check:</b> ${i} × 3 = ${b} ✓`)
             }});
         }
+        
         // 21-35: ax + b = c
         for(let i=2; i<=6; i++) {
             for(let j=1; j<=3; j++) {
                 let a = i; let b = j; let x = 4; let c = a*x + b;
                 qs.push({q:`${a}x + ${b} = ${c}`, s:{
-                    hi: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br><b>Step 1:</b> Dono taraf se ${b} subtract karo.<br><b>Step 2:</b> ${a}x = ${c} − ${b} → ${a}x = ${a*x}<br><b>Step 3:</b> Dono taraf ko ${a} se divide karo.<br><b>Step 4:</b> x = ${x}<br><br><b>✅ Check:</b> ${a}(${x}) + ${b} = ${c} ✓`),
-                    en: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br><b>Step 1:</b> Subtract ${b} from both sides.<br><b>Step 2:</b> ${a}x = ${c} − ${b} → ${a}x = ${a*x}<br><b>Step 3:</b> Divide both sides by ${a}.<br><b>Step 4:</b> x = ${x}<br><br><b>✅ Check:</b> ${a}(${x}) + ${b} = ${c} ✓`)
+                    hi: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br>
+                    <b>Step 1: Understand the equation</b><br>
+                    Yahan do operations hain: +${b} aur ×${a}. x ko akela karne ke liye pehle +${b} hatayenge.<br><br>
+                    <b>Step 2: Remove the constant</b><br>
+                    Dono taraf se ${b} subtract karo.<br>
+                    ${a}x + ${b} − ${b} = ${c} − ${b}<br><br>
+                    <b>Step 3: Simplify</b><br>
+                    ${a}x = ${a*x}<br><br>
+                    <b>Step 4: Remove the coefficient</b><br>
+                    Dono taraf ko ${a} se divide karo.<br>
+                    ${a}x ÷ ${a} = ${a*x} ÷ ${a}<br><br>
+                    <b>✅ Final Answer:</b> x = ${x}<br><br>
+                    <b>Check:</b> ${a}(${x}) + ${b} = ${a*x} + ${b} = ${c} ✓`),
+                    en: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br>
+                    <b>Step 1: Understand the equation</b><br>
+                    Two operations: +${b} and ×${a}. First, remove +${b} to isolate the term with x.<br><br>
+                    <b>Step 2: Remove the constant</b><br>
+                    Subtract ${b} from both sides.<br>
+                    ${a}x + ${b} − ${b} = ${c} − ${b}<br><br>
+                    <b>Step 3: Simplify</b><br>
+                    ${a}x = ${a*x}<br><br>
+                    <b>Step 4: Remove the coefficient</b><br>
+                    Divide both sides by ${a}.<br>
+                    ${a}x ÷ ${a} = ${a*x} ÷ ${a}<br><br>
+                    <b>✅ Final Answer:</b> x = ${x}<br><br>
+                    <b>Check:</b> ${a}(${x}) + ${b} = ${c} ✓`)
                 }});
             }
         }
+        
         // 36-50: Word problems
         for(let i=1; i<=15; i++) {
-            let age = i * 5; let ans = age + 12;
+            let num = i * 5; let ans = num + 12;
             qs.push({q:`Ek number mein 12 jodne par ${ans} aata hai. Number kya hai?`, s:{
-                hi: fmt(`<b>Equation:</b> x + 12 = ${ans}<br><br><b>Step 1:</b> Number = x maano.<br><b>Step 2:</b> x + 12 = ${ans}<br><b>Step 3:</b> Dono taraf se 12 subtract karo.<br><b>Step 4:</b> x = ${age}<br><br><b>✅ Answer:</b> Number = ${age}`),
-                en: fmt(`<b>Equation:</b> x + 12 = ${ans}<br><br><b>Step 1:</b> Let number = x.<br><b>Step 2:</b> x + 12 = ${ans}<br><b>Step 3:</b> Subtract 12 from both sides.<br><b>Step 4:</b> x = ${age}<br><br><b>✅ Answer:</b> Number = ${age}`)
+                hi: fmt(`<b>Question:</b> Ek number mein 12 jodne par ${ans} aata hai. Number kya hai?<br><br>
+                <b>Step 1: Form the equation</b><br>
+                Maan lijiye number = x hai.<br>
+                Usme 12 joda, matlab x + 12.<br>
+                Result ${ans} aaya, matlab x + 12 = ${ans}.<br><br>
+                <b>Step 2: Solve for x</b><br>
+                Dono taraf se 12 subtract karo.<br>
+                x + 12 − 12 = ${ans} − 12<br><br>
+                <b>Step 3: Calculate</b><br>
+                x = ${num}<br><br>
+                <b>✅ Final Answer:</b> Number = ${num}<br><br>
+                <b>Check:</b> ${num} + 12 = ${ans} ✓`),
+                en: fmt(`<b>Question:</b> Adding 12 to a number gives ${ans}. What is the number?<br><br>
+                <b>Step 1: Form the equation</b><br>
+                Let the number be x.<br>
+                Adding 12 means x + 12.<br>
+                The result is ${ans}, so x + 12 = ${ans}.<br><br>
+                <b>Step 2: Solve for x</b><br>
+                Subtract 12 from both sides.<br>
+                x + 12 − 12 = ${ans} − 12<br><br>
+                <b>Step 3: Calculate</b><br>
+                x = ${num}<br><br>
+                <b>✅ Final Answer:</b> Number = ${num}<br><br>
+                <b>Check:</b> ${num} + 12 = ${ans} ✓`)
             }});
         }
         return qs;
     };
     
     _linEq.ex = genLinEq();
-    _linEq.word = _linEq.ex.slice(35); // Last 15 as word problems
-
+    _linEq.word = _linEq.ex.slice(35);
 
     // --- RENDERERS & HELPERS ---
     window.currentLang = 'hi';
@@ -2439,7 +2621,6 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     window.renderAdvChapter = function() {
         const s = ADVANCED_LESSONS[state.advSubj];
         const c = s.chapters[state.advChap];
-        // Both Algebra (0) and Linear Eq (1) have bilingual data
         const isBilingual = (state.advSubj === 'maths' && (state.advChap === 0 || state.advChap === 1));
         
         setH(c.title, s.name);
@@ -2469,7 +2650,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 let solText = isBilingual ? e.s[window.currentLang] : (e.s || e.a || '');
                 html += '<div class="chapter-ex">' +
                     '<div class="q" onclick="speakExQ(' + i + ')">' + (i+1) + '. ' + e.q + ' 🔊</div>' +
-                    '<button class="ans-btn" onclick="speakExSol(' + i + ')">👉 Solution</button>' +
+                    '<button class="ans-btn" onclick="speakExSol(' + i + ')">👉 Full Solution</button>' +
                     '<div class="s" id="adv-ex-' + i + '">' + solText + '</div>' +
                     '</div>';
             });
@@ -2505,9 +2686,8 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
         addStar();
     };
     
-    console.log("✅ Master Code: Algebra & Linear Equations (50 Qs) Loaded!");
+    console.log("✅ Ultimate Math Code Loaded Successfully!");
 }
-</script>
 </script>
 </body>
 </html>
