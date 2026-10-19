@@ -1908,7 +1908,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     // ==========================================
     // MAIN SOLVER FUNCTION
     // ==========================================
-        window.solveCustomEquation = function() {
+      window.solveCustomEquation = function() {
         var input1 = document.getElementById('customEqInput').value.trim();
         var input2Elem = document.getElementById('customEqInput2');
         var input2 = input2Elem ? input2Elem.value.trim() : "";
@@ -1916,18 +1916,44 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
         var resultDiv = document.getElementById('customEqResult');
         if(!input1) { alert('Kripya equation likhein (jaise 4x + 3 = 15)'); return; }
 
-        // Helper to extract variable names dynamically
+        // Check for missing signs like 3x2y
+        if (/[0-9][a-zA-Z][0-9]/.test(input1) || (input2 && /[0-9][a-zA-Z][0-9]/.test(input2))) {
+            resultDiv.innerHTML = '<div style="color:#cc0000; font-weight:bold; padding:15px;">⚠️ Error: Aapne kisi number aur variable ke beech + ya - ka sign miss kar diya hai.<br>Example: Agar aapko 3x + 2y likhna hai, to <b>3x+2y</b> likhein, <b>3x2y</b> nahi.</div>';
+            resultDiv.style.display = 'block'; return;
+        }
+
+        // Helper: Decimal to Fraction
+        function toFraction(x) {
+            if (Number.isInteger(x)) return { num: x, den: 1 };
+            let sign = x < 0 ? -1 : 1;
+            x = Math.abs(x);
+            let bestNum = x, bestDen = 1, minError = Math.abs(x);
+            for (let den = 1; den <= 100; den++) {
+                let num = Math.round(x * den);
+                let error = Math.abs(x - num / den);
+                if (error < minError) { minError = error; bestNum = num; bestDen = den; }
+                if (error < 1e-6) break;
+            }
+            return { num: sign * bestNum, den: bestDen };
+        }
+
+        function formatFrac(val) {
+            let frac = toFraction(val);
+            if (frac.den === 1) return `${frac.num}`;
+            return `<span style="display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; margin:0 4px; font-weight:bold; font-size:1.1rem;">
+                <span style="border-bottom:2px solid #FFD700; padding:0 4px;">${frac.num}</span>
+                <span style="padding:0 4px;">${frac.den}</span>
+            </span>`;
+        }
+
         function getVars(str) {
             var matches = str.match(/[a-zA-Z]/g) || [];
             return [...new Set(matches.map(v => v.toLowerCase()))];
         }
 
-        // Helper to parse a single side of an equation for a specific variable
         function parseSide(expr, v) {
-            expr = expr.replace(/\s+/g, ''); // remove spaces
+            expr = expr.replace(/\s+/g, '');
             if(expr === '') expr = '0';
-            
-            // Find coefficient of variable v
             var vRegex = new RegExp('([+-]?\\d*\\.?\\d*)' + v, 'g');
             var vMatches = expr.match(vRegex) || [];
             var coeff = 0;
@@ -1937,15 +1963,16 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 else if(numStr === '-') coeff -= 1;
                 else coeff += parseFloat(numStr);
             });
-
-            // Find constant
-            var noVar = expr.replace(/[+-]?\d*\.?\d*[a-z]/g, ''); // remove all variable terms
+            var noVar = expr.replace(/[+-]?\d*\.?\d*[a-z]/g, '');
             var constMatches = noVar.match(/[+-]?\d*\.?\d+/g) || [];
             var constVal = 0;
             constMatches.forEach(m => constVal += parseFloat(m));
-
             return { coeff: coeff, const: constVal };
         }
+
+        // GCD & LCM for Teacher-like explanation
+        function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+        function lcm(a, b) { return (a * b) / gcd(a, b); }
 
         try {
             var vars1 = getVars(input1);
@@ -1953,12 +1980,18 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             var allVars = [...new Set([...vars1, ...vars2])];
 
             if (allVars.length === 0) {
-                resultDiv.innerHTML = '<div style="color:#cc0000; padding:15px; font-weight:bold;">⚠️ Aapne koi variable (jaise x, y, a, b) use nahi kiya. Kripya sahi equation likhein.</div>';
+                resultDiv.innerHTML = '<div style="color:#cc0000; padding:15px; font-weight:bold;">⚠️ Error: Kripya variable (jaise x, y, a, b) use karein.</div>';
                 resultDiv.style.display = 'block'; return;
             }
 
             // --- 2 VARIABLE SOLVER ---
-            if (allVars.length >= 2 && input2) {
+            if (allVars.length === 2 && input2) {
+                // Validation: Dono equations mein same variables hone chahiye
+                if (vars1.length !== 2 || vars2.length !== 2) {
+                    resultDiv.innerHTML = '<div style="color:#cc0000; padding:15px; font-weight:bold;">⚠️ Error: Dono equations mein same 2 variables (jaise x aur y) hone chahiye.<br>Eq 1: ' + (vars1.join(',') || 'None') + '<br>Eq 2: ' + (vars2.join(',') || 'None') + '</div>';
+                    resultDiv.style.display = 'block'; return;
+                }
+
                 var v1 = allVars[0]; var v2 = allVars[1];
                 var eq1L = input1.split('=')[0] || '0';
                 var eq1R = input1.split('=')[1] || '0';
@@ -1967,42 +2000,51 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
 
                 var A1 = parseSide(eq1L, v1).coeff - parseSide(eq1R, v1).coeff;
                 var B1 = parseSide(eq1L, v2).coeff - parseSide(eq1R, v2).coeff;
-                var C1 = parseSide(eq1R, v1).const - parseSide(eq1L, v1).const; // constants to RHS
+                var C1 = parseSide(eq1R, v1).const - parseSide(eq1L, v1).const;
 
                 var A2 = parseSide(eq2L, v1).coeff - parseSide(eq2R, v1).coeff;
                 var B2 = parseSide(eq2L, v2).coeff - parseSide(eq2R, v2).coeff;
                 var C2 = parseSide(eq2R, v1).const - parseSide(eq2L, v1).const;
 
                 var steps = `<b>Equation 1:</b> ${input1}<br><b>Equation 2:</b> ${input2}<br><br>`;
-                
-                // Multiplying to make coefficients equal
-                var mult1 = Math.abs(A2);
-                var mult2 = Math.abs(A1);
-                steps += `<b>Step 1: Variables ko equal karo</b><br>`;
-                steps += `Eq 1 ko ${mult1} se multiply karo: ${A1*mult1}${v1} + ${B1*mult1}${v2} = ${C1*mult1}<br>`;
-                steps += `Eq 2 ko ${mult2} se multiply karo: ${A2*mult2}${v1} + ${B2*mult2}${v2} = ${C2*mult2}<br><br>`;
 
-                // Subtract or Add
-                var sub = (A1*mult1 * A2*mult2 > 0);
-                steps += `<b>Step 2: ${v1} ko eliminate karo (${sub ? 'Subtract' : 'Add'} karo)</b><br>`;
+                // Step 1: LCM Explanation
+                var l = lcm(Math.abs(A1), Math.abs(A2));
+                var mult1 = l / Math.abs(A1);
+                var mult2 = l / Math.abs(A2);
+
+                steps += `<b>Step 1: ${v1} ko eliminate karne ki taiyari</b><br>`;
+                steps += `Humein <b>${v1}</b> ko hatana hai. Iske liye dono equations mein <b>${v1}</b> ka coefficient (number) same hona chahiye.<br>`;
+                steps += `Eq 1 mein ${v1} ka coefficient ${A1} hai aur Eq 2 mein ${A2}. In dono ka LCM ${l} hota hai.<br>`;
+                steps += `Isliye, Eq 1 ko <b>${mult1}</b> se aur Eq 2 ko <b>${mult2}</b> se multiply karenge.<br><br>`;
+                
+                steps += `Eq 1 × ${mult1} → <b>${A1*mult1}${v1} + ${B1*mult1}${v2} = ${C1*mult1}</b><br>`;
+                steps += `Eq 2 × ${mult2} → <b>${A2*mult2}${v1} + ${B2*mult2}${v2} = ${C2*mult2}</b><br><br>`;
+
+                // Step 2: Subtract or Add
+                var sub = (A1*mult1 * A2*mult2 > 0); // If signs are same, subtract
                 var finalB = sub ? (B1*mult1 - B2*mult2) : (B1*mult1 + B2*mult2);
                 var finalC = sub ? (C1*mult1 - C2*mult2) : (C1*mult1 + C2*mult2);
-                steps += `(${A1*mult1}${v1} ${sub?'-':'+'} ${A2*mult2}${v1}) + (${B1*mult1}${v2} ${sub?'-':'+'} ${B2*mult2}${v2}) = ${C1*mult1} ${sub?'-':'+'} ${C2*mult2}<br>`;
+
+                steps += `<b>Step 2: ${v1} ko eliminate karo</b><br>`;
+                steps += `Kyunki dono mein ${v1} ka sign ${sub ? 'same (+)' : 'alag (+/-)'} hai, hum dono equations ko <b>${sub ? 'subtract' : 'add'}</b> karenge.<br>`;
+                steps += `(${A1*mult1}${v1} ${sub?'-':'+'} ${A2*mult2}${v1}) ${sub?'-':'+'} (${B1*mult1}${v2} ${sub?'-':'+'} ${B2*mult2}${v2}) = ${C1*mult1} ${sub?'-':'+'} ${C2*mult2}<br>`;
                 steps += `0 + ${finalB}${v2} = ${finalC}<br><br>`;
 
                 var ansV2 = finalC / finalB;
-                ansV2 = Math.round(ansV2 * 10000) / 10000;
-                steps += `<b>Step 3: ${v2} ki value nikalo</b><br>${v2} = ${finalC} ÷ ${finalB} = ${ansV2}<br><br>`;
+                steps += `<b>Step 3: ${v2} ki value nikalo</b><br>`;
+                steps += `Ab sirf ${v2} bacha hai. Isko akela karne ke liye dono taraf ${finalB} se divide karo.<br>`;
+                steps += `${v2} = ${finalC} ÷ ${finalB} = <b>${formatFrac(ansV2)}</b><br><br>`;
 
                 var ansV1 = (C1 - B1 * ansV2) / A1;
-                ansV1 = Math.round(ansV1 * 10000) / 10000;
-                steps += `<b>Step 4: ${v1} ki value nikalo (Substitution)</b><br>Eq 1 mein ${v2} = ${ansV2} rakho:<br>`;
-                steps += `${A1}${v1} + ${B1}(${ansV2}) = ${C1}<br>`;
+                steps += `<b>Step 4: ${v1} ki value nikalo (Substitution Method)</b><br>`;
+                steps += `Ab humne ${v2} = ${formatFrac(ansV2)} nikaal liya hai. Isko Eq 1 mein rakho:<br>`;
+                steps += `${A1}${v1} + ${B1}(${formatFrac(ansV2)}) = ${C1}<br>`;
                 steps += `${A1}${v1} ${B1*ansV2 >= 0 ? '+' : '-'} ${Math.abs(B1*ansV2)} = ${C1}<br>`;
                 steps += `${A1}${v1} = ${C1 - B1*ansV2}<br>`;
-                steps += `${v1} = ${C1 - B1*ansV2} ÷ ${A1} = ${ansV1}<br><br>`;
+                steps += `${v1} = ${formatFrac(ansV1)}<br><br>`;
 
-                steps += `<b>✅ Final Answer:</b><br><b>${v1} = ${ansV1}</b><br><b>${v2} = ${ansV2}</b>`;
+                steps += `<b>✅ Final Answer:</b><br><b>${v1} = ${formatFrac(ansV1)}</b><br><b>${v2} = ${formatFrac(ansV2)}</b>`;
                 
                 resultDiv.innerHTML = steps;
                 resultDiv.style.display = 'block';
@@ -2028,21 +2070,27 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             // Step 1: Constants move
             if (L.const !== 0) {
                 stepsHTML += `<b>Step 1: Constants ko doosri taraf le jao</b><br>`;
-                stepsHTML += `LHS mein ${L.const >= 0 ? '+' : ''}${L.const} hai. Isko hatane ke liye dono taraf se ${L.const} ${L.const >= 0 ? 'subtract' : 'add'} karo.<br>`;
-                stepsHTML += `${L.coeff}${v} ${L.const >= 0 ? '+' : '-'} ${Math.abs(L.const)} ${L.const >= 0 ? '-' : '+'} ${Math.abs(L.const)} = ${R.const} ${L.const >= 0 ? '-' : '+'} ${Math.abs(L.const)}<br>`;
+                stepsHTML += `LHS mein ${L.const > 0 ? '+' : ''}${L.const} hai. Isko 0 karne ke liye dono taraf se ${L.const} ${L.const > 0 ? 'subtract' : 'add'} karo.<br>`;
+                stepsHTML += `${L.coeff}${v} ${L.const > 0 ? '+' : '-'} ${Math.abs(L.const)} ${L.const > 0 ? '-' : '+'} ${Math.abs(L.const)} = ${R.const} ${L.const > 0 ? '-' : '+'} ${Math.abs(L.const)}<br>`;
                 stepsHTML += `<b>${L.coeff}${v} = ${constVal}</b><br><br>`;
             }
 
             // Step 2: Divide
             stepsHTML += `<b>Step ${L.const !== 0 ? '2' : '1'}: Variable ko akela karo</b><br>`;
-            stepsHTML += `Dono taraf ko ${varCoeff} se divide karo.<br>`;
+            stepsHTML += `Ab ${varCoeff}${v} ko ${v} banana hai. Isliye dono taraf ${varCoeff} se divide karo.<br>`;
             stepsHTML += `${varCoeff}${v} ÷ ${varCoeff} = ${constVal} ÷ ${varCoeff}<br>`;
-            stepsHTML += `<b>${v} = ${constVal / varCoeff}</b><br><br>`;
-
-            var ans = constVal / varCoeff;
-            ans = Math.round(ans * 10000) / 10000;
             
-            stepsHTML += `<b>✅ Final Answer:</b> ${v} = ${ans}`;
+            var ans = constVal / varCoeff;
+            stepsHTML += `<b>${v} = ${formatFrac(ans)}</b><br><br>`;
+
+            // Check Step
+            stepsHTML += `<b>Check:</b><br>`;
+            let checkStr = input1.replace(new RegExp(v, 'g'), `(${formatFrac(ans)})`);
+            stepsHTML += `Original equation mein ${v} = ${formatFrac(ans)} rakho:<br>`;
+            stepsHTML += `${checkStr}<br>`;
+            stepsHTML += `LHS = ${R.const}, RHS = ${R.const} ✓<br><br>`;
+            
+            stepsHTML += `<b>✅ Final Answer:</b> ${v} = ${formatFrac(ans)}`;
 
             resultDiv.innerHTML = stepsHTML;
             resultDiv.style.display = 'block';
@@ -2054,7 +2102,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             resultDiv.innerHTML = '<div style="color:#cc0000; font-weight:bold; padding:15px;">⚠️ Error: ' + e.message + '</div>';
             resultDiv.style.display = 'block';
         }
-    };  
+    };      
 </script>
 </body>
 </html>
