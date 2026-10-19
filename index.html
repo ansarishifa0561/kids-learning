@@ -2156,5 +2156,86 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
         }
     };      
 </script>
+<!-- ====================================================
+     MENSURATION RESTORE (50 Questions + Formulas + Diagrams)
+     ==================================================== -->
+<script>
+setTimeout(function() {
+    if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
+        const _mensuration = ADVANCED_LESSONS.maths.chapters[2];
+        _mensuration.title = 'Mensuration (50 Q)';
+        
+        const fmt = function(txt) {
+            return '<div style="text-align:left;line-height:1.9;font-size:1.05rem;color:#333">' + txt + '</div>';
+        };
+
+        _mensuration.def = `
+        <div style="text-align:left; font-size: 1.05rem; line-height: 1.8;">
+        <b>Mensuration</b> matlab geometry mein shapes ka <b>Area</b>, <b>Perimeter</b> aur <b>Volume</b> nikalna.<br><br>
+        <b>📐 Zaroori Formulas:</b><br>
+        • <b>Rectangle:</b> Area = L × B, Perimeter = 2(L+B)<br>
+        • <b>Square:</b> Area = Side², Perimeter = 4 × Side<br>
+        • <b>Circle:</b> Area = πr², Circumference = 2πr<br>
+        • <b>Cube:</b> Volume = Side³<br>
+        • <b>Cuboid:</b> Volume = L × B × H<br>
+        </div>`;
+
+        const genMensuration = () => {
+            let qs = [];
+            
+            // 1-10: Rectangle
+            for(let i=1; i<=10; i++) {
+                let l = i+4; let b = i+2; let area = l*b; let per = 2*(l+b);
+                qs.push({q:`Rectangle ki length ${l} cm aur breadth ${b} cm hai. Area nikalo.`, s:{
+                    hi: fmt(`<b>Formula:</b> Area = L × B<br><br><b>Step 1:</b> L = ${l}, B = ${b}<br><b>Step 2:</b> Area = ${l} × ${b}<br><b>Step 3:</b> Area = ${area} sq cm<br><br><div style="text-align:center; margin:15px 0;"><svg width="150" height="100"><rect x="10" y="20" width="${l*8}" height="${b*8}" fill="rgba(124,92,255,0.1)" stroke="#7c5cff" stroke-width="3" stroke-dasharray="5,5"/><text x="${10 + l*4}" y="15" font-size="12" font-weight="bold">L=${l}</text><text x="${l*8+15}" y="${20 + b*4}" font-size="12" font-weight="bold">B=${b}</text></svg></div><b>✅ Final Answer:</b> ${area} sq cm`),
+                    en: fmt(`<b>Formula:</b> Area = L × B<br><br><b>Step 1:</b> L = ${l}, B = ${b}<br><b>Step 2:</b> Area = ${l} × ${b}<br><b>Step 3:</b> Area = ${area} sq cm<br><br><b>✅ Final Answer:</b> ${area} sq cm`)
+                }});
+            }
+
+            // 11-20: Square
+            for(let i=1; i<=10; i++) {
+                let s = i+3; let area = s*s; let per = 4*s;
+                qs.push({q:`Square ki side ${s} cm hai. Area aur Perimeter nikalo.`, s:{
+                    hi: fmt(`<b>Formulas:</b> Area = Side², Perimeter = 4 × Side<br><br><b>Step 1:</b> Side = ${s}<br><b>Step 2:</b> Area = ${s} × ${s} = ${area} sq cm<br><b>Step 3:</b> Perimeter = 4 × ${s} = ${per} cm<br><br><div style="text-align:center; margin:15px 0;"><svg width="100" height="100"><rect x="15" y="15" width="${s*8}" height="${s*8}" fill="rgba(52,199,89,0.1)" stroke="#34C759" stroke-width="3"/><text x="${15+s*4}" y="10" font-size="12" font-weight="bold">Side=${s}</text></svg></div><b>✅ Final Answer:</b> Area = ${area} sq cm, Perimeter = ${per} cm`),
+                    en: fmt(`<b>Formulas:</b> Area = Side², Perimeter = 4 × Side<br><br><b>Step 1:</b> Side = ${s}<br><b>Step 2:</b> Area = ${s} × ${s} = ${area} sq cm<br><b>Step 3:</b> Perimeter = 4 × ${s} = ${per} cm<br><br><b>✅ Final Answer:</b> Area = ${area} sq cm, Perimeter = ${per} cm`)
+                }});
+            }
+
+            // 21-30: Circle
+            for(let i=1; i<=10; i++) {
+                let r = i+2; let area = Math.round((22/7)*r*r); let circ = Math.round(2*(22/7)*r);
+                qs.push({q:`Circle ka radius ${r} cm hai. Area nikalo (π = 22/7).`, s:{
+                    hi: fmt(`<b>Formula:</b> Area = πr²<br><br><b>Step 1:</b> r = ${r}, π = 22/7<br><b>Step 2:</b> Area = (22/7) × ${r} × ${r}<br><b>Step 3:</b> Area = ${area} sq cm<br><br><div style="text-align:center; margin:15px 0;"><svg width="120" height="120"><circle cx="60" cy="60" r="${r*8}" fill="rgba(10,132,255,0.1)" stroke="#0A84FF" stroke-width="3"/><line x1="60" y1="60" x2="${60+r*8}" y2="60" stroke="#333" stroke-width="2" stroke-dasharray="4,4"/><text x="${60+r*4}" y="55" font-size="12" font-weight="bold">r=${r}</text></svg></div><b>✅ Final Answer:</b> ${area} sq cm`),
+                    en: fmt(`<b>Formula:</b> Area = πr²<br><br><b>Step 1:</b> r = ${r}, π = 22/7<br><b>Step 2:</b> Area = (22/7) × ${r} × ${r}<br><b>Step 3:</b> Area = ${area} sq cm<br><br><b>✅ Final Answer:</b> ${area} sq cm`)
+                }});
+            }
+
+            // 31-40: Cube
+            for(let i=1; i<=10; i++) {
+                let s = i+1; let vol = s*s*s;
+                qs.push({q:`Cube ki side ${s} cm hai. Volume nikalo.`, s:{
+                    hi: fmt(`<b>Formula:</b> Volume = Side³<br><br><b>Step 1:</b> Side = ${s}<br><b>Step 2:</b> Volume = ${s} × ${s} × ${s}<br><b>Step 3:</b> Volume = ${vol} cubic cm<br><br><div style="text-align:center; margin:15px 0;"><svg width="120" height="120"><polygon points="20,40 60,40 60,80 20,80" fill="rgba(255,111,0,0.2)" stroke="#FF6F00" stroke-width="2"/><polygon points="20,40 40,20 80,20 60,40" fill="rgba(255,111,0,0.1)" stroke="#FF6F00" stroke-width="2"/><polygon points="60,40 80,20 80,60 60,80" fill="rgba(255,111,0,0.15)" stroke="#FF6F00" stroke-width="2"/><text x="40" y="95" font-size="12" font-weight="bold">s=${s}</text></svg></div><b>✅ Final Answer:</b> ${vol} cm³`),
+                    en: fmt(`<b>Formula:</b> Volume = Side³<br><br><b>Step 1:</b> Side = ${s}<br><b>Step 2:</b> Volume = ${s} × ${s} × ${s}<br><b>Step 3:</b> Volume = ${vol} cubic cm<br><br><b>✅ Final Answer:</b> ${vol} cm³`)
+                }});
+            }
+
+            // 41-50: Word Problems
+            for(let i=1; i<=10; i++) {
+                let l = i*2; let b = i+1; let area = l*b;
+                qs.push({q:`Ek kamre ki lambai ${l}m aur chaudai ${b}m hai. Floor ka area nikalo.`, s:{
+                    hi: fmt(`<b>Formula:</b> Area = L × B<br><br><b>Step 1:</b> Kamra rectangle shape ka hai.<br><b>Step 2:</b> L = ${l}m, B = ${b}m<br><b>Step 3:</b> Area = ${l} × ${b} = ${area} sq m<br><br><b>✅ Final Answer:</b> ${area} sq m`),
+                    en: fmt(`<b>Formula:</b> Area = L × B<br><br><b>Step 1:</b> The room is rectangular.<br><b>Step 2:</b> L = ${l}m, B = ${b}m<br><b>Step 3:</b> Area = ${l} × ${b} = ${area} sq m<br><br><b>✅ Final Answer:</b> ${area} sq m`)
+                }});
+            }
+
+            return qs;
+        };
+
+        _mensuration.ex = genMensuration();
+        _mensuration.word = _mensuration.ex.slice(40);
+        console.log("✅ Mensuration 50 Q Restored!");
+    }
+}, 500); // 500ms delay to ensure the main script has loaded first
+</script>
 </body>
 </html>
