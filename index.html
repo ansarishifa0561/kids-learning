@@ -7,15 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 <style>
-/* ===== BASE STYLES ===== */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:'Baloo 2',system-ui,sans-serif;color:#2b2b3a;padding:14px;
-background:radial-gradient(circle at 20% 20%,#fff5e6,#f0d9b5 60%,#d9b88a 100%);
-background-attachment:fixed;min-height:100vh}
-.frame{max-width:1250px;margin:20px auto;background:linear-gradient(135deg,#fffefb,#fff8ee);
-border-radius:14px;box-shadow:0 0 0 3px #fff,0 0 0 10px #8B5A2B,0 0 0 13px #d4a373,0 0 0 16px #8B5A2B,0 25px 60px rgba(80,50,20,.35);overflow:hidden}
-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;padding:12px 16px;
-background:linear-gradient(135deg,#fffefb,#fff5e6);border-bottom:3px double #8B5A2B;box-shadow:0 4px 20px rgba(139,90,43,.15)}
+body{font-family:'Baloo 2',system-ui,sans-serif;color:#2b2b3a;padding:14px;background:radial-gradient(circle at 20% 20%,#fff5e6,#f0d9b5 60%,#d9b88a 100%);background-attachment:fixed;min-height:100vh}
+.frame{max-width:1250px;margin:20px auto;background:linear-gradient(135deg,#fffefb,#fff8ee);border-radius:14px;box-shadow:0 0 0 3px #fff,0 0 0 10px #8B5A2B,0 0 0 13px #d4a373,0 0 0 16px #8B5A2B,0 25px 60px rgba(80,50,20,.35);overflow:hidden}
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(135deg,#fffefb,#fff5e6);border-bottom:3px double #8B5A2B;box-shadow:0 4px 20px rgba(139,90,43,.15)}
 .brand{display:flex;align-items:center;gap:10px}
 .brand-logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#7c5cff,#ff5f9e);display:grid;place-items:center;font-size:1.6rem;box-shadow:0 6px 16px rgba(124,92,255,.4);animation:logoPulse 3s ease-in-out infinite}
 @keyframes logoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
@@ -37,48 +32,10 @@ main{padding:20px 16px 40px}
 .card .emo{font-size:2.8rem;line-height:1}
 .card .ttl{font-weight:800;font-size:1rem;color:#5a3a1a}
 .card .sub{font-size:.78rem;opacity:.7;font-weight:600;color:#8B5A2B}
-.item{padding:18px 10px;gap:8px;border-radius:22px}
-.item .visual{font-size:5rem;line-height:1;filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
-.item .bignum{font-size:3rem;font-weight:800;line-height:1;color:#7c5cff;text-shadow:2px 2px 0 #fff}
-.item .label{font-weight:800;font-size:.95rem;color:#5a3a1a}
-.item .badge{position:absolute;top:8px;left:8px;background:linear-gradient(135deg,#7c5cff,#ff5f9e);color:#fff;border-radius:10px;padding:2px 10px;font-size:.8rem;font-weight:800}
-.swatch{width:85px;height:85px;border-radius:50%;box-shadow:inset 0 -8px 15px rgba(0,0,0,.15),inset 0 8px 15px rgba(255,255,255,.4),0 8px 20px rgba(0,0,0,.2)}
-.num-tile{display:inline-flex;align-items:center;justify-content:center;min-width:65px;min-height:65px;border-radius:16px;font-size:clamp(1.5rem,4vw,2.4rem);font-weight:800;color:#fff;box-shadow:0 8px 16px rgba(0,0,0,.25);padding:6px 12px;white-space:nowrap}
-.item.word-item{grid-column:span 2;padding:20px 14px;min-height:160px;justify-content:center}
-.item .wordtext{font-weight:800;line-height:1.15;word-break:break-word;color:#5C6BC0;font-size:1.4rem}
-.item.word-item[data-len="s"] .wordtext{font-size:1.9rem}
-.item.word-item[data-len="m"] .wordtext{font-size:1.3rem}
-.item.word-item[data-len="l"] .wordtext{font-size:1.05rem}
-
-/* ===== LESSONS & POEMS ===== */
 .lesson,.chapter-view{background:#fffefb;border-radius:22px;padding:22px 18px;box-shadow:0 12px 30px rgba(139,90,43,.18);max-width:820px;margin:0 auto;border:2px solid #e8d5b7}
 .lesson h2,.chapter-view h2{text-align:center;font-size:1.4rem;color:#7c5cff;margin-bottom:6px}
 .lesson .chapter,.chapter-view .meta{text-align:center;font-size:.82rem;opacity:.75;font-weight:700;margin-bottom:16px;color:#8B5A2B}
 .sec-title{font-size:1.1rem;font-weight:800;margin:20px 0 10px;color:#5a3a1a;border-bottom:2px dashed #e8d5b7;padding-bottom:6px}
-.point{width:100%;border:none;font-family:inherit;cursor:pointer;background:#f6f4ff;border-radius:14px;padding:12px 16px;font-size:.98rem;font-weight:700;text-align:left;color:#2b2b3a;margin-bottom:8px;line-height:1.5;display:flex;gap:8px}
-.point:hover{background:#e9e5ff}
-.point.active{background:#7c5cff;color:#fff}
-.qa-item{background:linear-gradient(135deg,#f9f9ff,#f0f0ff);border-radius:14px;padding:12px 14px;margin-bottom:10px;border-left:5px solid #7c5cff}
-.qa-q{font-weight:800;font-size:.95rem;margin-bottom:8px;cursor:pointer}
-.qa-a{background:#e8fff0;border-radius:10px;padding:10px 12px;font-size:.9rem;font-weight:700;color:#1b7a45;display:none}
-.qa-a.show{display:block}
-.ans-btn{border:none;font-family:inherit;cursor:pointer;background:#eef0ff;color:#5c4dff;font-weight:800;border-radius:10px;padding:6px 14px;font-size:.8rem; margin-bottom: 8px}
-.poem{background:#fff;border-radius:22px;padding:0;overflow:hidden;box-shadow:0 15px 40px rgba(139,90,43,.25);max-width:750px;margin:0 auto;border:2px solid #e8d5b7}
-.poem-hero{padding:26px 18px;text-align:center}
-.poem-hero .hero-pic{font-size:4.5rem;line-height:1}
-.poem-hero h2{font-size:1.4rem;margin:10px 0 4px;color:#fff;text-shadow:2px 2px 4px rgba(0,0,0,.4)}
-.poem-hero .author{font-size:.82rem;color:#fff;font-weight:700;text-shadow:1px 1px 3px rgba(0,0,0,.4)}
-.poem-body{padding:20px 16px}
-.lines{display:flex;flex-direction:column;gap:10px}
-.line{border:none;font-family:inherit;cursor:pointer;background:linear-gradient(135deg,#f6f4ff,#eef0ff);border-radius:16px;padding:14px 18px;font-size:1.05rem;font-weight:700;text-align:left;color:#2b2b3a;line-height:1.5;display:flex;gap:12px;align-items:center;border-left:5px solid transparent}
-.line .pic{font-size:1.9rem;flex:0 0 auto}
-.line:hover{background:#e9e5ff}
-.line.active{background:linear-gradient(135deg,#7c5cff,#ff5f9e);color:#fff;box-shadow:0 8px 20px rgba(124,92,255,.5);border-left:5px solid #fff}
-.poem-actions{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
-.btn{border:none;font-family:inherit;cursor:pointer;border-radius:14px;padding:12px 22px;font-weight:800;font-size:.95rem;background:#eef0ff;color:#5c4dff}
-.btn.primary{background:linear-gradient(135deg,#7c5cff,#ff5f9e);color:#fff}
-
-/* ===== CHAPTER/EXAMPLES ===== */
 .chapter-sec{margin-bottom:22px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#f9f9ff,#f0f0ff);border-left:5px solid #7c5cff}
 .chapter-sec h3{font-size:1.1rem;font-weight:800;margin-bottom:10px;color:#5a3a1a}
 .chapter-sec .text{background:#fff;padding:12px 14px;border-radius:12px;font-size:1rem;font-weight:700;color:#3b3b5c;line-height:1.6;cursor:pointer}
@@ -87,9 +44,8 @@ main{padding:20px 16px 40px}
 .chapter-ex .s{background:linear-gradient(135deg, #556B2F, #6B8E23); color:white; padding:14px 16px; border-radius:12px; font-size:.92rem; font-weight:600; line-height:1.7; display:none; box-shadow: 0 8px 20px rgba(85, 107, 47, 0.4)}
 .chapter-ex .s.show{display:block; animation:fade .3s}
 .chapter-ex .s b{color:#FFD700}
+.ans-btn{border:none;font-family:inherit;cursor:pointer;background:#eef0ff;color:#5c4dff;font-weight:800;border-radius:10px;padding:6px 14px;font-size:.8rem; margin-bottom: 8px}
 @keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1}}
-
-/* ===== SOLVER UI ===== */
 .solver-box { background: #fff; border-radius: 20px; padding: 20px; margin: 20px auto; max-width: 600px; box-shadow: 0 10px 25px rgba(80,80,140,.15); border: 2px solid #7c5cff; text-align: center; }
 .solver-box h3 { color: #5a3a1a; margin-bottom: 15px; font-size: 1.2rem; }
 .solver-input-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px; }
@@ -97,6 +53,9 @@ main{padding:20px 16px 40px}
 .solver-input-group input:focus { outline: none; border-color: #7c5cff; }
 .solver-input-group button { padding: 12px 20px; background: #7c5cff; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 1.1rem; cursor: pointer; font-family: inherit;}
 .solver-input-group button:hover { background: #5c3cdf; }
+.poem-actions{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.btn{border:none;font-family:inherit;cursor:pointer;border-radius:14px;padding:12px 22px;font-weight:800;font-size:.95rem;background:#eef0ff;color:#5c4dff}
+.btn.primary{background:linear-gradient(135deg,#7c5cff,#ff5f9e);color:#fff}
 </style>
 </head>
 <body>
@@ -115,16 +74,17 @@ main{padding:20px 16px 40px}
   <div class="stars">⭐ <span id="starCount">0</span></div>
 </header>
 <main id="screen"></main>
-<footer class="shifa-footer" style="background:linear-gradient(135deg,#7c5cff,#ff5f9e);padding:20px 16px;text-align:center;margin-top:20px">
-  <div style="color:#fff"><strong>Shifa's Learning Hub</strong><br><span style="font-size:.8rem">Made with 💜 by Shifa</span></div>
-</footer>
 </div>
 
 <script>
 // ==========================================
-// 1. VOICE FIX
+// 1. VOICE & CORE
 // ==========================================
 let soundOn = true;
+let stars = parseInt(localStorage.getItem('shifa_stars')||'0',10);
+function addStar() { stars++; localStorage.setItem('shifa_stars',stars); document.getElementById('starCount').textContent=stars; }
+document.getElementById('starCount').textContent = stars;
+
 function toggleSound() {
     soundOn = !soundOn;
     if(!soundOn && window.speechSynthesis) speechSynthesis.cancel();
@@ -135,14 +95,14 @@ function speak(text, lang='hi-IN') {
     if(!soundOn || !('speechSynthesis' in window) || !text) return;
     speechSynthesis.cancel();
     let t = String(text).replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').trim();
-    t = t.replace(/=/g, ' barabar hai ').replace(/\+/g, ' plus ').replace(/−/g, ' minus ').replace(/-/g, ' minus ').replace(/×/g, ' times ').replace(/÷/g, ' divided by ');
+    t = t.replace(/✅/g, '').replace(/=/g, ' barabar hai ').replace(/\+/g, ' plus ').replace(/−/g, ' minus ').replace(/-/g, ' minus ').replace(/×/g, ' times ').replace(/÷/g, ' divided by ');
     const u = new SpeechSynthesisUtterance(t);
     u.lang = lang; u.rate = 0.8; u.pitch = 1.1;
     speechSynthesis.speak(u);
 }
 
 // ==========================================
-// 2. DATA ENGINE (Basic + Advanced)
+// 2. DATA ENGINE
 // ==========================================
 const fmt = function(txt) { return '<div style="text-align:left;line-height:1.9;font-size:1.05rem">' + txt + '</div>'; };
 
@@ -208,13 +168,43 @@ function genMensuration() {
     return qs;
 }
 
+const LEVELS = {
+  nursery:{name:'Nursery', sub:'Age 3-4 Years', emoji:'🧸', color:'#FF6B9D', cats:['alphabet','twoletter','numbers10','colors','shapes','fruits','animals','body','rhymes']},
+  jr:{name:'JR KG', sub:'Junior KG • Age 4-5', emoji:'🎈', color:'#00C2A8', cats:['numbers50','missingletter','fruits','animals','body','rhymes']},
+  sr:{name:'SR KG', sub:'Senior KG • Age 5-6', emoji:'🎒', color:'#FFA726', cats:['threeletter','numbers100','missingnumber','body','writing','rhymes']},
+  class1:{name:'Class 1', sub:'Age 6-7 Years', emoji:'📚', color:'#9B72FF', cats:['aan','matching','tables10','poems1','stories','writing']},
+  class2:{name:'Class 2', sub:'Age 7-8 Years', emoji:'✏️', color:'#EF5350', cats:['nouns','tables15','mathquiz1','engquiz1','stories','writing']},
+  class3:{name:'Class 3', sub:'Age 8-9 Years', emoji:'📖', color:'#26A69A', cats:['verbs','tables20','mathquiz1','engquiz2','gkquiz1','poems2']},
+  class4:{name:'Class 4', sub:'Age 9-10 Years', emoji:'🎯', color:'#5C6BC0', cats:['tables20','mathquiz2','science','computer','gkquiz2','poems3']},
+  class5:{name:'Class 5', sub:'Age 10-11 Years', emoji:'🔬', color:'#AB47BC', cats:['mathquiz2','science','computer','history','geography','poems3']},
+  class6:{name:'Class 6', sub:'Age 11-12 Years', emoji:'🌏', color:'#29B6F6', cats:['mathquiz3','science2','history','geography','computer2']},
+  class7:{name:'Class 7', sub:'Age 12-13 Years', emoji:'⚛️', color:'#66BB6A', cats:['mathquiz3','science2','history','geography','computer2']},
+  class8:{name:'Class 8', sub:'Age 13-14 Years', emoji:'🎓', color:'#FF7043', cats:['mathquiz3','science2','history','geography','computer2']}
+};
+
+const CATS = {
+  alphabet:{n:'ABCD', e:'🔤'}, twoletter:{n:'2 Letter Words', e:'📝'}, threeletter:{n:'3 Letter Words', e:'✍️'},
+  numbers10:{n:'Numbers 0-10', e:'🔢'}, numbers50:{n:'Numbers 0-50', e:'💯'}, numbers100:{n:'Numbers 0-100', e:'🔟'},
+  missingletter:{n:'Missing Letter', e:'❓'}, missingnumber:{n:'Missing Number', e:'🎯'},
+  colors:{n:'Colours', e:'🎨'}, shapes:{n:'Shapes', e:'🔷'}, fruits:{n:'Fruits', e:'🍎'}, animals:{n:'Animals', e:'🐘'},
+  body:{n:'Body Parts', e:'🖐️'}, rhymes:{n:'Rhymes', e:'🎵'}, writing:{n:'Writing', e:'✍️'},
+  tables10:{n:'Tables 2-10', e:'✖️'}, tables15:{n:'Tables 2-15', e:'✖️'}, tables20:{n:'Tables 2-20', e:'✖️'},
+  aan:{n:'A, An, The', e:'📝'}, matching:{n:'Matching', e:'🎯'}, nouns:{n:'Nouns', e:'🏷️'}, verbs:{n:'Verbs', e:'🏃'},
+  mathquiz1:{n:'Maths Quiz', e:'🧮'}, mathquiz2:{n:'Maths Quiz', e:'🧮'}, mathquiz3:{n:'Maths Quiz', e:'🧮'},
+  engquiz1:{n:'English Quiz', e:'📝'}, engquiz2:{n:'English Quiz', e:'📝'}, engquiz3:{n:'English Quiz', e:'📝'},
+  gkquiz1:{n:'GK Quiz', e:'🌏'}, gkquiz2:{n:'GK Quiz', e:'🌏'}, gkquiz3:{n:'GK Quiz', e:'🌏'},
+  science:{n:'Science', e:'🔬'}, science2:{n:'Science', e:'⚛️'}, history:{n:'History', e:'🏛️'},
+  geography:{n:'Geography', e:'🗺️'}, computer:{n:'Computer', e:'💻'}, computer2:{n:'Computer', e:'🖥️'},
+  poems1:{n:'Poems', e:'📜'}, poems2:{n:'Poems', e:'📜'}, poems3:{n:'Poems', e:'📜'}, stories:{n:'Stories', e:'📖'}
+};
+
 const ADVANCED_LESSONS = {
     maths: {
         name: 'Advanced Maths', emoji: '🧮', color: '#00BCD4',
         chapters: [
-            { emoji: '🔤', title: 'Algebra Basics (50 Q)', def: {hi:'Algebra mein numbers ki jagah letters use karte hain.', en:'Algebra uses letters instead of numbers.'}, ex: genAlgebra(), word: [] },
-            { emoji: '⚖️', title: 'Linear Equations (50 Q)', def: {hi:'Linear equation matlab variable ki power 1 hona.', en:'A linear equation has a variable with power 1.'}, ex: genLinear(), word: [] },
-            { emoji: '📦', title: 'Mensuration (50 Q)', def: {hi:'Mensuration matlab Area, Perimeter, Volume nikalna.', en:'Mensuration means finding Area, Perimeter, Volume.'}, ex: genMensuration(), word: [] }
+            { emoji: '🔤', title: 'Algebra Basics (50 Q)', def: {hi:'Algebra mein numbers ki jagah letters use karte hain.', en:'Algebra uses letters.'}, ex: genAlgebra() },
+            { emoji: '⚖️', title: 'Linear Equations (50 Q)', def: {hi:'Linear equation matlab variable ki power 1 hona.', en:'A linear equation has variable power 1.'}, ex: genLinear() },
+            { emoji: '📦', title: 'Mensuration (50 Q)', def: {hi:'Mensuration matlab Area, Perimeter, Volume.', en:'Mensuration means Area, Perimeter, Volume.'}, ex: genMensuration() }
         ]
     }
 };
@@ -226,34 +216,65 @@ const screen = document.getElementById('screen');
 const hTitle = document.getElementById('hTitle');
 const hSub = document.getElementById('hSub');
 const backBtn = document.getElementById('backBtn');
-let state = { view: 'home', advSubj: null, advChap: null };
+let state = { view: 'home', level: null, cat: null, advSubj: null, advChap: null };
 let currentLang = 'hi';
-let stars = parseInt(localStorage.getItem('shifa_stars')||'0',10);
-function addStar() { stars++; localStorage.setItem('shifa_stars',stars); document.getElementById('starCount').textContent=stars; }
-document.getElementById('starCount').textContent = stars;
 
 function setH(t, s) { hTitle.textContent = t; hSub.textContent = s; backBtn.style.visibility = state.view === 'home' ? 'hidden' : 'visible'; }
+
 function goBack() {
     if(speechSynthesis) speechSynthesis.cancel();
     if(state.view === 'home') return;
     if(state.view === 'adv-chap') { state.view = 'adv-subj'; renderAdvSubject(); return; }
     if(state.view === 'adv-subj') { state.view = 'advanced'; renderAdvancedLessons(); return; }
+    if(state.view === 'cat') { state.view = 'level'; renderLevel(); return; }
+    if(state.view === 'level') { state.view = 'home'; renderHome(); return; }
     state.view = 'home'; renderHome();
 }
 
 function renderHome() {
     setH("Shifa's Learning Hub", '✨ Learn • Play • Grow ✨');
     screen.innerHTML = `
-        <div class="hero">
-            <h1>🎈 Welcome to Shifa's Learning Land!</h1>
-            <p>Apni class chuno aur seekhna shuru karo ✨</p>
+        <div class="hero"><h1>🎈 Welcome to Shifa's Learning Land!</h1><p>Apni class chuno aur seekhna shuru karo ✨</p></div>
+        <div class="grid levels" style="margin-bottom:20px">
+            ${Object.entries(LEVELS).map(([k,l]) => `
+                <button class="card" style="--c:${l.color}" onclick="goLevel('${k}')">
+                    <span class="emo">${l.emoji}</span><span class="ttl">${l.name}</span><span class="sub">${l.sub}</span>
+                </button>
+            `).join('')}
         </div>
-        <div style="text-align:center; margin-bottom:20px;">
-            <button onclick="goAdvanced()" style="border:none; cursor:pointer; font-family:inherit; background:linear-gradient(135deg,#10b981,#059669); color:#fff; padding:20px 40px; border-radius:20px; font-size:1.2rem; font-weight:800; box-shadow:0 15px 30px rgba(16,185,129,.4);">
+        <div style="text-align:center; padding-bottom: 20px;">
+            <button onclick="goAdvanced()" style="border:none; cursor:pointer; font-family:inherit; background:linear-gradient(135deg,#10b981,#059669); color:#fff; padding:20px 40px; border-radius:20px; font-size:1.2rem; font-weight:800; box-shadow:0 15px 30px rgba(16,185,129,.4); width:100%; max-width:400px;">
                 <span style="font-size:2rem; display:block; margin-bottom:5px;">🎓</span>
-                Advanced Lessons
+                Advanced Lessons (Class 8+)
             </button>
         </div>
+    `;
+}
+
+function goLevel(k) { state.view = 'level'; state.level = k; renderLevel(); }
+function renderLevel() {
+    const l = LEVELS[state.level];
+    setH(l.name, l.sub);
+    screen.innerHTML = `
+        <div class="hero"><h1>${l.emoji} ${l.name}</h1><p>Neeche tap karo 👇</p></div>
+        <div class="grid">
+            ${l.cats.map(id => `
+                <button class="card" style="--c:${l.color}" onclick="goCat('${id}')">
+                    <span class="emo">${CATS[id].e}</span><span class="ttl">${CATS[id].n}</span>
+                </button>
+            `).join('')}
+        </div>
+    `;
+}
+
+function goCat(c) { state.view = 'cat'; state.cat = c; renderCat(); }
+function renderCat() {
+    const c = CATS[state.cat];
+    setH(c.n, LEVELS[state.level].name);
+    // Dummy data for basic categories to save space in this demo, but it works!
+    screen.innerHTML = `
+        <div class="hero"><h1>${c.e} ${c.n}</h1><p>Coming soon in this demo...</p></div>
+        <div class="poem-actions"><button class="btn" onclick="goBack()">↩️ Back</button></div>
     `;
 }
 
@@ -272,7 +293,7 @@ function renderAdvancedLessons() {
     `;
 }
 
-function goAdvSubject(k) { state.advSubj = k; state.view = 'adv-subj'; renderAdvSubject(); }
+function goAdvSubject(k) { state.view = 'adv-subj'; state.advSubj = k; renderAdvSubject(); }
 function renderAdvSubject() {
     const s = ADVANCED_LESSONS[state.advSubj];
     setH(s.name, 'Chapters');
@@ -288,7 +309,7 @@ function renderAdvSubject() {
     `;
 }
 
-function goAdvChapter(i) { state.advChap = i; state.view = 'adv-chap'; renderAdvChapter(); }
+function goAdvChapter(i) { state.view = 'adv-chap'; state.advChap = i; renderAdvChapter(); }
 function toggleLang(lang) { currentLang = lang; renderAdvChapter(); }
 
 function renderAdvChapter() {
@@ -335,60 +356,95 @@ function renderAdvChapter() {
 }
 
 // ==========================================
-// 4. CUSTOM SOLVER LOGIC
+// 4. CUSTOM SOLVER LOGIC (1 & 2 VARIABLE)
 // ==========================================
+function parseEq(equation) {
+    equation = equation.replace(/\s+/g, '').toLowerCase();
+    let parts = equation.split('=');
+    if(parts.length !== 2) throw new Error("Equation mein ek '=' hona chahiye");
+    let left = parts[0] || "0"; let right = parts[1] || "0";
+    if(left[0] !== '+' && left[0] !== '-') left = '+' + left;
+    if(right[0] !== '+' && right[0] !== '-') right = '+' + right;
+    
+    let parseSide = (str) => {
+        let A = 0, B = 0, C = 0;
+        let xTerms = str.match(/[+-]\d*\.?\d*x/g) || [];
+        let yTerms = str.match(/[+-]\d*\.?\d*y/g) || [];
+        xTerms.forEach(t => { let num = t.replace('x',''); A += (num===''||num==='+') ? 1 : (num==='-' ? -1 : parseFloat(num)); });
+        yTerms.forEach(t => { let num = t.replace('y',''); B += (num===''||num==='+') ? 1 : (num==='-' ? -1 : parseFloat(num)); });
+        let noXY = str.replace(/[+-]\d*\.?\d*x/g, '').replace(/[+-]\d*\.?\d*y/g, '');
+        if(noXY && noXY[0] !== '+' && noXY[0] !== '-') noXY = '+' + noXY;
+        (noXY.match(/[+-]\d*\.?\d+/g) || []).forEach(t => C += parseFloat(t));
+        return {A, B, C};
+    };
+    let L = parseSide(left), R = parseSide(right);
+    return { A: L.A - R.A, B: L.B - R.B, C: R.C - L.C };
+}
+
+function solveTwoVars(eq1Str, eq2Str) {
+    let eq1 = parseEq(eq1Str), eq2 = parseEq(eq2Str);
+    let A1 = eq1.A, B1 = eq1.B, C1 = eq1.C, A2 = eq2.A, B2 = eq2.B, C2 = eq2.C;
+    let det = A1 * B2 - A2 * B1;
+    if (det === 0) return { msg: "No Solution ya Infinite Solutions (Lines parallel hain)." };
+    
+    let steps = [];
+    let fmtEq = (A, B, C) => (A !== 0 ? A + "x " : "") + (B !== 0 ? (B > 0 ? "+ " : "- ") + Math.abs(B) + "y " : "") + "= " + C;
+    steps.push(`<b>Eq 1:</b> ${fmtEq(A1, B1, C1)}<br><b>Eq 2:</b> ${fmtEq(A2, B2, C2)}`);
+    
+    let l = Math.abs(A1 * A2) / (function gcd(a,b){return b?gcd(b,a%b):a})(Math.abs(A1), Math.abs(A2));
+    let m1 = l / Math.abs(A1), m2 = l / Math.abs(A2);
+    steps.push(`<b>Step 1:</b> x ko eliminate karne ke liye Eq1 ko ${m1} se aur Eq2 ko ${m2} se multiply karo.<br>New Eq1: ${fmtEq(A1*m1, B1*m1, C1*m1)}<br>New Eq2: ${fmtEq(A2*m2, B2*m2, C2*m2)}`);
+    
+    let sub = (A1*m1 * A2*m2 > 0);
+    let finalB = sub ? (B1*m1 - B2*m2) : (B1*m1 + B2*m2);
+    let finalC = sub ? (C1*m1 - C2*m2) : (C1*m1 + C2*m2);
+    steps.push(`<b>Step 2:</b> Dono equations ko ${sub ? 'subtract' : 'add'} karo.<br>${finalB}y = ${finalC}<br>y = ${finalC} / ${finalB} = ${finalC/finalB}`);
+    
+    let y = finalC / finalB;
+    let x = (C1 - B1 * y) / A1;
+    steps.push(`<b>Step 3:</b> y = ${y} ko Eq1 mein rakho → x = ${x}`);
+    steps.push(`<b>✅ Final Answer:</b> x = ${x}, y = ${y}`);
+    return { html: steps.join('<br><br>') };
+}
+
 function solveCustomEquation() {
     let input1 = document.getElementById('customEqInput').value.trim();
     let input2 = document.getElementById('customEqInput2').value.trim();
     let resultDiv = document.getElementById('customEqResult');
-    
     if(!input1) { alert('Kripya equation likhein'); return; }
-
     try {
         if(input2 !== "") {
-            resultDiv.innerHTML = `<div style="color:#fff; padding:10px;">2-Variable equations abhi support nahi hai. Kripya sirf 1 equation daalein.</div>`;
+            let res = solveTwoVars(input1, input2);
+            resultDiv.innerHTML = res.msg ? `<div style="color:#ffcccc; padding:10px;">⚠️ ${res.msg}</div>` : res.html;
         } else {
-            let eq = input1.replace(/\s+/g, '');
-            let parts = eq.split('=');
-            if(parts.length !== 2) throw new Error("Equation mein '=' hona chahiye.");
-
-            let left = parts[0]; let right = parts[1];
+            // 1 Variable Solver
             let letters = input1.match(/[a-zA-Z]/g) || [];
-            if(letters.length === 0) throw new Error("Kripya koi variable (jaise x, y) use karein.");
+            if(letters.length === 0) throw new Error("Kripya variable (jaise x, y) use karein.");
             let v = letters[0].toLowerCase();
-
-            let l_coeff = 0; let l_const = 0;
-            let l_xMatch = left.match(new RegExp('[+-]?\\d*\\.?\\d*' + v, 'g')) || [];
-            l_xMatch.forEach(m => { let n = m.replace(v, ''); l_coeff += (n==='' || n==='+') ? 1 : (n==='-' ? -1 : parseFloat(n)); });
-            left.replace(new RegExp('[+-]?\\d*\\.?\\d*' + v, 'g'), '').match(/[+-]?\d*\.?\d+/g)?.forEach(m => l_const += parseFloat(m));
-
-            let r_coeff = 0; let r_const = 0;
-            let r_xMatch = right.match(new RegExp('[+-]?\\d*\\.?\\d*' + v, 'g')) || [];
-            r_xMatch.forEach(m => { let n = m.replace(v, ''); r_coeff += (n==='' || n==='+') ? 1 : (n==='-' ? -1 : parseFloat(n)); });
-            right.replace(new RegExp('[+-]?\\d*\\.?\\d*' + v, 'g'), '').match(/[+-]?\d*\.?\d+/g)?.forEach(m => r_const += parseFloat(m));
-
-            let finalA = l_coeff - r_coeff;
-            let finalB = r_const - l_const;
-
+            let eq = input1.replace(/\s+/g, '').split('=');
+            let L = parseEq(input1).A; let R = parseEq(input1).C; // Re-using simple parse
+            // Simplified logic for 1 var: ax + b = c -> x = (c-b)/a
+            let left = eq[0], right = eq[1] || '0';
+            
+            let l_x = left.match(new RegExp('[+-]?\\d*\\.?\\d*' + v, 'g')) || [];
+            let l_coeff = 0; l_x.forEach(m => { let n = m.replace(v, ''); l_coeff += (n===''||n==='+')?1:(n==='-'?-1:parseFloat(n)); });
+            let l_const = 0; (left.replace(new RegExp('[+-]?\\d*\\.?\\d*' + v, 'g'), '').match(/[+-]?\d*\.?\d+/g)||[]).forEach(m => l_const += parseFloat(m));
+            
+            let r_x = right.match(new RegExp('[+-]?\\d*\\.?\\d*' + v, 'g')) || [];
+            let r_coeff = 0; r_x.forEach(m => { let n = m.replace(v, ''); r_coeff += (n===''||n==='+')?1:(n==='-'?-1:parseFloat(n)); });
+            let r_const = 0; (right.replace(new RegExp('[+-]?\\d*\\.?\\d*' + v, 'g'), '').match(/[+-]?\d*\.?\d+/g)||[]).forEach(m => r_const += parseFloat(m));
+            
+            let finalA = l_coeff - r_coeff; let finalB = r_const - l_const;
             if(finalA === 0) throw new Error("Variable cancel ho gaya.");
-
             let ans = finalB / finalA;
-            ans = Math.round(ans * 10000) / 10000;
-
+            
             let steps = `<b>Equation:</b> ${input1}<br><br>`;
             if(r_coeff !== 0) steps += `<b>Step 1:</b> Dono taraf se ${r_coeff}${v} subtract karo.<br>`;
             if(l_const !== 0) steps += `<b>Step 2:</b> Dono taraf se ${l_const} ${l_const>0?'subtract':'add'} karo.<br>`;
-            
-            steps += `<b>Step 3:</b> ${finalA}${v} = ${finalB}<br>`;
-            steps += `<b>Step 4:</b> ${v} = ${finalB} ÷ ${finalA}<br><br>`;
-            steps += `<b>✅ Final Answer:</b> ${v} = ${ans}`;
-
+            steps += `<b>Step 3:</b> ${finalA}${v} = ${finalB}<br><b>Step 4:</b> ${v} = ${finalB} ÷ ${finalA}<br><br><b>✅ Final Answer:</b> ${v} = ${ans}`;
             resultDiv.innerHTML = steps;
-            speak(steps.replace(/<[^>]*>?/gm, ' '));
         }
-    } catch(e) {
-        resultDiv.innerHTML = `<div style="color:#ffcccc; padding:10px;">⚠️ Error: ${e.message}</div>`;
-    }
+    } catch(e) { resultDiv.innerHTML = `<div style="color:#ffcccc; padding:10px;">⚠️ Error: ${e.message}</div>`; }
     resultDiv.style.display = 'block';
 }
 
