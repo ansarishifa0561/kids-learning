@@ -1556,8 +1556,9 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     const _linEq = ADVANCED_LESSONS.maths.chapters[1];
     _linEq.title = 'Linear Equations (50 Q)';
     
-    const genLinEq = () => {
+        const genLinEq = () => {
         let qs = [];
+        // 1-10: x + a = b
         for(let i=1; i<=10; i++) {
             let a = i+2; let b = a + i;
             qs.push({q:`x + ${a} = ${b}`, s:{
@@ -1565,6 +1566,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> ${a} is added to x. Subtract ${a} from both sides.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> LHS leaves x, RHS is ${b} − ${a} = ${i}.<br><br><b>✅ Final Answer:</b> x = ${i}`)
             }});
         }
+        // 11-20: ax = b
         for(let i=2; i<=11; i++) {
             let b = i * 3;
             qs.push({q:`${i}x = ${b}`, s:{
@@ -1572,6 +1574,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> ${i}x means ${i} × x. Divide both sides by ${i}.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> LHS leaves x. RHS is ${b} ÷ ${i} = 3.<br><br><b>✅ Final Answer:</b> x = 3`)
             }});
         }
+        // 21-35: ax + b = c
         for(let i=2; i<=6; i++) {
             for(let j=1; j<=3; j++) {
                 let a = i; let b = j; let x = 4; let c = a*x + b;
@@ -1581,13 +1584,64 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 }});
             }
         }
-        for(let i=1; i<=15; i++) {
-            let num = i * 5; let ans = num + 12;
-            qs.push({q:`Ek number mein 12 jodne par ${ans} aata hai. Number kya hai?`, s:{
-                hi: fmt(`<b>Question:</b> Ek number mein 12 jodne par ${ans} aata hai.<br><br><b>Step 1:</b> Number ko x maano. Equation: x + 12 = ${ans}<br><b>Step 2:</b> Dono taraf se 12 subtract karo.<br><b>Step 3:</b> x + 12 − 12 = ${ans} − 12<br><b>Step 4:</b> x = ${num}<br><br><b>✅ Final Answer:</b> Number = ${num}`),
-                en: fmt(`<b>Question:</b> Adding 12 to a number gives ${ans}.<br><br><b>Step 1:</b> Let number = x. Equation: x + 12 = ${ans}<br><b>Step 2:</b> Subtract 12 from both sides.<br><b>Step 3:</b> x + 12 − 12 = ${ans} − 12<br><b>Step 4:</b> x = ${num}<br><br><b>✅ Final Answer:</b> Number = ${num}`)
-            }});
-        }
+
+        // 36-50: REAL ADVANCED QUESTIONS (Brackets, Fractions, Both Sides)
+        const advQs = [
+            { q: '2(x + 3) = 14', a: 4, type: 'bracket' },
+            { q: '3x - 7 = 11', a: 6, type: 'basic_adv' },
+            { q: '4x + 2 = 30', a: 7, type: 'basic_adv' },
+            { q: 'x/2 + 3 = 7', a: 8, type: 'fraction' },
+            { q: '5x - 2 = 3x + 8', a: 5, type: 'both_sides' },
+            { q: '2(x - 1) = 8', a: 5, type: 'bracket' },
+            { q: '3x/4 = 9', a: 12, type: 'fraction' },
+            { q: '4x + 5 = 2x + 15', a: 5, type: 'both_sides' },
+            { q: 'x/3 - 2 = 4', a: 18, type: 'fraction' },
+            { q: '5(x + 2) = 3(x + 4)', a: 1, type: 'both_sides_bracket' },
+            { q: '7x - 3 = 4x + 12', a: 5, type: 'both_sides' },
+            { q: 'x/2 + x/3 = 10', a: 12, type: 'fraction_both' },
+            { q: '2(3x - 1) = 10', a: 2, type: 'bracket' },
+            { q: 'Do consecutive numbers ka sum 45 hai. Pehla number kya hai?', a: 22, type: 'word' },
+            { q: 'Father ki age son se 3 guna hai. Dono ki total 48 hai. Son ki age?', a: 12, type: 'word' }
+        ];
+
+        advQs.forEach((item, index) => {
+            let qText = item.q;
+            let ans = item.a;
+            let hiSol = '';
+            let enSol = '';
+
+            if (item.type === 'bracket') {
+                hiSol = `<b>Step 1:</b> Bracket kholo (multiply inside).<br><b>Step 2:</b> Variables ek taraf, numbers doosri taraf.<br><b>Step 3:</b> Divide karke x nikaalo.`;
+                enSol = `<b>Step 1:</b> Expand the bracket.<br><b>Step 2:</b> Move variables to one side, constants to the other.<br><b>Step 3:</b> Divide to find x.`;
+            } else if (item.type === 'fraction') {
+                hiSol = `<b>Step 1:</b> Pehle constant ko doosri taraf le jao.<br><b>Step 2:</b> Denominator (neeche wala number) se dono taraf multiply karo.<br><b>Step 3:</b> x ki value nikaalo.`;
+                enSol = `<b>Step 1:</b> Move the constant to the other side.<br><b>Step 2:</b> Multiply both sides by the denominator.<br><b>Step 3:</b> Calculate x.`;
+            } else if (item.type === 'both_sides') {
+                hiSol = `<b>Step 1:</b> Chhote coefficient wale x ko dono taraf se subtract karo.<br><b>Step 2:</b> Constant ko doosri taraf le jao.<br><b>Step 3:</b> Divide karke x nikaalo.`;
+                enSol = `<b>Step 1:</b> Subtract the smaller x-term from both sides.<br><b>Step 2:</b> Move constants to the other side.<br><b>Step 3:</b> Divide to find x.`;
+            } else if (item.type === 'both_sides_bracket') {
+                hiSol = `<b>Step 1:</b> Dono taraf ke brackets kholo.<br><b>Step 2:</b> Variables ek taraf, constants doosri taraf.<br><b>Step 3:</b> Solve for x.`;
+                enSol = `<b>Step 1:</b> Expand brackets on both sides.<br><b>Step 2:</b> Group variables and constants.<br><b>Step 3:</b> Solve for x.`;
+            } else if (item.type === 'fraction_both') {
+                hiSol = `<b>Step 1:</b> Dono fractions ka LCM nikalo.<br><b>Step 2:</b> Dono taraf LCM se multiply karo.<br><b>Step 3:</b> Simple equation ban jayegi, x nikaalo.`;
+                enSol = `<b>Step 1:</b> Find LCM of denominators.<br><b>Step 2:</b> Multiply both sides by LCM.<br><b>Step 3:</b> Solve the simple equation for x.`;
+            } else if (item.type === 'word') {
+                hiSol = `<b>Step 1:</b> Equation banao (jaise x + (x+1) = 45 ya x + 3x = 48).<br><b>Step 2:</b> Like terms combine karo.<br><b>Step 3:</b> Solve karke answer nikaalo.`;
+                enSol = `<b>Step 1:</b> Form an equation based on the problem.<br><b>Step 2:</b> Combine like terms.<br><b>Step 3:</b> Solve for x.`;
+            } else {
+                hiSol = `<b>Step 1:</b> + ya - ko hatane ke liye dono taraf same operation karo.<br><b>Step 2:</b> Coefficient se divide karo.<br><b>Step 3:</b> Answer check karo.`;
+                enSol = `<b>Step 1:</b> Isolate the variable term.<br><b>Step 2:</b> Divide by the coefficient.<br><b>Step 3:</b> Verify the answer.`;
+            }
+
+            qs.push({
+                q: qText,
+                s: {
+                    hi: fmt(`<b>Equation / Question:</b> ${qText}<br><br>${hiSol}<br><br><b>✅ Final Answer:</b> ${ans}`),
+                    en: fmt(`<b>Equation / Question:</b> ${qText}<br><br>${enSol}<br><br><b>✅ Final Answer:</b> ${ans}`)
+                }
+            });
+        });
+
         return qs;
     };
     _linEq.ex = genLinEq();
