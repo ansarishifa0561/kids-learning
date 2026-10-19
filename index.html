@@ -1555,37 +1555,84 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     // --- LINEAR EQUATIONS (Chapter 1) ---
     const _linEq = ADVANCED_LESSONS.maths.chapters[1];
     _linEq.title = 'Linear Equations (50 Q)';
-    
         const genLinEq = () => {
         let qs = [];
-        // 1-10: x + a = b
+        // 1-10: x + a = b (Detailed)
         for(let i=1; i<=10; i++) {
             let a = i+2; let b = a + i;
             qs.push({q:`x + ${a} = ${b}`, s:{
-                hi: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> x ke saath +${a} juda hai. Isko hatane ke liye dono taraf se ${a} subtract karenge.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> LHS mein sirf x bacha, RHS mein ${b} − ${a} = ${i}.<br><br><b>✅ Final Answer:</b> x = ${i}`),
-                en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> ${a} is added to x. Subtract ${a} from both sides.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> LHS leaves x, RHS is ${b} − ${a} = ${i}.<br><br><b>✅ Final Answer:</b> x = ${i}`)
+                hi: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br>
+                <b>Step 1:</b> Yahan x ke saath +${a} juda hua hai. x ko akela karne ke liye humein is +${a} ko hatana hoga.<br>
+                <b>Step 2:</b> +${a} ko hatane ke liye dono taraf se ${a} subtract karenge (taaki equation balance rahe).<br>
+                <b>Step 3:</b> x + ${a} - ${a} = ${b} - ${a}<br>
+                <b>Step 4:</b> LHS mein +${a} - ${a} cancel ho jayega (0 ho jayega). Sirf 'x' bachega.<br>
+                <b>Step 5:</b> RHS mein ${b} - ${a} calculate karo, jo ki ${i} hai.<br><br>
+                <b>✅ Final Answer:</b> x = ${i}<br>
+                <b>Check:</b> ${i} + ${a} = ${b} ✓`),
+                en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br>
+                <b>Step 1:</b> ${a} is added to x. To isolate x, we must remove +${a}.<br>
+                <b>Step 2:</b> Subtract ${a} from both sides to keep the equation balanced.<br>
+                <b>Step 3:</b> x + ${a} - ${a} = ${b} - ${a}<br>
+                <b>Step 4:</b> On LHS, +${a} and -${a} cancel out. Only 'x' remains.<br>
+                <b>Step 5:</b> On RHS, ${b} - ${a} equals ${i}.<br><br>
+                <b>✅ Final Answer:</b> x = ${i}<br>
+                <b>Check:</b> ${i} + ${a} = ${b} ✓`)
             }});
         }
-        // 11-20: ax = b
+        
+        // 11-20: ax = b (Detailed) - JO AAP CHAH RAHE THE
         for(let i=2; i<=11; i++) {
             let b = i * 3;
             qs.push({q:`${i}x = ${b}`, s:{
-                hi: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> ${i}x matlab ${i} × x. x ko akela karne ke liye dono taraf ${i} se divide karenge.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> LHS mein ${i} cancel, sirf x bacha. RHS mein ${b} ÷ ${i} = 3.<br><br><b>✅ Final Answer:</b> x = 3`),
-                en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> ${i}x means ${i} × x. Divide both sides by ${i}.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> LHS leaves x. RHS is ${b} ÷ ${i} = 3.<br><br><b>✅ Final Answer:</b> x = 3`)
+                hi: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br>
+                <b>Step 1:</b> Yahan ${i}x ka matlab hai ${i} × x. x ke saath ${i} multiply ho raha hai.<br>
+                <b>Step 2:</b> x ko akela karne ke liye humein multiply ko hatana hoga. Multiplication ko hatane ke liye dono taraf divide karte hain.<br>
+                <b>Step 3:</b> Dono taraf ${i} se divide karo:<br>(${i}x) ÷ ${i} = ${b} ÷ ${i}<br>
+                <b>Step 4:</b> LHS mein ${i} aur ${i} cancel ho jayenge. Sirf 'x' bachega.<br>
+                <b>Step 5:</b> RHS mein ${b} ÷ ${i} calculate karo, jo ki 3 hai.<br><br>
+                <b>✅ Final Answer:</b> x = 3<br>
+                <b>Check:</b> ${i} × 3 = ${b} ✓`),
+                en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br>
+                <b>Step 1:</b> ${i}x means ${i} × x. Here, ${i} is multiplied by x.<br>
+                <b>Step 2:</b> To isolate x, we must undo the multiplication. We do this by dividing.<br>
+                <b>Step 3:</b> Divide both sides by ${i}:<br>(${i}x) ÷ ${i} = ${b} ÷ ${i}<br>
+                <b>Step 4:</b> On LHS, ${i} and ${i} cancel out. Only 'x' remains.<br>
+                <b>Step 5:</b> On RHS, ${b} ÷ ${i} equals 3.<br><br>
+                <b>✅ Final Answer:</b> x = 3<br>
+                <b>Check:</b> ${i} × 3 = ${b} ✓`)
             }});
         }
-        // 21-35: ax + b = c
+        
+        // 21-35: ax + b = c (Detailed)
         for(let i=2; i<=6; i++) {
             for(let j=1; j<=3; j++) {
                 let a = i; let b = j; let x = 4; let c = a*x + b;
                 qs.push({q:`${a}x + ${b} = ${c}`, s:{
-                    hi: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br><b>Step 1:</b> Pehle +${b} hatayenge. Dono taraf se ${b} subtract karo.<br><b>Step 2:</b> ${a}x + ${b} − ${b} = ${c} − ${b}<br><b>Step 3:</b> ${a}x = ${a*x}<br><b>Step 4:</b> Ab dono taraf ${a} se divide karo.<br><b>Step 5:</b> x = ${x}<br><br><b>✅ Final Answer:</b> x = ${x}`),
-                    en: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br><b>Step 1:</b> Remove +${b}. Subtract ${b} from both sides.<br><b>Step 2:</b> ${a}x + ${b} − ${b} = ${c} − ${b}<br><b>Step 3:</b> ${a}x = ${a*x}<br><b>Step 4:</b> Divide both sides by ${a}.<br><b>Step 5:</b> x = ${x}<br><br><b>✅ Final Answer:</b> x = ${x}`)
+                    hi: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br>
+                    <b>Step 1:</b> Yahan do operations hain: +${b} aur ${a} × x. Sabse pehle hum constant (+${b}) ko hatayenge.<br>
+                    <b>Step 2:</b> +${b} hatane ke liye dono taraf se ${b} subtract karo.<br>
+                    <b>Step 3:</b> ${a}x + ${b} - ${b} = ${c} - ${b}<br>
+                    <b>Step 4:</b> LHS mein +${b} - ${b} cancel ho jayega. Bacha: ${a}x.<br>
+                    <b>Step 5:</b> RHS mein ${c} - ${b} = ${a*x}. Ab equation hai: ${a}x = ${a*x}<br>
+                    <b>Step 6:</b> Ab ${a} ko hatane ke liye dono taraf ${a} se divide karo.<br>
+                    <b>Step 7:</b> ${a}x ÷ ${a} = ${a*x} ÷ ${a} → x = ${x}<br><br>
+                    <b>✅ Final Answer:</b> x = ${x}<br>
+                    <b>Check:</b> ${a}(${x}) + ${b} = ${c} ✓`),
+                    en: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br>
+                    <b>Step 1:</b> There are two operations: +${b} and ${a} × x. First, we remove the constant (+${b}).<br>
+                    <b>Step 2:</b> Subtract ${b} from both sides to remove +${b}.<br>
+                    <b>Step 3:</b> ${a}x + ${b} - ${b} = ${c} - ${b}<br>
+                    <b>Step 4:</b> On LHS, +${b} and -${b} cancel out. We get ${a}x.<br>
+                    <b>Step 5:</b> On RHS, ${c} - ${b} = ${a*x}. Now the equation is: ${a}x = ${a*x}<br>
+                    <b>Step 6:</b> Now, divide both sides by ${a} to isolate x.<br>
+                    <b>Step 7:</b> ${a}x ÷ ${a} = ${a*x} ÷ ${a} → x = ${x}<br><br>
+                    <b>✅ Final Answer:</b> x = ${x}<br>
+                    <b>Check:</b> ${a}(${x}) + ${b} = ${c} ✓`)
                 }});
             }
         }
 
-        // 36-50: REAL ADVANCED QUESTIONS (Brackets, Fractions, Both Sides)
+        // 36-50: REAL ADVANCED QUESTIONS
         const advQs = [
             { q: '2(x + 3) = 14', a: 4, type: 'bracket' },
             { q: '3x - 7 = 11', a: 6, type: 'basic_adv' },
@@ -1604,47 +1651,46 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             { q: 'Father ki age son se 3 guna hai. Dono ki total 48 hai. Son ki age?', a: 12, type: 'word' }
         ];
 
-        advQs.forEach((item, index) => {
-            let qText = item.q;
-            let ans = item.a;
+        advQs.forEach((item) => {
             let hiSol = '';
             let enSol = '';
-
+            let ans = item.a;
+            
             if (item.type === 'bracket') {
-                hiSol = `<b>Step 1:</b> Bracket kholo (multiply inside).<br><b>Step 2:</b> Variables ek taraf, numbers doosri taraf.<br><b>Step 3:</b> Divide karke x nikaalo.`;
-                enSol = `<b>Step 1:</b> Expand the bracket.<br><b>Step 2:</b> Move variables to one side, constants to the other.<br><b>Step 3:</b> Divide to find x.`;
+                hiSol = `<b>Step 1:</b> Sabse pehle bracket (parentheses) ko kholo. Bahar wale number ko andar ke dono numbers se multiply karo.<br><b>Step 2:</b> Ab jo naya equation bana, usme constants ko ek taraf aur variable ko doosri taraf le jao.<br><b>Step 3:</b> Aakhir mein divide karke x ki value nikaalo.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
+                enSol = `<b>Step 1:</b> First, expand the bracket by multiplying the outside number with both terms inside.<br><b>Step 2:</b> Move constants to one side and variables to the other.<br><b>Step 3:</b> Finally, divide to find x.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
             } else if (item.type === 'fraction') {
-                hiSol = `<b>Step 1:</b> Pehle constant ko doosri taraf le jao.<br><b>Step 2:</b> Denominator (neeche wala number) se dono taraf multiply karo.<br><b>Step 3:</b> x ki value nikaalo.`;
-                enSol = `<b>Step 1:</b> Move the constant to the other side.<br><b>Step 2:</b> Multiply both sides by the denominator.<br><b>Step 3:</b> Calculate x.`;
+                hiSol = `<b>Step 1:</b> Pehle constant ko hatane ke liye dono taraf same operation karo.<br><b>Step 2:</b> Ab denominator (neeche wala number) ko hatane ke liye dono taraf us number se multiply karo.<br><b>Step 3:</b> Calculation karke x ki value nikaalo.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
+                enSol = `<b>Step 1:</b> First, move the constant to the other side.<br><b>Step 2:</b> Multiply both sides by the denominator to remove the fraction.<br><b>Step 3:</b> Calculate to find x.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
             } else if (item.type === 'both_sides') {
-                hiSol = `<b>Step 1:</b> Chhote coefficient wale x ko dono taraf se subtract karo.<br><b>Step 2:</b> Constant ko doosri taraf le jao.<br><b>Step 3:</b> Divide karke x nikaalo.`;
-                enSol = `<b>Step 1:</b> Subtract the smaller x-term from both sides.<br><b>Step 2:</b> Move constants to the other side.<br><b>Step 3:</b> Divide to find x.`;
+                hiSol = `<b>Step 1:</b> Dono taraf x hai. Chhote wale x (coefficient) ko dono taraf se subtract karo taaki saare x ek hi taraf aa jayein.<br><b>Step 2:</b> Ab constant ko doosri taraf le jao.<br><b>Step 3:</b> Divide karke x nikaalo.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
+                enSol = `<b>Step 1:</b> Variables are on both sides. Subtract the smaller x-term from both sides to group them.<br><b>Step 2:</b> Move constants to the other side.<br><b>Step 3:</b> Divide to find x.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
             } else if (item.type === 'both_sides_bracket') {
-                hiSol = `<b>Step 1:</b> Dono taraf ke brackets kholo.<br><b>Step 2:</b> Variables ek taraf, constants doosri taraf.<br><b>Step 3:</b> Solve for x.`;
-                enSol = `<b>Step 1:</b> Expand brackets on both sides.<br><b>Step 2:</b> Group variables and constants.<br><b>Step 3:</b> Solve for x.`;
+                hiSol = `<b>Step 1:</b> Dono taraf ke brackets kholo.<br><b>Step 2:</b> Variables ek taraf, constants doosri taraf le jao.<br><b>Step 3:</b> Solve karke x ki value nikaalo.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
+                enSol = `<b>Step 1:</b> Expand brackets on both sides.<br><b>Step 2:</b> Group variables on one side and constants on the other.<br><b>Step 3:</b> Solve for x.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
             } else if (item.type === 'fraction_both') {
-                hiSol = `<b>Step 1:</b> Dono fractions ka LCM nikalo.<br><b>Step 2:</b> Dono taraf LCM se multiply karo.<br><b>Step 3:</b> Simple equation ban jayegi, x nikaalo.`;
-                enSol = `<b>Step 1:</b> Find LCM of denominators.<br><b>Step 2:</b> Multiply both sides by LCM.<br><b>Step 3:</b> Solve the simple equation for x.`;
+                hiSol = `<b>Step 1:</b> Dono fractions ke denominator (neeche wale numbers) ka LCM nikalo.<br><b>Step 2:</b> Dono taraf LCM se multiply karo taaki fractions khatam ho jayein.<br><b>Step 3:</b> Simple equation ban jayegi, usko solve karke x nikaalo.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
+                enSol = `<b>Step 1:</b> Find the LCM of both denominators.<br><b>Step 2:</b> Multiply both sides by the LCM to remove fractions.<br><b>Step 3:</b> Solve the resulting simple equation for x.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
             } else if (item.type === 'word') {
-                hiSol = `<b>Step 1:</b> Equation banao (jaise x + (x+1) = 45 ya x + 3x = 48).<br><b>Step 2:</b> Like terms combine karo.<br><b>Step 3:</b> Solve karke answer nikaalo.`;
-                enSol = `<b>Step 1:</b> Form an equation based on the problem.<br><b>Step 2:</b> Combine like terms.<br><b>Step 3:</b> Solve for x.`;
+                hiSol = `<b>Step 1:</b> Question ko dhyan se padho aur equation banao. (Jaise consecutive numbers ke liye x aur x+1 lo).<br><b>Step 2:</b> Like terms combine karo.<br><b>Step 3:</b> Equation solve karke answer nikaalo.<br><br><b>✅ Final Answer:</b> ${ans}`;
+                enSol = `<b>Step 1:</b> Read carefully and form an equation based on the problem.<br><b>Step 2:</b> Combine like terms.<br><b>Step 3:</b> Solve the equation for the answer.<br><br><b>✅ Final Answer:</b> ${ans}`;
             } else {
-                hiSol = `<b>Step 1:</b> + ya - ko hatane ke liye dono taraf same operation karo.<br><b>Step 2:</b> Coefficient se divide karo.<br><b>Step 3:</b> Answer check karo.`;
-                enSol = `<b>Step 1:</b> Isolate the variable term.<br><b>Step 2:</b> Divide by the coefficient.<br><b>Step 3:</b> Verify the answer.`;
+                hiSol = `<b>Step 1:</b> + ya - ko hatane ke liye dono taraf same operation karo.<br><b>Step 2:</b> Coefficient se divide karo.<br><b>Step 3:</b> Answer check karo.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
+                enSol = `<b>Step 1:</b> Isolate the variable term by doing the opposite operation on both sides.<br><b>Step 2:</b> Divide by the coefficient.<br><b>Step 3:</b> Verify the answer.<br><br><b>✅ Final Answer:</b> x = ${ans}`;
             }
 
             qs.push({
-                q: qText,
+                q: item.q,
                 s: {
-                    hi: fmt(`<b>Equation / Question:</b> ${qText}<br><br>${hiSol}<br><br><b>✅ Final Answer:</b> ${ans}`),
-                    en: fmt(`<b>Equation / Question:</b> ${qText}<br><br>${enSol}<br><br><b>✅ Final Answer:</b> ${ans}`)
+                    hi: fmt(`<b>Question:</b> ${item.q}<br><br>${hiSol}`),
+                    en: fmt(`<b>Question:</b> ${item.q}<br><br>${enSol}`)
                 }
             });
         });
 
         return qs;
     };
-    _linEq.ex = genLinEq();
+            _linEq.ex = genLinEq();
     _linEq.word = _linEq.ex.slice(35);
 
     // ==========================================
