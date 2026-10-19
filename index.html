@@ -1687,14 +1687,17 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             langToggleHTML;
 
         if (isLinearEq) {
+                   if (isLinearEq) {
             html += '<div class="solver-box">' +
                 '<h3>🧠 Apna Question Khud Solve Karo!</h3>' +
-                '<div class="solver-input-group">' +
-                    '<input type="text" id="customEqInput" placeholder="e.g. 4x + 3 = 15" />' +
-                    '<button onclick="solveCustomEquation()">Solve ▶</button>' +
+                '<div class="solver-input-group" style="flex-direction: column; align-items: center;">' +
+                    '<input type="text" id="customEqInput" placeholder="1st Equation (e.g. 4x + 3y = 15)" style="width: 80%; margin-bottom: 10px;" />' +
+                    '<input type="text" id="customEqInput2" placeholder="2nd Equation (Optional, e.g. x - y = 2)" style="width: 80%; margin-bottom: 10px;" />' +
+                    '<button onclick="solveCustomEquation()" style="width: 80%;">Solve ▶</button>' +
                 '</div>' +
                 '<div id="customEqResult" class="chapter-ex s" style="display:none; text-align:left;"></div>' +
             '</div>';
+        }
         }
 
         html += '<div class="chapter-sec"><h3>📖 Definition</h3>' +
