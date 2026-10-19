@@ -1552,26 +1552,28 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     _algebra.ex = genAlgebra();
     _algebra.word = _algebra.ex.slice(40);
 
-    // --- LINEAR EQUATIONS (Chapter 1) ---
+    _linEq.title = 'Linear Equations (50 Q)';
+            // --- LINEAR EQUATIONS (Chapter 1) ---
     const _linEq = ADVANCED_LESSONS.maths.chapters[1];
     _linEq.title = 'Linear Equations (50 Q)';
-        const genLinEq = () => {
+    
+    const genLinEq = () => {
         let qs = [];
-        // 1-10: x + a = b (Detailed)
+        // 1-10: x + a = b
         for(let i=1; i<=10; i++) {
             let a = i+2; let b = a + i;
             qs.push({q:`x + ${a} = ${b}`, s:{
                 hi: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br>
                 <b>Step 1:</b> Yahan x ke saath +${a} juda hua hai. x ko akela karne ke liye humein is +${a} ko hatana hoga.<br>
-                <b>Step 2:</b> +${a} ko hatane ke liye dono taraf se ${a} subtract karenge (taaki equation balance rahe).<br>
+                <b>Step 2:</b> +${a} ko hatane ke liye dono taraf se ${a} subtract karenge.<br>
                 <b>Step 3:</b> x + ${a} - ${a} = ${b} - ${a}<br>
-                <b>Step 4:</b> LHS mein +${a} - ${a} cancel ho jayega (0 ho jayega). Sirf 'x' bachega.<br>
+                <b>Step 4:</b> LHS mein +${a} - ${a} cancel ho jayega. Sirf 'x' bachega.<br>
                 <b>Step 5:</b> RHS mein ${b} - ${a} calculate karo, jo ki ${i} hai.<br><br>
                 <b>✅ Final Answer:</b> x = ${i}<br>
                 <b>Check:</b> ${i} + ${a} = ${b} ✓`),
                 en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br>
                 <b>Step 1:</b> ${a} is added to x. To isolate x, we must remove +${a}.<br>
-                <b>Step 2:</b> Subtract ${a} from both sides to keep the equation balanced.<br>
+                <b>Step 2:</b> Subtract ${a} from both sides.<br>
                 <b>Step 3:</b> x + ${a} - ${a} = ${b} - ${a}<br>
                 <b>Step 4:</b> On LHS, +${a} and -${a} cancel out. Only 'x' remains.<br>
                 <b>Step 5:</b> On RHS, ${b} - ${a} equals ${i}.<br><br>
@@ -1580,52 +1582,56 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             }});
         }
         
-        // 11-20: ax = b (Detailed) - JO AAP CHAH RAHE THE
+        // 11-20: ax = b (WORKBOOK DIVISION STYLE)
         for(let i=2; i<=11; i++) {
             let b = i * 3;
             qs.push({q:`${i}x = ${b}`, s:{
                 hi: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br>
                 <b>Step 1:</b> Yahan ${i}x ka matlab hai ${i} × x. x ke saath ${i} multiply ho raha hai.<br>
-                <b>Step 2:</b> x ko akela karne ke liye humein multiply ko hatana hoga. Multiplication ko hatane ke liye dono taraf divide karte hain.<br>
+                <b>Step 2:</b> x ko akela karne ke liye humein is multiply ko hatana hoga. Iske liye dono taraf divide karte hain.<br>
                 <b>Step 3:</b> Dono taraf ${i} se divide karo:<br>(${i}x) ÷ ${i} = ${b} ÷ ${i}<br>
                 <b>Step 4:</b> LHS mein ${i} aur ${i} cancel ho jayenge. Sirf 'x' bachega.<br>
-                <b>Step 5:</b> RHS mein ${b} ÷ ${i} calculate karo, jo ki 3 hai.<br><br>
+                <b>Step 5:</b> Ab RHS likho fraction mein: <b>x = ${b}/${i}</b><br>
+                <b>Step 6:</b> Ab isko workbook ki tarah divide karo. <b>${b} ÷ ${i} = 3</b>.<br><br>
                 <b>✅ Final Answer:</b> x = 3<br>
                 <b>Check:</b> ${i} × 3 = ${b} ✓`),
                 en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br>
-                <b>Step 1:</b> ${i}x means ${i} × x. Here, ${i} is multiplied by x.<br>
-                <b>Step 2:</b> To isolate x, we must undo the multiplication. We do this by dividing.<br>
+                <b>Step 1:</b> ${i}x means ${i} × x.<br>
+                <b>Step 2:</b> To isolate x, we must undo the multiplication.<br>
                 <b>Step 3:</b> Divide both sides by ${i}:<br>(${i}x) ÷ ${i} = ${b} ÷ ${i}<br>
                 <b>Step 4:</b> On LHS, ${i} and ${i} cancel out. Only 'x' remains.<br>
-                <b>Step 5:</b> On RHS, ${b} ÷ ${i} equals 3.<br><br>
+                <b>Step 5:</b> On RHS, write it as a fraction: <b>x = ${b}/${i}</b><br>
+                <b>Step 6:</b> Now divide like a workbook: <b>${b} ÷ ${i} = 3</b>.<br><br>
                 <b>✅ Final Answer:</b> x = 3<br>
                 <b>Check:</b> ${i} × 3 = ${b} ✓`)
             }});
         }
         
-        // 21-35: ax + b = c (Detailed)
+        // 21-35: ax + b = c (WORKBOOK DIVISION STYLE)
         for(let i=2; i<=6; i++) {
             for(let j=1; j<=3; j++) {
                 let a = i; let b = j; let x = 4; let c = a*x + b;
                 qs.push({q:`${a}x + ${b} = ${c}`, s:{
                     hi: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br>
-                    <b>Step 1:</b> Yahan do operations hain: +${b} aur ${a} × x. Sabse pehle hum constant (+${b}) ko hatayenge.<br>
+                    <b>Step 1:</b> Yahan do operations hain: +${b} aur ${a} × x. Pehle constant (+${b}) ko hatayenge.<br>
                     <b>Step 2:</b> +${b} hatane ke liye dono taraf se ${b} subtract karo.<br>
                     <b>Step 3:</b> ${a}x + ${b} - ${b} = ${c} - ${b}<br>
-                    <b>Step 4:</b> LHS mein +${b} - ${b} cancel ho jayega. Bacha: ${a}x.<br>
-                    <b>Step 5:</b> RHS mein ${c} - ${b} = ${a*x}. Ab equation hai: ${a}x = ${a*x}<br>
-                    <b>Step 6:</b> Ab ${a} ko hatane ke liye dono taraf ${a} se divide karo.<br>
-                    <b>Step 7:</b> ${a}x ÷ ${a} = ${a*x} ÷ ${a} → x = ${x}<br><br>
+                    <b>Step 4:</b> LHS mein +${b} - ${b} cancel. Bacha: ${a}x.<br>
+                    <b>Step 5:</b> RHS mein ${c} - ${b} = ${a*x}. Ab equation: ${a}x = ${a*x}<br>
+                    <b>Step 6:</b> Ab ${a}x ko akela karne ke liye dono taraf ${a} se divide karo.<br>
+                    <b>Step 7:</b> (${a}x) ÷ ${a} = ${a*x} ÷ ${a}, jo ki banega <b>x = ${a*x}/${a}</b><br>
+                    <b>Step 8:</b> Ab isko workbook ki tarah divide karo: <b>${a*x} ÷ ${a} = ${x}</b>.<br><br>
                     <b>✅ Final Answer:</b> x = ${x}<br>
                     <b>Check:</b> ${a}(${x}) + ${b} = ${c} ✓`),
                     en: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br>
-                    <b>Step 1:</b> There are two operations: +${b} and ${a} × x. First, we remove the constant (+${b}).<br>
-                    <b>Step 2:</b> Subtract ${b} from both sides to remove +${b}.<br>
+                    <b>Step 1:</b> First, we remove the constant (+${b}).<br>
+                    <b>Step 2:</b> Subtract ${b} from both sides.<br>
                     <b>Step 3:</b> ${a}x + ${b} - ${b} = ${c} - ${b}<br>
                     <b>Step 4:</b> On LHS, +${b} and -${b} cancel out. We get ${a}x.<br>
-                    <b>Step 5:</b> On RHS, ${c} - ${b} = ${a*x}. Now the equation is: ${a}x = ${a*x}<br>
-                    <b>Step 6:</b> Now, divide both sides by ${a} to isolate x.<br>
-                    <b>Step 7:</b> ${a}x ÷ ${a} = ${a*x} ÷ ${a} → x = ${x}<br><br>
+                    <b>Step 5:</b> On RHS, ${c} - ${b} = ${a*x}. Now: ${a}x = ${a*x}<br>
+                    <b>Step 6:</b> Divide both sides by ${a} to isolate x.<br>
+                    <b>Step 7:</b> (${a}x) ÷ ${a} = ${a*x} ÷ ${a}, which gives <b>x = ${a*x}/${a}</b><br>
+                    <b>Step 8:</b> Now divide like a workbook: <b>${a*x} ÷ ${a} = ${x}</b>.<br><br>
                     <b>✅ Final Answer:</b> x = ${x}<br>
                     <b>Check:</b> ${a}(${x}) + ${b} = ${c} ✓`)
                 }});
@@ -1690,9 +1696,9 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
 
         return qs;
     };
-            _linEq.ex = genLinEq();
+    
+    _linEq.ex = genLinEq();
     _linEq.word = _linEq.ex.slice(35);
-
     // ==========================================
     // 3. DYNAMIC EQUATION SOLVER LOGIC
     // ==========================================
