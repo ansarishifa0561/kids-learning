@@ -1650,77 +1650,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     // ==========================================
     // 3. DYNAMIC EQUATION SOLVER LOGIC
     // ==========================================
-    window.solveCustomEquation = function() {
-        var input = document.getElementById('customEqInput').value.trim();
-        var resultDiv = document.getElementById('customEqResult');
-        if(!input) { alert('Kripya equation likhein (jaise 4x + 3 = 15)'); return; }
-
-        try {
-            var eq = input.replace(/\s+/g, '');
-            var sides = eq.split('=');
-            if(sides.length !== 2) throw new Error("Equation mein ek '=' hona chahiye.");
-
-            var left = sides[0];
-            var right = sides[1];
-
-            function parseSide(expr) {
-                var a = 0; var b = 0;
-                var xMatches = expr.match(/[+-]?\d*\.?\d*x/g) || [];
-                for(var i=0; i<xMatches.length; i++) {
-                    var m = xMatches[i];
-                    var numStr = m.replace('x', '');
-                    if(numStr === '' || numStr === '+') a += 1;
-                    else if(numStr === '-') a -= 1;
-                    else a += parseFloat(numStr);
-                }
-                var constExpr = expr.replace(/[+-]?\d*\.?\d*x/g, '');
-                var nums = constExpr.match(/[+-]?\d*\.?\d+/g) || [];
-                for(var j=0; j<nums.length; j++) {
-                    b += parseFloat(nums[j]);
-                }
-                return { a: a, b: b };
-            }
-
-            var L = parseSide(left);
-            var R = parseSide(right);
-            var finalA = L.a - R.a;
-            var finalB = R.b - L.b;
-
-            if(finalA === 0) throw new Error("Ye linear equation nahi hai (x cancel ho gaya).");
-
-            var ans = finalB / finalA;
-            ans = Math.round(ans * 10000) / 10000;
-
-            var stepsHTML = '<b>Equation:</b> ' + input + '<br><br>';
-            
-            if(R.a !== 0) {
-                stepsHTML += '<b>Step 1:</b> x wale terms ko ek taraf le jao.<br>Dono taraf se ' + R.a + 'x subtract karo.<br>' + L.a + 'x - ' + R.a + 'x ' + (L.b > 0 ? '+ '+L.b : '- '+Math.abs(L.b)) + ' = ' + R.b + '<br><br>';
-            }
-            
-            stepsHTML += '<b>Step ' + (R.a !== 0 ? '2' : '1') + ':</b> Constants ko doosri taraf le jao.<br>';
-            
-            if(L.b !== 0) {
-                stepsHTML += 'Dono taraf se ' + (L.b > 0 ? L.b : '(' + L.b + ')') + ' subtract karo.<br>';
-            }
-            
-            stepsHTML += finalA + 'x = ' + finalB + '<br><br>';
-            
-            stepsHTML += '<b>Step ' + (R.a !== 0 ? '3' : '2') + ':</b> x ko akela karne ke liye dono taraf ' + finalA + ' se divide karo.<br>';
-            stepsHTML += 'x = ' + finalB + ' ÷ ' + finalA + '<br><br>';
-            
-            stepsHTML += '<b>✅ Final Answer:</b> x = ' + ans;
-
-            resultDiv.innerHTML = stepsHTML;
-            resultDiv.style.display = 'block';
-
-            var speakText = input + " . " + stepsHTML.replace(/<[^>]*>?/gm, ' ');
-            speak(speakText, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-
-        } catch (e) {
-            resultDiv.innerHTML = '<span style="color:red">Error: ' + e.message + '<br>Kripya sahi format mein likhein (jaise: 2x + 3 = 11).</span>';
-            resultDiv.style.display = 'block';
-        }
-    };
+    
 
     // ==========================================
     // 4. RENDER CHAPTER (Includes Solver UI)
@@ -1815,6 +1745,130 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     
     console.log("✅ Ultimate Math & Solver Loaded Successfully!");
 }
+</script>
+<script>
+    window.solveCustomEquation = function() {
+        var input = document.getElementById('customEqInput').value.trim().toLowerCase();
+        var resultDiv = document.getElementById('customEqResult');
+        if(!input) { alert('Kripya equation likhein (jaise 4x + 3 = 15)'); return; }
+
+        try {
+            // Saare variables (letters) dhoondo
+            var letters = input.match(/[a-z]/g) || [];
+            var uniqueVars = [...new Set(letters)];
+            
+            // 1. Agar koi variable nahi hai
+            if(uniqueVars.length === 0) {
+                resultDiv.innerHTML = '<div style="color:#5a3a1a; font-weight:bold; font-size:1.05rem; line-height:1.6;">' +
+                    '<span style="font-size:1.5rem;">💡</span> <b>Explanation:</b><br><br>' +
+                    'Aapne is equation mein koi variable (jaise x, y, a, b) use nahi kiya. Ye ek simple calculation hai.<br><br>' +
+                    'Kripya ek variable wali equation likhein. Example: <i>4x + 3 = 15</i>' +
+                    '</div>';
+                resultDiv.style.display = 'block';
+                speak("Aapne koi variable use nahi kiya. Kripya ek variable wali equation likhein.", window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+                return;
+            }
+
+            // 2. Agar 2 ya usse zyada variables hain (jaise x aur y)
+            if(uniqueVars.length > 1) {
+                var varsString = uniqueVars.join(' aur ');
+                resultDiv.innerHTML = '<div style="color:#5a3a1a; font-weight:bold; font-size:1.05rem; line-height:1.6; text-align:left;">' +
+                    '<span style="font-size:1.5rem;">💡</span> <b>Explanation:</b><br><br>' +
+                    'Aapne is equation mein <b>' + varsString + '</b> variables use kiye hain. Ye ek <b>Two-Variable Equation</b> hai.<br><br>' +
+                    'Ek se zyada variable wali equation (jaise x aur y) ko solve karne ke liye <b>2 alag-alag equations</b> ki zaroorat hoti hai.<br><br>' +
+                    'Example ke liye:<br>' +
+                    '• Equation 1: x + y = 10<br>' +
+                    '• Equation 2: x - y = 2<br>' +
+                    'In dono ko mila kar hi x aur y ki value nikal sakti hai.<br><br>' +
+                    'Aapne yahan sirf ek equation di hai, isliye iska exact answer nahi nikal sakta. Kripya ek variable wali equation likhein (jaise <i>4x + 3 = 15</i>).' +
+                    '</div>';
+                resultDiv.style.display = 'block';
+                var speakText = "Aapne " + varsString + " variables use kiye hain. Ye ek two variable equation hai. Ek se zyada variable wali equation ko solve karne ke liye 2 alag alag equations ki zaroorat hoti hai. Aapne yahan sirf ek equation di hai, isliye iska exact answer nahi nikal sakta.";
+                speak(speakText, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+                return;
+            }
+
+            // 3. Agar sirf 1 variable hai (x, y, a, b kuch bhi)
+            var v = uniqueVars[0]; 
+            
+            var eq = input.replace(/\s+/g, '');
+            
+            // Fractions ko handle karo (jaise x/2 ko 0.5x banao)
+            eq = eq.replace(/([0-9]*\.?[0-9]*)([a-z])\/([0-9]+)/g, function(match, num, variable, den) {
+                var n = num === '' ? 1 : parseFloat(num);
+                var d = parseFloat(den);
+                return (n / d) + variable;
+            });
+            eq = eq.replace(/(\d+)\/(\d+)/g, function(match, n, d) { return parseFloat(n)/parseFloat(d); });
+
+            var sides = eq.split('=');
+            if(sides.length !== 2) throw new Error("Equation mein ek '=' hona chahiye.");
+
+            var left = sides[0];
+            var right = sides[1];
+
+            function parseSide(expr, variable) {
+                var a = 0; var b = 0;
+                var vRegex = new RegExp('[+-]?\\d*\\.?\\d*' + variable, 'g');
+                var vMatches = expr.match(vRegex) || [];
+                for(var i=0; i<vMatches.length; i++) {
+                    var m = vMatches[i];
+                    var numStr = m.replace(variable, '');
+                    if(numStr === '' || numStr === '+') a += 1;
+                    else if(numStr === '-') a -= 1;
+                    else a += parseFloat(numStr);
+                }
+                
+                var constExpr = expr.replace(vRegex, '');
+                var nums = constExpr.match(/[+-]?\d*\.?\d+/g) || [];
+                for(var j=0; j<nums.length; j++) {
+                    b += parseFloat(nums[j]);
+                }
+                return { a: a, b: b };
+            }
+
+            var L = parseSide(left, v);
+            var R = parseSide(right, v);
+            var finalA = L.a - R.a;
+            var finalB = R.b - L.b;
+
+            if(finalA === 0) {
+                throw new Error("Is equation mein '" + v + "' cancel ho gaya hai. Kripya sahi equation likhein.");
+            }
+
+            var ans = finalB / finalA;
+            ans = Math.round(ans * 10000) / 10000;
+
+            var stepsHTML = '<b>Equation:</b> ' + input + '<br><br>';
+            
+            if(R.a !== 0) {
+                stepsHTML += '<b>Step 1:</b> "' + v + '" wale terms ko ek taraf le jao.<br>Dono taraf se ' + R.a + v + ' subtract karo.<br>' + L.a + v + ' - ' + R.a + v + ' ' + (L.b > 0 ? '+ '+L.b : '- '+Math.abs(L.b)) + ' = ' + R.b + '<br><br>';
+            }
+            
+            stepsHTML += '<b>Step ' + (R.a !== 0 ? '2' : '1') + ':</b> Constants ko doosri taraf le jao.<br>';
+            
+            if(L.b !== 0) {
+                stepsHTML += 'Dono taraf se ' + (L.b > 0 ? L.b : '(' + L.b + ')') + ' subtract karo.<br>';
+            }
+            
+            stepsHTML += finalA + v + ' = ' + finalB + '<br><br>';
+            
+            stepsHTML += '<b>Step ' + (R.a !== 0 ? '3' : '2') + ':</b> "' + v + '" ko akela karne ke liye dono taraf ' + finalA + ' se divide karo.<br>';
+            stepsHTML += v + ' = ' + finalB + ' ÷ ' + finalA + '<br><br>';
+            
+            stepsHTML += '<b>✅ Final Answer:</b> ' + v + ' = ' + ans;
+
+            resultDiv.innerHTML = stepsHTML;
+            resultDiv.style.display = 'block';
+
+            var speakText = input + " . " + stepsHTML.replace(/<[^>]*>?/gm, ' ');
+            speak(speakText, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+
+        } catch (e) {
+            resultDiv.innerHTML = '<div style="color:#cc0000; font-weight:bold; padding: 10px;">⚠️ Error: ' + e.message + '</div>';
+            resultDiv.style.display = 'block';
+        }
+    };  
 </script>
 </body>
 </html>
