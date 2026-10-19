@@ -2708,5 +2708,49 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     color: #FFA500 !important;
 }
 </style>
+<!-- ====================================================
+     VOICE PAUSE & EMOJI FILTER FIX
+     ==================================================== -->
+<script>
+// Purane speak function ko save karo
+const oldSpeak = window.speak;
+
+// Naya speak function: Pause aur Emoji remove karne ke liye
+window.speak = function(text, lang = 'hi-IN', rate = 0.78) {
+    if (!text) return;
+    
+    // 1. Emojis ko hatao (taaki voice "safed chinha" na bole)
+    let cleanText = String(text).replace(/✅/g, '').replace(/🔊/g, '');
+    
+    // 2. Nayi line (<br>) ki jagah pause (.) lagao, taaki voice ruke
+    cleanText = cleanText.replace(/<br\s*\/?>/gi, ' . ');
+    
+    // 3. Baaki HTML tags hatao
+    cleanText = cleanText.replace(/<[^>]*>?/gm, ' ');
+    
+    // 4. Extra spaces saaf karo
+    cleanText = cleanText.replace(/\s+/g, ' ').trim();
+    
+    // 5. Purane function se bolwao
+    oldSpeak(cleanText, lang, rate);
+};
+
+// Jab Solution pe click ho, to ye function chale
+window.speakExSol = function(i) {
+    const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
+    const isBilingual = (state.advSubj === 'maths' && (state.advChap === 0 || state.advChap === 1));
+    let sol = isBilingual ? c.ex[i].s[window.currentLang] : (c.ex[i].s || c.ex[i].a || '');
+    
+    // Yahan bhi same logic lagao (Emoji hatao, Pause lagao)
+    let cleanText = sol.replace(/✅/g, '').replace(/🔊/g, '');
+    cleanText = cleanText.replace(/<br\s*\/?>/gi, ' . ');
+    cleanText = cleanText.replace(/<[^>]*>?/gm, ' ');
+    cleanText = cleanText.replace(/\s+/g, ' ').trim();
+
+    speak(cleanText, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+    document.getElementById('adv-ex-' + i).classList.toggle('show');
+    addStar();
+};
+</script>
 </body>
 </html>
