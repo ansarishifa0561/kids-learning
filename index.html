@@ -1747,53 +1747,205 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
 }
 </script>
 <script>
+       // ==========================================
+    // HELPER: Parse Equation (ax + by = c)
+    // ==========================================
+    function parseEq(equation) {
+        equation = equation.replace(/\s+/g, '').toLowerCase();
+        let parts = equation.split('=');
+        if(parts.length !== 2) throw new Error("Equation mein ek '=' hona chahiye");
+        let left = parts[0];
+        let right = parts[1];
+        
+        if(!left) left = "0";
+        if(!right) right = "0";
+        
+        if(left[0] !== '+' && left[0] !== '-') left = '+' + left;
+        if(right[0] !== '+' && right[0] !== '-') right = '+' + right;
+        
+        let parseSide = (str) => {
+            let A = 0, B = 0, C = 0;
+            let xTerms = str.match(/[+-]\d*\.?\d*x/g) || [];
+            let yTerms = str.match(/[+-]\d*\.?\d*y/g) || [];
+            
+            xTerms.forEach(t => {
+                let num = t.replace('x','');
+                if(num === '+') A += 1;
+                else if(num === '-') A -= 1;
+                else A += parseFloat(num);
+            });
+            yTerms.forEach(t => {
+                let num = t.replace('y','');
+                if(num === '+') B += 1;
+                else if(num === '-') B -= 1;
+                else B += parseFloat(num);
+            });
+            
+            let noXY = str.replace(/[+-]\d*\.?\d*x/g, '').replace(/[+-]\d*\.?\d*y/g, '');
+            if(noXY && noXY[0] !== '+' && noXY[0] !== '-') noXY = '+' + noXY;
+            let constTerms = noXY.match(/[+-]\d*\.?\d+/g) || [];
+            constTerms.forEach(t => C += parseFloat(t));
+            
+            return {A, B, C};
+        };
+        
+        let L = parseSide(left);
+        let R = parseSide(right);
+        
+        return {
+            A: L.A - R.A,
+            B: L.B - R.B,
+            C: R.C - L.C
+        };
+    }
+
+    // ==========================================
+    // HELPER: Solve 2 Variables (Elimination Method)
+    // ==========================================
+    function solveTwoVars(eq1Str, eq2Str) {
+        let eq1 = parseEq(eq1Str);
+        let eq2 = parseEq(eq2Str);
+        
+        let A1 = eq1.A, B1 = eq1.B, C1 = eq1.C;
+        let A2 = eq2.A, B2 = eq2.B, C2 = eq2.C;
+        
+        let det = A1 * B2 - A2 * B1;
+        
+        if (det === 0) {
+            if (C1*B2 - C2*B1 === 0 && A1*C2 - A2*C1 === 0) return { msg: "Infinite Solutions (Anant Hal - Har point solution hai)" };
+            return { msg: "No Solution (Koi Hal Nahi - Lines parallel hain)" };
+        }
+        
+        let steps = [];
+        let fmtEq = (A, B, C) => {
+            let s = "";
+            if(A !== 0) s += `${A}x`;
+            if(B !== 0) {
+                if(B > 0) s += (s ? " + " : "") + `${B}y`;
+                else s += (s ? " - " : "-") + `${Math.abs(B)}y`;
+            }
+            if(!s) s = "0";
+            s += ` = ${C}`;
+            return s;
+        };
+        
+        steps.push(`<b>Equation 1:</b> ${fmtEq(A1, B1, C1)}`);
+        steps.push(`<b>Equation 2:</b> ${fmtEq(A2, B2, C2)}`);
+        
+        let eliminateX = (A1 !== 0 && A2 !== 0);
+        let elimVar = eliminateX ? 'x' : 'y';
+        
+        steps.push(`<b>Step 1: Elimination Method</b><br>Hum "${elimVar}" ko eliminate karenge taaki sirf ek variable bache.`);
+        
+        let coeff1 = eliminateX ? A1 : B1;
+        let coeff2 = eliminateX ? A2 : B2;
+        
+        function gcd(x, y) { return y === 0 ? x : gcd(y, x % y); }
+        let a = Math.abs(coeff1), b = Math.abs(coeff2);
+        let l = (a * b) / (gcd(a, b) || 1);
+        
+        let mult1 = l / a;
+        let mult2 = l / b;
+        
+        let newA1 = A1 * mult1;
+        let newB1 = B1 * mult1;
+        let newC1 = C1 * mult1;
+        
+        let newA2 = A2 * mult2;
+        let newB2 = B2 * mult2;
+        let newC2 = C2 * mult2;
+        
+        steps.push(`<b>Step 2: Make coefficients same</b><br>Eq 1 ko ${mult1} se multiply karo: <b>${fmtEq(newA1, newB1, newC1)}</b><br>Eq 2 ko ${mult2} se multiply karo: <b>${fmtEq(newA2, newB2, newC2)}</b>`);
+        
+        let sign1 = eliminateX ? Math.sign(newA1) : Math.sign(newB1);
+        let sign2 = eliminateX ? Math.sign(newA2) : Math.sign(newB2);
+        
+        let op = (sign1 === sign2) ? 'minus' : 'plus';
+        let opText = (sign1 === sign2) ? 'subtract' : 'add';
+        let opSymbol = (sign1 === sign2) ? '-' : '+';
+        
+        let finalA = (sign1 === sign2) ? (newA1 - newA2) : (newA1 + newA2);
+        let finalB = (sign1 === sign2) ? (newB1 - newB2) : (newB1 + newB2);
+        let finalC = (sign1 === sign2) ? (newC1 - newC2) : (newC1 + newC2);
+        
+        finalA = Math.round(finalA * 10000) / 10000;
+        finalB = Math.round(finalB * 10000) / 10000;
+        finalC = Math.round(finalC * 10000) / 10000;
+        
+        steps.push(`<b>Step 3: ${opText} the equations</b><br>Dono equations ko ${opText} karo.<br>${elimVar} cancel ho gaya. Bacha: <b>${fmtEq(finalA, finalB, finalC)}</b>`);
+        
+        let remVar = eliminateX ? 'y' : 'x';
+        let remCoeff = eliminateX ? finalB : finalA;
+        let remAns = finalC / remCoeff;
+        remAns = Math.round(remAns * 10000) / 10000;
+        
+        steps.push(`<b>Step 4: Solve for ${remVar}</b><br>${remCoeff}${remVar} = ${finalC}<br>${remVar} = ${finalC} / ${remCoeff}<br><b>${remVar} = ${remAns}</b>`);
+        
+        let x_ans, y_ans;
+        if(eliminateX) {
+            y_ans = remAns;
+            let x_num = C1 - B1 * y_ans;
+            x_ans = x_num / A1;
+        } else {
+            x_ans = remAns;
+            let y_num = C1 - A1 * x_ans;
+            y_ans = y_num / B1;
+        }
+        x_ans = Math.round(x_ans * 10000) / 10000;
+        y_ans = Math.round(y_ans * 10000) / 10000;
+        
+        let subEq = eliminateX ? `${A1}x + ${B1}(${remAns}) = ${C1}` : `${A1}(${remAns}) + ${B1}y = ${C1}`;
+        steps.push(`<b>Step 5: Find ${elimVar}</b><br>Ab ${remVar} = ${remAns} ko Eq 1 mein rakho.<br>${subEq}<br><b>${elimVar} = ${eliminateX ? x_ans : y_ans}</b>`);
+        
+        steps.push(`<b>✅ Final Answer:</b><br><b>x = ${x_ans}</b><br><b>y = ${y_ans}</b>`);
+        
+        return { x: x_ans, y: y_ans, html: steps.join('<br><br>') };
+    }
+
+    // ==========================================
+    // MAIN SOLVER FUNCTION
+    // ==========================================
     window.solveCustomEquation = function() {
-        var input = document.getElementById('customEqInput').value.trim().toLowerCase();
+        var input1 = document.getElementById('customEqInput').value.trim();
+        var input2Elem = document.getElementById('customEqInput2');
+        var input2 = input2Elem ? input2Elem.value.trim() : "";
+        
         var resultDiv = document.getElementById('customEqResult');
-        if(!input) { alert('Kripya equation likhein (jaise 4x + 3 = 15)'); return; }
+        if(!input1) { alert('Kripya equation likhein (jaise 4x + 3 = 15)'); return; }
 
         try {
-            // Saare variables (letters) dhoondo
-            var letters = input.match(/[a-z]/g) || [];
+            if (input2 !== "") {
+                var res = solveTwoVars(input1, input2);
+                if (res.msg) {
+                    resultDiv.innerHTML = '<div style="color:#cc0000; font-weight:bold; padding: 15px;">⚠️ ' + res.msg + '</div>';
+                    resultDiv.style.display = 'block';
+                    speak(res.msg, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+                    return;
+                }
+                resultDiv.innerHTML = res.html;
+                resultDiv.style.display = 'block';
+                speak("Final answer is x equals " + res.x + " and y equals " + res.y, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+                return;
+            }
+            
+            // Single Variable Mode
+            var letters = input1.match(/[a-zA-Z]/g) || [];
             var uniqueVars = [...new Set(letters)];
             
-            // 1. Agar koi variable nahi hai
             if(uniqueVars.length === 0) {
-                resultDiv.innerHTML = '<div style="color:#5a3a1a; font-weight:bold; font-size:1.05rem; line-height:1.6;">' +
-                    '<span style="font-size:1.5rem;">💡</span> <b>Explanation:</b><br><br>' +
-                    'Aapne is equation mein koi variable (jaise x, y, a, b) use nahi kiya. Ye ek simple calculation hai.<br><br>' +
-                    'Kripya ek variable wali equation likhein. Example: <i>4x + 3 = 15</i>' +
-                    '</div>';
+                resultDiv.innerHTML = '<div style="color:#5a3a1a; font-weight:bold; padding: 15px;">💡 Aapne koi variable use nahi kiya. Kripya ek variable wali equation likhein (jaise 4x + 3 = 15).</div>';
                 resultDiv.style.display = 'block';
-                speak("Aapne koi variable use nahi kiya. Kripya ek variable wali equation likhein.", window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
                 return;
             }
-
-            // 2. Agar 2 ya usse zyada variables hain (jaise x aur y)
             if(uniqueVars.length > 1) {
-                var varsString = uniqueVars.join(' aur ');
-                resultDiv.innerHTML = '<div style="color:#5a3a1a; font-weight:bold; font-size:1.05rem; line-height:1.6; text-align:left;">' +
-                    '<span style="font-size:1.5rem;">💡</span> <b>Explanation:</b><br><br>' +
-                    'Aapne is equation mein <b>' + varsString + '</b> variables use kiye hain. Ye ek <b>Two-Variable Equation</b> hai.<br><br>' +
-                    'Ek se zyada variable wali equation (jaise x aur y) ko solve karne ke liye <b>2 alag-alag equations</b> ki zaroorat hoti hai.<br><br>' +
-                    'Example ke liye:<br>' +
-                    '• Equation 1: x + y = 10<br>' +
-                    '• Equation 2: x - y = 2<br>' +
-                    'In dono ko mila kar hi x aur y ki value nikal sakti hai.<br><br>' +
-                    'Aapne yahan sirf ek equation di hai, isliye iska exact answer nahi nikal sakta. Kripya ek variable wali equation likhein (jaise <i>4x + 3 = 15</i>).' +
-                    '</div>';
+                resultDiv.innerHTML = '<div style="color:#5a3a1a; font-weight:bold; padding: 15px;">💡 Aapne 1 se zyada variables use kiye hain. Kripya dono input boxes bharein. (Jaise Eq 1: x + y = 10, Eq 2: x - y = 2)</div>';
                 resultDiv.style.display = 'block';
-                var speakText = "Aapne " + varsString + " variables use kiye hain. Ye ek two variable equation hai. Ek se zyada variable wali equation ko solve karne ke liye 2 alag alag equations ki zaroorat hoti hai. Aapne yahan sirf ek equation di hai, isliye iska exact answer nahi nikal sakta.";
-                speak(speakText, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
                 return;
             }
-
-            // 3. Agar sirf 1 variable hai (x, y, a, b kuch bhi)
-            var v = uniqueVars[0]; 
             
-            var eq = input.replace(/\s+/g, '');
+            var v = uniqueVars[0];
+            var eq = input1.replace(/\s+/g, '');
             
-            // Fractions ko handle karo (jaise x/2 ko 0.5x banao)
             eq = eq.replace(/([0-9]*\.?[0-9]*)([a-z])\/([0-9]+)/g, function(match, num, variable, den) {
                 var n = num === '' ? 1 : parseFloat(num);
                 var d = parseFloat(den);
@@ -1807,7 +1959,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             var left = sides[0];
             var right = sides[1];
 
-            function parseSide(expr, variable) {
+            function parseSideSingle(expr, variable) {
                 var a = 0; var b = 0;
                 var vRegex = new RegExp('[+-]?\\d*\\.?\\d*' + variable, 'g');
                 var vMatches = expr.match(vRegex) || [];
@@ -1818,7 +1970,6 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                     else if(numStr === '-') a -= 1;
                     else a += parseFloat(numStr);
                 }
-                
                 var constExpr = expr.replace(vRegex, '');
                 var nums = constExpr.match(/[+-]?\d*\.?\d+/g) || [];
                 for(var j=0; j<nums.length; j++) {
@@ -1827,19 +1978,17 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 return { a: a, b: b };
             }
 
-            var L = parseSide(left, v);
-            var R = parseSide(right, v);
+            var L = parseSideSingle(left, v);
+            var R = parseSideSingle(right, v);
             var finalA = L.a - R.a;
             var finalB = R.b - L.b;
 
-            if(finalA === 0) {
-                throw new Error("Is equation mein '" + v + "' cancel ho gaya hai. Kripya sahi equation likhein.");
-            }
+            if(finalA === 0) throw new Error("Is equation mein '" + v + "' cancel ho gaya hai.");
 
             var ans = finalB / finalA;
             ans = Math.round(ans * 10000) / 10000;
 
-            var stepsHTML = '<b>Equation:</b> ' + input + '<br><br>';
+            var stepsHTML = '<b>Equation:</b> ' + input1 + '<br><br>';
             
             if(R.a !== 0) {
                 stepsHTML += '<b>Step 1:</b> "' + v + '" wale terms ko ek taraf le jao.<br>Dono taraf se ' + R.a + v + ' subtract karo.<br>' + L.a + v + ' - ' + R.a + v + ' ' + (L.b > 0 ? '+ '+L.b : '- '+Math.abs(L.b)) + ' = ' + R.b + '<br><br>';
@@ -1861,11 +2010,11 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             resultDiv.innerHTML = stepsHTML;
             resultDiv.style.display = 'block';
 
-            var speakText = input + " . " + stepsHTML.replace(/<[^>]*>?/gm, ' ');
+            var speakText = input1 + " . " + stepsHTML.replace(/<[^>]*>?/gm, ' ');
             speak(speakText, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
 
         } catch (e) {
-            resultDiv.innerHTML = '<div style="color:#cc0000; font-weight:bold; padding: 10px;">⚠️ Error: ' + e.message + '</div>';
+            resultDiv.innerHTML = '<div style="color:#cc0000; font-weight:bold; padding: 15px;">⚠️ Error: ' + e.message + '</div>';
             resultDiv.style.display = 'block';
         }
     };  
