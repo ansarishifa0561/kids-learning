@@ -1425,912 +1425,86 @@ document.body.addEventListener('touchstart',function u(){
   document.body.removeEventListener('touchstart',u);
 },{once:true});
 </script>
+</script>
 <!-- ====================================================
-     SHIFA'S CUSTOM ADDITIONS
-     YAHAN SAB KUCH ADD KARO — PURANA CODE SAFE HAI
+     SHIFA'S ULTIMATE MATH ENGINE (Clean & Fixed)
      ==================================================== -->
-
 <style>
-/* Detailed Solution Format */
-.chapter-ex .s{background:#f0fff4;padding:14px 16px;border-radius:12px;font-size:.92rem;font-weight:600;color:#2b2b3a;line-height:1.7;white-space:pre-wrap;border:1px solid #c8e6c9;display:none}
-.chapter-ex .s.show{display:block}
-</style>
-<script>
-/* Chapter index 2 = Mensuration */
-const _mensuration = ADVANCED_LESSONS.maths.chapters[2];
-
-/* ===== UPDATED DEFINITION WITH FORMULAS ===== */
-_mensuration.def = `
-<div style="text-align:left; font-size: 1.05rem; line-height: 1.8; color: #333;">
-  <p style="margin-bottom: 20px;"><b>Mensuration</b> matlab shapes (aakritiyon) ki naap-tol karna. Ismein hum 3 cheezein nikalte hain:</p>
-  
-  <div style="background: #fff8ee; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #FFC300;">
-    <h3 style="color: #7c5cff; margin-bottom: 10px;">📐 Rectangle (Aayat)</h3>
-    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-      <svg width="130" height="80" viewBox="0 0 130 80">
-        <rect x="10" y="20" width="100" height="50" fill="rgba(255,195,0,0.2)" stroke="#FFC300" stroke-width="3" stroke-dasharray="5,5"/>
-        <text x="60" y="15" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Length</text>
-        <text x="120" y="50" text-anchor="middle" font-size="12" fill="#333" font-weight="bold" transform="rotate(90 120 50)">Breadth</text>
-      </svg>
-      <div>
-        <p><b>Definition:</b> Ek shape jiske 4 sides hoti hain. Aamne-saamne ki sides barabar hoti hain.</p>
-        <p style="margin-top: 8px;"><b>Formula:</b><br>Area = Length × Breadth<br>Perimeter = 2 × (Length + Breadth)</p>
-      </div>
-    </div>
-  </div>
-
-  <div style="background: #f0fff4; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #34C759;">
-    <h3 style="color: #7c5cff; margin-bottom: 10px;">🔲 Square (Varg)</h3>
-    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-      <svg width="100" height="80" viewBox="0 0 100 80">
-        <rect x="20" y="15" width="50" height="50" fill="rgba(52,199,89,0.2)" stroke="#34C759" stroke-width="3"/>
-        <text x="45" y="10" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Side</text>
-      </svg>
-      <div>
-        <p><b>Definition:</b> Ek shape jiski chaaron (4) sides barabar hoti hain.</p>
-        <p style="margin-top: 8px;"><b>Formula:</b><br>Area = Side × Side<br>Perimeter = 4 × Side</p>
-      </div>
-    </div>
-  </div>
-
-  <div style="background: #eff6ff; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #0A84FF;">
-    <h3 style="color: #7c5cff; margin-bottom: 10px;">⭕ Circle (Gol)</h3>
-    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-      <svg width="100" height="90" viewBox="0 0 100 90">
-        <circle cx="50" cy="45" r="35" fill="rgba(10,132,255,0.1)" stroke="#0A84FF" stroke-width="3"/>
-        <line x1="50" y1="45" x2="85" y2="45" stroke="#333" stroke-width="2" stroke-dasharray="4,4"/>
-        <text x="67" y="40" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Radius (r)</text>
-        <circle cx="50" cy="45" r="3" fill="#333"/>
-      </svg>
-      <div>
-        <p><b>Definition:</b> Ek round shape. Iske center se boundary tak ki doori barabar hoti hai.</p>
-        <p style="margin-top: 8px;"><b>Formula:</b><br>Area = π × r × r<br>Circumference = 2 × π × r</p>
-      </div>
-    </div>
-  </div>
-
-  <div style="background: #fff3e0; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #FF6F00;">
-    <h3 style="color: #7c5cff; margin-bottom: 10px;">🎲 Cube (Dabba)</h3>
-    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-      <svg width="100" height="90" viewBox="0 0 100 90">
-        <polygon points="20,40 60,40 60,80 20,80" fill="rgba(255,111,0,0.2)" stroke="#FF6F00" stroke-width="2"/>
-        <polygon points="20,40 40,20 80,20 60,40" fill="rgba(255,111,0,0.1)" stroke="#FF6F00" stroke-width="2"/>
-        <polygon points="60,40 80,20 80,60 60,80" fill="rgba(255,111,0,0.15)" stroke="#FF6F00" stroke-width="2"/>
-      </svg>
-      <div>
-        <p><b>Definition:</b> Ek 3D shape jiski saari sides (length, breadth, height) barabar hoti hain.</p>
-        <p style="margin-top: 8px;"><b>Formula:</b><br>Volume = Side × Side × Side</p>
-      </div>
-    </div>
-  </div>
-
-  <div style="background: #f3e5f5; padding: 15px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #9C27B0;">
-    <h3 style="color: #7c5cff; margin-bottom: 10px;">📦 Cuboid (Lamba Dabba)</h3>
-    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-      <svg width="110" height="90" viewBox="0 0 110 90">
-        <polygon points="20,40 70,40 70,80 20,80" fill="rgba(156,39,176,0.2)" stroke="#9C27B0" stroke-width="2"/>
-        <polygon points="20,40 40,20 90,20 70,40" fill="rgba(156,39,176,0.1)" stroke="#9C27B0" stroke-width="2"/>
-        <polygon points="70,40 90,20 90,60 70,80" fill="rgba(156,39,176,0.15)" stroke="#9C27B0" stroke-width="2"/>
-      </svg>
-      <div>
-        <p><b>Definition:</b> Ek 3D shape (jaise matchbox) jiski length, breadth aur height alag-alag hoti hain.</p>
-        <p style="margin-top: 8px;"><b>Formula:</b><br>Volume = Length × Breadth × Height</p>
-      </div>
-    </div>
-  </div>
-</div>`;
-
-/* ===== 50 DETAILED EXAMPLES ===== */
-_mensuration.ex = [
-  // Level 1 - Basic
-  {q:'Rectangle ki length 8 cm aur breadth 5 cm hai. Area nikalo.',
-   s:`📝 Question: L = 8 cm, B = 5 cm, Area = ?
-
-🎯 Kya dhoondhna hai?
-Area (kshetrfal)
-
-📖 Concept / Formula:
-Area = Length × Breadth
-
-🔢 Step-by-Step:
-Step 1: Diya hai → L = 8, B = 5
-Step 2: Formula → Area = L × B
-Step 3: Multiply → 8 × 5 = 40
-Step 4: Unit → cm²
-
-<div style="text-align:center; margin: 15px 0;">
-<svg width="220" height="150" viewBox="0 0 220 150" style="background:#f8f9ff; border-radius:10px; border:1px solid #dcd6ff;">
-  <rect x="30" y="30" width="160" height="90" fill="rgba(124,92,255,0.1)" stroke="#7c5cff" stroke-width="3" stroke-dasharray="5,5"/>
-  <text x="110" y="20" text-anchor="middle" fill="#333" font-weight="bold">L = 8 cm</text>
-  <text x="200" y="80" text-anchor="middle" fill="#333" font-weight="bold" transform="rotate(90 200 80)">B = 5 cm</text>
-</svg>
-</div>
-
-✅ Answer: Area = 40 cm²
-
-💡 Yaad Rakho:
-- Area matlab "andar ki jagah". Isliye unit square (cm²) hota hai.`},
-
-  {q:'Rectangle ki length 10 cm aur breadth 4 cm hai. Perimeter nikalo.',
-   s:`📝 Question: L = 10 cm, B = 4 cm, Perimeter = ?
-
-🎯 Kya dhoondhna hai?
-Perimeter (charon taraf ki lambai)
-
-📖 Concept / Formula:
-Perimeter = 2 × (L + B)
-
-🔢 Step-by-Step:
-Step 1: Diya hai → L = 10, B = 4
-Step 2: Formula → P = 2 × (10 + 4)
-Step 3: Bracket pehle → 10 + 4 = 14
-Step 4: Multiply → 2 × 14 = 28
-Step 5: Unit → cm
-
-✅ Answer: Perimeter = 28 cm
-
-💡 Yaad Rakho:
-- Perimeter matlab "boundary ki lambai". Isliye unit simple (cm) hota hai.`},
-
-  {q:'Square ki side 6 cm hai. Area nikalo.',
-   s:`📝 Question: Side = 6 cm, Area = ?
-
-🎯 Kya dhoondhna hai?
-Area
-
-📖 Concept / Formula:
-Area = Side × Side = Side²
-
-🔢 Step-by-Step:
-Step 1: Diya hai → Side = 6
-Step 2: Formula → Area = 6²
-Step 3: Multiply → 6 × 6 = 36
-Step 4: Unit → cm²
-
-✅ Answer: Area = 36 cm²
-
-💡 Yaad Rakho:
-- Square ki saari 4 sides barabar hoti hain.`},
-
-  {q:'Square ki side 9 cm hai. Perimeter nikalo.',
-   s:`📝 Question: Side = 9 cm, Perimeter = ?
-
-🎯 Kya dhoondhna hai?
-Perimeter
-
-📖 Concept / Formula:
-Perimeter = 4 × Side
-
-🔢 Step-by-Step:
-Step 1: Diya hai → Side = 9
-Step 2: Formula → P = 4 × 9
-Step 3: Multiply → P = 36
-Step 4: Unit → cm
-
-✅ Answer: Perimeter = 36 cm
-
-💡 Yaad Rakho:
-- 4 sides hain, isliye 4 se multiply.`},
-
-  {q:'Circle ka radius 7 cm hai. Area nikalo (π = 22/7).',
-   s:`📝 Question: r = 7 cm, Area = ?
-
-🎯 Kya dhoondhna hai?
-Circle ka Area
-
-📖 Concept / Formula:
-Area = πr²
-
-🔢 Step-by-Step:
-Step 1: Diya hai → r = 7, π = 22/7
-Step 2: Formula → Area = (22/7) × 7 × 7
-Step 3: 7 aur 7 mein se ek 7 cancel ho jayega
-Step 4: Bacha → 22 × 7 = 154
-Step 5: Unit → cm²
-
-<div style="text-align:center; margin: 15px 0;">
-<svg width="150" height="150" viewBox="0 0 150 150" style="background:#f8f9ff; border-radius:10px; border:1px solid #dcd6ff;">
-  <circle cx="75" cy="75" r="50" fill="rgba(0,194,168,0.1)" stroke="#00c2a8" stroke-width="3"/>
-  <line x1="75" y1="75" x2="125" y2="75" stroke="#333" stroke-width="2" stroke-dasharray="4,4"/>
-  <text x="100" y="70" text-anchor="middle" fill="#333" font-weight="bold">r = 7</text>
-  <circle cx="75" cy="75" r="3" fill="#333"/>
-</svg>
-</div>
-
-✅ Answer: Area = 154 cm²`},
-
-  {q:'Circle ka radius 14 cm hai. Circumference nikalo (π = 22/7).',
-   s:`📝 Question: r = 14 cm, Circumference = ?
-
-🎯 Kya dhoondhna hai?
-Circumference (ghera / perimeter)
-
-📖 Concept / Formula:
-Circumference = 2πr
-
-🔢 Step-by-Step:
-Step 1: Diya hai → r = 14, π = 22/7
-Step 2: Formula → C = 2 × (22/7) × 14
-Step 3: 14 ko 7 se divide karo → 2
-Step 4: C = 2 × 22 × 2
-Step 5: Multiply → 88
-Step 6: Unit → cm
-
-✅ Answer: Circumference = 88 cm`},
-
-  {q:'Circle ka diameter 20 cm hai. Radius nikalo.',
-   s:`📝 Question: d = 20 cm, r = ?
-
-🎯 Kya dhoondhna hai?
-Radius
-
-📖 Concept / Formula:
-Radius = Diameter ÷ 2
-
-🔢 Step-by-Step:
-Step 1: Diya hai → d = 20
-Step 2: Formula → r = d / 2
-Step 3: Divide → 20 / 2 = 10
-Step 4: Unit → cm
-
-✅ Answer: Radius = 10 cm
-
-💡 Yaad Rakho:
-- Diameter circle ke center se hokar guzarta hai.
-- Radius aadha hota hai diameter ka.`},
-
-  {q:'Rectangle ki length 12 m aur breadth 3 m hai. Area nikalo.',
-   s:`📝 Question: L = 12 m, B = 3 m, Area = ?
-
-🎯 Kya dhoondhna hai?
-Area
-
-📖 Concept / Formula:
-Area = L × B
-
-🔢 Step-by-Step:
-Step 1: Diya hai → L = 12, B = 3
-Step 2: Formula → 12 × 3
-Step 3: Multiply → 36
-Step 4: Unit → m²
-
-✅ Answer: Area = 36 m²`},
-
-  {q:'Square ki side 12 cm hai. Area nikalo.',
-   s:`📝 Question: Side = 12 cm, Area = ?
-
-🎯 Kya dhoondhna hai?
-Area
-
-📖 Concept / Formula:
-Area = Side²
-
-🔢 Step-by-Step:
-Step 1: Diya hai → Side = 12
-Step 2: Formula → 12² = 12 × 12
-Step 3: Multiply → 144
-Step 4: Unit → cm²
-
-✅ Answer: Area = 144 cm²`},
-
-  {q:'Ek cube ki side 3 cm hai. Volume nikalo.',
-   s:`📝 Question: Side = 3 cm, Volume = ?
-
-🎯 Kya dhoondhna hai?
-Volume (aayatan)
-
-📖 Concept / Formula:
-Volume = Side³
-
-🔢 Step-by-Step:
-Step 1: Diya hai → Side = 3
-Step 2: Formula → V = 3³ = 3 × 3 × 3
-Step 3: Multiply → 9 × 3 = 27
-Step 4: Unit → cm³ (cubic cm)
-
-<div style="text-align:center; margin: 15px 0;">
-<svg width="160" height="160" viewBox="0 0 160 160" style="background:#f8f9ff; border-radius:10px; border:1px solid #dcd6ff;">
-  <polygon points="30,60 90,60 90,120 30,120" fill="rgba(255,111,0,0.2)" stroke="#ff6f00" stroke-width="2"/>
-  <polygon points="30,60 60,30 120,30 90,60" fill="rgba(255,111,0,0.1)" stroke="#ff6f00" stroke-width="2"/>
-  <polygon points="90,60 120,30 120,90 90,120" fill="rgba(255,111,0,0.15)" stroke="#ff6f00" stroke-width="2"/>
-  <text x="60" y="135" text-anchor="middle" fill="#333" font-weight="bold">3</text>
-  <text x="120" y="105" text-anchor="middle" fill="#333" font-weight="bold">3</text>
-  <text x="90" y="25" text-anchor="middle" fill="#333" font-weight="bold">3</text>
-</svg>
-</div>
-
-✅ Answer: Volume = 27 cm³`},
-
-  {q:'Cuboid ki length 5 cm, breadth 4 cm aur height 3 cm hai. Volume nikalo.',
-   s:`📝 Question: L = 5, B = 4, H = 3, Volume = ?
-
-🎯 Kya dhoondhna hai?
-Volume
-
-📖 Concept / Formula:
-Volume = L × B × H
-
-🔢 Step-by-Step:
-Step 1: Diya hai → 5, 4, 3
-Step 2: Formula → 5 × 4 × 3
-Step 3: Pehle 5 × 4 = 20
-Step 4: Phir 20 × 3 = 60
-Step 5: Unit → cm³
-
-✅ Answer: Volume = 60 cm³`},
-
-  {q:'Circle ka radius 3 cm hai. Area nikalo (π = 3.14).',
-   s:`📝 Question: r = 3 cm, Area = ?
-
-🎯 Kya dhoondhna hai?
-Area
-
-📖 Concept / Formula:
-Area = πr²
-
-🔢 Step-by-Step:
-Step 1: Diya hai → r = 3, π = 3.14
-Step 2: Formula → 3.14 × (3)²
-Step 3: Square pehle → 3² = 9
-Step 4: Multiply → 3.14 × 9 = 28.26
-Step 5: Unit → cm²
-
-✅ Answer: Area = 28.26 cm²`},
-
-  {q:'Rectangle ki length 7 cm aur breadth 6 cm hai. Perimeter nikalo.',
-   s:`📝 Question: L = 7, B = 6, Perimeter = ?
-
-🎯 Kya dhoondhna hai?
-Perimeter
-
-📖 Concept / Formula:
-Perimeter = 2 × (L + B)
-
-🔢 Step-by-Step:
-Step 1: Diya hai → L = 7, B = 6
-Step 2: Bracket → 7 + 6 = 13
-Step 3: Multiply → 2 × 13 = 26
-Step 4: Unit → cm
-
-✅ Answer: Perimeter = 26 cm`},
-
-  {q:'Square ki side 15 m hai. Perimeter nikalo.',
-   s:`📝 Question: Side = 15 m, Perimeter = ?
-
-🎯 Kya dhoondhna hai?
-Perimeter
-
-📖 Concept / Formula:
-Perimeter = 4 × Side
-
-🔢 Step-by-Step:
-Step 1: Side = 15
-Step 2: Formula → 4 × 15
-Step 3: Multiply → 60
-Step 4: Unit → m
-
-✅ Answer: Perimeter = 60 m`},
-
-  {q:'Ek cube ki side 5 m hai. Volume nikalo.',
-   s:`📝 Question: Side = 5 m, Volume = ?
-
-🎯 Kya dhoondhna hai?
-Volume
-
-📖 Concept / Formula:
-Volume = Side³
-
-🔢 Step-by-Step:
-Step 1: Side = 5
-Step 2: Formula → 5³ = 5 × 5 × 5
-Step 3: 25 × 5 = 125
-Step 4: Unit → m³
-
-✅ Answer: Volume = 125 m³`},
-
-  // Level 2 - Intermediate (16-30)
-  {q:'Rectangle ka area 96 cm² aur breadth 8 cm hai. Length nikalo.',
-   s:`📝 Question: Area = 96, B = 8, L = ?
-
-🎯 Kya dhoondhna hai?
-Length
-
-📖 Concept / Formula:
-Area = L × B, isliye L = Area ÷ B
-
-🔢 Step-by-Step:
-Step 1: Area = 96, B = 8
-Step 2: Formula → L = 96 ÷ 8
-Step 3: Divide → 12
-Step 4: Unit → cm
-
-✅ Answer: Length = 12 cm`},
-
-  {q:'Square ka area 196 cm² hai. Side nikalo.',
-   s:`📝 Question: Area = 196, Side = ?
-
-🎯 Kya dhoondhna hai?
-Side
-
-📖 Concept / Formula:
-Area = Side², isliye Side = √Area
-
-🔢 Step-by-Step:
-Step 1: Area = 196
-Step 2: Side = √196
-Step 3: Kaun sa number khud se multiply hokar 196 deta hai? (14 × 14 = 196)
-Step 4: Unit → cm
-
-✅ Answer: Side = 14 cm`},
-
-  {q:'Rectangle ki length 15 cm aur breadth 9 cm hai. Area aur perimeter dono nikalo.',
-   s:`📝 Question: L = 15, B = 9. Area & Perimeter = ?
-
-🎯 Kya dhoondhna hai?
-Area aur Perimeter dono
-
-🔢 Step-by-Step:
-<b>Area ke liye:</b>
-Step 1: A = L × B
-Step 2: 15 × 9 = 135 cm²
-
-<b>Perimeter ke liye:</b>
-Step 1: P = 2(L+B)
-Step 2: 15 + 9 = 24
-Step 3: 2 × 24 = 48 cm
-
-✅ Answer: Area = 135 cm², Perimeter = 48 cm`},
-
-  {q:'Square ka perimeter 64 m hai. Area nikalo.',
-   s:`📝 Question: Perimeter = 64, Area = ?
-
-🎯 Kya dhoondhna hai?
-Area (par pehle side nikalna hoga)
-
-🔢 Step-by-Step:
-Step 1: P = 4 × Side
-Step 2: 64 = 4 × Side
-Step 3: Side = 64 ÷ 4 = 16 m
-Step 4: Ab Area = Side² = 16 × 16
-Step 5: Area = 256 m²
-
-✅ Answer: Area = 256 m²`},
-
-  {q:'Circle ka diameter 28 cm hai. Area nikalo (π = 22/7).',
-   s:`📝 Question: d = 28, Area = ?
-
-🎯 Kya dhoondhna hai?
-Area
-
-🔢 Step-by-Step:
-Step 1: Radius nikaalo → r = 28 ÷ 2 = 14
-Step 2: Formula → Area = πr²
-Step 3: (22/7) × 14 × 14
-Step 4: 14 ko 7 se divide karo = 2
-Step 5: 22 × 2 × 14 = 44 × 14 = 616
-✅ Answer: Area = 616 cm²`},
-
-  {q:'Circle ka area 154 cm² hai. Radius nikalo (π = 22/7).',
-   s:`📝 Question: Area = 154, r = ?
-
-🎯 Kya dhoondhna hai?
-Radius
-
-🔢 Step-by-Step:
-Step 1: Area = πr²
-Step 2: 154 = (22/7) × r²
-Step 3: r² = (154 × 7) / 22
-Step 4: (1078) / 22 = 49
-Step 5: r = √49 = 7 cm
-✅ Answer: Radius = 7 cm`},
-
-  {q:'Rectangle ka perimeter 50 cm aur length 15 cm hai. Breadth nikalo.',
-   s:`📝 Question: P = 50, L = 15, B = ?
-
-🔢 Step-by-Step:
-Step 1: P = 2(L+B)
-Step 2: 50 = 2(15 + B)
-Step 3: 25 = 15 + B
-Step 4: B = 25 − 15 = 10
-✅ Answer: Breadth = 10 cm`},
-
-  {q:'Cube ka volume 216 cm³ hai. Side nikalo.',
-   s:`📝 Question: Volume = 216, Side = ?
-
-🔢 Step-by-Step:
-Step 1: Volume = Side³
-Step 2: Side = ∛216
-Step 3: Kaun sa number 3 baar khud se multiply hoke 216 deta hai? (6 × 6 × 6 = 216)
-✅ Answer: Side = 6 cm`},
-
-  {q:'Cuboid ki length 10 cm, breadth 6 cm aur volume 300 cm³ hai. Height nikalo.',
-   s:`📝 Question: L = 10, B = 6, V = 300, H = ?
-
-🔢 Step-by-Step:
-Step 1: V = L × B × H
-Step 2: 300 = 10 × 6 × H
-Step 3: 300 = 60 × H
-Step 4: H = 300 ÷ 60 = 5
-✅ Answer: Height = 5 cm`},
-
-  {q:'Cylinder ka radius 7 cm aur height 10 cm hai. Volume nikalo (π = 22/7).',
-   s:`📝 Question: r = 7, h = 10, V = ?
-
-🔢 Step-by-Step:
-Step 1: Formula → V = πr²h
-Step 2: (22/7) × 7 × 7 × 10
-Step 3: Ek 7 cancel ho jayega → 22 × 7 × 10
-Step 4: 154 × 10 = 1540
-✅ Answer: Volume = 1540 cm³`},
-
-  {q:'Ek garden 25 m lamba aur 12 m chauda hai. Uska area nikalo.',
-   s:`📝 Question: L = 25, B = 12
-
-🔢 Step-by-Step:
-Step 1: Garden rectangle shape ka hai
-Step 2: Area = L × B = 25 × 12
-Step 3: 25 × 12 = 300
-✅ Answer: Area = 300 m²`},
-
-  {q:'Ek square field ki side 20 m hai. Boundary ke around ek round lagane par kitni doori chalega?',
-   s:`📝 Question: Side = 20 m, Round = 1, Distance = ?
-
-🔢 Step-by-Step:
-Step 1: Boundary ke around chalna matlab Perimeter nikalna
-Step 2: P = 4 × Side
-Step 3: P = 4 × 20 = 80
-✅ Answer: Doori = 80 m`},
-
-  {q:'Circle ka radius 10 cm hai. Circumference nikalo (π = 3.14).',
-   s:`📝 Question: r = 10, C = ?
-
-🔢 Step-by-Step:
-Step 1: C = 2πr
-Step 2: 2 × 3.14 × 10
-Step 3: 6.28 × 10 = 62.8
-✅ Answer: Circumference = 62.8 cm`},
-
-  {q:'Ek rectangle ka area 180 m² aur length 20 m hai. Breadth nikalo.',
-   s:`📝 Question: Area = 180, L = 20, B = ?
-
-🔢 Step-by-Step:
-Step 1: Area = L × B
-Step 2: 180 = 20 × B
-Step 3: B = 180 ÷ 20 = 9
-✅ Answer: Breadth = 9 m`},
-
-  {q:'Ek cuboid ki dimensions 8 cm × 5 cm × 4 cm hain. Volume nikalo.',
-   s:`📝 Question: L=8, B=5, H=4, V = ?
-
-🔢 Step-by-Step:
-Step 1: V = L × B × H
-Step 2: 8 × 5 = 40
-Step 3: 40 × 4 = 160
-✅ Answer: Volume = 160 cm³`},
-
-  // Level 3 - Advanced (31-40)
-  {q:'Rectangle ka perimeter 74 cm hai aur length 22 cm hai. Breadth aur area nikalo.',
-   s:`📝 Question: P = 74, L = 22. B & Area = ?
-
-🔢 Step-by-Step:
-<b>Breadth ke liye:</b>
-Step 1: P = 2(L+B)
-Step 2: 74 = 2(22 + B)
-Step 3: 37 = 22 + B
-Step 4: B = 15 cm
-
-<b>Area ke liye:</b>
-Step 1: A = L × B
-Step 2: 22 × 15 = 330
-✅ Answer: Breadth = 15 cm, Area = 330 cm²`},
-
-  {q:'Square ka area 324 cm² hai. Uska perimeter nikalo.',
-   s:`📝 Question: Area = 324, Perimeter = ?
-
-🔢 Step-by-Step:
-Step 1: Side = √324 = 18 cm
-Step 2: Perimeter = 4 × Side
-Step 3: 4 × 18 = 72
-✅ Answer: Perimeter = 72 cm`},
-
-  {q:'Ek circular park ka radius 21 m hai. Area aur circumference nikalo (π = 22/7).',
-   s:`📝 Question: r = 21. Area & Circumference = ?
-
-🔢 Step-by-Step:
-<b>Area:</b>
-Step 1: A = (22/7) × 21 × 21
-Step 2: 21 ko 7 se divide = 3
-Step 3: 22 × 3 × 21 = 66 × 21 = 1386 m²
-
-<b>Circumference:</b>
-Step 1: C = 2 × (22/7) × 21
-Step 2: 21 / 7 = 3
-Step 3: 2 × 22 × 3 = 132 m
-✅ Answer: Area = 1386 m², Circumference = 132 m`},
-
-  {q:'Ek rectangle ki length uski breadth se 3 guna hai. Perimeter 64 cm hai. Dimensions aur area nikalo.',
-   s:`📝 Question: L = 3B, P = 64. Dimensions & Area = ?
-
-🔢 Step-by-Step:
-Step 1: Let Breadth = x
-Step 2: Length = 3x
-Step 3: P = 2(L + B) → 64 = 2(3x + x)
-Step 4: 64 = 2(4x) → 64 = 8x
-Step 5: x = 8 cm (Breadth)
-Step 6: Length = 3 × 8 = 24 cm
-Step 7: Area = L × B = 24 × 8 = 192 cm²
-✅ Answer: Length = 24 cm, Breadth = 8 cm, Area = 192 cm²`},
-
-  {q:'Ek cube ki side double kar di jaati hai. Naya volume purane volume ka kitna guna hoga?',
-   s:`📝 Question: Side = 2 × original. V2/V1 = ?
-
-🔢 Step-by-Step:
-Step 1: Let original side = a
-Step 2: Original Volume (V1) = a³
-Step 3: New side = 2a
-Step 4: New Volume (V2) = (2a)³ = 8a³
-Step 5: Ratio = V2 / V1 = 8a³ / a³ = 8
-✅ Answer: Volume 8 guna ho jayega.`},
-
-  {q:'Ek cuboid ka volume 720 cm³ hai. Length 12 cm aur breadth 5 cm hai. Height nikalo.',
-   s:`📝 Question: V = 720, L = 12, B = 5, H = ?
-
-🔢 Step-by-Step:
-Step 1: V = L × B × H
-Step 2: 720 = 12 × 5 × H
-Step 3: 720 = 60 × H
-Step 4: H = 720 / 60 = 12
-✅ Answer: Height = 12 cm`},
-
-  {q:'Ek circular table ka diameter 1.4 m hai. Area nikalo (π = 22/7).',
-   s:`📝 Question: d = 1.4, Area = ?
-
-🔢 Step-by-Step:
-Step 1: r = 1.4 / 2 = 0.7 m
-Step 2: Area = (22/7) × 0.7 × 0.7
-Step 3: 0.7 / 7 = 0.1
-Step 4: 22 × 0.1 × 0.7 = 2.2 × 0.7 = 1.54
-✅ Answer: Area = 1.54 m²`},
-
-  {q:'Ek square aur rectangle ka perimeter same, 40 cm hai. Rectangle ki length 12 cm hai. Dono ke areas compare karo.',
-   s:`📝 Question: P(sq) = P(rect) = 40. L(rect) = 12. Compare Areas = ?
-
-🔢 Step-by-Step:
-<b>Square ke liye:</b>
-Step 1: P = 40 → 4 × side = 40
-Step 2: side = 10 cm
-Step 3: Area = 10 × 10 = 100 cm²
-
-<b>Rectangle ke liye:</b>
-Step 1: P = 40 → 2(L+B) = 40
-Step 2: L = 12 → 2(12+B) = 40
-Step 3: 12 + B = 20 → B = 8 cm
-Step 4: Area = 12 × 8 = 96 cm²
-
-✅ Answer: Square ka area (100) > Rectangle ka area (96). Square ka area 4 cm² zyada hai.`},
-
-  {q:'Cylinder ka volume 1232 cm³ aur radius 7 cm hai. Height nikalo (π = 22/7).',
-   s:`📝 Question: V = 1232, r = 7, h = ?
-
-🔢 Step-by-Step:
-Step 1: V = πr²h
-Step 2: 1232 = (22/7) × 7 × 7 × h
-Step 3: 1232 = 22 × 7 × h
-Step 4: 1232 = 154 × h
-Step 5: h = 1232 / 154 = 8
-✅ Answer: Height = 8 cm`},
-
-  {q:'Ek cube ka volume 1000 cm³ hai. Uska total surface area nikalo.',
-   s:`📝 Question: V = 1000, TSA = ?
-
-🔢 Step-by-Step:
-Step 1: Side = ∛1000 = 10 cm
-Step 2: Cube ke 6 faces hote hain
-Step 3: TSA = 6 × Side²
-Step 4: 6 × 10² = 6 × 100 = 600
-✅ Answer: Total Surface Area = 600 cm²`},
-
-  // Level 4 - Challenge (41-50)
-  {q:'Ek rectangle ka area 240 m² hai. Length aur breadth whole numbers hain aur length breadth se 4 m zyada hai. Dimensions aur perimeter nikalo.',
-   s:`📝 Question: Area = 240, L = B + 4. Find L, B, Perimeter.
-
-🔢 Step-by-Step:
-Step 1: Let B = x, L = x + 4
-Step 2: Area = x(x + 4) = 240
-Step 3: x² + 4x - 240 = 0
-Step 4: Factors dhoondo: 12 × 20 = 240, diff = 8
-Step 5: 16 × 15 = 240, diff = 1
-Step 6: x² + 20x - 12x - 240 = 0 → x(x+20) -12(x+20) → (x-12)(x+20)
-Step 7: x = 12 (kyunki -20 nahi ho sakta)
-Step 8: B = 12, L = 16
-Step 9: Perimeter = 2(16+12) = 56 m
-✅ Answer: L=16m, B=12m, Perimeter=56m`},
-
-  {q:'Ek circular running track ka radius 35 m hai. 5 complete rounds ki distance nikalo (π = 22/7).',
-   s:`📝 Question: r=35, rounds=5. Distance = ?
-
-🔢 Step-by-Step:
-Step 1: 1 round = Circumference
-Step 2: C = 2 × (22/7) × 35 = 2 × 22 × 5 = 220 m
-Step 3: 5 rounds = 5 × 220
-Step 4: 1100
-✅ Answer: Distance = 1100 m`},
-
-  {q:'Ek cube ka total surface area 864 cm² hai. Uska volume nikalo.',
-   s:`📝 Question: TSA = 864, V = ?
-
-🔢 Step-by-Step:
-Step 1: TSA = 6 × side²
-Step 2: 864 = 6 × side²
-Step 3: side² = 144
-Step 4: side = 12 cm
-Step 5: V = side³ = 12³ = 1728
-✅ Answer: Volume = 1728 cm³`},
-
-  {q:'Ek cuboid ka volume 960 cm³ hai. Length 16 cm aur height 5 cm hai. Breadth nikalo.',
-   s:`📝 Question: V = 960, L = 16, H = 5, B = ?
-
-🔢 Step-by-Step:
-Step 1: V = L × B × H
-Step 2: 960 = 16 × B × 5
-Step 3: 960 = 80 × B
-Step 4: B = 960 / 80 = 12
-✅ Answer: Breadth = 12 cm`},
-
-  {q:'Ek square garden ki side 28 m hai. Beech mein radius 7 m ka circular flower bed hai. Flower bed ko chhodkar grass ka area nikalo (π = 22/7).',
-   s:`📝 Question: Square side=28, Circle r=7. Grass Area = ?
-
-🔢 Step-by-Step:
-Step 1: Square Area = 28² = 784 m²
-Step 2: Circle Area = (22/7) × 7² = 154 m²
-Step 3: Grass Area = Square Area - Circle Area
-Step 4: 784 - 154 = 630
-✅ Answer: Grass Area = 630 m²`},
-
-  {q:'Ek rectangle ki length 30% badhayi jaati hai aur breadth same rehti hai. Area kitne percent badhega?',
-   s:`📝 Question: L increases by 30%, B same. % change in Area = ?
-
-🔢 Step-by-Step:
-Step 1: Let original L = 100, B = 100 → Original Area = 10000
-Step 2: New L = 130, B = 100 → New Area = 13000
-Step 3: Increase = 13000 - 10000 = 3000
-Step 4: % Increase = (3000/10000) × 100 = 30%
-✅ Answer: Area 30% badhega.`},
-
-  {q:'Ek cylinder ka radius double aur height same rehti hai. Volume kitne guna ho jayega?',
-   s:`📝 Question: r = 2r, h same. V ratio = ?
-
-🔢 Step-by-Step:
-Step 1: Original V = πr²h
-Step 2: New V = π(2r)²h = 4πr²h
-Step 3: Ratio = 4πr²h / πr²h = 4
-✅ Answer: Volume 4 guna ho jayega.`},
-
-  {q:'Ek rectangle 24 cm × 10 cm hai. Isi perimeter ka square banaya jata hai. Square ka area nikalo aur dono areas compare karo.',
-   s:`📝 Question: Rect 24×10. Same P square. Compare Areas.
-
-🔢 Step-by-Step:
-Step 1: P(rect) = 2(24+10) = 68 cm
-Step 2: P(sq) = 4 × side = 68 → side = 17 cm
-Step 3: Area(rect) = 240 cm²
-Step 4: Area(sq) = 17² = 289 cm²
-✅ Answer: Square area = 289 cm². Square ka area rectangle se zyada hai.`},
-
-  {q:'Ek cylindrical tank ka radius 3.5 m aur height 4 m hai. Uski capacity cubic metres mein nikalo (π = 22/7).',
-   s:`📝 Question: r = 3.5, h = 4, V = ?
-
-🔢 Step-by-Step:
-Step 1: V = (22/7) × 3.5 × 3.5 × 4
-Step 2: 3.5 = 7/2. So, (22/7) × (7/2) = 11
-Step 3: 11 × 3.5 × 4 = 11 × 14 = 154
-✅ Answer: Capacity = 154 m³`},
-
-  {q:'Ek cuboid 12 cm × 10 cm × 8 cm ko 2 cm side wale chhote cubes mein kaata jaata hai. Kitne cubes milenge?',
-   s:`📝 Question: Cuboid 12×10×8, Small cube side 2. Total cubes = ?
-
-🔢 Step-by-Step:
-Step 1: Cuboid Volume = 12 × 10 × 8 = 960 cm³
-Step 2: Small cube Volume = 2³ = 8 cm³
-Step 3: Total cubes = 960 / 8 = 120
-✅ Answer: 120 chhote cubes milenge.`}
-];
-
-console.log('✅ Mensuration 50 Questions Loaded!');
-</script>
-<!-- ====================================================
-     MATH SYMBOLS TO SPEECH FIX
-     (Voice ko symbols ki jagah words bolne ke liye majboor karta hai)
-     ==================================================== -->
-<script>
-// Purane speak function ko save karo
-const originalSpeak = window.speak;
-const originalSpeakSeq = window.speakSeq;
-
-// Naya speak function jo symbols ko words mein badlega
-window.speak = function(text, lang = 'hi-IN', rate = 0.78) {
-    if (!text) return;
-    let spokenText = String(text);
-    
-    // Symbols ko words mein badlo (Agar English select hai to English words, warna Hindi)
-    let isEnglish = lang.includes('en');
-    
-    spokenText = spokenText.replace(/=/g, isEnglish ? ' equals ' : ' barabar hai ');
-    spokenText = spokenText.replace(/\+/g, isEnglish ? ' plus ' : ' plus ');
-    spokenText = spokenText.replace(/−/g, isEnglish ? ' minus ' : ' minus ').replace(/-/g, isEnglish ? ' minus ' : ' minus ');
-    spokenText = spokenText.replace(/×/g, isEnglish ? ' times ' : ' times ').replace(/\*/g, isEnglish ? ' times ' : ' times ');
-    spokenText = spokenText.replace(/÷/g, isEnglish ? ' divided by ' : ' divided by ');
-    spokenText = spokenText.replace(/\//g, isEnglish ? ' divided by ' : ' divided by '); 
-    
-    // Purane function ko naye text ke saath call karo
-    originalSpeak(spokenText, lang, rate);
-};
-
-// Sequence (Read All) ke liye bhi same fix lagao
-window.speakSeq = function(lines, lang = 'hi-IN', onLine) {
-    if (!lines) return;
-    let isEnglish = lang.includes('en');
-    let modifiedLines = lines.map(line => {
-        let text = String(line);
-        text = text.replace(/=/g, isEnglish ? ' equals ' : ' barabar hai ');
-        text = text.replace(/\+/g, isEnglish ? ' plus ' : ' plus ');
-        text = text.replace(/−/g, isEnglish ? ' minus ' : ' minus ').replace(/-/g, isEnglish ? ' minus ' : ' minus ');
-        text = text.replace(/×/g, isEnglish ? ' times ' : ' times ').replace(/\*/g, isEnglish ? ' times ' : ' times ');
-        text = text.replace(/÷/g, isEnglish ? ' divided by ' : ' divided by ');
-        text = text.replace(/\//g, isEnglish ? ' divided by ' : ' divided by ');
-        return text;
-    });
-    originalSpeakSeq(modifiedLines, lang, onLine);
-};
-</script>
-<!-- ====================================================
-     SHIFA'S ULTIMATE MATH CODE — FULL DETAILED STEPS
-     ==================================================== -->
-<script>
-// ==========================================
-// 1. VOICE SYMBOL FIX (Math symbols ko words mein badlega)
-// ==========================================
-if (typeof window.speak === 'function') {
-    const originalSpeak = window.speak;
-    const originalSpeakSeq = window.speakSeq;
-    
-    window.speak = function(text, lang = 'hi-IN', rate = 0.78) {
-        if (!text) return;
-        let spokenText = String(text);
-        let isEnglish = lang.includes('en');
-        spokenText = spokenText.replace(/=/g, isEnglish ? ' equals ' : ' barabar hai ');
-        spokenText = spokenText.replace(/\+/g, ' plus ');
-        spokenText = spokenText.replace(/−/g, ' minus ').replace(/-/g, ' minus ');
-        spokenText = spokenText.replace(/×/g, ' times ').replace(/\*/g, ' times ');
-        spokenText = spokenText.replace(/÷/g, ' divided by ').replace(/\//g, ' divided by ');
-        spokenText = spokenText.replace(/²/g, isEnglish ? ' squared ' : ' squared ');
-        originalSpeak(spokenText, lang, rate);
-    };
-    
-    window.speakSeq = function(lines, lang = 'hi-IN', onLine) {
-        if (!lines) return;
-        let isEnglish = lang.includes('en');
-        let modifiedLines = lines.map(line => {
-            let text = String(line);
-            text = text.replace(/=/g, isEnglish ? ' equals ' : ' barabar hai ');
-            text = text.replace(/\+/g, ' plus ');
-            text = text.replace(/−/g, ' minus ').replace(/-/g, ' minus ');
-            text = text.replace(/×/g, ' times ').replace(/\*/g, ' times ');
-            text = text.replace(/÷/g, ' divided by ').replace(/\//g, ' divided by ');
-            text = text.replace(/²/g, isEnglish ? ' squared ' : ' squared ');
-            return text;
-        });
-        originalSpeakSeq(modifiedLines, lang, onLine);
-    };
+/* OLIVE GREEN SOLUTION BOX */
+.chapter-ex .s, .qa-a {
+    background: linear-gradient(135deg, #556B2F, #6B8E23) !important;
+    color: #ffffff !important;
+    border: 2px solid #8FBC8F !important;
+    box-shadow: 0 8px 20px rgba(85, 107, 47, 0.4) !important;
+    border-radius: 14px !important;
+    padding: 18px !important;
 }
+.chapter-ex .s b, .qa-a b { color: #FFD700 !important; }
+.chapter-ex .s br + b { color: #FFA500 !important; }
+
+/* DYNAMIC SOLVER UI */
+.solver-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    box-shadow: 0 10px 25px rgba(80,80,140,.15);
+    border: 2px solid #7c5cff;
+    text-align: center;
+}
+.solver-box h3 { color: #5a3a1a; margin-bottom: 15px; font-size: 1.2rem; }
+.solver-input-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.solver-input-group input {
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    width: 60%;
+    font-family: inherit;
+    font-weight: bold;
+}
+.solver-input-group input:focus { outline: none; border-color: #7c5cff; }
+.solver-input-group button {
+    padding: 12px 20px;
+    background: #7c5cff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-family: inherit;
+}
+.solver-input-group button:hover { background: #5c3cdf; }
+</style>
+
+<script>
+// ==========================================
+// 1. VOICE SYMBOL FIX & PAUSE
+// ==========================================
+window.prepareSpeech = function(text) {
+    if (!text) return '';
+    let t = String(text);
+    t = t.replace(/[\u{1F300}-\u{1F5FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1F1E6}-\u{1F1FF}\u{1F191}-\u{1F251}\u{1F004}\u{1F0CF}\u{1F170}-\u{1F171}\u{1F17E}-\u{1F17F}\u{1F18E}\u{3030}\u{2B50}\u{2B55}\u{2934}-\u{2935}\u{2B05}-\u{2B07}\u{2B1B}-\u{2B1C}\u{3297}\u{3299}\u{303D}\u{00A9}\u{00AE}\u{2122}\u{2139}\u{2194}-\u{2199}\u{21A9}-\u{21AA}\u{231A}-\u{231B}\u{2328}\u{23CF}\u{23E9}-\u{23F3}\u{23F8}-\u{23FA}\u{24C2}\u{25AA}-\u{25AB}\u{25B6}\u{25C0}\u{25FB}-\u{25FE}\u{2600}-\u{2604}\u{260E}\u{2611}\u{2614}-\u{2615}\u{2618}\u{261D}\u{2620}\u{2622}-\u{2623}\u{2626}\u{262A}\u{262E}-\u{262F}\u{2638}-\u{263A}\u{2640}\u{2642}\u{2648}-\u{2653}\u{265F}-\u{2660}\u{2663}\u{2665}-\u{2666}\u{2668}\u{267B}\u{267E}-\u{267F}\u{2692}-\u{2697}\u{2699}\u{269B}-\u{269C}\u{26A0}-\u{26A1}\u{26AA}-\u{26AB}\u{26B0}-\u{26B1}\u{26BD}-\u{26BE}\u{26C4}-\u{26C5}\u{26C8}\u{26CE}-\u{26CF}\u{26D1}\u{26D3}-\u{26D4}\u{26E9}-\u{26EA}\u{26F0}-\u{26F5}\u{26F7}-\u{26FA}\u{26FD}\u{2702}\u{2705}\u{2708}-\u{270D}\u{270F}\u{2712}\u{2714}\u{2716}\u{271D}\u{2721}\u{2728}\u{2733}-\u{2734}\u{2744}\u{2747}\u{274C}\u{274E}\u{2753}-\u{2755}\u{2757}\u{2763}-\u{2764}\u{2795}-\u{2797}\u{27A1}\u{27B0}\u{27BF}\u{2934}-\u{2935}\u{2B05}-\u{2B07}\u{2B1B}-\u{2B1C}\u{2B50}\u{2B55}\u{3030}\u{303D}\u{3297}\u{3299}]/gu, '');
+    t = t.replace(/✅/g, '').replace(/🔊/g, '').replace(/👉/g, '').replace(/🎯/g, '').replace(/💡/g, '').replace(/📝/g, '').replace(/📖/g, '').replace(/🔢/g, '').replace(/🎓/g, '').replace(/📐/g, '');
+    t = t.replace(/<br\s*\/?>/gi, ' , , , ');
+    t = t.replace(/<[^>]*>?/gm, ' ');
+    t = t.replace(/\s+/g, ' ').trim();
+    if (typeof fixRomanUrdu === 'function') t = fixRomanUrdu(t);
+    return t;
+};
 
 // ==========================================
-// 2. ADVANCED MATHS ENGINE (DETAILED STEPS)
+// 2. ADVANCED MATHS ENGINE & 50 Qs
 // ==========================================
 if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
-    
-    const fmt = function(txt) {
-        return '<div style="text-align:left;line-height:1.9;font-size:1.05rem;color:#333">' + txt + '</div>';
-    };
+    const fmt = function(txt) { return '<div style="text-align:left;line-height:1.9;font-size:1.05rem;color:#333">' + txt + '</div>'; };
 
     // --- ALGEBRA BASICS (Chapter 0) ---
     const _algebra = ADVANCED_LESSONS.maths.chapters[0];
@@ -2338,140 +1512,45 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     
     const genAlgebra = () => {
         let qs = [];
-        
-        // 1-10: Coefficients
         for(let i=1; i<=10; i++) {
             let a = i + 2;
             qs.push({q:`${a}x + 5 mein coefficient kya hai?`, s:{
-                hi: fmt(`<b>Question:</b> ${a}x + 5 mein coefficient kya hai?<br><br>
-                <b>Step 1: Understand the concept</b><br>
-                Coefficient matlab variable (jaise x, y) ke theek aage jo number likha hota hai.<br><br>
-                <b>Step 2: Identify the variable</b><br>
-                Yahan variable 'x' hai.<br><br>
-                <b>Step 3: Find the number before it</b><br>
-                x ke theek pehle ${a} likha hai.<br><br>
-                <b>✅ Final Answer:</b> ${a}`),
-                en: fmt(`<b>Question:</b> What is the coefficient in ${a}x + 5?<br><br>
-                <b>Step 1: Understand the concept</b><br>
-                A coefficient is the number multiplied by a variable (like x, y).<br><br>
-                <b>Step 2: Identify the variable</b><br>
-                Here, the variable is 'x'.<br><br>
-                <b>Step 3: Find the number before it</b><br>
-                The number right before x is ${a}.<br><br>
-                <b>✅ Final Answer:</b> ${a}`)
+                hi: fmt(`<b>Question:</b> ${a}x + 5 mein coefficient kya hai?<br><br><b>Step 1:</b> Coefficient matlab variable (jaise x) ke theek aage jo number likha hota hai.<br><b>Step 2:</b> Yahan variable 'x' hai.<br><b>Step 3:</b> x ke theek pehle ${a} likha hai.<br><br><b>✅ Final Answer:</b> ${a}`),
+                en: fmt(`<b>Question:</b> What is the coefficient in ${a}x + 5?<br><br><b>Step 1:</b> A coefficient is the number multiplied by a variable.<br><b>Step 2:</b> Here, the variable is 'x'.<br><b>Step 3:</b> The number right before x is ${a}.<br><br><b>✅ Final Answer:</b> ${a}`)
             }});
         }
-        
-        // 11-20: Evaluation (ax + b)
         for(let i=1; i<=10; i++) {
             let a = i + 1; let x = 3; let b = 2; let res = a*x + b;
             qs.push({q:`x = ${x} to ${a}x + ${b} = ?`, s:{
-                hi: fmt(`<b>Question:</b> Find the value of ${a}x + ${b}, when x = ${x}.<br><br>
-                <b>Step 1: Understand the question</b><br>
-                Humein x ki jagah ${x} rakhna hai.<br><br>
-                <b>Step 2: Substitute the value</b><br>
-                Expression: ${a}x + ${b}<br>
-                x ki jagah ${x} rakho: = ${a}(${x}) + ${b}<br><br>
-                <b>Step 3: Multiply first (BODMAS)</b><br>
-                ${a} × ${x} = ${a*x}<br><br>
-                <b>Step 4: Add the constant</b><br>
-                ${a*x} + ${b} = ${res}<br><br>
-                <b>✅ Final Answer:</b> ${res}`),
-                en: fmt(`<b>Question:</b> Find the value of ${a}x + ${b}, when x = ${x}.<br><br>
-                <b>Step 1: Understand the question</b><br>
-                We need to substitute x with ${x}.<br><br>
-                <b>Step 2: Substitute the value</b><br>
-                Expression: ${a}x + ${b}<br>
-                Replace x with ${x}: = ${a}(${x}) + ${b}<br><br>
-                <b>Step 3: Multiply first (BODMAS)</b><br>
-                ${a} × ${x} = ${a*x}<br><br>
-                <b>Step 4: Add the constant</b><br>
-                ${a*x} + ${b} = ${res}<br><br>
-                <b>✅ Final Answer:</b> ${res}`)
+                hi: fmt(`<b>Question:</b> Find ${a}x + ${b}, when x = ${x}.<br><br><b>Step 1:</b> x ki jagah ${x} rakho.<br><b>Step 2:</b> ${a}(${x}) + ${b}<br><b>Step 3:</b> Pehle multiply: ${a*x}<br><b>Step 4:</b> Phir add: ${a*x} + ${b} = ${res}<br><br><b>✅ Final Answer:</b> ${res}`),
+                en: fmt(`<b>Question:</b> Find ${a}x + ${b}, when x = ${x}.<br><br><b>Step 1:</b> Substitute x with ${x}.<br><b>Step 2:</b> ${a}(${x}) + ${b}<br><b>Step 3:</b> Multiply first: ${a*x}<br><b>Step 4:</b> Add constant: ${a*x} + ${b} = ${res}<br><br><b>✅ Final Answer:</b> ${res}`)
             }});
         }
-        
-        // 21-30: Simplification (ax + bx)
         for(let i=1; i<=10; i++) {
             let a = i + 2; let b = i + 3; let res = a + b;
             qs.push({q:`Simplify: ${a}x + ${b}x`, s:{
-                hi: fmt(`<b>Question:</b> Simplify ${a}x + ${b}x<br><br>
-                <b>Step 1: Understand the concept</b><br>
-                Jab same variable (x) ho, to hum unke numbers (coefficients) ko add kar sakte hain.<br><br>
-                <b>Step 2: Add the coefficients</b><br>
-                ${a} + ${b} = ${res}<br><br>
-                <b>Step 3: Attach the variable</b><br>
-                Result ke saath x laga do.<br><br>
-                <b>✅ Final Answer:</b> ${res}x`),
-                en: fmt(`<b>Question:</b> Simplify ${a}x + ${b}x<br><br>
-                <b>Step 1: Understand the concept</b><br>
-                When variables are the same (x), we can add their coefficients.<br><br>
-                <b>Step 2: Add the coefficients</b><br>
-                ${a} + ${b} = ${res}<br><br>
-                <b>Step 3: Attach the variable</b><br>
-                Add x to the result.<br><br>
-                <b>✅ Final Answer:</b> ${res}x`)
+                hi: fmt(`<b>Question:</b> Simplify ${a}x + ${b}x<br><br><b>Step 1:</b> Dono mein same variable x hai.<br><b>Step 2:</b> Coefficients add karo: ${a} + ${b} = ${res}<br><b>Step 3:</b> x laga do.<br><br><b>✅ Final Answer:</b> ${res}x`),
+                en: fmt(`<b>Question:</b> Simplify ${a}x + ${b}x<br><br><b>Step 1:</b> Both terms have variable x.<br><b>Step 2:</b> Add coefficients: ${a} + ${b} = ${res}<br><b>Step 3:</b> Attach x.<br><br><b>✅ Final Answer:</b> ${res}x`)
             }});
         }
-        
-        // 31-40: Simplification (ay - by)
         for(let i=1; i<=10; i++) {
             let a = i + 5; let b = i + 1; let res = a - b;
             qs.push({q:`Simplify: ${a}y - ${b}y`, s:{
-                hi: fmt(`<b>Question:</b> Simplify ${a}y - ${b}y<br><br>
-                <b>Step 1: Understand the concept</b><br>
-                Same variable (y) ke coefficients ko subtract kiya ja sakta hai.<br><br>
-                <b>Step 2: Subtract the coefficients</b><br>
-                ${a} - ${b} = ${res}<br><br>
-                <b>Step 3: Attach the variable</b><br>
-                Result ke saath y laga do.<br><br>
-                <b>✅ Final Answer:</b> ${res}y`),
-                en: fmt(`<b>Question:</b> Simplify ${a}y - ${b}y<br><br>
-                <b>Step 1: Understand the concept</b><br>
-                Coefficients of the same variable (y) can be subtracted.<br><br>
-                <b>Step 2: Subtract the coefficients</b><br>
-                ${a} - ${b} = ${res}<br><br>
-                <b>Step 3: Attach the variable</b><br>
-                Add y to the result.<br><br>
-                <b>✅ Final Answer:</b> ${res}y`)
+                hi: fmt(`<b>Question:</b> Simplify ${a}y - ${b}y<br><br><b>Step 1:</b> Same variable y hai.<br><b>Step 2:</b> Coefficients subtract karo: ${a} - ${b} = ${res}<br><b>Step 3:</b> y laga do.<br><br><b>✅ Final Answer:</b> ${res}y`),
+                en: fmt(`<b>Question:</b> Simplify ${a}y - ${b}y<br><br><b>Step 1:</b> Same variable y.<br><b>Step 2:</b> Subtract coefficients: ${a} - ${b} = ${res}<br><b>Step 3:</b> Attach y.<br><br><b>✅ Final Answer:</b> ${res}y`)
             }});
         }
-        
-        // 41-50: Substitution with Square (x² + 2) - EXACTLY LIKE USER'S EXAMPLE
         for(let i=1; i<=10; i++) {
-            let x = i + 4; // starts from 5
-            if(x === 7) x = 7; 
-            let res = x*x + 2;
+            let x = i + 4; let res = x*x + 2;
             qs.push({q:`x = ${x} to x² + 2 = ?`, s:{
-                hi: fmt(`<b>Question:</b> Find the value of x² + 2, when x = ${x}.<br><br>
-                <b>Step 1: Understand the meaning of x²</b><br>
-                x² ka matlab x × x hota hai (x ko khud se multiply karna). Ye x × 2 nahi hota.<br><br>
-                <b>Step 2: Substitute the value</b><br>
-                Diya gaya hai: x = ${x}. Isliye x² + 2 mein x ki jagah ${x} rakho.<br>
-                = (${x})² + 2<br><br>
-                <b>Step 3: Calculate the square</b><br>
-                ${x}² = ${x} × ${x} = ${x*x}<br><br>
-                <b>Step 4: Add 2</b><br>
-                ${x*x} + 2 = ${res}<br><br>
-                <b>✅ Final Answer:</b> x² + 2 = ${res}`),
-                en: fmt(`<b>Question:</b> Find the value of x² + 2, when x = ${x}.<br><br>
-                <b>Step 1: Understand the meaning of x²</b><br>
-                x² means x × x (multiplying x by itself). It does NOT mean x × 2.<br><br>
-                <b>Step 2: Substitute the value</b><br>
-                Given: x = ${x}. Replace x with ${x} in the expression.<br>
-                = (${x})² + 2<br><br>
-                <b>Step 3: Calculate the square</b><br>
-                ${x}² = ${x} × ${x} = ${x*x}<br><br>
-                <b>Step 4: Add 2</b><br>
-                ${x*x} + 2 = ${res}<br><br>
-                <b>✅ Final Answer:</b> x² + 2 = ${res}`)
+                hi: fmt(`<b>Question:</b> Find x² + 2, when x = ${x}.<br><br><b>Step 1:</b> x² matlab x × x (x ko khud se multiply karna).<br><b>Step 2:</b> x = ${x} rakho: (${x})² + 2<br><b>Step 3:</b> Square calculate karo: ${x} × ${x} = ${x*x}<br><b>Step 4:</b> 2 add karo: ${x*x} + 2 = ${res}<br><br><b>✅ Final Answer:</b> ${res}`),
+                en: fmt(`<b>Question:</b> Find x² + 2, when x = ${x}.<br><br><b>Step 1:</b> x² means x × x.<br><b>Step 2:</b> Substitute x = ${x}: (${x})² + 2<br><b>Step 3:</b> Calculate square: ${x} × ${x} = ${x*x}<br><b>Step 4:</b> Add 2: ${x*x} + 2 = ${res}<br><br><b>✅ Final Answer:</b> ${res}`)
             }});
         }
         return qs;
     };
-    
     _algebra.ex = genAlgebra();
-    _algebra.word = _algebra.ex.slice(40); 
+    _algebra.word = _algebra.ex.slice(40);
 
     // --- LINEAR EQUATIONS (Chapter 1) ---
     const _linEq = ADVANCED_LESSONS.maths.chapters[1];
@@ -2479,137 +1558,119 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
     
     const genLinEq = () => {
         let qs = [];
-        
-        // 1-10: x + a = b
         for(let i=1; i<=10; i++) {
             let a = i+2; let b = a + i;
             qs.push({q:`x + ${a} = ${b}`, s:{
-                hi: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br>
-                <b>Step 1: Understand the equation</b><br>
-                x ke saath +${a} juda hua hai. x ko akela karne ke liye humein +${a} hatana hoga.<br><br>
-                <b>Step 2: Balance the equation</b><br>
-                Dono taraf se ${a} subtract karenge taaki equation balance rahe.<br>
-                x + ${a} − ${a} = ${b} − ${a}<br><br>
-                <b>Step 3: Simplify</b><br>
-                LHS: +${a} − ${a} = 0 (sirf x bacha)<br>
-                RHS: ${b} − ${a} = ${i}<br><br>
-                <b>✅ Final Answer:</b> x = ${i}<br><br>
-                <b>Check:</b> ${i} + ${a} = ${b} ✓`),
-                en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br>
-                <b>Step 1: Understand the equation</b><br>
-                ${a} is added to x. To isolate x, we must remove +${a}.<br><br>
-                <b>Step 2: Balance the equation</b><br>
-                Subtract ${a} from both sides.<br>
-                x + ${a} − ${a} = ${b} − ${a}<br><br>
-                <b>Step 3: Simplify</b><br>
-                LHS: +${a} − ${a} = 0 (only x remains)<br>
-                RHS: ${b} − ${a} = ${i}<br><br>
-                <b>✅ Final Answer:</b> x = ${i}<br><br>
-                <b>Check:</b> ${i} + ${a} = ${b} ✓`)
+                hi: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> x ke saath +${a} juda hai. Isko hatane ke liye dono taraf se ${a} subtract karenge.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> LHS mein sirf x bacha, RHS mein ${b} − ${a} = ${i}.<br><br><b>✅ Final Answer:</b> x = ${i}`),
+                en: fmt(`<b>Equation:</b> x + ${a} = ${b}<br><br><b>Step 1:</b> ${a} is added to x. Subtract ${a} from both sides.<br><b>Step 2:</b> x + ${a} − ${a} = ${b} − ${a}<br><b>Step 3:</b> LHS leaves x, RHS is ${b} − ${a} = ${i}.<br><br><b>✅ Final Answer:</b> x = ${i}`)
             }});
         }
-        
-        // 11-20: ax = b
         for(let i=2; i<=11; i++) {
             let b = i * 3;
             qs.push({q:`${i}x = ${b}`, s:{
-                hi: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br>
-                <b>Step 1: Understand the equation</b><br>
-                ${i}x ka matlab ${i} × x hota hai. x ko akela karne ke liye ${i} ko hatana hoga.<br><br>
-                <b>Step 2: Balance the equation</b><br>
-                Dono taraf ko ${i} se divide karenge.<br>
-                ${i}x ÷ ${i} = ${b} ÷ ${i}<br><br>
-                <b>Step 3: Simplify</b><br>
-                LHS: ${i} aur ${i} cancel ho jayenge, sirf x bachega.<br>
-                RHS: ${b} ÷ ${i} = 3<br><br>
-                <b>✅ Final Answer:</b> x = 3<br><br>
-                <b>Check:</b> ${i} × 3 = ${b} ✓`),
-                en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br>
-                <b>Step 1: Understand the equation</b><br>
-                ${i}x means ${i} × x. To isolate x, we must remove ${i}.<br><br>
-                <b>Step 2: Balance the equation</b><br>
-                Divide both sides by ${i}.<br>
-                ${i}x ÷ ${i} = ${b} ÷ ${i}<br><br>
-                <b>Step 3: Simplify</b><br>
-                LHS: ${i} and ${i} cancel out, leaving x.<br>
-                RHS: ${b} ÷ ${i} = 3<br><br>
-                <b>✅ Final Answer:</b> x = 3<br><br>
-                <b>Check:</b> ${i} × 3 = ${b} ✓`)
+                hi: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> ${i}x matlab ${i} × x. x ko akela karne ke liye dono taraf ${i} se divide karenge.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> LHS mein ${i} cancel, sirf x bacha. RHS mein ${b} ÷ ${i} = 3.<br><br><b>✅ Final Answer:</b> x = 3`),
+                en: fmt(`<b>Equation:</b> ${i}x = ${b}<br><br><b>Step 1:</b> ${i}x means ${i} × x. Divide both sides by ${i}.<br><b>Step 2:</b> ${i}x ÷ ${i} = ${b} ÷ ${i}<br><b>Step 3:</b> LHS leaves x. RHS is ${b} ÷ ${i} = 3.<br><br><b>✅ Final Answer:</b> x = 3`)
             }});
         }
-        
-        // 21-35: ax + b = c
         for(let i=2; i<=6; i++) {
             for(let j=1; j<=3; j++) {
                 let a = i; let b = j; let x = 4; let c = a*x + b;
                 qs.push({q:`${a}x + ${b} = ${c}`, s:{
-                    hi: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br>
-                    <b>Step 1: Understand the equation</b><br>
-                    Yahan do operations hain: +${b} aur ×${a}. x ko akela karne ke liye pehle +${b} hatayenge.<br><br>
-                    <b>Step 2: Remove the constant</b><br>
-                    Dono taraf se ${b} subtract karo.<br>
-                    ${a}x + ${b} − ${b} = ${c} − ${b}<br><br>
-                    <b>Step 3: Simplify</b><br>
-                    ${a}x = ${a*x}<br><br>
-                    <b>Step 4: Remove the coefficient</b><br>
-                    Dono taraf ko ${a} se divide karo.<br>
-                    ${a}x ÷ ${a} = ${a*x} ÷ ${a}<br><br>
-                    <b>✅ Final Answer:</b> x = ${x}<br><br>
-                    <b>Check:</b> ${a}(${x}) + ${b} = ${a*x} + ${b} = ${c} ✓`),
-                    en: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br>
-                    <b>Step 1: Understand the equation</b><br>
-                    Two operations: +${b} and ×${a}. First, remove +${b} to isolate the term with x.<br><br>
-                    <b>Step 2: Remove the constant</b><br>
-                    Subtract ${b} from both sides.<br>
-                    ${a}x + ${b} − ${b} = ${c} − ${b}<br><br>
-                    <b>Step 3: Simplify</b><br>
-                    ${a}x = ${a*x}<br><br>
-                    <b>Step 4: Remove the coefficient</b><br>
-                    Divide both sides by ${a}.<br>
-                    ${a}x ÷ ${a} = ${a*x} ÷ ${a}<br><br>
-                    <b>✅ Final Answer:</b> x = ${x}<br><br>
-                    <b>Check:</b> ${a}(${x}) + ${b} = ${c} ✓`)
+                    hi: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br><b>Step 1:</b> Pehle +${b} hatayenge. Dono taraf se ${b} subtract karo.<br><b>Step 2:</b> ${a}x + ${b} − ${b} = ${c} − ${b}<br><b>Step 3:</b> ${a}x = ${a*x}<br><b>Step 4:</b> Ab dono taraf ${a} se divide karo.<br><b>Step 5:</b> x = ${x}<br><br><b>✅ Final Answer:</b> x = ${x}`),
+                    en: fmt(`<b>Equation:</b> ${a}x + ${b} = ${c}<br><br><b>Step 1:</b> Remove +${b}. Subtract ${b} from both sides.<br><b>Step 2:</b> ${a}x + ${b} − ${b} = ${c} − ${b}<br><b>Step 3:</b> ${a}x = ${a*x}<br><b>Step 4:</b> Divide both sides by ${a}.<br><b>Step 5:</b> x = ${x}<br><br><b>✅ Final Answer:</b> x = ${x}`)
                 }});
             }
         }
-        
-        // 36-50: Word problems
         for(let i=1; i<=15; i++) {
             let num = i * 5; let ans = num + 12;
             qs.push({q:`Ek number mein 12 jodne par ${ans} aata hai. Number kya hai?`, s:{
-                hi: fmt(`<b>Question:</b> Ek number mein 12 jodne par ${ans} aata hai. Number kya hai?<br><br>
-                <b>Step 1: Form the equation</b><br>
-                Maan lijiye number = x hai.<br>
-                Usme 12 joda, matlab x + 12.<br>
-                Result ${ans} aaya, matlab x + 12 = ${ans}.<br><br>
-                <b>Step 2: Solve for x</b><br>
-                Dono taraf se 12 subtract karo.<br>
-                x + 12 − 12 = ${ans} − 12<br><br>
-                <b>Step 3: Calculate</b><br>
-                x = ${num}<br><br>
-                <b>✅ Final Answer:</b> Number = ${num}<br><br>
-                <b>Check:</b> ${num} + 12 = ${ans} ✓`),
-                en: fmt(`<b>Question:</b> Adding 12 to a number gives ${ans}. What is the number?<br><br>
-                <b>Step 1: Form the equation</b><br>
-                Let the number be x.<br>
-                Adding 12 means x + 12.<br>
-                The result is ${ans}, so x + 12 = ${ans}.<br><br>
-                <b>Step 2: Solve for x</b><br>
-                Subtract 12 from both sides.<br>
-                x + 12 − 12 = ${ans} − 12<br><br>
-                <b>Step 3: Calculate</b><br>
-                x = ${num}<br><br>
-                <b>✅ Final Answer:</b> Number = ${num}<br><br>
-                <b>Check:</b> ${num} + 12 = ${ans} ✓`)
+                hi: fmt(`<b>Question:</b> Ek number mein 12 jodne par ${ans} aata hai.<br><br><b>Step 1:</b> Number ko x maano. Equation: x + 12 = ${ans}<br><b>Step 2:</b> Dono taraf se 12 subtract karo.<br><b>Step 3:</b> x + 12 − 12 = ${ans} − 12<br><b>Step 4:</b> x = ${num}<br><br><b>✅ Final Answer:</b> Number = ${num}`),
+                en: fmt(`<b>Question:</b> Adding 12 to a number gives ${ans}.<br><br><b>Step 1:</b> Let number = x. Equation: x + 12 = ${ans}<br><b>Step 2:</b> Subtract 12 from both sides.<br><b>Step 3:</b> x + 12 − 12 = ${ans} − 12<br><b>Step 4:</b> x = ${num}<br><br><b>✅ Final Answer:</b> Number = ${num}`)
             }});
         }
         return qs;
     };
-    
     _linEq.ex = genLinEq();
     _linEq.word = _linEq.ex.slice(35);
 
-    // --- RENDERERS & HELPERS ---
+    // ==========================================
+    // 3. DYNAMIC EQUATION SOLVER LOGIC
+    // ==========================================
+    window.solveCustomEquation = function() {
+        var input = document.getElementById('customEqInput').value.trim();
+        var resultDiv = document.getElementById('customEqResult');
+        if(!input) { alert('Kripya equation likhein (jaise 4x + 3 = 15)'); return; }
+
+        try {
+            var eq = input.replace(/\s+/g, '');
+            var sides = eq.split('=');
+            if(sides.length !== 2) throw new Error("Equation mein ek '=' hona chahiye.");
+
+            var left = sides[0];
+            var right = sides[1];
+
+            function parseSide(expr) {
+                var a = 0; var b = 0;
+                var xMatches = expr.match(/[+-]?\d*\.?\d*x/g) || [];
+                for(var i=0; i<xMatches.length; i++) {
+                    var m = xMatches[i];
+                    var numStr = m.replace('x', '');
+                    if(numStr === '' || numStr === '+') a += 1;
+                    else if(numStr === '-') a -= 1;
+                    else a += parseFloat(numStr);
+                }
+                var constExpr = expr.replace(/[+-]?\d*\.?\d*x/g, '');
+                var nums = constExpr.match(/[+-]?\d*\.?\d+/g) || [];
+                for(var j=0; j<nums.length; j++) {
+                    b += parseFloat(nums[j]);
+                }
+                return { a: a, b: b };
+            }
+
+            var L = parseSide(left);
+            var R = parseSide(right);
+            var finalA = L.a - R.a;
+            var finalB = R.b - L.b;
+
+            if(finalA === 0) throw new Error("Ye linear equation nahi hai (x cancel ho gaya).");
+
+            var ans = finalB / finalA;
+            ans = Math.round(ans * 10000) / 10000;
+
+            var stepsHTML = '<b>Equation:</b> ' + input + '<br><br>';
+            
+            if(R.a !== 0) {
+                stepsHTML += '<b>Step 1:</b> x wale terms ko ek taraf le jao.<br>Dono taraf se ' + R.a + 'x subtract karo.<br>' + L.a + 'x - ' + R.a + 'x ' + (L.b > 0 ? '+ '+L.b : '- '+Math.abs(L.b)) + ' = ' + R.b + '<br><br>';
+            }
+            
+            stepsHTML += '<b>Step ' + (R.a !== 0 ? '2' : '1') + ':</b> Constants ko doosri taraf le jao.<br>';
+            
+            if(L.b !== 0) {
+                stepsHTML += 'Dono taraf se ' + (L.b > 0 ? L.b : '(' + L.b + ')') + ' subtract karo.<br>';
+            }
+            
+            stepsHTML += finalA + 'x = ' + finalB + '<br><br>';
+            
+            stepsHTML += '<b>Step ' + (R.a !== 0 ? '3' : '2') + ':</b> x ko akela karne ke liye dono taraf ' + finalA + ' se divide karo.<br>';
+            stepsHTML += 'x = ' + finalB + ' ÷ ' + finalA + '<br><br>';
+            
+            stepsHTML += '<b>✅ Final Answer:</b> x = ' + ans;
+
+            resultDiv.innerHTML = stepsHTML;
+            resultDiv.style.display = 'block';
+
+            var speakText = input + " . " + stepsHTML.replace(/<[^>]*>?/gm, ' ');
+            speak(speakText, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
+
+        } catch (e) {
+            resultDiv.innerHTML = '<span style="color:red">Error: ' + e.message + '<br>Kripya sahi format mein likhein (jaise: 2x + 3 = 11).</span>';
+            resultDiv.style.display = 'block';
+        }
+    };
+
+    // ==========================================
+    // 4. RENDER CHAPTER (Includes Solver UI)
+    // ==========================================
     window.currentLang = 'hi';
 
     window.toggleMathLang = function(lang) {
@@ -2622,6 +1683,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
         const s = ADVANCED_LESSONS[state.advSubj];
         const c = s.chapters[state.advChap];
         const isBilingual = (state.advSubj === 'maths' && (state.advChap === 0 || state.advChap === 1));
+        const isLinearEq = (state.advSubj === 'maths' && state.advChap === 1);
         
         setH(c.title, s.name);
         
@@ -2640,6 +1702,17 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
             '<div class="meta">' + s.name + ' • Advanced</div>' +
             langToggleHTML;
 
+        if (isLinearEq) {
+            html += '<div class="solver-box">' +
+                '<h3>🧠 Apna Question Khud Solve Karo!</h3>' +
+                '<div class="solver-input-group">' +
+                    '<input type="text" id="customEqInput" placeholder="e.g. 4x + 3 = 15" />' +
+                    '<button onclick="solveCustomEquation()">Solve ▶</button>' +
+                '</div>' +
+                '<div id="customEqResult" class="chapter-ex s" style="display:none; text-align:left;"></div>' +
+            '</div>';
+        }
+
         html += '<div class="chapter-sec"><h3>📖 Definition</h3>' +
             '<div class="text" onclick="speakDef()">' + (c.def || '') + ' 🔊</div>' +
             '</div>';
@@ -2650,7 +1723,7 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
                 let solText = isBilingual ? e.s[window.currentLang] : (e.s || e.a || '');
                 html += '<div class="chapter-ex">' +
                     '<div class="q" onclick="speakExQ(' + i + ')">' + (i+1) + '. ' + e.q + ' 🔊</div>' +
-                    '<button class="ans-btn" onclick="speakExSol(' + i + ')">👉 Full Solution</button>' +
+                    '<button class="ans-btn" onclick="speakExSol(' + i + ')">👉 Solution</button>' +
                     '<div class="s" id="adv-ex-' + i + '">' + solText + '</div>' +
                     '</div>';
             });
@@ -2686,71 +1759,8 @@ if (typeof ADVANCED_LESSONS !== 'undefined' && ADVANCED_LESSONS.maths) {
         addStar();
     };
     
-    console.log("✅ Ultimate Math Code Loaded Successfully!");
+    console.log("✅ Ultimate Math & Solver Loaded Successfully!");
 }
-</script>
-<style>
-/* OLIVE GREEN SOLUTION BOX */
-.chapter-ex .s, .qa-a {
-    background: linear-gradient(135deg, #556B2F, #6B8E23) !important; /* Olive Green */
-    color: #ffffff !important;
-    border: 2px solid #8FBC8F !important;
-    box-shadow: 0 8px 20px rgba(85, 107, 47, 0.4) !important;
-    border-radius: 14px !important;
-    padding: 18px !important;
-}
-/* Solution ke andar jo Step likhe hain unhe Golden color do */
-.chapter-ex .s b, .qa-a b {
-    color: #FFD700 !important; 
-}
-/* Check aur Final Answer wale text ko thoda alag dikhao */
-.chapter-ex .s br + b {
-    color: #FFA500 !important;
-}
-</style>
-<!-- ====================================================
-     VOICE PAUSE & EMOJI FILTER FIX
-     ==================================================== -->
-<script>
-// Purane speak function ko save karo
-const oldSpeak = window.speak;
-
-// Naya speak function: Pause aur Emoji remove karne ke liye
-window.speak = function(text, lang = 'hi-IN', rate = 0.78) {
-    if (!text) return;
-    
-    // 1. Emojis ko hatao (taaki voice "safed chinha" na bole)
-    let cleanText = String(text).replace(/✅/g, '').replace(/🔊/g, '');
-    
-    // 2. Nayi line (<br>) ki jagah pause (.) lagao, taaki voice ruke
-    cleanText = cleanText.replace(/<br\s*\/?>/gi, ' . ');
-    
-    // 3. Baaki HTML tags hatao
-    cleanText = cleanText.replace(/<[^>]*>?/gm, ' ');
-    
-    // 4. Extra spaces saaf karo
-    cleanText = cleanText.replace(/\s+/g, ' ').trim();
-    
-    // 5. Purane function se bolwao
-    oldSpeak(cleanText, lang, rate);
-};
-
-// Jab Solution pe click ho, to ye function chale
-window.speakExSol = function(i) {
-    const c = ADVANCED_LESSONS[state.advSubj].chapters[state.advChap];
-    const isBilingual = (state.advSubj === 'maths' && (state.advChap === 0 || state.advChap === 1));
-    let sol = isBilingual ? c.ex[i].s[window.currentLang] : (c.ex[i].s || c.ex[i].a || '');
-    
-    // Yahan bhi same logic lagao (Emoji hatao, Pause lagao)
-    let cleanText = sol.replace(/✅/g, '').replace(/🔊/g, '');
-    cleanText = cleanText.replace(/<br\s*\/?>/gi, ' . ');
-    cleanText = cleanText.replace(/<[^>]*>?/gm, ' ');
-    cleanText = cleanText.replace(/\s+/g, ' ').trim();
-
-    speak(cleanText, window.currentLang === 'hi' ? 'hi-IN' : 'en-IN');
-    document.getElementById('adv-ex-' + i).classList.toggle('show');
-    addStar();
-};
 </script>
 </body>
 </html>
