@@ -3,288 +3,304 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shifa's Learning Hub | Play • Learn • Grow</title>
+<title>Shifa's Learning Hub | CBSE Pattern</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-/* ===== PREMIUM UI ===== */
+/* ===== PROFESSIONAL CLEAN UI (W3Schools Style) ===== */
 :root {
-  --purple: #6c5ce7;
-  --pink: #fd79a8;
-  --ink: #282747;
-  --muted: #72728d;
-  --paper: #ffffff;
-  --line: #e8e5ff;
+  --primary: #6c5ce7;
+  --primary-dark: #5a4bcf;
+  --bg: #f9f9fa;
+  --sidebar-bg: #f1f1f1;
+  --text: #282747;
+  --muted: #666;
+  --border: #ddd;
+  --white: #ffffff;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Baloo 2', system-ui, sans-serif;
-  color: var(--ink);
-  background: linear-gradient(135deg, #fdfbfb, #ebedee, #e0c3fc);
-  background-attachment: fixed;
-  min-height: 100vh;
-  padding: 20px;
+body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Top Navbar */
+.topnav {
+  background: var(--white);
+  display: flex; align-items: center;
+  border-bottom: 1px solid var(--border);
+  height: 60px; padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  z-index: 100;
 }
-.app {
-  max-width: 1250px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.98);
-  border: 5px solid #a29bfe;
-  border-radius: 36px;
-  box-shadow: 0 25px 60px rgba(108, 92, 231, 0.2);
-  position: relative;
-  overflow: hidden;
+.logo-area { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-right: 30px; }
+.logo-icon { font-size: 1.8rem; }
+
+/* Class Tabs */
+.class-tabs {
+  display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px;
 }
-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  padding: 15px 25px;
-  display: flex; align-items: center; gap: 15px;
-  border-bottom: 3px solid #f1f2f6;
+.class-tab {
+  padding: 8px 16px; border-radius: 8px; cursor: pointer;
+  font-weight: 700; border: none; background: transparent; color: var(--muted);
+  white-space: nowrap; transition: 0.2s; font-family: inherit; font-size: 0.95rem;
 }
-.logo {
-  width: 55px; height: 55px; border-radius: 18px;
-  background: linear-gradient(135deg, var(--purple), var(--pink));
+.class-tab:hover { background: #e8e5ff; color: var(--primary); }
+.class-tab.active { background: var(--primary); color: var(--white); }
+.stars-display { margin-left: auto; background: #fff7d6; border: 1px solid #ffe6a0; padding: 6px 12px; border-radius: 8px; font-weight: 800; color: #875b00; }
+
+/* Layout */
+.layout { display: flex; flex: 1; overflow: hidden; }
+
+/* Sidebar */
+.sidebar {
+  width: 250px; background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  overflow-y: auto; padding: 20px 0;
+}
+.subject-title {
+  padding: 10px 20px; font-weight: 800; font-size: 1.1rem;
+  color: var(--text); border-bottom: 1px solid #ddd; margin-bottom: 10px; margin-top: 10px;
+}
+.topic-list { list-style: none; }
+.topic-list li {
+  padding: 10px 20px; cursor: pointer; font-weight: 600; color: var(--muted);
+  transition: 0.2s; border-left: 4px solid transparent;
+}
+.topic-list li:hover { background: #e8e5ff; color: var(--primary); }
+.topic-list li.active { background: #e8e5ff; color: var(--primary); border-left-color: var(--primary); }
+
+/* Content Area */
+.content {
+  flex: 1; padding: 40px; overflow-y: auto; background: var(--white);
+}
+.content h1 { font-size: 2.2rem; color: var(--text); margin-bottom: 20px; font-weight: 800; }
+.content p { font-size: 1.1rem; line-height: 1.6; color: var(--muted); margin-bottom: 20px; }
+
+/* Dashboard / Lesson Content */
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 20px; margin-top: 30px; }
+.dash-card {
+  border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+  text-align: center; cursor: pointer; transition: 0.2s; background: #fff;
+}
+.dash-card:hover { border-color: var(--primary); box-shadow: 0 8px 20px rgba(108,92,231,0.1); transform: translateY(-3px); }
+.dash-card .emoji { font-size: 3rem; margin-bottom: 10px; display: block; }
+.dash-card h3 { font-size: 1.1rem; color: var(--text); }
+
+/* Interactive Grids */
+.interactive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 15px; margin: 20px 0; }
+.grid-item {
+  border: 2px solid var(--border); border-radius: 12px; padding: 15px;
+  text-align: center; cursor: pointer; transition: 0.2s; background: #fff;
+}
+.grid-item:hover { border-color: var(--primary); background: #f8f7ff; transform: scale(1.05); }
+.grid-item .pic { font-size: 2.5rem; display: block; margin-bottom: 5px; }
+.grid-item .text { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+
+/* Fill in the Blanks */
+.fill-blank {
   display: flex; align-items: center; justify-content: center;
-  font-size: 24px; box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
-  position: relative;
+  gap: 10px; font-size: 2rem; font-weight: 800; margin: 20px 0;
 }
-.logo span { position: absolute; }
-.logo .book { bottom: 8px; left: 8px; font-size: 20px; }
-.logo .kids { top: 8px; right: 8px; font-size: 22px; z-index: 2; }
-.logo .pencil { bottom: 5px; right: 5px; font-size: 14px; z-index: 3; }
+.blank-input {
+  width: 50px; height: 50px; border: 2px solid var(--primary); border-radius: 8px;
+  text-align: center; font-size: 1.5rem; font-weight: 800; outline: none; text-transform: uppercase;
+}
+.blank-input:focus { box-shadow: 0 0 10px rgba(108,92,231,0.3); }
 
-.brand h1 { font-size: 1.4rem; font-weight: 800; color: var(--purple); }
-.brand small { font-size: 0.85rem; color: var(--muted); font-weight: 700; }
-.spacer { flex: 1; }
-.stars {
-  background: #fff7d6; color: #875b00; border: 2px solid #ffe6a0;
-  border-radius: 14px; padding: 8px 16px; font-weight: 800; font-size: 1rem;
+/* Matching Game */
+.match-container { display: flex; gap: 40px; margin-top: 20px; }
+.match-col { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.match-btn {
+  padding: 12px; border: 2px solid var(--border); border-radius: 10px;
+  font-weight: 800; font-size: 1.2rem; cursor: pointer; transition: 0.2s; background: #fff; font-family: inherit;
 }
-.back-btn {
-  background: #f0edff; color: var(--purple); border: none; border-radius: 12px;
-  padding: 8px 16px; font-weight: 800; font-size: 1rem; cursor: pointer;
-  display: none; transition: 0.2s;
-}
-.back-btn:hover { background: #e0d9ff; }
+.match-btn:hover { border-color: var(--primary); background: #f8f7ff; }
+.match-btn.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+.match-btn.correct { background: #d8fff0; border-color: #39c995; color: #08764d; cursor: default; }
+.match-btn.wrong { background: #ffe4ec; border-color: #ff8eae; color: #9e254c; }
 
-main { padding: 30px; min-height: 60vh; }
-
-/* Solver */
-.solver-wrapper {
-  background: linear-gradient(135deg, #ffffff, #f8f6ff);
-  border: 3px dashed #a66cff; border-radius: 24px;
-  padding: 24px; text-align: center;
-  box-shadow: 0 10px 30px rgba(166, 108, 255, 0.15);
-  margin-bottom: 30px;
+/* Counting */
+.counting-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px;
 }
-.solver-wrapper h2 { color: var(--purple); font-size: 1.5rem; margin-bottom: 8px; }
-.solver-inputs { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-.solver-inputs input {
-  padding: 12px 16px; border: 2px solid #dcd7ff; border-radius: 12px;
-  font-size: 1.1rem; font-family: inherit; font-weight: 700; outline: none;
-  width: 100%; max-width: 280px;
+.counting-visual { font-size: 1.8rem; letter-spacing: 2px; }
+.counting-input {
+  width: 60px; height: 40px; border: 2px solid var(--border); border-radius: 8px;
+  text-align: center; font-size: 1.2rem; font-weight: 800; outline: none;
 }
-.solve-btn {
-  background: linear-gradient(135deg, var(--purple), var(--pink));
-  color: white; border: none; border-radius: 12px;
-  padding: 12px 30px; font-size: 1.1rem; font-family: inherit;
-  font-weight: 800; cursor: pointer;
+.counting-input:focus { border-color: var(--primary); }
+
+/* Status Message */
+.status-msg {
+  margin-top: 20px; padding: 15px; border-radius: 10px; font-weight: 800;
+  text-align: center; display: none;
 }
-.solver-result {
-  background: #fff; border-left: 6px solid #34C759; padding: 18px;
-  border-radius: 12px; text-align: left; margin-top: 20px;
-  display: none; line-height: 1.8; font-size: 1.05rem; font-weight: 600;
-}
+.status-msg.success { display: block; background: #d8fff0; color: #08764d; }
+.status-msg.error { display: block; background: #ffe4ec; color: #9e254c; }
 
-/* Hero */
-.hero {
-  background: linear-gradient(120deg, #6c5ce7, #a66cff 50%, #fd79a8);
-  border-radius: 24px; padding: 40px; color: white;
-  box-shadow: 0 15px 35px rgba(108, 92, 231, 0.3); margin-bottom: 30px;
-}
-.hero h2 { font-size: 2.2rem; margin-bottom: 10px; }
-
-/* Grids & Cards */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-.card {
-  background: var(--paper); border: 2px solid var(--line); border-radius: 20px;
-  padding: 20px; cursor: pointer; transition: 0.2s;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-}
-.card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(108,92,231,0.15); border-color: #a29bfe; }
-.card h3 { font-size: 1.2rem; margin: 10px 0 5px; }
-.card p { font-size: 0.9rem; color: var(--muted); }
-.card .emoji { font-size: 2.5rem; }
-
-/* Lesson Content */
-.panel { background: var(--paper); border: 2px solid var(--line); border-radius: 24px; padding: 30px; max-width: 900px; margin: 0 auto; }
-.crumb { font-size: 0.9rem; color: var(--muted); font-weight: 700; margin-bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap;}
-.crumb span { color: var(--purple); cursor: pointer; }
-.crumb span:hover { text-decoration: underline; }
-.lesson-title { text-align: center; margin-bottom: 30px; }
-.lesson-title .big-emoji { font-size: 4rem; }
-.lesson-title h2 { font-size: 2rem; margin: 10px 0; }
-
-/* Practice */
-.practice { background: #f8f7ff; border: 2px solid var(--line); border-radius: 20px; padding: 24px; margin-top: 20px;}
-.question { background: #fff; border: 2px solid var(--line); border-radius: 16px; padding: 18px; margin-bottom: 14px; }
-.question p { font-weight: 800; font-size: 1.1rem; margin-bottom: 14px; }
-.options { display: flex; flex-wrap: wrap; gap: 10px; }
-.option {
-  background: #fff; border: 2px solid #dcd7ff; border-radius: 12px;
-  padding: 10px 18px; font-size: 1.05rem; font-weight: 800; cursor: pointer;
-  transition: 0.2s; font-family: inherit;
-}
-.option:hover { background: #f0edff; }
-.option.correct { background: #d8fff0; border-color: #39c995; color: #08764d; }
-.option.wrong { background: #ffe4ec; border-color: #ff8eae; color: #9e254c; }
-
-/* Visual Addition Blocks */
-.visual-math-block {
-  background: #fff8e7; border: 2px solid #ffedb5; border-radius: 16px;
-  padding: 20px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 15px;
-}
-.visual-math-block .equation { font-size: 1.5rem; font-weight: 800; text-align: center; color: var(--purple); }
-.visual-math-block .objects { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 2.5rem; }
-.visual-math-block .objects .group { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; max-width: 200px; }
-.visual-math-block .plus-sign { font-size: 2rem; color: #888; }
-.visual-math-block .equals-sign { font-size: 2rem; color: #888; }
-.visual-math-block .answer-options { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
-
-/* Verbs */
-.verb-card { background: #fff; border: 2px solid var(--line); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-.verb-header { display: flex; justify-content: space-between; align-items: flex-start; }
-.verb-title { font-size: 1.5rem; font-weight: 800; color: var(--purple); }
-.verb-hindi { font-size: 1.1rem; font-weight: 700; color: var(--muted); }
-.verb-forms { background: #fff8e7; padding: 12px; border-radius: 12px; font-weight: 700; display: flex; gap: 20px; }
-.verb-sentence { background: #f0fdf4; padding: 12px; border-radius: 12px; border-left: 5px solid #22c55e; font-weight: 600; color: #166534; }
-
-@media (max-width: 600px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  main { padding: 15px; }
-  .visual-math-block .objects { font-size: 1.8rem; }
+@media (max-width: 768px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; padding: 10px; gap: 10px; }
+  .subject-title { display: none; }
+  .topic-list { display: flex; gap: 10px; }
+  .topic-list li { white-space: nowrap; border-left: none; border-bottom: 4px solid transparent; padding: 8px 12px; }
+  .topic-list li.active { border-left: none; border-bottom-color: var(--primary); }
+  .content { padding: 20px; }
 }
 </style>
 </head>
 <body>
 
-<div class="app">
-  <header>
-    <button class="back-btn" id="backBtn" onclick="goBack()">← Back</button>
-    <div class="logo">
-      <span class="book">📖</span>
-      <span class="kids">👧👦</span>
-      <span class="pencil">✏️</span>
-    </div>
-    <div class="brand">
-      <h1 id="appTitle">Shifa's Learning Hub</h1>
-      <small id="appSub">Play • Learn • Grow ✨</small>
-    </div>
-    <div class="spacer"></div>
-    <div class="stars">⭐ <span id="starCount">0</span></div>
-  </header>
+<!-- Top Navbar -->
+<div class="topnav">
+  <div class="logo-area"><span class="logo-icon">🎓</span> Shifa's Hub</div>
+  <div class="class-tabs" id="classTabs">
+    <!-- Tabs generated by JS -->
+  </div>
+  <div class="stars-display">⭐ <span id="starCount">0</span></div>
+</div>
 
-  <main id="screen"></main>
+<!-- Layout -->
+<div class="layout">
+  <!-- Left Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <!-- Topics generated by JS -->
+  </div>
+  
+  <!-- Right Content Area -->
+  <div class="content" id="content">
+    <!-- Lesson content generated by JS -->
+  </div>
 </div>
 
 <script>
 // =========================================
 // 1. STATE & DATA
 // =========================================
-let state = { view: 'home', classId: null, subjectId: null, topicId: null };
+let currentClass = 'nursery';
+let currentTopic = null;
 let stars = parseInt(localStorage.getItem('shifaStars') || '0', 10);
 document.getElementById('starCount').textContent = stars;
 
-const classes = [
-  {id:'nursery', name:'Nursery', age:'3–4 Years', emoji:'🧸', subjects:['english','maths','evs','rhymes','grammar']},
-  {id:'jr', name:'Jr KG', age:'4–5 Years', emoji:'🎈', subjects:['english','maths','evs','rhymes','grammar']},
-  {id:'sr', name:'Sr KG', age:'5–6 Years', emoji:'🎒', subjects:['english','maths','evs','rhymes','grammar']},
-  {id:'class1', name:'Class 1', age:'6–7 Years', emoji:'📚', subjects:['maths','english','evs','computer','grammar']},
-  {id:'class2', name:'Class 2', age:'7–8 Years', emoji:'✏️', subjects:['maths','english','science','computer','grammar']},
-  {id:'class3', name:'Class 3', age:'8–9 Years', emoji:'📖', subjects:['maths','english','science','social','grammar']},
-  {id:'class4', name:'Class 4', age:'9–10 Years', emoji:'🎯', subjects:['maths','english','science','social','grammar']},
-  {id:'class5', name:'Class 5', age:'10–11 Years', emoji:'🔬', subjects:['maths','english','science','social','grammar']},
-  {id:'class6', name:'Class 6', age:'11–12 Years', emoji:'🌏', subjects:['maths','english','science','social','grammar']},
-  {id:'class7', name:'Class 7', age:'12–13 Years', emoji:'⚛️', subjects:['maths','english','science','social','grammar']},
-  {id:'class8', name:'Class 8', age:'13–14 Years', emoji:'🚀', subjects:['maths','english','science','social','grammar']}
-];
+const classes = ['nursery', 'jr', 'sr', 'class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7', 'class8'];
+const classNames = { nursery:'Nursery', jr:'Jr KG', sr:'Sr KG', class1:'Class 1', class2:'Class 2', class3:'Class 3', class4:'Class 4', class5:'Class 5', class6:'Class 6', class7:'Class 7', class8:'Class 8' };
 
-const subjectsMap = {
-  english: ['🔤', 'English'],
-  maths: ['🧮', 'Mathematics'],
-  evs: ['🌱', 'EVS'],
-  rhymes: ['🎵', 'Rhymes'],
-  science: ['🔬', 'Science'],
-  social: ['🗺️', 'Social Studies'],
-  computer: ['💻', 'Computer'],
-  grammar: ['📝', 'Grammar & Verbs']
-};
-
-// REAL CHAPTERS FOR EVERY CLASS
-const chaptersData = {
-  class1: {
-    maths: [
-      {id:'add_visual', title:'Addition (Visual)', emoji:'➕', desc:'Add objects & numbers'},
-      {id:'sub_visual', title:'Subtraction (Visual)', emoji:'➖', desc:'Take away objects'}
-    ],
-    english: [{id:'nouns', title:'Nouns', emoji:'🏷️', desc:'Naming words'}]
-  },
+// Master Data Structure
+const contentData = {
   nursery: {
-    english: [{id:'alphabet', title:'A to Z Alphabet', emoji:'🔠', desc:'Learn letters'}, {id:'2letter', title:'2 Letter Words', emoji:'📝', desc:'at, an, in...'}],
-    maths: [{id:'numbers20', title:'Numbers 1 to 20', emoji:'🔢', desc:'Count'}, {id:'shapes', title:'Shapes', emoji:'🔺', desc:'Circle, Square...'}, {id:'colors', title:'Colours', emoji:'🎨', desc:'Red, Blue...'}],
-    evs: [{id:'animals', title:'Animals', emoji:'🐘', desc:'Names & sounds'}]
-  }
+    subjects: [
+      {
+        name: 'English',
+        topics: [
+          {id: 'capital', title: 'Capital Letters (A-Z)', type: 'grid', data: generateAlpha('capital')},
+          {id: 'small', title: 'Small Letters (a-z)', type: 'grid', data: generateAlpha('small')},
+          {id: 'fill_eng', title: 'Fill in the Blanks', type: 'fill', data: [
+            {word: 'APPLE', blankIndex: 1}, {word: 'BALL', blankIndex: 0}, {word: 'CAT', blankIndex: 2}
+          ]},
+          {id: 'match_eng', title: 'Match A to Z', type: 'match', data: generateMatch()}
+        ]
+      },
+      {
+        name: 'Maths',
+        topics: [
+          {id: 'count_ball', title: 'Count the Balls', type: 'count', data: generateCount('⚽', 5)},
+          {id: 'count_flower', title: 'Count the Flowers', type: 'count', data: generateCount('🌸', 5)},
+          {id: 'shapes', title: 'Shapes', type: 'grid', data: generateShapes()},
+          {id: 'match_num', title: 'Number Matching', type: 'match', data: generateNumMatch()}
+        ]
+      },
+      {
+        name: 'EVS',
+        topics: [
+          {id: 'fruits', title: 'Fruits Name', type: 'grid', data: generateFruits()},
+          {id: 'colors', title: 'Colours', type: 'grid', data: generateColors()},
+          {id: 'body', title: 'Parts of Body', type: 'grid', data: generateBody()}
+        ]
+      },
+      {
+        name: 'Rhymes',
+        topics: [
+          {id: 'rhyme1', title: 'Twinkle Twinkle', type: 'rhyme', data: ['Twinkle twinkle little star', 'How I wonder what you are', 'Up above the world so high', 'Like a diamond in the sky']},
+          {id: 'rhyme2', title: 'Johny Johny', type: 'rhyme', data: ['Johny Johny yes papa', 'Eating sugar no papa', 'Telling lies no papa', 'Open your mouth ha ha ha']}
+        ]
+      }
+    ]
+  },
+  // Provide basic structure for other classes so they don't break
+  class1: { subjects: [{ name: 'Maths', topics: [{id:'add', title:'Addition', type:'info', data:'Addition is putting numbers together.'}] }, { name: 'English', topics: [{id:'nouns', title:'Nouns', type:'info', data:'Nouns are naming words.'}] }] }
 };
 
-function getChapters(cid, sid) {
-  if(chaptersData[cid] && chaptersData[cid][sid]) return chaptersData[cid][sid];
+// Fill missing classes with a default template
+classes.forEach(c => {
+  if(!contentData[c]) {
+    contentData[c] = {
+      subjects: [
+        { name: 'English', topics: [{id:'c1', title:'Chapter 1', type:'info', data:'Content coming soon...'}] },
+        { name: 'Maths', topics: [{id:'c2', title:'Chapter 1', type:'info', data:'Content coming soon...'}] }
+      ]
+    };
+  }
+});
+
+// =========================================
+// 2. GENERATORS
+// =========================================
+function generateAlpha(type) {
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  return alpha.map(l => ({ text: type === 'capital' ? l : l.toLowerCase(), say: l }));
+}
+
+function generateShapes() {
   return [
-    {id:'ch1', title:'Chapter 1', emoji:'📘', desc:'Learn basics'},
-    {id:'ch2', title:'Chapter 2', emoji:'📘', desc:'Practice'}
+    {text: 'Circle', emoji: '⭕'}, {text: 'Square', emoji: '🟥'}, {text: 'Triangle', emoji: '🔺'},
+    {text: 'Star', emoji: '⭐'}, {text: 'Heart', emoji: '❤️'}, {text: 'Diamond', emoji: '🔷'}
   ];
 }
 
-const verbs = [
-  {v1:'Go', v3:'Gone', hi:'जाना', s:'I go to school.'},
-  {v1:'Eat', v3:'Eaten', hi:'खाना', s:'I eat an apple.'},
-  {v1:'Sleep', v3:'Slept', hi:'सोना', s:'The baby sleeps.'},
-  {v1:'Play', v3:'Played', hi:'खेलना', s:'We play in the park.'},
-  {v1:'Run', v3:'Run', hi:'दौड़ना', s:'I run fast.'},
-  {v1:'Write', v3:'Written', hi:'लिखना', s:'I write a letter.'}
-];
-
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const numbers = Array.from({length:20}, (_,i)=>i+1);
-const shapes = [['Circle','⭕'],['Square','🟥'],['Triangle','🔺'],['Rectangle','🟦'],['Star','⭐'],['Heart','❤️']];
-const colors = [['Red','#FF3B30'],['Blue','#0A84FF'],['Green','#34C759'],['Yellow','#FFD60A'],['Orange','#FF9500'],['Purple','#AF52DE']];
-
-// Visual Addition Questions Data
-const visualAddData = [
-  { a: 2, b: 3, emoji: '⚽', ans: 5 },
-  { a: 3, b: 2, emoji: '🍎', ans: 5 },
-  { a: 4, b: 1, emoji: '🌟', ans: 5 },
-  { a: 2, b: 4, emoji: '🍌', ans: 6 },
-  { a: 5, b: 3, emoji: '🐶', ans: 8 },
-  { a: 6, b: 2, emoji: '🌸', ans: 8 },
-  { a: 3, b: 5, emoji: '🚗', ans: 8 },
-  { a: 4, b: 4, emoji: '🎈', ans: 8 },
-  { a: 7, b: 2, emoji: '🍓', ans: 9 },
-  { a: 5, b: 4, emoji: '🦋', ans: 9 }
-];
-
-// =========================================
-// 2. UI HELPERS
-// =========================================
-const screen = document.getElementById('screen');
-const backBtn = document.getElementById('backBtn');
-
-function updateHeader(title, sub) {
-  document.getElementById('appTitle').textContent = title;
-  document.getElementById('appSub').textContent = sub;
-  backBtn.style.display = state.view === 'home' ? 'none' : 'block';
+function generateFruits() {
+  return [
+    {text: 'Apple', emoji: '🍎'}, {text: 'Banana', emoji: '🍌'}, {text: 'Mango', emoji: '🥭'},
+    {text: 'Grapes', emoji: '🍇'}, {text: 'Orange', emoji: '🍊'}, {text: 'Cherry', emoji: '🍒'}
+  ];
 }
 
+function generateColors() {
+  return [
+    {text: 'Red', emoji: '🔴'}, {text: 'Blue', emoji: '🔵'}, {text: 'Green', emoji: '🟢'},
+    {text: 'Yellow', emoji: '🟡'}, {text: 'Pink', emoji: '🩷'}, {text: 'Purple', emoji: '🟣'}
+  ];
+}
+
+function generateBody() {
+  return [
+    {text: 'Eye', emoji: '👁️'}, {text: 'Ear', emoji: '👂'}, {text: 'Nose', emoji: '👃'},
+    {text: 'Mouth', emoji: '👄'}, {text: 'Hand', emoji: '✋'}, {text: 'Foot', emoji: '🦶'}
+  ];
+}
+
+function generateMatch() {
+  return [
+    {left: 'A', right: 'Apple'}, {left: 'B', right: 'Ball'}, {left: 'C', right: 'Cat'},
+    {left: 'D', right: 'Dog'}, {left: 'E', right: 'Elephant'}
+  ];
+}
+
+function generateNumMatch() {
+  return [
+    {left: '1', right: 'One'}, {left: '2', right: 'Two'}, {left: '3', right: 'Three'},
+    {left: '4', right: 'Four'}, {left: '5', right: 'Five'}
+  ];
+}
+
+function generateCount(emoji, count) {
+  let arr = [];
+  for(let i=1; i<=count; i++) {
+    arr.push({visual: emoji.repeat(i), ans: i});
+  }
+  return arr;
+}
+
+// =========================================
+// 3. UI HELPER FUNCTIONS
+// =========================================
 function addStar() {
   stars++;
   localStorage.setItem('shifaStars', stars);
@@ -301,240 +317,187 @@ function speak(text) {
 }
 
 // =========================================
-// 3. RENDER VIEWS
+// 4. RENDER APP
 // =========================================
-function renderHome() {
-  state = { view: 'home', classId: null, subjectId: null, topicId: null };
-  updateHeader("Shifa's Learning Hub", "Play • Learn • Grow ✨");
-  
-  screen.innerHTML = `
-    <div class="hero">
-      <h2>Welcome to Learning Land! 🎈</h2>
-      <p>Explore chapters, solve math, and learn like a pro.</p>
-    </div>
-    
-    <div class="solver-wrapper">
-      <h2>🧠 Apna Math Question Solve Karo!</h2>
-      <div class="solver-inputs">
-        <input type="text" id="eq1" placeholder="1st Eq (e.g. 4x + 3 = 15)" />
-        <input type="text" id="eq2" placeholder="2nd Eq (Optional)" />
-        <button class="solve-btn" onclick="solveEquation()">Solve ▶</button>
-      </div>
-      <div id="solverResult" class="solver-result"></div>
-    </div>
+const tabsContainer = document.getElementById('classTabs');
+const sidebar = document.getElementById('sidebar');
+const content = document.getElementById('content');
 
-    <h2 style="margin-bottom:16px;">Choose your class 🎒</h2>
-    <div class="grid">
-      ${classes.map(c => `
-        <div class="card" onclick="openClass('${c.id}')">
-          <span class="emoji">${c.emoji}</span>
-          <h3>${c.name}</h3>
-          <p>${c.age}</p>
-        </div>
-      `).join('')}
-    </div>
-  `;
+// Render Class Tabs
+function renderTabs() {
+  tabsContainer.innerHTML = classes.map(c => `
+    <button class="class-tab ${c === currentClass ? 'active' : ''}" onclick="switchClass('${c}')">
+      ${classNames[c]}
+    </button>
+  `).join('');
 }
 
-function openClass(id) {
-  state = { view: 'class', classId: id, subjectId: null, topicId: null };
-  const c = classes.find(x => x.id === id);
-  updateHeader(c.name, c.age);
-  
-  screen.innerHTML = `
-    <div class="crumb"><span onclick="renderHome()">Home</span> / ${c.name}</div>
-    <div class="grid">
-      ${c.subjects.map(sid => `
-        <div class="card" onclick="openSubject('${sid}')">
-          <span class="emoji">${subjectsMap[sid][0]}</span>
-          <h3>${subjectsMap[sid][1]}</h3>
-        </div>
-      `).join('')}
-    </div>
-  `;
+// Switch Class
+function switchClass(c) {
+  currentClass = c;
+  currentTopic = null;
+  renderTabs();
+  renderSidebar();
+  content.innerHTML = `<h1>👋 Welcome to ${classNames[c]} Dashboard</h1><p>Select a topic from the left sidebar to start learning.</p>`;
 }
 
-function openSubject(sid) {
-  state = { view: 'subject', classId: state.classId, subjectId: sid, topicId: null };
-  const c = classes.find(x => x.id === state.classId);
-  const s = subjectsMap[sid];
-  updateHeader(s[1], c.name);
+// Render Sidebar (Topics)
+function renderSidebar() {
+  const data = contentData[currentClass];
+  let html = '';
+  data.subjects.forEach(sub => {
+    html += `<div class="subject-title">${sub.name}</div>`;
+    html += `<ul class="topic-list">`;
+    sub.topics.forEach(t => {
+      html += `<li id="tab-${t.id}" onclick="loadTopic('${sub.name}', '${t.id}')">${t.title}</li>`;
+    });
+    html += `</ul>`;
+  });
+  sidebar.innerHTML = html;
+}
 
-  if (sid === 'grammar') {
-    screen.innerHTML = `
-      <div class="crumb"><span onclick="renderHome()">Home</span> / <span onclick="openClass('${c.id}')">${c.name}</span> / Grammar</div>
-      <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
-        ${verbs.map(v => `
-          <div class="verb-card">
-            <div class="verb-header">
-              <div>
-                <div class="verb-title">${v.v1} <span style="font-size:1rem; color:#888">(${v.v3})</span></div>
-                <div class="verb-hindi">${v.hi}</div>
-              </div>
-              <button class="option" onclick="speak('${v.v1}. ${v.s}')">🔊</button>
-            </div>
-            <div class="verb-sentence">${v.s}</div>
-          </div>
-        `).join('')}
+// Load Topic Content
+function loadTopic(subjectName, topicId) {
+  // Highlight active tab
+  document.querySelectorAll('.topic-list li').forEach(el => el.classList.remove('active'));
+  const activeTab = document.getElementById(`tab-${topicId}`);
+  if(activeTab) activeTab.classList.add('active');
+
+  // Find topic data
+  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
+  const topic = sub.topics.find(t => t.id === topicId);
+
+  content.innerHTML = `<h1>${topic.title}</h1>`;
+
+  if (topic.type === 'grid') {
+    content.innerHTML += `<div class="interactive-grid">
+      ${topic.data.map(item => `
+        <div class="grid-item" onclick="speak('${item.say || item.text}'); addStar();">
+          ${item.emoji ? `<span class="pic">${item.emoji}</span>` : ''}
+          <span class="text">${item.text}</span>
+        </div>
+      `).join('')}
+    </div>`;
+
+  } else if (topic.type === 'match') {
+    // Simple matching logic
+    const lefts = topic.data.map(d => d.left);
+    const rights = topic.data.map(d => d.right).sort(() => Math.random() - 0.5);
+    content.innerHTML += `
+      <p>Click a button on the left, then click its match on the right.</p>
+      <div class="match-container">
+        <div class="match-col" id="matchLeft">
+          ${lefts.map(l => `<button class="match-btn" onclick="selectMatch(this, 'L', '${l}')">${l}</button>`).join('')}
+        </div>
+        <div class="match-col" id="matchRight">
+          ${rights.map(r => `<button class="match-btn" onclick="selectMatch(this, 'R', '${r}')">${r}</button>`).join('')}
+        </div>
       </div>
+      <div id="matchStatus" class="status-msg"></div>
     `;
-    return;
-  }
 
-  const topics = getChapters(c.id, sid);
-  screen.innerHTML = `
-    <div class="crumb"><span onclick="renderHome()">Home</span> / <span onclick="openClass('${c.id}')">${c.name}</span> / ${s[1]}</div>
-    <div class="grid">
-      ${topics.map(t => `
-        <div class="card" onclick="openTopic('${t.id}')">
-          <span class="emoji">${t.emoji}</span>
-          <h3>${t.title}</h3>
-          <p>${t.desc}</p>
-        </div>
-      `).join('')}
-    </div>
-  `;
-}
+  } else if (topic.type === 'fill') {
+    content.innerHTML += `<p>Type the missing letter in the box.</p>`;
+    topic.data.forEach((item, index) => {
+      const displayWord = item.word.split('').map((char, i) => 
+        i === item.blankIndex ? `<input type="text" maxlength="1" class="blank-input" id="blank-${index}" oninput="checkFill(${index}, '${char}')">` : char
+      ).join('');
+      content.innerHTML += `<div class="fill-blank">${displayWord}</div>`;
+    });
 
-function openTopic(tid) {
-  state = { view: 'topic', classId: state.classId, subjectId: state.subjectId, topicId: tid };
-  const c = classes.find(x => x.id === state.classId);
-  updateHeader('Lesson', c.name);
-
-  let html = `<div class="panel"><div class="crumb"><span onclick="renderHome()">Home</span> / <span onclick="openClass('${c.id}')">${c.name}</span> / <span onclick="openSubject('${state.subjectId}')">Back</span></div>`;
-
-  if (tid === 'alphabet') {
-    html += `<h2 style="text-align:center; margin-bottom:20px;">A to Z Alphabet</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr));">
-        ${alphabet.map(l => `<div class="card" style="padding:15px; text-align:center;" onclick="speak('${l} for ${l==='A'?'Apple':l==='B'?'Ball':'Letter '+l}')"><h3 style="font-size:1.8rem; color:var(--purple)">${l}</h3></div>`).join('')}
-      </div>`;
-  } 
-  else if (tid === 'numbers20') {
-    html += `<h2 style="text-align:center; margin-bottom:20px;">Numbers 1 to 20</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr));">
-        ${numbers.map(n => `<div class="card" style="padding:15px; text-align:center;" onclick="speak('${n}')"><h3 style="font-size:1.8rem; color:var(--purple)">${n}</h3></div>`).join('')}
-      </div>`;
-  }
-  else if (tid === 'shapes') {
-    html += `<h2 style="text-align:center; margin-bottom:20px;">Basic Shapes</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr));">
-        ${shapes.map(s => `<div class="card" style="padding:15px; text-align:center;" onclick="speak('${s[0]}')"><span class="emoji" style="font-size:3rem">${s[1]}</span><h3>${s[0]}</h3></div>`).join('')}
-      </div>`;
-  }
-  else if (tid === 'colors') {
-    html += `<h2 style="text-align:center; margin-bottom:20px;">Colours</h2>
-      <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(100px,1fr));">
-        ${colors.map(s => `<div class="card" style="padding:15px; text-align:center;" onclick="speak('${s[0]}')"><div style="width:50px; height:50px; border-radius:50%; background:${s[1]}; margin:0 auto 10px; box-shadow:0 4px 10px rgba(0,0,0,0.2)"></div><h3>${s[0]}</h3></div>`).join('')}
-      </div>`;
-  }
-  else if (tid === 'add_visual') {
-    html += `<h2 style="text-align:center; margin-bottom:20px;">Visual Addition</h2>
-      <p style="text-align:center; margin-bottom:20px; color:var(--muted); font-weight:600;">Count the objects and find the sum.</p>
-      <div class="practice">
-        ${visualAddData.map((item, i) => `
-          <div class="visual-math-block">
-            <div class="equation">${item.a} + ${item.b} = ?</div>
-            <div class="objects">
-              <div class="group">${Array(item.a).fill(item.emoji).join('')}</div>
-              <div class="plus-sign">+</div>
-              <div class="group">${Array(item.b).fill(item.emoji).join('')}</div>
-              <div class="equals-sign">=</div>
-              <div style="font-weight:800; font-size:2rem; color:var(--purple)">?</div>
-            </div>
-            <div class="answer-options">
-              ${[item.ans, item.ans + 1, item.ans - 1].sort(()=>Math.random()-0.5).map(opt => `
-                <button class="option" onclick="checkVisualAns(this, ${opt === item.ans})">${opt}</button>
-              `).join('')}
-            </div>
-          </div>
-        `).join('')}
-      </div>`;
-  }
-  else {
-    html += `<div class="lesson-title"><h2>${tid.toUpperCase()}</h2><p>Learn and practice this chapter.</p></div>
-      <div class="practice">
-        <h3>Practice</h3>
-        <div class="question">
-          <p>Read the chapter carefully.</p>
-          <div class="options">
-            <button class="option" onclick="checkAns(this, true)">Done</button>
+  } else if (topic.type === 'count') {
+    content.innerHTML += `<p>Count the items and type the number.</p>`;
+    topic.data.forEach((item, index) => {
+      content.innerHTML += `
+        <div class="counting-item">
+          <span class="counting-visual">${item.visual}</span>
+          <div>
+            = <input type="number" class="counting-input" id="count-${index}" oninput="checkCount(${index}, ${item.ans})">
           </div>
         </div>
-      </div>`;
-  }
+      `;
+    });
 
-  html += `</div>`;
-  screen.innerHTML = html;
-}
-
-function checkAns(btn, isCorrect) {
-  const parent = btn.parentElement;
-  parent.querySelectorAll('.option').forEach(b => b.disabled = true);
-  if (isCorrect) {
-    btn.classList.add('correct');
-    addStar();
+  } else if (topic.type === 'rhyme') {
+    content.innerHTML += `<p>Read and listen to the rhyme.</p>`;
+    topic.data.forEach((line, i) => {
+      content.innerHTML += `<button class="match-btn" style="width:100%; text-align:left; padding:15px; margin-bottom:10px; font-size:1.1rem;" onclick="speak('${line}')">🎵 ${line}</button>`;
+    });
   } else {
-    btn.classList.add('wrong');
+    content.innerHTML += `<p>${topic.data}</p>`;
   }
-}
-
-function checkVisualAns(btn, isCorrect) {
-  btn.parentElement.querySelectorAll('.option').forEach(b => b.disabled = true);
-  if(isCorrect) {
-    btn.classList.add('correct');
-    addStar();
-    speak("Correct!");
-  } else {
-    btn.classList.add('wrong');
-    speak("Try again");
-  }
-}
-
-function goBack() {
-  if (state.view === 'topic') openSubject(state.subjectId);
-  else if (state.view === 'subject') openClass(state.classId);
-  else renderHome();
 }
 
 // =========================================
-// 4. SOLVER LOGIC
+// 5. INTERACTIVE GAME LOGIC
 // =========================================
-function solveEquation() {
-  let eq = document.getElementById('eq1').value.replace(/\s+/g, '');
-  let resDiv = document.getElementById('solverResult');
-  if(!eq) return;
 
-  try {
-    let parts = eq.split('=');
-    let left = parts[0], right = parts[1] || '0';
+// Matching Game Logic
+let selectedLeft = null;
+function selectMatch(btn, side, val) {
+  if(side === 'L') {
+    document.querySelectorAll('#matchLeft .match-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedLeft = {btn, val};
+    speak(val);
+  } else {
+    if(!selectedLeft) return;
     
-    let lx = left.match(/[+-]?\d*\.?\d*x/g) || [];
-    let lc = left.match(/[+-]?\d*\.?\d+(?!x)/g) || [];
-    let rx = right.match(/[+-]?\d*\.?\d*x/g) || [];
-    let rc = right.match(/[+-]?\d*\.?\d+(?!x)/g) || [];
-    
-    let a = 0; lx.forEach(m => a += parseFloat(m.replace('x','')) || 1);
-    let b = 0; lc.forEach(m => b += parseFloat(m));
-    let c = 0; rx.forEach(m => c += parseFloat(m.replace('x','')) || 1);
-    let d = 0; rc.forEach(m => d += parseFloat(m));
-    
-    let finalA = a - c;
-    let finalB = d - b;
-    let ans = finalB / finalA;
-    
-    resDiv.innerHTML = `<b>Equation:</b> ${eq}<br><br>
-      <b>Step 1:</b> Group variables → ${finalA}x = ${finalB}<br>
-      <b>Step 2:</b> Divide by ${finalA} → x = ${ans.toFixed(2)}<br><br>
-      <b style="color:#0A84FF; font-size:1.2rem;">✅ Answer: x = ${ans}</b>`;
-    resDiv.style.display = 'block';
-  } catch(e) {
-    resDiv.innerHTML = `<span style="color:red">Invalid equation</span>`;
-    resDiv.style.display = 'block';
+    // Check if correct
+    const correctMatch = contentData[currentClass].subjects
+      .flatMap(s => s.topics)
+      .find(t => t.id === currentTopic)?.data
+      .find(d => d.left === selectedLeft.val)?.right;
+
+    if(val === correctMatch) {
+      btn.classList.add('correct');
+      selectedLeft.btn.classList.replace('selected', 'correct');
+      btn.disabled = true;
+      selectedLeft.btn.disabled = true;
+      selectedLeft = null;
+      addStar();
+      speak('Correct!');
+    } else {
+      btn.classList.add('wrong');
+      setTimeout(() => btn.classList.remove('wrong'), 500);
+      selectedLeft.btn.classList.remove('selected');
+      selectedLeft = null;
+      speak('Try again');
+    }
   }
 }
 
-// Start
-renderHome();
+// Fill in the Blank Logic
+function checkFill(index, correctChar) {
+  const input = document.getElementById(`blank-${index}`);
+  if(input.value.toUpperCase() === correctChar.toUpperCase()) {
+    input.style.borderColor = '#39c995';
+    input.style.backgroundColor = '#d8fff0';
+    input.disabled = true;
+    addStar();
+    speak('Correct!');
+  } else {
+    input.style.borderColor = '#ff8eae';
+  }
+}
+
+// Counting Logic
+function checkCount(index, correctAns) {
+  const input = document.getElementById(`count-${index}`);
+  if(parseInt(input.value) === correctAns) {
+    input.style.borderColor = '#39c995';
+    input.style.backgroundColor = '#d8fff0';
+    input.disabled = true;
+    addStar();
+    speak('Correct!');
+  } else {
+    input.style.borderColor = '#ff8eae';
+  }
+}
+
+// Initialize
+renderTabs();
+switchClass('nursery');
 </script>
 </body>
 </html>
