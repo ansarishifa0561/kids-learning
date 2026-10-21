@@ -218,6 +218,7 @@ const contentData = {
       }
     ]
   },
+  
   jr: {
     subjects: [
       {
@@ -255,6 +256,46 @@ const contentData = {
         topics: [
           {id: 'jr_myself', title: 'My Self', type: 'myself', data: {}},
           {id: 'jr_poem1', title: 'Colours Poem', type: 'rhyme', data: {emoji:'🌈', color:'linear-gradient(135deg, #00b4db, #0083b0)', lines:['Red and yellow, green and blue', 'These are colours, bright and new', 'Orange, purple, pink and white', 'Colours make the world so bright']}}
+        ]
+      }
+    ]
+  },
+
+  sr: {
+    subjects: [
+      {
+        name: 'English',
+        topics: [
+          {id: 'sr_capital', title: 'Capital Letters', type: 'grid', data: generateAlpha('capital')},
+          {id: 'sr_small', title: 'Small Letters', type: 'grid', data: generateAlpha('small')},
+          {id: 'sr_3letter', title: '3 Letter Words', type: 'grid', data: generateThreeLetterWords()},
+          {id: 'sr_2letter', title: '2 Letter Words', type: 'grid', data: generateTwoLetterWords()},
+          {id: 'sr_missing', title: 'Missing Alphabet', type: 'missing', data: generateMissingAlpha()}
+        ]
+      },
+      {
+        name: 'Maths',
+        topics: [
+          {id: 'sr_numbers', title: 'Numbers 1 to 100', type: 'numbers', data: generateNumbers100()},
+          {id: 'sr_add_sub', title: 'Addition & Subtraction', type: 'add', data: generateAddSub()}
+        ]
+      },
+      {
+        name: 'EVS',
+        topics: [
+          {id: 'sr_body', title: 'Parts of Body', type: 'grid', data: generateBody()},
+          {id: 'sr_fruits', title: 'Fruits', type: 'grid', data: generateFruits()},
+          {id: 'sr_animals', title: 'Animals', type: 'grid', data: generateAnimals()},
+          {id: 'sr_birds', title: 'Birds', type: 'grid', data: generateBirds()},
+          {id: 'sr_veg', title: 'Vegetables', type: 'grid', data: generateVegetables()},
+          {id: 'sr_flowers', title: 'Flowers', type: 'grid', data: generateFlowers()},
+          {id: 'sr_colors', title: 'Colors', type: 'grid', data: generateColors()}
+        ]
+      },
+      {
+        name: 'Rhymes & Self',
+        topics: [
+          {id: 'sr_myself', title: 'My Self', type: 'myself', data: {}}
         ]
       }
     ]
@@ -329,17 +370,20 @@ function generateCount() {
 }
 
 function generateNumbers() {
-  const numberWords = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
   const arr = [];
-  for (let i = 1; i <= 20; i++) {
-    arr.push({ num: i, word: numberWords[i-1], dots: '●'.repeat(Math.min(i, 10)) + (i > 10 ? ` +${i-10}` : ''), say: `${i}` });
-  }
+  for (let i = 1; i <= 20; i++) arr.push({ num: i, say: `${i}` });
   return arr;
 }
 
 function generateNumbers50() {
   const arr = [];
   for (let i = 1; i <= 50; i++) arr.push({ num: i, say: `${i}` });
+  return arr;
+}
+
+function generateNumbers100() {
+  const arr = [];
+  for (let i = 1; i <= 100; i++) arr.push({ num: i, say: `${i}` });
   return arr;
 }
 
@@ -353,7 +397,22 @@ function generateAddition() {
   for (let i = 0; i < 20; i++) {
     let a = Math.floor(Math.random() * 9) + 1;
     let b = Math.floor(Math.random() * 9) + 1;
-    arr.push({ a: a, b: b, ans: a + b });
+    arr.push({ a: a, b: b, ans: a + b, op: '+' });
+  }
+  return arr;
+}
+
+function generateAddSub() {
+  const arr = [];
+  for (let i = 0; i < 10; i++) {
+    let a = Math.floor(Math.random() * 10) + 1;
+    let b = Math.floor(Math.random() * 10) + 1;
+    arr.push({ a: a, b: b, ans: a + b, op: '+' });
+  }
+  for (let i = 0; i < 10; i++) {
+    let a = Math.floor(Math.random() * 10) + 5;
+    let b = Math.floor(Math.random() * 5) + 1;
+    arr.push({ a: a, b: b, ans: a - b, op: '-' });
   }
   return arr;
 }
@@ -373,6 +432,15 @@ function generateTwoLetterWords() {
     {text: 'we', emoji: '👫'}, {text: 'it', emoji: '🪀'}, {text: 'is', emoji: '✅'},
     {text: 'an', emoji: '🍎'}, {text: 'am', emoji: '🧍'}, {text: 'do', emoji: '🏃'},
     {text: 'me', emoji: '🙋‍♂️'}, {text: 'be', emoji: '🐝'}, {text: 'us', emoji: '👨‍👩‍👦'}
+  ];
+}
+
+function generateThreeLetterWords() {
+  return [
+    {text: 'Cat', emoji: '🐱'}, {text: 'Dog', emoji: '🐶'}, {text: 'Sun', emoji: '☀️'},
+    {text: 'Pen', emoji: '🖊️'}, {text: 'Cup', emoji: '🥤'}, {text: 'Box', emoji: '📦'},
+    {text: 'Bat', emoji: '🦇'}, {text: 'Hat', emoji: '👒'}, {text: 'Bus', emoji: '🚌'},
+    {text: 'Car', emoji: '🚗'}
   ];
 }
 
@@ -589,10 +657,10 @@ function loadTopic(subjectName, topicId) {
     });
     content.innerHTML += `</div>`;
   } else if (topic.type === 'add') {
-    content.innerHTML += `<p>Solve these 20 addition questions.</p><div class="fill-grid">`;
+    content.innerHTML += `<p>Solve these questions.</p><div class="fill-grid">`;
     topic.data.forEach((item, index) => {
       content.innerHTML += `<div class="fill-item">
-        <span>${item.a} + ${item.b} = </span>
+        <span>${item.a} ${item.op} ${item.b} = </span>
         <input type="number" class="blank-input" id="add-${index}" style="width:70px;" oninput="checkAdd(${index}, ${item.ans})">
       </div>`;
     });
@@ -602,7 +670,7 @@ function loadTopic(subjectName, topicId) {
       <div class="myself-form">
         <p>My name is <input type="text" placeholder="Your Name"></p>
         <p>I am a <input type="radio" name="gender" value="boy"> Boy / <input type="radio" name="gender" value="girl"> Girl</p>
-        <p>I study in Jr KG class.</p>
+        <p>I study in ${classNames[currentClass]} class.</p>
         <p>I live in <input type="text" placeholder="Your City"></p>
         <p>My favourite colour is <input type="text" placeholder="Colour" style="width:150px;"></p>
         <p>My favourite fruit is <input type="text" placeholder="Fruit" style="width:150px;"></p>
