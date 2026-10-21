@@ -121,6 +121,18 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 }
 .rhyme-line:hover { background: #fff; transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
 
+/* Numbers Grid */
+.numbers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 20px; margin: 20px 0; }
+.number-card {
+  border: 3px solid var(--border); border-radius: 20px; padding: 20px 10px;
+  text-align: center; cursor: pointer; transition: 0.2s; background: linear-gradient(135deg, #e8e5ff, #f8f7ff);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.number-card:hover { border-color: var(--primary); transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 25px rgba(108,92,231,0.2); }
+.number-card .num { font-size: 3rem; font-weight: 800; color: var(--primary); }
+.number-card .num-word { font-size: 1rem; font-weight: 700; color: var(--muted); margin-top: 5px; }
+.number-card .dots { font-size: 1.2rem; letter-spacing: 2px; margin-top: 10px; }
+
 @media (max-width: 768px) {
   .layout { flex-direction: column; }
   .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; padding: 10px; gap: 10px; }
@@ -158,7 +170,9 @@ document.getElementById('starCount').textContent = stars;
 const classes = ['nursery', 'jr', 'sr', 'class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7', 'class8'];
 const classNames = { nursery:'Nursery', jr:'Jr KG', sr:'Sr KG', class1:'Class 1', class2:'Class 2', class3:'Class 3', class4:'Class 4', class5:'Class 5', class6:'Class 6', class7:'Class 7', class8:'Class 8' };
 
-// Master Data Structure
+// =========================================
+// MASTER DATA STRUCTURE
+// =========================================
 const contentData = {
   nursery: {
     subjects: [
@@ -174,7 +188,8 @@ const contentData = {
         name: 'Maths',
         topics: [
           {id: 'shapes', title: 'Shapes', type: 'grid', data: generateShapes()},
-          {id: 'counting', title: 'Counting', type: 'count', data: generateCount()}
+          {id: 'counting', title: 'Counting', type: 'count', data: generateCount()},
+          {id: 'numbers_1_20', title: 'Numbers 1 to 20', type: 'numbers', data: generateNumbers()}
         ]
       },
       {
@@ -182,7 +197,9 @@ const contentData = {
         topics: [
           {id: 'fruits', title: 'Fruits', type: 'grid', data: generateFruits()},
           {id: 'colors', title: 'Colours', type: 'grid', data: generateColors()},
-          {id: 'body', title: 'Parts of Body', type: 'grid', data: generateBody()}
+          {id: 'body', title: 'Parts of Body', type: 'grid', data: generateBody()},
+          {id: 'animals', title: 'Animals', type: 'grid', data: generateAnimals()},
+          {id: 'birds', title: 'Birds', type: 'grid', data: generateBirds()}
         ]
       },
       {
@@ -247,7 +264,7 @@ function generateFillBlanks() {
   return words.map((item, i) => ({
     word: item.w,
     emoji: item.e,
-    blankIndex: 1 // Keep blank in middle for simplicity (e.g., A_P_P_L_E)
+    blankIndex: 1 
   }));
 }
 
@@ -279,6 +296,21 @@ function generateCount() {
     visual: item.emoji.repeat(item.count),
     ans: item.count
   }));
+}
+
+// ---- NEW: Numbers 1 to 20 ----
+function generateNumbers() {
+  const numberWords = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
+  const arr = [];
+  for (let i = 1; i <= 20; i++) {
+    arr.push({
+      num: i,
+      word: numberWords[i-1],
+      dots: '●'.repeat(Math.min(i, 10)) + (i > 10 ? ` +${i-10}` : ''),
+      say: `${i} ${numberWords[i-1]}`
+    });
+  }
+  return arr;
 }
 
 function generateFruits() {
@@ -314,6 +346,35 @@ function generateBody() {
     {text: 'Hair', emoji: '💇'}, {text: 'Head', emoji: '🧑'}, {text: 'Finger', emoji: '👆'},
     {text: 'Shoulder', emoji: '🤷'}, {text: 'Knee', emoji: '🦵'}, {text: 'Elbow', emoji: '💪'},
     {text: 'Stomach', emoji: '🫃'}, {text: 'Brain', emoji: '🧠'}
+  ];
+}
+
+// ---- NEW: Animals ----
+function generateAnimals() {
+  return [
+    {text: 'Lion', emoji: '🦁'}, {text: 'Tiger', emoji: '🐯'}, {text: 'Elephant', emoji: '🐘'},
+    {text: 'Monkey', emoji: '🐵'}, {text: 'Dog', emoji: '🐶'}, {text: 'Cat', emoji: '🐱'},
+    {text: 'Cow', emoji: '🐮'}, {text: 'Horse', emoji: '🐴'}, {text: 'Sheep', emoji: '🐑'},
+    {text: 'Goat', emoji: '🐐'}, {text: 'Pig', emoji: '🐷'}, {text: 'Rabbit', emoji: '🐰'},
+    {text: 'Bear', emoji: '🐻'}, {text: 'Panda', emoji: '🐼'}, {text: 'Fox', emoji: '🦊'},
+    {text: 'Wolf', emoji: '🐺'}, {text: 'Deer', emoji: '🦌'}, {text: 'Giraffe', emoji: '🦒'},
+    {text: 'Zebra', emoji: '🦓'}, {text: 'Kangaroo', emoji: '🦘'}, {text: 'Camel', emoji: '🐫'},
+    {text: 'Hippo', emoji: '🦛'}, {text: 'Rhino', emoji: '🦏'}, {text: 'Crocodile', emoji: '🐊'},
+    {text: 'Snake', emoji: '🐍'}, {text: 'Turtle', emoji: '🐢'}, {text: 'Fish', emoji: '🐟'},
+    {text: 'Frog', emoji: '🐸'}, {text: 'Mouse', emoji: '🐭'}, {text: 'Squirrel', emoji: '🐿️'}
+  ];
+}
+
+// ---- NEW: Birds ----
+function generateBirds() {
+  return [
+    {text: 'Parrot', emoji: '🦜'}, {text: 'Peacock', emoji: '🦚'}, {text: 'Eagle', emoji: '🦅'},
+    {text: 'Owl', emoji: '🦉'}, {text: 'Duck', emoji: '🦆'}, {text: 'Swan', emoji: '🦢'},
+    {text: 'Flamingo', emoji: '🦩'}, {text: 'Penguin', emoji: '🐧'}, {text: 'Chicken', emoji: '🐔'},
+    {text: 'Rooster', emoji: '🐓'}, {text: 'Turkey', emoji: '🦃'}, {text: 'Dove', emoji: '🕊️'},
+    {text: 'Crow', emoji: '🐦‍⬛'}, {text: 'Sparrow', emoji: '🐦'}, {text: 'Woodpecker', emoji: '🪶'},
+    {text: 'Hummingbird', emoji: '🐦'}, {text: 'Kingfisher', emoji: '🐦'}, {text: 'Crane', emoji: '🦤'},
+    {text: 'Stork', emoji: '🦤'}, {text: 'Vulture', emoji: '🦅'}
   ];
 }
 
@@ -422,6 +483,17 @@ function loadTopic(subjectName, topicId) {
         `).join('')}
       </div>
     `;
+  } else if (topic.type === 'numbers') {
+    content.innerHTML += `<p>Click on any number to hear its name.</p>
+    <div class="numbers-grid">
+      ${topic.data.map(item => `
+        <div class="number-card" onclick="speak('${item.say}'); addStar();">
+          <div class="num">${item.num}</div>
+          <div class="num-word">${item.word}</div>
+          <div class="dots" style="color: var(--primary)">${item.dots}</div>
+        </div>
+      `).join('')}
+    </div>`;
   } else {
     content.innerHTML += `<p>${topic.data}</p>`;
   }
