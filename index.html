@@ -741,7 +741,94 @@ function checkAdd(index, correctAns) {
     input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
   } else { input.classList.remove('correct'); }
 }
+// =========================================
+// CLASS 1 - CHAPTER 1: TWO LITTLE HANDS
+// =========================================
+contentData['class1'] = {
+  subjects: [
+    {
+      name: 'English',
+      topics: [
+        {id: 'c1_ch1_poem', title: 'Ch 1: Two Little Hands (Poem)', type: 'rhyme', data: {
+          emoji: '👐', 
+          color: 'linear-gradient(135deg, #FF9A9E, #FECFEF)', 
+          lines: [
+            'Two little hands go clap, clap, clap.',
+            'Two little legs go tap, tap, tap.',
+            'Two little eyes are open wide.',
+            'One little head goes side to side.',
+            'Two little eyes to look around.',
+            'Two little ears to hear any sound.',
+            'One little nose to smell and breathe.',
+            'One little mouth that likes to eat.',
+            'Hands to clap, legs to walk,',
+            'Nose to smell, mouth to talk,',
+            'Head to move, eyes to see,',
+            'I have a little body that belongs to me.'
+          ]
+        }},
+        {id: 'c1_ch1_qa', title: 'Ch 1: Questions & Answers', type: 'qa', data: [
+          { q: "Q1. What do two little hands do?", a: "Two little hands go clap, clap, clap." },
+          { q: "Q2. What do two little legs do?", a: "Two little legs go tap, tap, tap." },
+          { q: "Q3. What helps us to look around?", a: "Two little eyes help us to look around." },
+          { q: "Q4. What helps us to hear any sound?", a: "Two little ears help us to hear any sound." },
+          { q: "Q5. What do we do with our mouth?", a: "We eat and talk with our mouth." },
+          { q: "Q6. What do we do with our nose?", a: "We smell and breathe with our nose." }
+        ]},
+        {id: 'c1_ch1_words', title: 'Ch 1: New Words', type: 'grid', data: [
+          {text: 'Hand', emoji: '🖐️'}, {text: 'Leg', emoji: '🦵'}, 
+          {text: 'Head', emoji: '🧑'}, {text: 'Eye', emoji: '👁️'}, 
+          {text: 'Ear', emoji: '👂'}, {text: 'Nose', emoji: '👃'}, 
+          {text: 'Mouth', emoji: '👄'}
+        ]}
+      ]
+    }
+  ]
+};
 
+// =========================================
+// QA KE LIYE NAYA RENDER LOGIC
+// =========================================
+const originalLoadTopicC1 = loadTopic;
+loadTopic = function(subjectName, topicId) {
+  originalLoadTopicC1(subjectName, topicId);
+  
+  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
+  const topic = sub.topics.find(t => t.id === topicId);
+
+  if (topic.type === 'qa') {
+    content.innerHTML += `<p>Read the questions and click 'Show Answer' to see the answer.</p>
+    <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px; max-width: 800px;">
+      ${topic.data.map((item, index) => `
+        <div style="background: #f8f7ff; border: 2px solid #e8e5ff; border-radius: 15px; padding: 20px;">
+          <div style="font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 10px;">${item.q}</div>
+          <div id="ans-${index}" style="display: none; font-size: 1.3rem; font-weight: 600; color: #08764d; background: #d8fff0; padding: 10px 15px; border-radius: 10px; margin-top: 10px;">
+            ${item.a}
+          </div>
+          <button onclick="toggleAnswer(${index})" id="btn-${index}" style="margin-top: 10px; padding: 8px 15px; font-size: 1rem; font-weight: 700; border: none; border-radius: 8px; background: var(--primary); color: white; cursor: pointer; font-family: inherit;">
+            Show Answer
+          </button>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+};
+
+// Answer Toggle Function
+function toggleAnswer(index) {
+  const ansDiv = document.getElementById(`ans-${index}`);
+  const btn = document.getElementById(`btn-${index}`);
+  
+  if (ansDiv.style.display === 'none') {
+    ansDiv.style.display = 'block';
+    btn.textContent = 'Hide Answer';
+    btn.style.background = '#FF3B30'; // Red color to hide
+  } else {
+    ansDiv.style.display = 'none';
+    btn.textContent = 'Show Answer';
+    btn.style.background = 'var(--primary)'; // Purple color to show
+  }
+}
 // Initialize
 renderTabs();
 switchClass('nursery');
