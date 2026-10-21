@@ -6,7 +6,7 @@
 <title>Shifa's Learning Hub | CBSE Pattern</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-/* ===== PROFESSIONAL CLEAN UI (W3Schools Style) ===== */
+/* ===== PROFESSIONAL CLEAN UI ===== */
 :root {
   --primary: #6c5ce7;
   --primary-dark: #5a4bcf;
@@ -22,20 +22,15 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 
 /* Top Navbar */
 .topnav {
-  background: var(--white);
-  display: flex; align-items: center;
-  border-bottom: 1px solid var(--border);
-  height: 60px; padding: 0 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  z-index: 100;
+  background: var(--white); display: flex; align-items: center;
+  border-bottom: 1px solid var(--border); height: 60px; padding: 0 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); z-index: 100;
 }
 .logo-area { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-right: 30px; }
 .logo-icon { font-size: 1.8rem; }
 
 /* Class Tabs */
-.class-tabs {
-  display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px;
-}
+.class-tabs { display: flex; gap: 5px; overflow-x: auto; padding-bottom: 5px; }
 .class-tab {
   padding: 8px 16px; border-radius: 8px; cursor: pointer;
   font-weight: 700; border: none; background: transparent; color: var(--muted);
@@ -54,69 +49,77 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
   border-right: 1px solid var(--border);
   overflow-y: auto; padding: 20px 0;
 }
-.subject-title {
-  padding: 10px 20px; font-weight: 800; font-size: 1.1rem;
-  color: var(--text); border-bottom: 1px solid #ddd; margin-bottom: 10px; margin-top: 10px;
-}
+.subject-title { padding: 10px 20px; font-weight: 800; font-size: 1.1rem; color: var(--text); border-bottom: 1px solid #ddd; margin-bottom: 10px; margin-top: 10px; }
 .topic-list { list-style: none; }
-.topic-list li {
-  padding: 10px 20px; cursor: pointer; font-weight: 600; color: var(--muted);
-  transition: 0.2s; border-left: 4px solid transparent;
-}
+.topic-list li { padding: 10px 20px; cursor: pointer; font-weight: 600; color: var(--muted); transition: 0.2s; border-left: 4px solid transparent; }
 .topic-list li:hover { background: #e8e5ff; color: var(--primary); }
 .topic-list li.active { background: #e8e5ff; color: var(--primary); border-left-color: var(--primary); }
 
 /* Content Area */
-.content {
-  flex: 1; padding: 40px; overflow-y: auto; background: var(--white);
-}
+.content { flex: 1; padding: 40px; overflow-y: auto; background: var(--white); }
 .content h1 { font-size: 2.2rem; color: var(--text); margin-bottom: 20px; font-weight: 800; }
 .content p { font-size: 1.1rem; line-height: 1.6; color: var(--muted); margin-bottom: 20px; }
 
 /* Interactive Grids */
-.interactive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 20px; margin: 20px 0; }
+.interactive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px,1fr)); gap: 25px; margin: 20px 0; }
 .grid-item {
-  border: 3px solid var(--border); border-radius: 16px; padding: 20px 10px;
+  border: 3px solid var(--border); border-radius: 20px; padding: 25px 15px;
   text-align: center; cursor: pointer; transition: 0.2s; background: #fff;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
-.grid-item:hover { border-color: var(--primary); background: #f8f7ff; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(108,92,231,0.15); }
-.grid-item .pic { font-size: 3.5rem; display: block; margin-bottom: 10px; }
-.grid-item .text { font-size: 1.2rem; font-weight: 800; color: var(--text); }
+.grid-item:hover { border-color: var(--primary); background: #f8f7ff; transform: translateY(-5px); box-shadow: 0 10px 25px rgba(108,92,231,0.15); }
+.grid-item .pic { font-size: 4.5rem; display: block; margin-bottom: 15px; }
+.grid-item .text { font-size: 1.3rem; font-weight: 800; color: var(--text); }
 
 /* Large Shape SVG */
-.shape-svg { width: 100px; height: 100px; margin-bottom: 10px; }
+.shape-svg { width: 110px; height: 110px; margin-bottom: 15px; }
 
 /* Fill in the Blanks */
-.fill-blank-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+.fill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
 .fill-item {
-  display: flex; align-items: center; gap: 5px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
   font-size: 2rem; font-weight: 800; color: var(--text);
-  background: #f8f7ff; padding: 10px 20px; border-radius: 12px; border: 2px solid #e8e5ff;
+  background: #f8f7ff; padding: 15px 20px; border-radius: 16px; border: 2px solid #e8e5ff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
+.fill-item .emoji-hint { font-size: 2.2rem; margin-left: 15px; }
 .blank-input {
-  width: 50px; height: 50px; border: 3px solid var(--primary); border-radius: 10px;
-  text-align: center; font-size: 1.8rem; font-weight: 800; outline: none; text-transform: uppercase;
-  background: #fff; color: var(--primary); margin: 0 5px;
+  width: 55px; height: 55px; border: 3px solid var(--primary); border-radius: 12px;
+  text-align: center; font-size: 2rem; font-weight: 800; outline: none; text-transform: uppercase;
+  background: #fff; color: var(--primary);
 }
-.blank-input:focus { box-shadow: 0 0 10px rgba(108,92,231,0.3); }
+.blank-input:focus { box-shadow: 0 0 12px rgba(108,92,231,0.4); }
 .blank-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+
+/* Counting */
+.count-item {
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 2.5rem; margin-bottom: 20px; background: #f8f7ff;
+  padding: 15px 25px; border-radius: 16px; border: 2px solid #e8e5ff;
+  letter-spacing: 5px;
+}
+.count-input {
+  width: 80px; height: 60px; border: 3px solid var(--primary); border-radius: 12px;
+  text-align: center; font-size: 2rem; font-weight: 800; outline: none; letter-spacing: 0;
+}
+.count-input:focus { box-shadow: 0 0 12px rgba(108,92,231,0.4); }
+.count-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
 
 /* Colorful Rhyme Page */
 .rhyme-page {
-  background: linear-gradient(135deg, #fff3e0, #e3f2fd, #fce4ec);
-  border-radius: 24px; padding: 40px; border: 4px dashed #ffb300;
-  text-align: center; position: relative; overflow: hidden;
+  border-radius: 24px; padding: 40px; text-align: center; position: relative; overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
 }
-.rhyme-page h2 { font-size: 2.5rem; color: #d81b60; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-.rhyme-cartoon { font-size: 6rem; margin-bottom: 20px; animation: bounce 2s infinite; }
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+.rhyme-page h2 { font-size: 2.8rem; color: #fff; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+.rhyme-cartoon { font-size: 7rem; margin-bottom: 30px; animation: bounce 2s infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 .rhyme-line {
-  font-size: 1.6rem; font-weight: 800; color: #1565c0; margin: 15px 0;
-  background: rgba(255,255,255,0.8); padding: 15px; border-radius: 16px;
-  cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  font-size: 1.6rem; font-weight: 800; color: #2b2b3a; margin: 15px 0;
+  background: rgba(255,255,255,0.9); padding: 18px 25px; border-radius: 20px;
+  cursor: pointer; transition: 0.2s; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
-.rhyme-line:hover { background: #fff; transform: scale(1.02); }
+.rhyme-line:hover { background: #fff; transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
 
 @media (max-width: 768px) {
   .layout { flex-direction: column; }
@@ -206,10 +209,9 @@ classes.forEach(c => {
 });
 
 // =========================================
-// 2. DATA GENERATORS (With Pictures & Colors)
+// 2. DATA GENERATORS
 // =========================================
 function generateAlpha(type) {
-  // A to Z with corresponding emoji and background color
   const data = [
     {l:'A', e:'🍎', c:'#FFCDD2'}, {l:'B', e:'⚽', c:'#F8BBD0'}, {l:'C', e:'🐱', c:'#E1BEE7'},
     {l:'D', e:'🐶', c:'#D1C4E9'}, {l:'E', e:'🐘', c:'#C5CAE9'}, {l:'F', e:'🐟', c:'#BBDEFB'},
@@ -235,11 +237,17 @@ function getWordForLetter(l) {
 }
 
 function generateFillBlanks() {
-  // 26 questions for A to Z
-  const words = ['APPLE', 'BALL', 'CAT', 'DOG', 'ELEPHANT', 'FISH', 'GRAPES', 'HAT', 'ICE', 'JAM', 'KITE', 'LION', 'MONKEY', 'NEST', 'ORANGE', 'PARROT', 'QUEEN', 'RABBIT', 'SUN', 'TIGER', 'UMBRELLA', 'VAN', 'WATCH', 'BOX', 'YAK', 'ZEBRA'];
-  return words.map((w, i) => ({
-    word: w,
-    blankIndex: Math.floor(Math.random() * w.length) // Random blank position
+  const words = [
+    {w:'APPLE', e:'🍎'}, {w:'BALL', e:'⚽'}, {w:'CAT', e:'🐱'}, {w:'DOG', e:'🐶'}, {w:'ELEPHANT', e:'🐘'}, {w:'FISH', e:'🐟'},
+    {w:'GRAPES', e:'🍇'}, {w:'HAT', e:'👒'}, {w:'ICE', e:'🍦'}, {w:'JAM', e:'🍯'}, {w:'KITE', e:'🪁'}, {w:'LION', e:'🦁'},
+    {w:'MONKEY', e:'🐵'}, {w:'NEST', e:'🪺'}, {w:'ORANGE', e:'🍊'}, {w:'PARROT', e:'🦜'}, {w:'QUEEN', e:'👑'}, {w:'RABBIT', e:'🐰'},
+    {w:'SUN', e:'☀️'}, {w:'TIGER', e:'🐯'}, {w:'UMBRELLA', e:'☂️'}, {w:'VAN', e:'🚐'}, {w:'WATCH', e:'⌚'}, {w:'BOX', e:'📦'},
+    {w:'YAK', e:'🐃'}, {w:'ZEBRA', e:'🦓'}
+  ];
+  return words.map((item, i) => ({
+    word: item.w,
+    emoji: item.e,
+    blankIndex: 1 // Keep blank in middle for simplicity (e.g., A_P_P_L_E)
   }));
 }
 
@@ -248,16 +256,24 @@ function generateShapes() {
     {text: 'Circle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#FF3B30" stroke-width="6"/></svg>`, say: 'Circle'},
     {text: 'Square', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="15" y="15" width="70" height="70" fill="none" stroke="#0A84FF" stroke-width="6"/></svg>`, say: 'Square'},
     {text: 'Triangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,15 90,85 10,85" fill="none" stroke="#34C759" stroke-width="6"/></svg>`, say: 'Triangle'},
+    {text: 'Rectangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="10" y="25" width="80" height="50" fill="none" stroke="#FF9500" stroke-width="6"/></svg>`, say: 'Rectangle'},
     {text: 'Star', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="none" stroke="#FFD60A" stroke-width="6"/></svg>`, say: 'Star'},
     {text: 'Heart', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><path d="M50,85 C50,85 10,50 10,30 C10,15 25,10 35,15 C40,18 50,30 50,30 C50,30 60,18 65,15 C75,10 90,15 90,30 C90,50 50,85 50,85 Z" fill="none" stroke="#FF2D95" stroke-width="6"/></svg>`, say: 'Heart'},
-    {text: 'Diamond', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 90,50 50,90 10,50" fill="none" stroke="#AF52DE" stroke-width="6"/></svg>`, say: 'Diamond'}
+    {text: 'Diamond', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 90,50 50,90 10,50" fill="none" stroke="#AF52DE" stroke-width="6"/></svg>`, say: 'Diamond'},
+    {text: 'Oval', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="35" ry="45" fill="none" stroke="#00C2A8" stroke-width="6"/></svg>`, say: 'Oval'},
+    {text: 'Pentagon', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 90,40 75,90 25,90 10,40" fill="none" stroke="#FF7043" stroke-width="6"/></svg>`, say: 'Pentagon'},
+    {text: 'Hexagon', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="none" stroke="#5C6BC0" stroke-width="6"/></svg>`, say: 'Hexagon'},
+    {text: 'Moon', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><path d="M50,10 A40,40 0 1,0 90,50 A30,30 0 1,1 50,10 Z" fill="none" stroke="#FFC300" stroke-width="6"/></svg>`, say: 'Moon'},
+    {text: 'Cross', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="40,10 60,10 60,40 90,40 90,60 60,60 60,90 40,90 40,60 10,60 10,40 40,40" fill="none" stroke="#E53935" stroke-width="6"/></svg>`, say: 'Cross'}
   ];
 }
 
 function generateCount() {
   const items = [
     {emoji:'⚽', count: 5}, {emoji:'🌸', count: 7}, {emoji:'🍎', count: 3},
-    {emoji:'🐶', count: 4}, {emoji:'⭐', count: 6}, {emoji:'🍌', count: 8}
+    {emoji:'🐶', count: 4}, {emoji:'⭐', count: 6}, {emoji:'🍌', count: 8},
+    {emoji:'🚗', count: 9}, {emoji:'🐰', count: 10}, {emoji:'🍓', count: 12},
+    {emoji:'🎈', count: 15}, {emoji:'🦋', count: 18}, {emoji:'🌻', count: 20}
   ];
   return items.map(item => ({
     visual: item.emoji.repeat(item.count),
@@ -268,14 +284,24 @@ function generateCount() {
 function generateFruits() {
   return [
     {text: 'Apple', emoji: '🍎'}, {text: 'Banana', emoji: '🍌'}, {text: 'Mango', emoji: '🥭'},
-    {text: 'Grapes', emoji: '🍇'}, {text: 'Orange', emoji: '🍊'}, {text: 'Cherry', emoji: '🍒'}
+    {text: 'Grapes', emoji: '🍇'}, {text: 'Orange', emoji: '🍊'}, {text: 'Cherry', emoji: '🍒'},
+    {text: 'Watermelon', emoji: '🍉'}, {text: 'Strawberry', emoji: '🍓'}, {text: 'Pineapple', emoji: '🍍'},
+    {text: 'Pear', emoji: '🍐'}, {text: 'Peach', emoji: '🍑'}, {text: 'Coconut', emoji: '🥥'},
+    {text: 'Lemon', emoji: '🍋'}, {text: 'Kiwi', emoji: '🥝'}, {text: 'Blueberry', emoji: '🫐'},
+    {text: 'Papaya', emoji: '🍈'}, {text: 'Avocado', emoji: '🥑'}, {text: 'Fig', emoji: '🍇'},
+    {text: 'Guava', emoji: '🍏'}, {text: 'Pomegranate', emoji: '🍎'}
   ];
 }
 
 function generateColors() {
   return [
     {text: 'Red', emoji: '🔴'}, {text: 'Blue', emoji: '🔵'}, {text: 'Green', emoji: '🟢'},
-    {text: 'Yellow', emoji: '🟡'}, {text: 'Pink', emoji: '🩷'}, {text: 'Purple', emoji: '🟣'}
+    {text: 'Yellow', emoji: '🟡'}, {text: 'Pink', emoji: '🩷'}, {text: 'Purple', emoji: '🟣'},
+    {text: 'Orange', emoji: '🟠'}, {text: 'Brown', emoji: '🟤'}, {text: 'Black', emoji: '⚫'},
+    {text: 'White', emoji: '⚪'}, {text: 'Grey', emoji: '🔘'}, {text: 'Golden', emoji: '🟡'},
+    {text: 'Silver', emoji: '⚪'}, {text: 'Maroon', emoji: '🟤'}, {text: 'Navy', emoji: '🔵'},
+    {text: 'Teal', emoji: '🟢'}, {text: 'Lime', emoji: '🟢'}, {text: 'Cyan', emoji: '🔵'},
+    {text: 'Magenta', emoji: '🟣'}, {text: 'Olive', emoji: '🟢'}
   ];
 }
 
@@ -283,13 +309,16 @@ function generateBody() {
   return [
     {text: 'Eye', emoji: '👁️'}, {text: 'Ear', emoji: '👂'}, {text: 'Nose', emoji: '👃'},
     {text: 'Mouth', emoji: '👄'}, {text: 'Lips', emoji: '👄'}, {text: 'Cheek', emoji: '😊'},
-    {text: 'Chin', emoji: '🧔'}, {text: 'Teeth', emoji: '🦷'}, {text: 'Hand', emoji: '✋'},
-    {text: 'Legs', emoji: '🦵'}, {text: 'Foot', emoji: '🦶'}, {text: 'Hair', emoji: '💇'}
+    {text: 'Chin', emoji: '🧔'}, {text: 'Teeth', emoji: '🦷'}, {text: 'Tongue', emoji: '👅'},
+    {text: 'Hand', emoji: '✋'}, {text: 'Legs', emoji: '🦵'}, {text: 'Foot', emoji: '🦶'},
+    {text: 'Hair', emoji: '💇'}, {text: 'Head', emoji: '🧑'}, {text: 'Finger', emoji: '👆'},
+    {text: 'Shoulder', emoji: '🤷'}, {text: 'Knee', emoji: '🦵'}, {text: 'Elbow', emoji: '💪'},
+    {text: 'Stomach', emoji: '🫃'}, {text: 'Brain', emoji: '🧠'}
   ];
 }
 
 // =========================================
-// 3. UI HELPER FUNCTIONS
+// 3. UI HELPERS
 // =========================================
 function addStar() {
   stars++;
@@ -363,12 +392,12 @@ function loadTopic(subjectName, topicId) {
     </div>`;
 
   } else if (topic.type === 'fill') {
-    content.innerHTML += `<p>Type the missing letter in the box.</p><div class="fill-blank-container">`;
+    content.innerHTML += `<p>Type the missing letter in the box.</p><div class="fill-grid">`;
     topic.data.forEach((item, index) => {
       const displayWord = item.word.split('').map((char, i) => 
         i === item.blankIndex ? `<input type="text" maxlength="1" class="blank-input" id="blank-${index}" oninput="checkFill(${index}, '${char}')">` : char
       ).join('');
-      content.innerHTML += `<div class="fill-item">${displayWord}</div>`;
+      content.innerHTML += `<div class="fill-item">${displayWord} <span class="emoji-hint">${item.emoji}</span></div>`;
     });
     content.innerHTML += `</div>`;
 
@@ -376,9 +405,9 @@ function loadTopic(subjectName, topicId) {
     content.innerHTML += `<p>Count the items and type the number.</p>`;
     topic.data.forEach((item, index) => {
       content.innerHTML += `
-        <div class="fill-item" style="justify-content: space-between; font-size: 2.5rem; margin-bottom: 15px;">
+        <div class="count-item">
           <span>${item.visual}</span>
-          <div>= <input type="number" class="blank-input" id="count-${index}" oninput="checkCount(${index}, ${item.ans})"></div>
+          <div>= <input type="number" class="count-input" id="count-${index}" oninput="checkCount(${index}, ${item.ans})"></div>
         </div>
       `;
     });
