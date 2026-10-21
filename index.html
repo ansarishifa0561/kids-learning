@@ -299,6 +299,16 @@ function generateCount() {
 }
 
 // ---- NEW: Numbers 1 to 20 ----
+function generateNumbers() {
+  const arr = [];
+  for (let i = 1; i <= 20; i++) {
+    arr.push({
+      num: i,
+      say: `${i}`
+    });
+  }
+  return arr;
+}
 function generateFruits() {
   return [
     {text: 'Apple', emoji: '🍎'}, {text: 'Banana', emoji: '🍌'}, {text: 'Mango', emoji: '🥭'},
