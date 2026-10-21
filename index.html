@@ -130,8 +130,18 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 }
 .number-card:hover { border-color: var(--primary); transform: translateY(-5px) scale(1.05); box-shadow: 0 10px 25px rgba(108,92,231,0.2); }
 .number-card .num { font-size: 3rem; font-weight: 800; color: var(--primary); }
-.number-card .num-word { font-size: 1rem; font-weight: 700; color: var(--muted); margin-top: 5px; }
-.number-card .dots { font-size: 1.2rem; letter-spacing: 2px; margin-top: 10px; }
+
+/* Matching Game */
+.matching-container { display: flex; justify-content: space-around; gap: 40px; margin-top: 30px; max-width: 400px; }
+.match-col { display: flex; flex-direction: column; gap: 15px; }
+.match-item { border: 3px solid var(--border); border-radius: 12px; padding: 15px 30px; font-size: 2rem; font-weight: 800; cursor: pointer; text-align: center; background: #fff; transition: 0.2s; width: 100px; user-select: none; }
+.match-item.selected { border-color: var(--primary); background: #e8e5ff; }
+.match-item.matched { border-color: #34C759; background: #d8fff0; color: #08764d; cursor: default; }
+
+/* My Self Form */
+.myself-form { max-width: 600px; margin: 0 auto; font-size: 1.5rem; font-weight: 600; line-height: 2.5; color: var(--text); background: #f8f7ff; padding: 30px; border-radius: 20px; border: 2px solid #e8e5ff; }
+.myself-form input[type="text"] { border: none; border-bottom: 3px dashed var(--primary); outline: none; font-size: 1.5rem; font-family: inherit; font-weight: 700; color: var(--primary); background: transparent; text-align: center; width: 200px; }
+.myself-form input[type="radio"] { transform: scale(1.5); margin: 0 10px; cursor: pointer; }
 
 @media (max-width: 768px) {
   .layout { flex-direction: column; }
@@ -170,9 +180,6 @@ document.getElementById('starCount').textContent = stars;
 const classes = ['nursery', 'jr', 'sr', 'class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7', 'class8'];
 const classNames = { nursery:'Nursery', jr:'Jr KG', sr:'Sr KG', class1:'Class 1', class2:'Class 2', class3:'Class 3', class4:'Class 4', class5:'Class 5', class6:'Class 6', class7:'Class 7', class8:'Class 8' };
 
-// =========================================
-// MASTER DATA STRUCTURE
-// =========================================
 const contentData = {
   nursery: {
     subjects: [
@@ -210,6 +217,47 @@ const contentData = {
         ]
       }
     ]
+  },
+  jr: {
+    subjects: [
+      {
+        name: 'English',
+        topics: [
+          {id: 'jr_capital', title: 'Capital Letters', type: 'grid', data: generateAlpha('capital')},
+          {id: 'jr_small', title: 'Small Letters', type: 'grid', data: generateAlpha('small')},
+          {id: 'jr_match', title: 'Capital & Small Matching', type: 'match', data: generateMatchAlpha()},
+          {id: 'jr_2letter', title: '2 Letter Words', type: 'grid', data: generateTwoLetterWords()},
+          {id: 'jr_missing', title: 'Missing Alphabet (A to Z)', type: 'missing', data: generateMissingAlpha()}
+        ]
+      },
+      {
+        name: 'Maths',
+        topics: [
+          {id: 'jr_numbers', title: 'Numbers 1 to 50', type: 'numbers', data: generateNumbers50()},
+          {id: 'jr_num_words', title: 'Number in Words (1-20)', type: 'numwords', data: generateNumberWords()},
+          {id: 'jr_add', title: 'Addition (20 Questions)', type: 'add', data: generateAddition()}
+        ]
+      },
+      {
+        name: 'EVS',
+        topics: [
+          {id: 'jr_body', title: 'Parts of Body', type: 'grid', data: generateBody()},
+          {id: 'jr_fruits', title: 'Fruits', type: 'grid', data: generateFruits()},
+          {id: 'jr_animals', title: 'Animals', type: 'grid', data: generateAnimals()},
+          {id: 'jr_birds', title: 'Birds', type: 'grid', data: generateBirds()},
+          {id: 'jr_veg', title: 'Vegetables', type: 'grid', data: generateVegetables()},
+          {id: 'jr_flowers', title: 'Flowers', type: 'grid', data: generateFlowers()},
+          {id: 'jr_colors', title: 'Colors', type: 'grid', data: generateColors()}
+        ]
+      },
+      {
+        name: 'Rhymes & Self',
+        topics: [
+          {id: 'jr_myself', title: 'My Self', type: 'myself', data: {}},
+          {id: 'jr_poem1', title: 'Colours Poem', type: 'rhyme', data: {emoji:'🌈', color:'linear-gradient(135deg, #00b4db, #0083b0)', lines:['Red and yellow, green and blue', 'These are colours, bright and new', 'Orange, purple, pink and white', 'Colours make the world so bright']}}
+        ]
+      }
+    ]
   }
 };
 
@@ -242,9 +290,7 @@ function generateAlpha(type) {
   ];
   return data.map(d => ({
     text: type === 'capital' ? d.l : d.l.toLowerCase(),
-    emoji: d.e,
-    color: d.c,
-    say: `${d.l} for ${getWordForLetter(d.l)}`
+    emoji: d.e, color: d.c, say: `${d.l} for ${getWordForLetter(d.l)}`
   }));
 }
 
@@ -261,11 +307,7 @@ function generateFillBlanks() {
     {w:'SUN', e:'☀️'}, {w:'TIGER', e:'🐯'}, {w:'UMBRELLA', e:'☂️'}, {w:'VAN', e:'🚐'}, {w:'WATCH', e:'⌚'}, {w:'BOX', e:'📦'},
     {w:'YAK', e:'🐃'}, {w:'ZEBRA', e:'🦓'}
   ];
-  return words.map((item, i) => ({
-    word: item.w,
-    emoji: item.e,
-    blankIndex: 1 
-  }));
+  return words.map((item, i) => ({ word: item.w, emoji: item.e, blankIndex: 1 }));
 }
 
 function generateShapes() {
@@ -274,104 +316,134 @@ function generateShapes() {
     {text: 'Square', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="15" y="15" width="70" height="70" fill="none" stroke="#0A84FF" stroke-width="6"/></svg>`, say: 'Square'},
     {text: 'Triangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,15 90,85 10,85" fill="none" stroke="#34C759" stroke-width="6"/></svg>`, say: 'Triangle'},
     {text: 'Rectangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="10" y="25" width="80" height="50" fill="none" stroke="#FF9500" stroke-width="6"/></svg>`, say: 'Rectangle'},
-    {text: 'Star', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="none" stroke="#FFD60A" stroke-width="6"/></svg>`, say: 'Star'},
-    {text: 'Heart', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><path d="M50,85 C50,85 10,50 10,30 C10,15 25,10 35,15 C40,18 50,30 50,30 C50,30 60,18 65,15 C75,10 90,15 90,30 C90,50 50,85 50,85 Z" fill="none" stroke="#FF2D95" stroke-width="6"/></svg>`, say: 'Heart'},
-    {text: 'Diamond', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 90,50 50,90 10,50" fill="none" stroke="#AF52DE" stroke-width="6"/></svg>`, say: 'Diamond'},
-    {text: 'Oval', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="35" ry="45" fill="none" stroke="#00C2A8" stroke-width="6"/></svg>`, say: 'Oval'},
-    {text: 'Pentagon', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 90,40 75,90 25,90 10,40" fill="none" stroke="#FF7043" stroke-width="6"/></svg>`, say: 'Pentagon'},
-    {text: 'Hexagon', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="none" stroke="#5C6BC0" stroke-width="6"/></svg>`, say: 'Hexagon'},
-    {text: 'Moon', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><path d="M50,10 A40,40 0 1,0 90,50 A30,30 0 1,1 50,10 Z" fill="none" stroke="#FFC300" stroke-width="6"/></svg>`, say: 'Moon'},
-    {text: 'Cross', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="40,10 60,10 60,40 90,40 90,60 60,60 60,90 40,90 40,60 10,60 10,40 40,40" fill="none" stroke="#E53935" stroke-width="6"/></svg>`, say: 'Cross'}
+    {text: 'Star', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="none" stroke="#FFD60A" stroke-width="6"/></svg>`, say: 'Star'}
   ];
 }
 
 function generateCount() {
   const items = [
     {emoji:'⚽', count: 5}, {emoji:'🌸', count: 7}, {emoji:'🍎', count: 3},
-    {emoji:'🐶', count: 4}, {emoji:'⭐', count: 6}, {emoji:'🍌', count: 8},
-    {emoji:'🚗', count: 9}, {emoji:'🐰', count: 10}, {emoji:'🍓', count: 12},
-    {emoji:'🎈', count: 15}, {emoji:'🦋', count: 18}, {emoji:'🌻', count: 20}
+    {emoji:'🐶', count: 4}, {emoji:'⭐', count: 6}, {emoji:'🍌', count: 8}
   ];
-  return items.map(item => ({
-    visual: item.emoji.repeat(item.count),
-    ans: item.count
-  }));
+  return items.map(item => ({ visual: item.emoji.repeat(item.count), ans: item.count }));
 }
 
-// ---- NEW: Numbers 1 to 20 ----
 function generateNumbers() {
+  const numberWords = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
   const arr = [];
   for (let i = 1; i <= 20; i++) {
-    arr.push({
-      num: i,
-      say: `${i}`
-    });
+    arr.push({ num: i, word: numberWords[i-1], dots: '●'.repeat(Math.min(i, 10)) + (i > 10 ? ` +${i-10}` : ''), say: `${i}` });
   }
   return arr;
+}
+
+function generateNumbers50() {
+  const arr = [];
+  for (let i = 1; i <= 50; i++) arr.push({ num: i, say: `${i}` });
+  return arr;
+}
+
+function generateNumberWords() {
+  const numberWords = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
+  return numberWords.map((word, i) => ({ num: i + 1, word: word }));
+}
+
+function generateAddition() {
+  const arr = [];
+  for (let i = 0; i < 20; i++) {
+    let a = Math.floor(Math.random() * 9) + 1;
+    let b = Math.floor(Math.random() * 9) + 1;
+    arr.push({ a: a, b: b, ans: a + b });
+  }
+  return arr;
+}
+
+function generateMatchAlpha() {
+  return [
+    {cap: 'A', sm: 'a'}, {cap: 'B', sm: 'b'}, {cap: 'C', sm: 'c'},
+    {cap: 'D', sm: 'd'}, {cap: 'E', sm: 'e'}, {cap: 'F', sm: 'f'}
+  ];
+}
+
+function generateTwoLetterWords() {
+  return [
+    {text: 'at', emoji: '🐱'}, {text: 'in', emoji: '📥'}, {text: 'on', emoji: '⬆️'},
+    {text: 'up', emoji: '🎈'}, {text: 'go', emoji: '🚦'}, {text: 'my', emoji: '🙋'},
+    {text: 'no', emoji: '🙅'}, {text: 'so', emoji: '👌'}, {text: 'he', emoji: '👦'},
+    {text: 'we', emoji: '👫'}, {text: 'it', emoji: '🪀'}, {text: 'is', emoji: '✅'},
+    {text: 'an', emoji: '🍎'}, {text: 'am', emoji: '🧍'}, {text: 'do', emoji: '🏃'},
+    {text: 'me', emoji: '🙋‍♂️'}, {text: 'be', emoji: '🐝'}, {text: 'us', emoji: '👨‍👩‍👦'}
+  ];
+}
+
+function generateMissingAlpha() {
+  const words = [
+    {w: 'APPLE', e: '🍎'}, {w: 'BALL', e: '⚽'}, {w: 'CAT', e: '🐱'}, {w: 'DOG', e: '🐶'}, 
+    {w: 'ELEPHANT', e: '🐘'}, {w: 'FISH', e: '🐟'}, {w: 'GRAPES', e: '🍇'}, {w: 'HAT', e: '👒'}, 
+    {w: 'ICE', e: '🍦'}, {w: 'JUG', e: '🫙'}, {w: 'KITE', e: '🪁'}, {w: 'LION', e: '🦁'},
+    {w: 'MANGO', e: '🥭'}, {w: 'NEST', e: '🪺'}, {w: 'ORANGE', e: '🍊'}, {w: 'PARROT', e: '🦜'},
+    {w: 'QUEEN', e: '👑'}, {w: 'RAT', e: '🐀'}, {w: 'SUN', e: '☀️'}, {w: 'TIGER', e: '🐯'},
+    {w: 'UMBRELLA', e: '☂️'}, {w: 'VAN', e: '🚐'}, {w: 'WATCH', e: '⌚'}, {w: 'BOX', e: '📦'},
+    {w: 'YAK', e: '🐃'}, {w: 'ZEBRA', e: '🦓'}
+  ];
+  return words.map(item => ({ word: item.w, emoji: item.e, blankIndex: Math.floor(Math.random() * item.w.length) }));
+}
+
+function generateVegetables() {
+  return [
+    {text: 'Carrot', emoji: '🥕'}, {text: 'Potato', emoji: '🥔'}, {text: 'Tomato', emoji: '🍅'},
+    {text: 'Onion', emoji: '🧅'}, {text: 'Brinjal', emoji: '🍆'}, {text: 'Broccoli', emoji: '🥦'},
+    {text: 'Corn', emoji: '🌽'}, {text: 'Cucumber', emoji: '🥒'}, {text: 'Peas', emoji: '🫛'},
+    {text: 'Pumpkin', emoji: '🎃'}
+  ];
+}
+
+function generateFlowers() {
+  return [
+    {text: 'Rose', emoji: '🌹'}, {text: 'Sunflower', emoji: '🌻'}, {text: 'Lotus', emoji: '🪷'},
+    {text: 'Tulip', emoji: '🌷'}, {text: 'Daisy', emoji: '🌼'}, {text: 'Hibiscus', emoji: '🌺'},
+    {text: 'Lily', emoji: '🌸'}, {text: 'Marigold', emoji: '🏵️'}
+  ];
 }
 
 function generateFruits() {
   return [
     {text: 'Apple', emoji: '🍎'}, {text: 'Banana', emoji: '🍌'}, {text: 'Mango', emoji: '🥭'},
-    {text: 'Grapes', emoji: '🍇'}, {text: 'Orange', emoji: '🍊'}, {text: 'Cherry', emoji: '🍒'},
-    {text: 'Watermelon', emoji: '🍉'}, {text: 'Strawberry', emoji: '🍓'}, {text: 'Pineapple', emoji: '🍍'},
-    {text: 'Pear', emoji: '🍐'}, {text: 'Peach', emoji: '🍑'}, {text: 'Coconut', emoji: '🥥'},
-    {text: 'Lemon', emoji: '🍋'}, {text: 'Kiwi', emoji: '🥝'}, {text: 'Blueberry', emoji: '🫐'},
-    {text: 'Papaya', emoji: '🍈'}, {text: 'Avocado', emoji: '🥑'}, {text: 'Fig', emoji: '🍇'},
-    {text: 'Guava', emoji: '🍏'}, {text: 'Pomegranate', emoji: '🍎'}
+    {text: 'Grapes', emoji: '🍇'}, {text: 'Orange', emoji: '🍊'}, {text: 'Cherry', emoji: '🍒'}
   ];
 }
 
 function generateColors() {
   return [
     {text: 'Red', emoji: '🔴'}, {text: 'Blue', emoji: '🔵'}, {text: 'Green', emoji: '🟢'},
-    {text: 'Yellow', emoji: '🟡'}, {text: 'Pink', emoji: '🩷'}, {text: 'Purple', emoji: '🟣'},
-    {text: 'Orange', emoji: '🟠'}, {text: 'Brown', emoji: '🟤'}, {text: 'Black', emoji: '⚫'},
-    {text: 'White', emoji: '⚪'}, {text: 'Grey', emoji: '🔘'}, {text: 'Golden', emoji: '🟡'},
-    {text: 'Silver', emoji: '⚪'}, {text: 'Maroon', emoji: '🟤'}, {text: 'Navy', emoji: '🔵'},
-    {text: 'Teal', emoji: '🟢'}, {text: 'Lime', emoji: '🟢'}, {text: 'Cyan', emoji: '🔵'},
-    {text: 'Magenta', emoji: '🟣'}, {text: 'Olive', emoji: '🟢'}
+    {text: 'Yellow', emoji: '🟡'}, {text: 'Pink', emoji: '🩷'}, {text: 'Purple', emoji: '🟣'}
   ];
 }
 
 function generateBody() {
   return [
     {text: 'Eye', emoji: '👁️'}, {text: 'Ear', emoji: '👂'}, {text: 'Nose', emoji: '👃'},
-    {text: 'Mouth', emoji: '👄'}, {text: 'Lips', emoji: '👄'}, {text: 'Cheek', emoji: '😊'},
-    {text: 'Chin', emoji: '🧔'}, {text: 'Teeth', emoji: '🦷'}, {text: 'Tongue', emoji: '👅'},
-    {text: 'Hand', emoji: '✋'}, {text: 'Legs', emoji: '🦵'}, {text: 'Foot', emoji: '🦶'},
+    {text: 'Mouth', emoji: '👄'}, {text: 'Hand', emoji: '✋'}, {text: 'Leg', emoji: '🦵'},
     {text: 'Hair', emoji: '💇'}, {text: 'Head', emoji: '🧑'}, {text: 'Finger', emoji: '👆'},
-    {text: 'Shoulder', emoji: '🤷'}, {text: 'Knee', emoji: '🦵'}, {text: 'Elbow', emoji: '💪'},
-    {text: 'Stomach', emoji: '🫃'}, {text: 'Brain', emoji: '🧠'}
+    {text: 'Foot', emoji: '🦶'}
   ];
 }
 
-// ---- NEW: Animals ----
 function generateAnimals() {
   return [
     {text: 'Lion', emoji: '🦁'}, {text: 'Tiger', emoji: '🐯'}, {text: 'Elephant', emoji: '🐘'},
     {text: 'Monkey', emoji: '🐵'}, {text: 'Dog', emoji: '🐶'}, {text: 'Cat', emoji: '🐱'},
-    {text: 'Cow', emoji: '🐮'}, {text: 'Horse', emoji: '🐴'}, {text: 'Sheep', emoji: '🐑'},
-    {text: 'Goat', emoji: '🐐'}, {text: 'Pig', emoji: '🐷'}, {text: 'Rabbit', emoji: '🐰'},
-    {text: 'Bear', emoji: '🐻'}, {text: 'Panda', emoji: '🐼'}, {text: 'Fox', emoji: '🦊'},
-    {text: 'Wolf', emoji: '🐺'}, {text: 'Deer', emoji: '🦌'}, {text: 'Giraffe', emoji: '🦒'},
-    {text: 'Zebra', emoji: '🦓'}, {text: 'Kangaroo', emoji: '🦘'}, {text: 'Camel', emoji: '🐫'},
-    {text: 'Hippo', emoji: '🦛'}, {text: 'Rhino', emoji: '🦏'}, {text: 'Crocodile', emoji: '🐊'},
-    {text: 'Snake', emoji: '🐍'}, {text: 'Turtle', emoji: '🐢'}, {text: 'Fish', emoji: '🐟'},
-    {text: 'Frog', emoji: '🐸'}, {text: 'Mouse', emoji: '🐭'}, {text: 'Squirrel', emoji: '🐿️'}
+    {text: 'Cow', emoji: '🐮'}, {text: 'Horse', emoji: '🐴'}, {text: 'Rabbit', emoji: '🐰'},
+    {text: 'Panda', emoji: '🐼'}
   ];
 }
 
-// ---- NEW: Birds ----
 function generateBirds() {
   return [
     {text: 'Parrot', emoji: '🦜'}, {text: 'Peacock', emoji: '🦚'}, {text: 'Eagle', emoji: '🦅'},
     {text: 'Owl', emoji: '🦉'}, {text: 'Duck', emoji: '🦆'}, {text: 'Swan', emoji: '🦢'},
-    {text: 'Flamingo', emoji: '🦩'}, {text: 'Penguin', emoji: '🐧'}, {text: 'Chicken', emoji: '🐔'},
-    {text: 'Rooster', emoji: '🐓'}, {text: 'Turkey', emoji: '🦃'}, {text: 'Dove', emoji: '🕊️'},
-    {text: 'Crow', emoji: '🐦‍⬛'}, {text: 'Sparrow', emoji: '🐦'}, {text: 'Woodpecker', emoji: '🪶'},
-    {text: 'Hummingbird', emoji: '🐦'}, {text: 'Kingfisher', emoji: '🐦'}, {text: 'Crane', emoji: '🦤'},
-    {text: 'Stork', emoji: '🦤'}, {text: 'Vulture', emoji: '🦅'}
+    {text: 'Penguin', emoji: '🐧'}, {text: 'Chicken', emoji: '🐔'}, {text: 'Crow', emoji: '🐦‍⬛'},
+    {text: 'Sparrow', emoji: '🐦'}
   ];
 }
 
@@ -388,8 +460,7 @@ function speak(text) {
   if (!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'en-IN';
-  u.rate = 0.85;
+  u.lang = 'en-IN'; u.rate = 0.85;
   window.speechSynthesis.speak(u);
 }
 
@@ -484,11 +555,59 @@ function loadTopic(subjectName, topicId) {
     content.innerHTML += `<p>Click on any number to hear its name.</p>
     <div class="numbers-grid">
       ${topic.data.map(item => `
-        <div class="number-card" onclick="speak('${item.say}'); addStar();">
+        <div class="number-card" onclick="speak('${item.say}'); addStar();" style="padding: 35px 10px;">
           <div class="num">${item.num}</div>
         </div>
       `).join('')}
     </div>`;
+  } else if (topic.type === 'match') {
+    content.innerHTML += `<p>Click a Capital letter, then click its Small letter to match.</p>
+    <div class="matching-container">
+      <div class="match-col" id="cap-col">
+        ${topic.data.map((item, i) => `<div class="match-item" id="cap-${i}" onclick="selectMatch('cap', ${i}, '${item.sm}')">${item.cap}</div>`).join('')}
+      </div>
+      <div class="match-col" id="sm-col">
+        ${topic.data.sort(() => Math.random() - 0.5).map((item, i) => `<div class="match-item" id="sm-${i}" onclick="selectMatch('sm', ${i}, '${item.sm}')">${item.sm}</div>`).join('')}
+      </div>
+    </div>`;
+  } else if (topic.type === 'missing') {
+    content.innerHTML += `<p>Type the missing letter in the box.</p><div class="fill-grid">`;
+    topic.data.forEach((item, index) => {
+      const displayWord = item.word.split('').map((char, i) => 
+        i === item.blankIndex ? `<input type="text" maxlength="1" class="blank-input" id="miss-${index}" oninput="checkMissing(${index}, '${char}')">` : char
+      ).join('');
+      content.innerHTML += `<div class="fill-item">${displayWord} <span class="emoji-hint">${item.emoji}</span></div>`;
+    });
+    content.innerHTML += `</div>`;
+  } else if (topic.type === 'numwords') {
+    content.innerHTML += `<p>Match the numbers with their words.</p><div class="interactive-grid">`;
+    topic.data.forEach(item => {
+      content.innerHTML += `<div class="grid-item" style="background:#e8e5ff;" onclick="speak('${item.word}'); addStar();">
+        <div class="num" style="font-size:2.5rem; font-weight:800; color:var(--primary);">${item.num}</div>
+        <div style="font-size:1.2rem; font-weight:700;">${item.word}</div>
+      </div>`;
+    });
+    content.innerHTML += `</div>`;
+  } else if (topic.type === 'add') {
+    content.innerHTML += `<p>Solve these 20 addition questions.</p><div class="fill-grid">`;
+    topic.data.forEach((item, index) => {
+      content.innerHTML += `<div class="fill-item">
+        <span>${item.a} + ${item.b} = </span>
+        <input type="number" class="blank-input" id="add-${index}" style="width:70px;" oninput="checkAdd(${index}, ${item.ans})">
+      </div>`;
+    });
+    content.innerHTML += `</div>`;
+  } else if (topic.type === 'myself') {
+    content.innerHTML += `
+      <div class="myself-form">
+        <p>My name is <input type="text" placeholder="Your Name"></p>
+        <p>I am a <input type="radio" name="gender" value="boy"> Boy / <input type="radio" name="gender" value="girl"> Girl</p>
+        <p>I study in Jr KG class.</p>
+        <p>I live in <input type="text" placeholder="Your City"></p>
+        <p>My favourite colour is <input type="text" placeholder="Colour" style="width:150px;"></p>
+        <p>My favourite fruit is <input type="text" placeholder="Fruit" style="width:150px;"></p>
+        <p>I love my family and friends.</p>
+      </div>`;
   } else {
     content.innerHTML += `<p>${topic.data}</p>`;
   }
@@ -500,25 +619,59 @@ function loadTopic(subjectName, topicId) {
 function checkFill(index, correctChar) {
   const input = document.getElementById(`blank-${index}`);
   if(input.value.toUpperCase() === correctChar.toUpperCase()) {
-    input.classList.add('correct');
-    input.disabled = true;
-    addStar();
-    speak('Correct!');
-  } else {
-    input.classList.remove('correct');
-  }
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else { input.classList.remove('correct'); }
 }
 
 function checkCount(index, correctAns) {
   const input = document.getElementById(`count-${index}`);
   if(parseInt(input.value) === correctAns) {
-    input.classList.add('correct');
-    input.disabled = true;
-    addStar();
-    speak('Correct!');
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else { input.classList.remove('correct'); }
+}
+
+let selectedCap = null;
+let selectedSm = null;
+
+function selectMatch(type, index, correctSm) {
+  const el = document.getElementById(`${type}-${index}`);
+  if (el.classList.contains('matched')) return;
+
+  if (type === 'cap') {
+    if (selectedCap) document.getElementById(`cap-${selectedCap.index}`).classList.remove('selected');
+    selectedCap = { index, value: el.textContent.trim().toLowerCase() };
+    el.classList.add('selected');
   } else {
-    input.classList.remove('correct');
+    if (selectedSm) document.getElementById(`sm-${selectedSm.index}`).classList.remove('selected');
+    selectedSm = { index, value: el.textContent.trim().toLowerCase() };
+    el.classList.add('selected');
   }
+
+  if (selectedCap && selectedSm) {
+    if (selectedCap.value === selectedSm.value) {
+      document.getElementById(`cap-${selectedCap.index}`).classList.replace('selected', 'matched');
+      document.getElementById(`sm-${selectedSm.index}`).classList.replace('selected', 'matched');
+      addStar(); speak('Correct!');
+    } else {
+      document.getElementById(`cap-${selectedCap.index}`).classList.remove('selected');
+      document.getElementById(`sm-${selectedSm.index}`).classList.remove('selected');
+    }
+    selectedCap = null; selectedSm = null;
+  }
+}
+
+function checkMissing(index, correctChar) {
+  const input = document.getElementById(`miss-${index}`);
+  if(input.value.toUpperCase() === correctChar.toUpperCase()) {
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else { input.classList.remove('correct'); }
+}
+
+function checkAdd(index, correctAns) {
+  const input = document.getElementById(`add-${index}`);
+  if(parseInt(input.value) === correctAns) {
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else { input.classList.remove('correct'); }
 }
 
 // Initialize
