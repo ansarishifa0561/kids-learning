@@ -486,7 +486,6 @@ function loadTopic(subjectName, topicId) {
       ${topic.data.map(item => `
         <div class="number-card" onclick="speak('${item.say}'); addStar();">
           <div class="num">${item.num}</div>
-
         </div>
       `).join('')}
     </div>`;
