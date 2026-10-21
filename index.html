@@ -73,68 +73,50 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 .content h1 { font-size: 2.2rem; color: var(--text); margin-bottom: 20px; font-weight: 800; }
 .content p { font-size: 1.1rem; line-height: 1.6; color: var(--muted); margin-bottom: 20px; }
 
-/* Dashboard / Lesson Content */
-.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 20px; margin-top: 30px; }
-.dash-card {
-  border: 1px solid var(--border); border-radius: 12px; padding: 20px;
-  text-align: center; cursor: pointer; transition: 0.2s; background: #fff;
-}
-.dash-card:hover { border-color: var(--primary); box-shadow: 0 8px 20px rgba(108,92,231,0.1); transform: translateY(-3px); }
-.dash-card .emoji { font-size: 3rem; margin-bottom: 10px; display: block; }
-.dash-card h3 { font-size: 1.1rem; color: var(--text); }
-
 /* Interactive Grids */
-.interactive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 15px; margin: 20px 0; }
+.interactive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 20px; margin: 20px 0; }
 .grid-item {
-  border: 2px solid var(--border); border-radius: 12px; padding: 15px;
+  border: 3px solid var(--border); border-radius: 16px; padding: 20px 10px;
   text-align: center; cursor: pointer; transition: 0.2s; background: #fff;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
-.grid-item:hover { border-color: var(--primary); background: #f8f7ff; transform: scale(1.05); }
-.grid-item .pic { font-size: 2.5rem; display: block; margin-bottom: 5px; }
-.grid-item .text { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+.grid-item:hover { border-color: var(--primary); background: #f8f7ff; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(108,92,231,0.15); }
+.grid-item .pic { font-size: 3.5rem; display: block; margin-bottom: 10px; }
+.grid-item .text { font-size: 1.2rem; font-weight: 800; color: var(--text); }
+
+/* Large Shape SVG */
+.shape-svg { width: 100px; height: 100px; margin-bottom: 10px; }
 
 /* Fill in the Blanks */
-.fill-blank {
-  display: flex; align-items: center; justify-content: center;
-  gap: 10px; font-size: 2rem; font-weight: 800; margin: 20px 0;
+.fill-blank-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+.fill-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 2rem; font-weight: 800; color: var(--text);
+  background: #f8f7ff; padding: 10px 20px; border-radius: 12px; border: 2px solid #e8e5ff;
 }
 .blank-input {
-  width: 50px; height: 50px; border: 2px solid var(--primary); border-radius: 8px;
-  text-align: center; font-size: 1.5rem; font-weight: 800; outline: none; text-transform: uppercase;
+  width: 50px; height: 50px; border: 3px solid var(--primary); border-radius: 10px;
+  text-align: center; font-size: 1.8rem; font-weight: 800; outline: none; text-transform: uppercase;
+  background: #fff; color: var(--primary); margin: 0 5px;
 }
 .blank-input:focus { box-shadow: 0 0 10px rgba(108,92,231,0.3); }
+.blank-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
 
-/* Matching Game */
-.match-container { display: flex; gap: 40px; margin-top: 20px; }
-.match-col { display: flex; flex-direction: column; gap: 10px; flex: 1; }
-.match-btn {
-  padding: 12px; border: 2px solid var(--border); border-radius: 10px;
-  font-weight: 800; font-size: 1.2rem; cursor: pointer; transition: 0.2s; background: #fff; font-family: inherit;
+/* Colorful Rhyme Page */
+.rhyme-page {
+  background: linear-gradient(135deg, #fff3e0, #e3f2fd, #fce4ec);
+  border-radius: 24px; padding: 40px; border: 4px dashed #ffb300;
+  text-align: center; position: relative; overflow: hidden;
 }
-.match-btn:hover { border-color: var(--primary); background: #f8f7ff; }
-.match-btn.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
-.match-btn.correct { background: #d8fff0; border-color: #39c995; color: #08764d; cursor: default; }
-.match-btn.wrong { background: #ffe4ec; border-color: #ff8eae; color: #9e254c; }
-
-/* Counting */
-.counting-item {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 15px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px;
+.rhyme-page h2 { font-size: 2.5rem; color: #d81b60; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+.rhyme-cartoon { font-size: 6rem; margin-bottom: 20px; animation: bounce 2s infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+.rhyme-line {
+  font-size: 1.6rem; font-weight: 800; color: #1565c0; margin: 15px 0;
+  background: rgba(255,255,255,0.8); padding: 15px; border-radius: 16px;
+  cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
-.counting-visual { font-size: 1.8rem; letter-spacing: 2px; }
-.counting-input {
-  width: 60px; height: 40px; border: 2px solid var(--border); border-radius: 8px;
-  text-align: center; font-size: 1.2rem; font-weight: 800; outline: none;
-}
-.counting-input:focus { border-color: var(--primary); }
-
-/* Status Message */
-.status-msg {
-  margin-top: 20px; padding: 15px; border-radius: 10px; font-weight: 800;
-  text-align: center; display: none;
-}
-.status-msg.success { display: block; background: #d8fff0; color: #08764d; }
-.status-msg.error { display: block; background: #ffe4ec; color: #9e254c; }
+.rhyme-line:hover { background: #fff; transform: scale(1.02); }
 
 @media (max-width: 768px) {
   .layout { flex-direction: column; }
@@ -152,23 +134,14 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 <!-- Top Navbar -->
 <div class="topnav">
   <div class="logo-area"><span class="logo-icon">🎓</span> Shifa's Hub</div>
-  <div class="class-tabs" id="classTabs">
-    <!-- Tabs generated by JS -->
-  </div>
+  <div class="class-tabs" id="classTabs"></div>
   <div class="stars-display">⭐ <span id="starCount">0</span></div>
 </div>
 
 <!-- Layout -->
 <div class="layout">
-  <!-- Left Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <!-- Topics generated by JS -->
-  </div>
-  
-  <!-- Right Content Area -->
-  <div class="content" id="content">
-    <!-- Lesson content generated by JS -->
-  </div>
+  <div class="sidebar" id="sidebar"></div>
+  <div class="content" id="content"></div>
 </div>
 
 <script>
@@ -176,7 +149,6 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 // 1. STATE & DATA
 // =========================================
 let currentClass = 'nursery';
-let currentTopic = null;
 let stars = parseInt(localStorage.getItem('shifaStars') || '0', 10);
 document.getElementById('starCount').textContent = stars;
 
@@ -190,27 +162,22 @@ const contentData = {
       {
         name: 'English',
         topics: [
-          {id: 'capital', title: 'Capital Letters (A-Z)', type: 'grid', data: generateAlpha('capital')},
-          {id: 'small', title: 'Small Letters (a-z)', type: 'grid', data: generateAlpha('small')},
-          {id: 'fill_eng', title: 'Fill in the Blanks', type: 'fill', data: [
-            {word: 'APPLE', blankIndex: 1}, {word: 'BALL', blankIndex: 0}, {word: 'CAT', blankIndex: 2}
-          ]},
-          {id: 'match_eng', title: 'Match A to Z', type: 'match', data: generateMatch()}
+          {id: 'capital', title: 'Capital Letters', type: 'grid', data: generateAlpha('capital')},
+          {id: 'small', title: 'Small Letters', type: 'grid', data: generateAlpha('small')},
+          {id: 'fill_eng', title: 'Fill in the Blanks', type: 'fill', data: generateFillBlanks()}
         ]
       },
       {
         name: 'Maths',
         topics: [
-          {id: 'count_ball', title: 'Count the Balls', type: 'count', data: generateCount('⚽', 5)},
-          {id: 'count_flower', title: 'Count the Flowers', type: 'count', data: generateCount('🌸', 5)},
           {id: 'shapes', title: 'Shapes', type: 'grid', data: generateShapes()},
-          {id: 'match_num', title: 'Number Matching', type: 'match', data: generateNumMatch()}
+          {id: 'counting', title: 'Counting', type: 'count', data: generateCount()}
         ]
       },
       {
         name: 'EVS',
         topics: [
-          {id: 'fruits', title: 'Fruits Name', type: 'grid', data: generateFruits()},
+          {id: 'fruits', title: 'Fruits', type: 'grid', data: generateFruits()},
           {id: 'colors', title: 'Colours', type: 'grid', data: generateColors()},
           {id: 'body', title: 'Parts of Body', type: 'grid', data: generateBody()}
         ]
@@ -218,14 +185,12 @@ const contentData = {
       {
         name: 'Rhymes',
         topics: [
-          {id: 'rhyme1', title: 'Twinkle Twinkle', type: 'rhyme', data: ['Twinkle twinkle little star', 'How I wonder what you are', 'Up above the world so high', 'Like a diamond in the sky']},
-          {id: 'rhyme2', title: 'Johny Johny', type: 'rhyme', data: ['Johny Johny yes papa', 'Eating sugar no papa', 'Telling lies no papa', 'Open your mouth ha ha ha']}
+          {id: 'rhyme1', title: 'Twinkle Twinkle', type: 'rhyme', data: {emoji:'⭐', color:'linear-gradient(135deg, #1a237e, #4a148c)', lines:['Twinkle twinkle little star', 'How I wonder what you are', 'Up above the world so high', 'Like a diamond in the sky']}},
+          {id: 'rhyme2', title: 'Johny Johny', type: 'rhyme', data: {emoji:'👶', color:'linear-gradient(135deg, #ffcc80, #ffb74d)', lines:['Johny Johny yes papa', 'Eating sugar no papa', 'Telling lies no papa', 'Open your mouth ha ha ha']}}
         ]
       }
     ]
-  },
-  // Provide basic structure for other classes so they don't break
-  class1: { subjects: [{ name: 'Maths', topics: [{id:'add', title:'Addition', type:'info', data:'Addition is putting numbers together.'}] }, { name: 'English', topics: [{id:'nouns', title:'Nouns', type:'info', data:'Nouns are naming words.'}] }] }
+  }
 };
 
 // Fill missing classes with a default template
@@ -241,18 +206,63 @@ classes.forEach(c => {
 });
 
 // =========================================
-// 2. GENERATORS
+// 2. DATA GENERATORS (With Pictures & Colors)
 // =========================================
 function generateAlpha(type) {
-  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-  return alpha.map(l => ({ text: type === 'capital' ? l : l.toLowerCase(), say: l }));
+  // A to Z with corresponding emoji and background color
+  const data = [
+    {l:'A', e:'🍎', c:'#FFCDD2'}, {l:'B', e:'⚽', c:'#F8BBD0'}, {l:'C', e:'🐱', c:'#E1BEE7'},
+    {l:'D', e:'🐶', c:'#D1C4E9'}, {l:'E', e:'🐘', c:'#C5CAE9'}, {l:'F', e:'🐟', c:'#BBDEFB'},
+    {l:'G', e:'🍇', c:'#B3E5FC'}, {l:'H', e:'🏠', c:'#B2EBF2'}, {l:'I', e:'🍦', c:'#B2DFDB'},
+    {l:'J', e:'🧃', c:'#C8E6C9'}, {l:'K', e:'🪁', c:'#DCEDC8'}, {l:'L', e:'🦁', c:'#F0F4C3'},
+    {l:'M', e:'🐵', c:'#FFF9C4'}, {l:'N', e:'🪺', c:'#FFECB3'}, {l:'O', e:'🍊', c:'#FFE0B2'},
+    {l:'P', e:'🦜', c:'#FFCCBC'}, {l:'Q', e:'👑', c:'#D7CCC8'}, {l:'R', e:'🐰', c:'#CFD8DC'},
+    {l:'S', e:'☀️', c:'#FFCDD2'}, {l:'T', e:'🐯', c:'#F8BBD0'}, {l:'U', e:'☂️', c:'#E1BEE7'},
+    {l:'V', e:'🚐', c:'#D1C4E9'}, {l:'W', e:'⌚', c:'#C5CAE9'}, {l:'X', e:'🎹', c:'#BBDEFB'},
+    {l:'Y', e:'🐃', c:'#B3E5FC'}, {l:'Z', e:'🦓', c:'#B2EBF2'}
+  ];
+  return data.map(d => ({
+    text: type === 'capital' ? d.l : d.l.toLowerCase(),
+    emoji: d.e,
+    color: d.c,
+    say: `${d.l} for ${getWordForLetter(d.l)}`
+  }));
+}
+
+function getWordForLetter(l) {
+  const words = {A:'Apple', B:'Ball', C:'Cat', D:'Dog', E:'Elephant', F:'Fish', G:'Grapes', H:'House', I:'Ice cream', J:'Juice', K:'Kite', L:'Lion', M:'Monkey', N:'Nest', O:'Orange', P:'Parrot', Q:'Queen', R:'Rabbit', S:'Sun', T:'Tiger', U:'Umbrella', V:'Van', W:'Watch', X:'Xylophone', Y:'Yak', Z:'Zebra'};
+  return words[l];
+}
+
+function generateFillBlanks() {
+  // 26 questions for A to Z
+  const words = ['APPLE', 'BALL', 'CAT', 'DOG', 'ELEPHANT', 'FISH', 'GRAPES', 'HAT', 'ICE', 'JAM', 'KITE', 'LION', 'MONKEY', 'NEST', 'ORANGE', 'PARROT', 'QUEEN', 'RABBIT', 'SUN', 'TIGER', 'UMBRELLA', 'VAN', 'WATCH', 'BOX', 'YAK', 'ZEBRA'];
+  return words.map((w, i) => ({
+    word: w,
+    blankIndex: Math.floor(Math.random() * w.length) // Random blank position
+  }));
 }
 
 function generateShapes() {
   return [
-    {text: 'Circle', emoji: '⭕'}, {text: 'Square', emoji: '🟥'}, {text: 'Triangle', emoji: '🔺'},
-    {text: 'Star', emoji: '⭐'}, {text: 'Heart', emoji: '❤️'}, {text: 'Diamond', emoji: '🔷'}
+    {text: 'Circle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#FF3B30" stroke-width="6"/></svg>`, say: 'Circle'},
+    {text: 'Square', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="15" y="15" width="70" height="70" fill="none" stroke="#0A84FF" stroke-width="6"/></svg>`, say: 'Square'},
+    {text: 'Triangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,15 90,85 10,85" fill="none" stroke="#34C759" stroke-width="6"/></svg>`, say: 'Triangle'},
+    {text: 'Star', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="none" stroke="#FFD60A" stroke-width="6"/></svg>`, say: 'Star'},
+    {text: 'Heart', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><path d="M50,85 C50,85 10,50 10,30 C10,15 25,10 35,15 C40,18 50,30 50,30 C50,30 60,18 65,15 C75,10 90,15 90,30 C90,50 50,85 50,85 Z" fill="none" stroke="#FF2D95" stroke-width="6"/></svg>`, say: 'Heart'},
+    {text: 'Diamond', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 90,50 50,90 10,50" fill="none" stroke="#AF52DE" stroke-width="6"/></svg>`, say: 'Diamond'}
   ];
+}
+
+function generateCount() {
+  const items = [
+    {emoji:'⚽', count: 5}, {emoji:'🌸', count: 7}, {emoji:'🍎', count: 3},
+    {emoji:'🐶', count: 4}, {emoji:'⭐', count: 6}, {emoji:'🍌', count: 8}
+  ];
+  return items.map(item => ({
+    visual: item.emoji.repeat(item.count),
+    ans: item.count
+  }));
 }
 
 function generateFruits() {
@@ -272,30 +282,10 @@ function generateColors() {
 function generateBody() {
   return [
     {text: 'Eye', emoji: '👁️'}, {text: 'Ear', emoji: '👂'}, {text: 'Nose', emoji: '👃'},
-    {text: 'Mouth', emoji: '👄'}, {text: 'Hand', emoji: '✋'}, {text: 'Foot', emoji: '🦶'}
+    {text: 'Mouth', emoji: '👄'}, {text: 'Lips', emoji: '👄'}, {text: 'Cheek', emoji: '😊'},
+    {text: 'Chin', emoji: '🧔'}, {text: 'Teeth', emoji: '🦷'}, {text: 'Hand', emoji: '✋'},
+    {text: 'Legs', emoji: '🦵'}, {text: 'Foot', emoji: '🦶'}, {text: 'Hair', emoji: '💇'}
   ];
-}
-
-function generateMatch() {
-  return [
-    {left: 'A', right: 'Apple'}, {left: 'B', right: 'Ball'}, {left: 'C', right: 'Cat'},
-    {left: 'D', right: 'Dog'}, {left: 'E', right: 'Elephant'}
-  ];
-}
-
-function generateNumMatch() {
-  return [
-    {left: '1', right: 'One'}, {left: '2', right: 'Two'}, {left: '3', right: 'Three'},
-    {left: '4', right: 'Four'}, {left: '5', right: 'Five'}
-  ];
-}
-
-function generateCount(emoji, count) {
-  let arr = [];
-  for(let i=1; i<=count; i++) {
-    arr.push({visual: emoji.repeat(i), ans: i});
-  }
-  return arr;
 }
 
 // =========================================
@@ -323,7 +313,6 @@ const tabsContainer = document.getElementById('classTabs');
 const sidebar = document.getElementById('sidebar');
 const content = document.getElementById('content');
 
-// Render Class Tabs
 function renderTabs() {
   tabsContainer.innerHTML = classes.map(c => `
     <button class="class-tab ${c === currentClass ? 'active' : ''}" onclick="switchClass('${c}')">
@@ -332,16 +321,13 @@ function renderTabs() {
   `).join('');
 }
 
-// Switch Class
 function switchClass(c) {
   currentClass = c;
-  currentTopic = null;
   renderTabs();
   renderSidebar();
   content.innerHTML = `<h1>👋 Welcome to ${classNames[c]} Dashboard</h1><p>Select a topic from the left sidebar to start learning.</p>`;
 }
 
-// Render Sidebar (Topics)
 function renderSidebar() {
   const data = contentData[currentClass];
   let html = '';
@@ -356,14 +342,11 @@ function renderSidebar() {
   sidebar.innerHTML = html;
 }
 
-// Load Topic Content
 function loadTopic(subjectName, topicId) {
-  // Highlight active tab
   document.querySelectorAll('.topic-list li').forEach(el => el.classList.remove('active'));
   const activeTab = document.getElementById(`tab-${topicId}`);
   if(activeTab) activeTab.classList.add('active');
 
-  // Find topic data
   const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
   const topic = sub.topics.find(t => t.id === topicId);
 
@@ -372,57 +355,44 @@ function loadTopic(subjectName, topicId) {
   if (topic.type === 'grid') {
     content.innerHTML += `<div class="interactive-grid">
       ${topic.data.map(item => `
-        <div class="grid-item" onclick="speak('${item.say || item.text}'); addStar();">
-          ${item.emoji ? `<span class="pic">${item.emoji}</span>` : ''}
+        <div class="grid-item" style="background-color: ${item.color || '#fff'}" onclick="speak('${item.say || item.text}'); addStar();">
+          ${item.svg ? item.svg : (item.emoji ? `<span class="pic">${item.emoji}</span>` : '')}
           <span class="text">${item.text}</span>
         </div>
       `).join('')}
     </div>`;
 
-  } else if (topic.type === 'match') {
-    // Simple matching logic
-    const lefts = topic.data.map(d => d.left);
-    const rights = topic.data.map(d => d.right).sort(() => Math.random() - 0.5);
-    content.innerHTML += `
-      <p>Click a button on the left, then click its match on the right.</p>
-      <div class="match-container">
-        <div class="match-col" id="matchLeft">
-          ${lefts.map(l => `<button class="match-btn" onclick="selectMatch(this, 'L', '${l}')">${l}</button>`).join('')}
-        </div>
-        <div class="match-col" id="matchRight">
-          ${rights.map(r => `<button class="match-btn" onclick="selectMatch(this, 'R', '${r}')">${r}</button>`).join('')}
-        </div>
-      </div>
-      <div id="matchStatus" class="status-msg"></div>
-    `;
-
   } else if (topic.type === 'fill') {
-    content.innerHTML += `<p>Type the missing letter in the box.</p>`;
+    content.innerHTML += `<p>Type the missing letter in the box.</p><div class="fill-blank-container">`;
     topic.data.forEach((item, index) => {
       const displayWord = item.word.split('').map((char, i) => 
         i === item.blankIndex ? `<input type="text" maxlength="1" class="blank-input" id="blank-${index}" oninput="checkFill(${index}, '${char}')">` : char
       ).join('');
-      content.innerHTML += `<div class="fill-blank">${displayWord}</div>`;
+      content.innerHTML += `<div class="fill-item">${displayWord}</div>`;
     });
+    content.innerHTML += `</div>`;
 
   } else if (topic.type === 'count') {
     content.innerHTML += `<p>Count the items and type the number.</p>`;
     topic.data.forEach((item, index) => {
       content.innerHTML += `
-        <div class="counting-item">
-          <span class="counting-visual">${item.visual}</span>
-          <div>
-            = <input type="number" class="counting-input" id="count-${index}" oninput="checkCount(${index}, ${item.ans})">
-          </div>
+        <div class="fill-item" style="justify-content: space-between; font-size: 2.5rem; margin-bottom: 15px;">
+          <span>${item.visual}</span>
+          <div>= <input type="number" class="blank-input" id="count-${index}" oninput="checkCount(${index}, ${item.ans})"></div>
         </div>
       `;
     });
 
   } else if (topic.type === 'rhyme') {
-    content.innerHTML += `<p>Read and listen to the rhyme.</p>`;
-    topic.data.forEach((line, i) => {
-      content.innerHTML += `<button class="match-btn" style="width:100%; text-align:left; padding:15px; margin-bottom:10px; font-size:1.1rem;" onclick="speak('${line}')">🎵 ${line}</button>`;
-    });
+    content.innerHTML += `
+      <div class="rhyme-page" style="background: ${topic.data.color};">
+        <div class="rhyme-cartoon">${topic.data.emoji}</div>
+        <h2>${topic.title}</h2>
+        ${topic.data.lines.map(line => `
+          <div class="rhyme-line" onclick="speak('${line}')">🎵 ${line}</div>
+        `).join('')}
+      </div>
+    `;
   } else {
     content.innerHTML += `<p>${topic.data}</p>`;
   }
@@ -431,67 +401,27 @@ function loadTopic(subjectName, topicId) {
 // =========================================
 // 5. INTERACTIVE GAME LOGIC
 // =========================================
-
-// Matching Game Logic
-let selectedLeft = null;
-function selectMatch(btn, side, val) {
-  if(side === 'L') {
-    document.querySelectorAll('#matchLeft .match-btn').forEach(b => b.classList.remove('selected'));
-    btn.classList.add('selected');
-    selectedLeft = {btn, val};
-    speak(val);
-  } else {
-    if(!selectedLeft) return;
-    
-    // Check if correct
-    const correctMatch = contentData[currentClass].subjects
-      .flatMap(s => s.topics)
-      .find(t => t.id === currentTopic)?.data
-      .find(d => d.left === selectedLeft.val)?.right;
-
-    if(val === correctMatch) {
-      btn.classList.add('correct');
-      selectedLeft.btn.classList.replace('selected', 'correct');
-      btn.disabled = true;
-      selectedLeft.btn.disabled = true;
-      selectedLeft = null;
-      addStar();
-      speak('Correct!');
-    } else {
-      btn.classList.add('wrong');
-      setTimeout(() => btn.classList.remove('wrong'), 500);
-      selectedLeft.btn.classList.remove('selected');
-      selectedLeft = null;
-      speak('Try again');
-    }
-  }
-}
-
-// Fill in the Blank Logic
 function checkFill(index, correctChar) {
   const input = document.getElementById(`blank-${index}`);
   if(input.value.toUpperCase() === correctChar.toUpperCase()) {
-    input.style.borderColor = '#39c995';
-    input.style.backgroundColor = '#d8fff0';
+    input.classList.add('correct');
     input.disabled = true;
     addStar();
     speak('Correct!');
   } else {
-    input.style.borderColor = '#ff8eae';
+    input.classList.remove('correct');
   }
 }
 
-// Counting Logic
 function checkCount(index, correctAns) {
   const input = document.getElementById(`count-${index}`);
   if(parseInt(input.value) === correctAns) {
-    input.style.borderColor = '#39c995';
-    input.style.backgroundColor = '#d8fff0';
+    input.classList.add('correct');
     input.disabled = true;
     addStar();
     speak('Correct!');
   } else {
-    input.style.borderColor = '#ff8eae';
+    input.classList.remove('correct');
   }
 }
 
