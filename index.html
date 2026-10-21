@@ -299,20 +299,6 @@ function generateCount() {
 }
 
 // ---- NEW: Numbers 1 to 20 ----
-function generateNumbers() {
-  const numberWords = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
-  const arr = [];
-  for (let i = 1; i <= 20; i++) {
-    arr.push({
-      num: i,
-      word: numberWords[i-1],
-      dots: '●'.repeat(Math.min(i, 10)) + (i > 10 ? ` +${i-10}` : ''),
-      say: `${i} ${numberWords[i-1]}`
-    });
-  }
-  return arr;
-}
-
 function generateFruits() {
   return [
     {text: 'Apple', emoji: '🍎'}, {text: 'Banana', emoji: '🍌'}, {text: 'Mango', emoji: '🥭'},
