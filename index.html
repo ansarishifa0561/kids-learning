@@ -52,8 +52,8 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 .subject-title { padding: 10px 20px; font-weight: 800; font-size: 1.1rem; color: var(--primary-dark); border-bottom: 2px solid var(--border); margin-bottom: 10px; margin-top: 10px; }
 .topic-list { list-style: none; }
 .topic-list li { padding: 10px 20px; cursor: pointer; font-weight: 600; color: var(--muted); transition: 0.2s; border-left: 4px solid transparent; }
-.topic-list li:hover { background: #ffecb3; color: var(--primary-dark); }
-.topic-list li.active { background: #ffe0b2; color: var(--primary-dark); border-left-color: var(--primary); font-weight: 800;}
+.topic-list li:hover { background: lch(57.93% 92.65 45.84); color: var(--primary-dark); }
+.topic-list li.active { background: #55c40b; color: var(--primary-dark); border-left-color: var(--primary); font-weight: 800;}
 
 /* Content Area */
 .content { flex: 1; padding: 40px; overflow-y: auto; background: var(--bg); }
@@ -213,15 +213,16 @@ function generateShapes() {
   ];
 }
 
-// Unique Emojis for all 30 flowers
 const items30 = {
   flowers: [ 
-    {t:'Rose',e:'🌹'}, {t:'Sunflower',e:'🌻'}, {t:'Lotus',e:'🪷'}, {t:'Tulip',e:'🌷'}, {t:'Daisy',e:'🌼'}, 
-    {t:'Hibiscus',e:'🌺'}, {t:'Lily',e:'🌸'}, {t:'Marigold',e:'🏵️'}, {t:'Orchid',e:'🪻'}, {t:'Jasmine',e:'💮'}, 
-    {t:'Daffodil',e:'🌼'}, {t:'Poppy',e:'🌺'}, {t:'Bluebell',e:'🔔'}, {t:'Lavender',e:'🪻'}, {t:'Peony',e:'🌸'}, 
-    {t:'Iris',e:'🪻'}, {t:'Chrysanthemum',e:'🏵️'}, {t:'Dahlia',e:'🌺'}, {t:'Camellia',e:'🌸'}, {t:'Gardenia',e:'🤍'}, 
-    {t:'Magnolia',e:'💮'}, {t:'Pansy',e:'🌼'}, {t:'Petunia',e:'🌺'}, {t:'Snapdragon',e:'🌸'}, {t:'Zinnia',e:'🌼'}, 
-    {t:'Aster',e:'🌼'}, {t:'Begonia',e:'🌸'}, {t:'Freesia',e:'💮'}, {t:'Geranium',e:'🌸'}, {t:'Hollyhock',e:'🌺'} 
+    {t:'Rose',e:'🌹'}, {t:'Tulip',e:'🌷'}, {t:'Sunflower',e:'🌻'}, {t:'Hibiscus',e:'🌺'}, 
+    {t:'Blossom',e:'🌸'}, {t:'Cherry Blossom',e:'🌸'}, {t:'White Flower',e:'💮'}, {t:'Bouquet',e:'💐'}, 
+    {t:'Lotus',e:'🪷'}, {t:'Carnation',e:'🌸'}, {t:'Orchid',e:'🪻'}, {t:'Lavender',e:'🪻'}, 
+    {t:'Daffodil',e:'🌼'}, {t:'Marigold',e:'🏵️'}, {t:'Jasmine',e:'🤍'}, {t:'Daisy',e:'🌼'}, 
+    {t:'Poppy',e:'🌺'}, {t:'Peony',e:'🌸'}, {t:'Camellia',e:'🌸'}, {t:'Gardenia',e:'🤍'}, 
+    {t:'Azalea',e:'🌺'}, {t:'Magnolia',e:'💮'}, {t:'Chrysanthemum',e:'🏵️'}, {t:'Bluebell',e:'🔔'}, 
+    {t:'Morning Glory',e:'🌅'}, {t:'Petunia',e:'🌺'}, {t:'Zinnia',e:'🌼'}, {t:'Snapdragon',e:'🌸'}, 
+    {t:'Freesia',e:'💮'}, {t:'Water Lily',e:'🪷'} 
   ],
   fruits: [ {t:'Apple',e:'🍎'}, {t:'Banana',e:'🍌'}, {t:'Mango',e:'🥭'}, {t:'Grapes',e:'🍇'}, {t:'Orange',e:'🍊'}, {t:'Cherry',e:'🍒'}, {t:'Watermelon',e:'🍉'}, {t:'Strawberry',e:'🍓'}, {t:'Pineapple',e:'🍍'}, {t:'Pear',e:'🍐'}, {t:'Peach',e:'🍑'}, {t:'Coconut',e:'🥥'}, {t:'Lemon',e:'🍋'}, {t:'Kiwi',e:'🥝'}, {t:'Blueberry',e:'🫐'}, {t:'Papaya',e:'🍈'}, {t:'Avocado',e:'🥑'}, {t:'Fig',e:'🍇'}, {t:'Guava',e:'🍏'}, {t:'Pomegranate',e:'🍎'}, {t:'Apricot',e:'🍑'}, {t:'Blackberry',e:'🫐'}, {t:'Cantaloupe',e:'🍈'}, {t:'Cranberry',e:'🍒'}, {t:'Date',e:'🌴'}, {t:'Dragonfruit',e:'🐉'}, {t:'Grapefruit',e:'🍊'}, {t:'Jackfruit',e:'🍈'}, {t:'Lychee',e:'🍒'}, {t:'Raspberry',e:'🍓'} ],
   animals: [ {t:'Lion',e:'🦁'}, {t:'Tiger',e:'🐯'}, {t:'Elephant',e:'🐘'}, {t:'Monkey',e:'🐵'}, {t:'Dog',e:'🐶'}, {t:'Cat',e:'🐱'}, {t:'Cow',e:'🐮'}, {t:'Horse',e:'🐴'}, {t:'Sheep',e:'🐑'}, {t:'Goat',e:'🐐'}, {t:'Pig',e:'🐷'}, {t:'Rabbit',e:'🐰'}, {t:'Bear',e:'🐻'}, {t:'Panda',e:'🐼'}, {t:'Fox',e:'🦊'}, {t:'Wolf',e:'🐺'}, {t:'Deer',e:'🦌'}, {t:'Giraffe',e:'🦒'}, {t:'Zebra',e:'🦓'}, {t:'Kangaroo',e:'🦘'}, {t:'Camel',e:'🐫'}, {t:'Hippo',e:'🦛'}, {t:'Rhino',e:'🦏'}, {t:'Crocodile',e:'🐊'}, {t:'Snake',e:'🐍'}, {t:'Turtle',e:'🐢'}, {t:'Fish',e:'🐟'}, {t:'Frog',e:'🐸'}, {t:'Mouse',e:'🐭'}, {t:'Squirrel',e:'🐿️'} ],
@@ -343,7 +344,6 @@ const contentData = {
   }
 };
 
-// Number in Words Data for SR KG
 function generateNumWords() {
   const words = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
   return words.map((w, i) => ({ num: i + 1, word: w }));
