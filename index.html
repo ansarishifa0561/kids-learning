@@ -106,17 +106,17 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 .count-input:focus { box-shadow: 0 0 12px rgba(108,92,231,0.4); }
 .count-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
 
-/* Colorful Rhyme Page */
+/* Colorful Rhyme Page (Normal Lines) */
 .rhyme-page {
   border-radius: 24px; padding: 40px; text-align: center; position: relative; overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto;
 }
 .rhyme-page h2 { font-size: 2.8rem; color: #fff; margin-bottom: 20px; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
 .rhyme-cartoon { font-size: 7rem; margin-bottom: 30px; animation: bounce 2s infinite; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 .rhyme-line {
-  font-size: 1.6rem; font-weight: 800; color: #2b2b3a; margin: 15px 0;
-  background: rgba(255,255,255,0.9); padding: 18px 25px; border-radius: 20px;
+  font-size: 1.6rem; font-weight: 800; color: #2b2b3a; margin: 12px 0;
+  background: rgba(255,255,255,0.9); padding: 15px 20px; border-radius: 20px;
   cursor: pointer; transition: 0.2s; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 .rhyme-line:hover { background: #fff; transform: scale(1.03); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
@@ -143,6 +143,18 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 .myself-form input[type="text"] { border: none; border-bottom: 3px dashed var(--primary); outline: none; font-size: 1.5rem; font-family: inherit; font-weight: 700; color: var(--primary); background: transparent; text-align: center; width: 200px; }
 .myself-form input[type="radio"] { transform: scale(1.5); margin: 0 10px; cursor: pointer; }
 
+/* Q&A Section */
+.qa-item { background: #f8f7ff; border: 2px solid #e8e5ff; border-radius: 15px; padding: 20px; margin-bottom: 15px; }
+.qa-q { font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+.qa-a { display: none; font-size: 1.3rem; font-weight: 600; color: #08764d; background: #d8fff0; padding: 10px 15px; border-radius: 10px; margin-top: 10px; }
+.qa-btn { margin-top: 10px; padding: 8px 15px; font-size: 1rem; font-weight: 700; border: none; border-radius: 8px; background: var(--primary); color: white; cursor: pointer; font-family: inherit; }
+
+/* 3-Column Math Grid */
+.textbook-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+.tb-item { display: flex; align-items: center; justify-content: space-between; background: #f8f7ff; padding: 10px 15px; border-radius: 10px; border: 2px solid #e8e5ff; font-size: 1.4rem; font-weight: 800; }
+.tb-item input { width: 60px; height: 45px; font-size: 1.4rem; text-align: center; border: 2px solid var(--primary); border-radius: 8px; outline: none; }
+.tb-item input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+
 @media (max-width: 768px) {
   .layout { flex-direction: column; }
   .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; padding: 10px; gap: 10px; }
@@ -151,6 +163,7 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
   .topic-list li { white-space: nowrap; border-left: none; border-bottom: 4px solid transparent; padding: 8px 12px; }
   .topic-list li.active { border-left: none; border-bottom-color: var(--primary); }
   .content { padding: 20px; }
+  .textbook-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -171,7 +184,7 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 
 <script>
 // =========================================
-// 1. STATE & DATA
+// 1. STATE & CONFIG
 // =========================================
 let currentClass = 'nursery';
 let stars = parseInt(localStorage.getItem('shifaStars') || '0', 10);
@@ -180,175 +193,12 @@ document.getElementById('starCount').textContent = stars;
 const classes = ['nursery', 'jr', 'sr', 'class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7', 'class8'];
 const classNames = { nursery:'Nursery', jr:'Jr KG', sr:'Sr KG', class1:'Class 1', class2:'Class 2', class3:'Class 3', class4:'Class 4', class5:'Class 5', class6:'Class 6', class7:'Class 7', class8:'Class 8' };
 
-const contentData = {
-  nursery: {
-    subjects: [
-      {
-        name: 'English',
-        topics: [
-          {id: 'capital', title: 'Capital Letters', type: 'grid', data: generateAlpha('capital')},
-          {id: 'small', title: 'Small Letters', type: 'grid', data: generateAlpha('small')},
-          {id: 'fill_eng', title: 'Fill in the Blanks', type: 'fill', data: generateFillBlanks()}
-        ]
-      },
-      {
-        name: 'Maths',
-        topics: [
-          {id: 'shapes', title: 'Shapes', type: 'grid', data: generateShapes()},
-          {id: 'counting', title: 'Counting', type: 'count', data: generateCount()},
-          {id: 'numbers_1_20', title: 'Numbers 1 to 20', type: 'numbers', data: generateNumbers()}
-        ]
-      },
-      {
-        name: 'EVS',
-        topics: [
-          {id: 'fruits', title: 'Fruits', type: 'grid', data: generateFruits()},
-          {id: 'colors', title: 'Colours', type: 'grid', data: generateColors()},
-          {id: 'body', title: 'Parts of Body', type: 'grid', data: generateBody()},
-          {id: 'animals', title: 'Animals', type: 'grid', data: generateAnimals()},
-          {id: 'birds', title: 'Birds', type: 'grid', data: generateBirds()}
-        ]
-      },
-      {
-        name: 'Rhymes',
-        topics: [
-          {id: 'rhyme1', title: 'Twinkle Twinkle', type: 'rhyme', data: {emoji:'⭐', color:'linear-gradient(135deg, #1a237e, #4a148c)', lines:['Twinkle twinkle little star', 'How I wonder what you are', 'Up above the world so high', 'Like a diamond in the sky']}},
-          {id: 'rhyme2', title: 'Johny Johny', type: 'rhyme', data: {emoji:'👶', color:'linear-gradient(135deg, #ffcc80, #ffb74d)', lines:['Johny Johny yes papa', 'Eating sugar no papa', 'Telling lies no papa', 'Open your mouth ha ha ha']}}
-        ]
-      }
-    ]
-  },
-  
-  jr: {
-    subjects: [
-      {
-        name: 'English',
-        topics: [
-          {id: 'jr_capital', title: 'Capital Letters', type: 'grid', data: generateAlpha('capital')},
-          {id: 'jr_small', title: 'Small Letters', type: 'grid', data: generateAlpha('small')},
-          {id: 'jr_match', title: 'Capital & Small Matching', type: 'match', data: generateMatchAlpha()},
-          {id: 'jr_2letter', title: '2 Letter Words', type: 'grid', data: generateTwoLetterWords()},
-          {id: 'jr_missing', title: 'Missing Alphabet (A to Z)', type: 'missing', data: generateMissingAlpha()}
-        ]
-      },
-      {
-        name: 'Maths',
-        topics: [
-          {id: 'jr_numbers', title: 'Numbers 1 to 50', type: 'numbers', data: generateNumbers50()},
-          {id: 'jr_num_words', title: 'Number in Words (1-20)', type: 'numwords', data: generateNumberWords()},
-          {id: 'jr_add', title: 'Addition (20 Questions)', type: 'add', data: generateAddition()}
-        ]
-      },
-      {
-        name: 'EVS',
-        topics: [
-          {id: 'jr_body', title: 'Parts of Body', type: 'grid', data: generateBody()},
-          {id: 'jr_fruits', title: 'Fruits', type: 'grid', data: generateFruits()},
-          {id: 'jr_animals', title: 'Animals', type: 'grid', data: generateAnimals()},
-          {id: 'jr_birds', title: 'Birds', type: 'grid', data: generateBirds()},
-          {id: 'jr_veg', title: 'Vegetables', type: 'grid', data: generateVegetables()},
-          {id: 'jr_flowers', title: 'Flowers', type: 'grid', data: generateFlowers()},
-          {id: 'jr_colors', title: 'Colors', type: 'grid', data: generateColors()}
-        ]
-      },
-      {
-        name: 'Rhymes & Self',
-        topics: [
-          {id: 'jr_myself', title: 'My Self', type: 'myself', data: {}},
-          {id: 'jr_poem1', title: 'Colours Poem', type: 'rhyme', data: {emoji:'🌈', color:'linear-gradient(135deg, #00b4db, #0083b0)', lines:['Red and yellow, green and blue', 'These are colours, bright and new', 'Orange, purple, pink and white', 'Colours make the world so bright']}}
-        ]
-      }
-    ]
-  },
-
-  sr: {
-    subjects: [
-      {
-        name: 'English',
-        topics: [
-          {id: 'sr_capital', title: 'Capital Letters', type: 'grid', data: generateAlpha('capital')},
-          {id: 'sr_small', title: 'Small Letters', type: 'grid', data: generateAlpha('small')},
-          {id: 'sr_3letter', title: '3 Letter Words', type: 'grid', data: generateThreeLetterWords()},
-          {id: 'sr_2letter', title: '2 Letter Words', type: 'grid', data: generateTwoLetterWords()},
-          {id: 'sr_missing', title: 'Missing Alphabet', type: 'missing', data: generateMissingAlpha()}
-        ]
-      },
-      {
-        name: 'Maths',
-        topics: [
-          {id: 'sr_numbers', title: 'Numbers 1 to 100', type: 'numbers', data: generateNumbers100()},
-          {id: 'sr_add_sub', title: 'Addition & Subtraction', type: 'add', data: generateAddSub()}
-        ]
-      },
-      {
-        name: 'EVS',
-        topics: [
-          {id: 'sr_body', title: 'Parts of Body', type: 'grid', data: generateBody()},
-          {id: 'sr_fruits', title: 'Fruits', type: 'grid', data: generateFruits()},
-          {id: 'sr_animals', title: 'Animals', type: 'grid', data: generateAnimals()},
-          {id: 'sr_birds', title: 'Birds', type: 'grid', data: generateBirds()},
-          {id: 'sr_veg', title: 'Vegetables', type: 'grid', data: generateVegetables()},
-          {id: 'sr_flowers', title: 'Flowers', type: 'grid', data: generateFlowers()},
-          {id: 'sr_colors', title: 'Colors', type: 'grid', data: generateColors()}
-        ]
-      },
-      {
-        name: 'Rhymes & Self',
-        topics: [
-          {id: 'sr_myself', title: 'My Self', type: 'myself', data: {}}
-        ]
-      }
-    ]
-  }
-};
-
-// Fill missing classes with a default template
-classes.forEach(c => {
-  if(!contentData[c]) {
-    contentData[c] = {
-      subjects: [
-        { name: 'English', topics: [{id:'c1', title:'Chapter 1', type:'info', data:'Content coming soon...'}] },
-        { name: 'Maths', topics: [{id:'c2', title:'Chapter 1', type:'info', data:'Content coming soon...'}] }
-      ]
-    };
-  }
-});
-
 // =========================================
-// 2. DATA GENERATORS
+// 2. DATA GENERATORS (Reusable)
 // =========================================
-function generateAlpha(type) {
-  const data = [
-    {l:'A', e:'🍎', c:'#FFCDD2'}, {l:'B', e:'⚽', c:'#F8BBD0'}, {l:'C', e:'🐱', c:'#E1BEE7'},
-    {l:'D', e:'🐶', c:'#D1C4E9'}, {l:'E', e:'🐘', c:'#C5CAE9'}, {l:'F', e:'🐟', c:'#BBDEFB'},
-    {l:'G', e:'🍇', c:'#B3E5FC'}, {l:'H', e:'🏠', c:'#B2EBF2'}, {l:'I', e:'🍦', c:'#B2DFDB'},
-    {l:'J', e:'🧃', c:'#C8E6C9'}, {l:'K', e:'🪁', c:'#DCEDC8'}, {l:'L', e:'🦁', c:'#F0F4C3'},
-    {l:'M', e:'🐵', c:'#FFF9C4'}, {l:'N', e:'🪺', c:'#FFECB3'}, {l:'O', e:'🍊', c:'#FFE0B2'},
-    {l:'P', e:'🦜', c:'#FFCCBC'}, {l:'Q', e:'👑', c:'#D7CCC8'}, {l:'R', e:'🐰', c:'#CFD8DC'},
-    {l:'S', e:'☀️', c:'#FFCDD2'}, {l:'T', e:'🐯', c:'#F8BBD0'}, {l:'U', e:'☂️', c:'#E1BEE7'},
-    {l:'V', e:'🚐', c:'#D1C4E9'}, {l:'W', e:'⌚', c:'#C5CAE9'}, {l:'X', e:'🎹', c:'#BBDEFB'},
-    {l:'Y', e:'🐃', c:'#B3E5FC'}, {l:'Z', e:'🦓', c:'#B2EBF2'}
-  ];
-  return data.map(d => ({
-    text: type === 'capital' ? d.l : d.l.toLowerCase(),
-    emoji: d.e, color: d.c, say: `${d.l} for ${getWordForLetter(d.l)}`
-  }));
-}
-
-function getWordForLetter(l) {
-  const words = {A:'Apple', B:'Ball', C:'Cat', D:'Dog', E:'Elephant', F:'Fish', G:'Grapes', H:'House', I:'Ice cream', J:'Juice', K:'Kite', L:'Lion', M:'Monkey', N:'Nest', O:'Orange', P:'Parrot', Q:'Queen', R:'Rabbit', S:'Sun', T:'Tiger', U:'Umbrella', V:'Van', W:'Watch', X:'Xylophone', Y:'Yak', Z:'Zebra'};
-  return words[l];
-}
-
-function generateFillBlanks() {
-  const words = [
-    {w:'APPLE', e:'🍎'}, {w:'BALL', e:'⚽'}, {w:'CAT', e:'🐱'}, {w:'DOG', e:'🐶'}, {w:'ELEPHANT', e:'🐘'}, {w:'FISH', e:'🐟'},
-    {w:'GRAPES', e:'🍇'}, {w:'HAT', e:'👒'}, {w:'ICE', e:'🍦'}, {w:'JAM', e:'🍯'}, {w:'KITE', e:'🪁'}, {w:'LION', e:'🦁'},
-    {w:'MONKEY', e:'🐵'}, {w:'NEST', e:'🪺'}, {w:'ORANGE', e:'🍊'}, {w:'PARROT', e:'🦜'}, {w:'QUEEN', e:'👑'}, {w:'RABBIT', e:'🐰'},
-    {w:'SUN', e:'☀️'}, {w:'TIGER', e:'🐯'}, {w:'UMBRELLA', e:'☂️'}, {w:'VAN', e:'🚐'}, {w:'WATCH', e:'⌚'}, {w:'BOX', e:'📦'},
-    {w:'YAK', e:'🐃'}, {w:'ZEBRA', e:'🦓'}
-  ];
-  return words.map((item, i) => ({ word: item.w, emoji: item.e, blankIndex: 1 }));
+function generateAlpha() {
+  const data = [{l:'A',e:'🍎',w:'Apple'},{l:'B',e:'⚽',w:'Ball'},{l:'C',e:'🐱',w:'Cat'},{l:'D',e:'🐶',w:'Dog'},{l:'E',e:'🐘',w:'Elephant'},{l:'F',e:'🐟',w:'Fish'},{l:'G',e:'🍇',w:'Grapes'},{l:'H',e:'🏠',w:'House'},{l:'I',e:'🍦',w:'Ice Cream'},{l:'J',e:'🧃',w:'Juice'},{l:'K',e:'🪁',w:'Kite'},{l:'L',e:'🦁',w:'Lion'},{l:'M',e:'🐵',w:'Monkey'},{l:'N',e:'🪺',w:'Nest'},{l:'O',e:'🍊',w:'Orange'},{l:'P',e:'🦜',w:'Parrot'},{l:'Q',e:'👑',w:'Queen'},{l:'R',e:'🐰',w:'Rabbit'},{l:'S',e:'☀️',w:'Sun'},{l:'T',e:'🐯',w:'Tiger'},{l:'U',e:'☂️',w:'Umbrella'},{l:'V',e:'🚐',w:'Van'},{l:'W',e:'⌚',w:'Watch'},{l:'X',e:'🎹',w:'Xylophone'},{l:'Y',e:'🐃',w:'Yak'},{l:'Z',e:'🦓',w:'Zebra'}];
+  return data.map(d => ({ text: `${d.l} for ${d.w}`, emoji: d.e, say: `${d.l} for ${d.w}` }));
 }
 
 function generateShapes() {
@@ -357,59 +207,38 @@ function generateShapes() {
     {text: 'Square', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="15" y="15" width="70" height="70" fill="none" stroke="#0A84FF" stroke-width="6"/></svg>`, say: 'Square'},
     {text: 'Triangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,15 90,85 10,85" fill="none" stroke="#34C759" stroke-width="6"/></svg>`, say: 'Triangle'},
     {text: 'Rectangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="10" y="25" width="80" height="50" fill="none" stroke="#FF9500" stroke-width="6"/></svg>`, say: 'Rectangle'},
-    {text: 'Star', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="none" stroke="#FFD60A" stroke-width="6"/></svg>`, say: 'Star'}
+    {text: 'Star', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="none" stroke="#FFD60A" stroke-width="6"/></svg>`, say: 'Star'},
+    {text: 'Curve', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><path d="M 10 80 Q 50 10 90 80" fill="none" stroke="#FF2D95" stroke-width="6"/></svg>`, say: 'Curve'},
+    {text: 'Oval', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="35" ry="45" fill="none" stroke="#00C2A8" stroke-width="6"/></svg>`, say: 'Oval'}
   ];
 }
 
-function generateCount() {
-  const items = [
-    {emoji:'⚽', count: 5}, {emoji:'🌸', count: 7}, {emoji:'🍎', count: 3},
-    {emoji:'🐶', count: 4}, {emoji:'⭐', count: 6}, {emoji:'🍌', count: 8}
-  ];
-  return items.map(item => ({ visual: item.emoji.repeat(item.count), ans: item.count }));
+const items30 = {
+  fruits: [ {t:'Apple',e:'🍎'}, {t:'Banana',e:'🍌'}, {t:'Mango',e:'🥭'}, {t:'Grapes',e:'🍇'}, {t:'Orange',e:'🍊'}, {t:'Cherry',e:'🍒'}, {t:'Watermelon',e:'🍉'}, {t:'Strawberry',e:'🍓'}, {t:'Pineapple',e:'🍍'}, {t:'Pear',e:'🍐'}, {t:'Peach',e:'🍑'}, {t:'Coconut',e:'🥥'}, {t:'Lemon',e:'🍋'}, {t:'Kiwi',e:'🥝'}, {t:'Blueberry',e:'🫐'}, {t:'Papaya',e:'🍈'}, {t:'Avocado',e:'🥑'}, {t:'Fig',e:'🍇'}, {t:'Guava',e:'🍏'}, {t:'Pomegranate',e:'🍎'}, {t:'Apricot',e:'🍑'}, {t:'Blackberry',e:'🫐'}, {t:'Cantaloupe',e:'🍈'}, {t:'Cranberry',e:'🍒'}, {t:'Date',e:'🌴'}, {t:'Dragonfruit',e:'🐉'}, {t:'Grapefruit',e:'🍊'}, {t:'Jackfruit',e:'🍈'}, {t:'Lychee',e:'🍒'}, {t:'Raspberry',e:'🍓'} ],
+  animals: [ {t:'Lion',e:'🦁'}, {t:'Tiger',e:'🐯'}, {t:'Elephant',e:'🐘'}, {t:'Monkey',e:'🐵'}, {t:'Dog',e:'🐶'}, {t:'Cat',e:'🐱'}, {t:'Cow',e:'🐮'}, {t:'Horse',e:'🐴'}, {t:'Sheep',e:'🐑'}, {t:'Goat',e:'🐐'}, {t:'Pig',e:'🐷'}, {t:'Rabbit',e:'🐰'}, {t:'Bear',e:'🐻'}, {t:'Panda',e:'🐼'}, {t:'Fox',e:'🦊'}, {t:'Wolf',e:'🐺'}, {t:'Deer',e:'🦌'}, {t:'Giraffe',e:'🦒'}, {t:'Zebra',e:'🦓'}, {t:'Kangaroo',e:'🦘'}, {t:'Camel',e:'🐫'}, {t:'Hippo',e:'🦛'}, {t:'Rhino',e:'🦏'}, {t:'Crocodile',e:'🐊'}, {t:'Snake',e:'🐍'}, {t:'Turtle',e:'🐢'}, {t:'Fish',e:'🐟'}, {t:'Frog',e:'🐸'}, {t:'Mouse',e:'🐭'}, {t:'Squirrel',e:'🐿️'} ],
+  birds: [ {t:'Parrot',e:'🦜'}, {t:'Peacock',e:'🦚'}, {t:'Eagle',e:'🦅'}, {t:'Owl',e:'🦉'}, {t:'Duck',e:'🦆'}, {t:'Swan',e:'🦢'}, {t:'Flamingo',e:'🦩'}, {t:'Penguin',e:'🐧'}, {t:'Chicken',e:'🐔'}, {t:'Rooster',e:'🐓'}, {t:'Turkey',e:'🦃'}, {t:'Dove',e:'🕊️'}, {t:'Crow',e:'🐦‍⬛'}, {t:'Sparrow',e:'🐦'}, {t:'Woodpecker',e:'🪶'}, {t:'Hummingbird',e:'🐦'}, {t:'Kingfisher',e:'🐦'}, {t:'Crane',e:'🦤'}, {t:'Stork',e:'🦤'}, {t:'Vulture',e:'🦅'}, {t:'Falcon',e:'🦅'}, {t:'Hawk',e:'🦅'}, {t:'Ostrich',e:'🦩'}, {t:'Pelican',e:'🦢'}, {t:'Robin',e:'🐦'}, {t:'Seagull',e:'🕊️'}, {t:'Toucan',e:'🦜'}, {t:'Magpie',e:'🐦'}, {t:'Kookaburra',e:'🐦'}, {t:'Puffin',e:'🐧'} ],
+  vegetables: [ {t:'Carrot',e:'🥕'}, {t:'Potato',e:'🥔'}, {t:'Tomato',e:'🍅'}, {t:'Onion',e:'🧅'}, {t:'Brinjal',e:'🍆'}, {t:'Broccoli',e:'🥦'}, {t:'Corn',e:'🌽'}, {t:'Cucumber',e:'🥒'}, {t:'Peas',e:'🫛'}, {t:'Pumpkin',e:'🎃'}, {t:'Cabbage',e:'🥬'}, {t:'Spinach',e:'🍃'}, {t:'Radish',e:'🥕'}, {t:'Beetroot',e:'🍠'}, {t:'Cauliflower',e:'🥦'}, {t:'Capsicum',e:'🫑'}, {t:'Chilli',e:'🌶️'}, {t:'Ginger',e:'🫚'}, {t:'Garlic',e:'🧄'}, {t:'Lettuce',e:'🥬'}, {t:'Mushroom',e:'🍄'}, {t:'Okra',e:'🥒'}, {t:'Sweet Potato',e:'🍠'}, {t:'Turnip',e:'🥕'}, {t:'Zucchini',e:'🥒'}, {t:'Asparagus',e:'🌱'}, {t:'Celery',e:'🥬'}, {t:'Leek',e:'🧅'}, {t:'Parsnip',e:'🥕'}, {t:'Squash',e:'🎃'} ],
+  flowers: [ {t:'Rose',e:'🌹'}, {t:'Sunflower',e:'🌻'}, {t:'Lotus',e:'🪷'}, {t:'Tulip',e:'🌷'}, {t:'Daisy',e:'🌼'}, {t:'Hibiscus',e:'🌺'}, {t:'Lily',e:'🌸'}, {t:'Marigold',e:'🏵️'}, {t:'Orchid',e:'🌺'}, {t:'Jasmine',e:'🌼'}, {t:'Daffodil',e:'🌼'}, {t:'Poppy',e:'🌺'}, {t:'Bluebell',e:'🔔'}, {t:'Lavender',e:'🪻'}, {t:'Peony',e:'🌸'}, {t:'Iris',e:'🌺'}, {t:'Chrysanthemum',e:'🏵️'}, {t:'Dahlia',e:'🌺'}, {t:'Camellia',e:'🌸'}, {t:'Gardenia',e:'🌼'}, {t:'Magnolia',e:'🌸'}, {t:'Pansy',e:'🌼'}, {t:'Petunia',e:'🌺'}, {t:'Snapdragon',e:'🐉'}, {t:'Zinnia',e:'🌼'}, {t:'Aster',e:'🌼'}, {t:'Begonia',e:'🌸'}, {t:'Freesia',e:'🌼'}, {t:'Geranium',e:'🌸'}, {t:'Hollyhock',e:'🌺'} ],
+  colors: [ {t:'Red',e:'🔴'}, {t:'Blue',e:'🔵'}, {t:'Green',e:'🟢'}, {t:'Yellow',e:'🟡'}, {t:'Pink',e:'🩷'}, {t:'Purple',e:'🟣'}, {t:'Orange',e:'🟠'}, {t:'Brown',e:'🟤'}, {t:'Black',e:'⚫'}, {t:'White',e:'⚪'}, {t:'Grey',e:'🔘'}, {t:'Golden',e:'🟡'}, {t:'Silver',e:'⚪'}, {t:'Maroon',e:'🟤'}, {t:'Navy',e:'🔵'}, {t:'Teal',e:'🟢'}, {t:'Lime',e:'🟢'}, {t:'Cyan',e:'🔵'}, {t:'Magenta',e:'🟣'}, {t:'Olive',e:'🟢'}, {t:'Beige',e:'🟤'}, {t:'Coral',e:'🟠'}, {t:'Turquoise',e:'🔵'}, {t:'Indigo',e:'🟣'}, {t:'Violet',e:'🟣'}, {t:'Peach',e:'🍑'}, {t:'Lavender',e:'🟣'}, {t:'Mint',e:'🟢'}, {t:'Mustard',e:'🟡'}, {t:'Salmon',e:'🟠'} ]
+};
+
+function generate30Items(category) {
+  return items30[category].map(item => ({ text: item.t, emoji: item.e, say: item.t }));
 }
 
-function generateNumbers() {
+function generateAdd30() {
   const arr = [];
-  for (let i = 1; i <= 20; i++) arr.push({ num: i, say: `${i}` });
-  return arr;
-}
-
-function generateNumbers50() {
-  const arr = [];
-  for (let i = 1; i <= 50; i++) arr.push({ num: i, say: `${i}` });
-  return arr;
-}
-
-function generateNumbers100() {
-  const arr = [];
-  for (let i = 1; i <= 100; i++) arr.push({ num: i, say: `${i}` });
-  return arr;
-}
-
-function generateNumberWords() {
-  const numberWords = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
-  return numberWords.map((word, i) => ({ num: i + 1, word: word }));
-}
-
-function generateAddition() {
-  const arr = [];
-  for (let i = 0; i < 20; i++) {
-    let a = Math.floor(Math.random() * 9) + 1;
-    let b = Math.floor(Math.random() * 9) + 1;
-    arr.push({ a: a, b: b, ans: a + b, op: '+' });
-  }
-  return arr;
-}
-
-function generateAddSub() {
-  const arr = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 30; i++) {
     let a = Math.floor(Math.random() * 10) + 1;
     let b = Math.floor(Math.random() * 10) + 1;
     arr.push({ a: a, b: b, ans: a + b, op: '+' });
   }
-  for (let i = 0; i < 10; i++) {
+  return arr;
+}
+
+function generateSub30() {
+  const arr = [];
+  for (let i = 0; i < 30; i++) {
     let a = Math.floor(Math.random() * 10) + 5;
     let b = Math.floor(Math.random() * 5) + 1;
     arr.push({ a: a, b: b, ans: a - b, op: '-' });
@@ -417,106 +246,160 @@ function generateAddSub() {
   return arr;
 }
 
+function generateNumbers(max) {
+  const arr = [];
+  for (let i = 1; i <= max; i++) arr.push({ num: i, say: `${i}` });
+  return arr;
+}
+
+function generateCount() {
+  const items = [{emoji:'⚽', count: 5}, {emoji:'🌸', count: 7}, {emoji:'🍎', count: 3}, {emoji:'🐶', count: 4}, {emoji:'⭐', count: 6}, {emoji:'🍌', count: 8}];
+  return items.map(item => ({ visual: item.emoji.repeat(item.count), ans: item.count }));
+}
+
 function generateMatchAlpha() {
-  return [
-    {cap: 'A', sm: 'a'}, {cap: 'B', sm: 'b'}, {cap: 'C', sm: 'c'},
-    {cap: 'D', sm: 'd'}, {cap: 'E', sm: 'e'}, {cap: 'F', sm: 'f'}
-  ];
-}
-
-function generateTwoLetterWords() {
-  return [
-    {text: 'at', emoji: '🐱'}, {text: 'in', emoji: '📥'}, {text: 'on', emoji: '⬆️'},
-    {text: 'up', emoji: '🎈'}, {text: 'go', emoji: '🚦'}, {text: 'my', emoji: '🙋'},
-    {text: 'no', emoji: '🙅'}, {text: 'so', emoji: '👌'}, {text: 'he', emoji: '👦'},
-    {text: 'we', emoji: '👫'}, {text: 'it', emoji: '🪀'}, {text: 'is', emoji: '✅'},
-    {text: 'an', emoji: '🍎'}, {text: 'am', emoji: '🧍'}, {text: 'do', emoji: '🏃'},
-    {text: 'me', emoji: '🙋‍♂️'}, {text: 'be', emoji: '🐝'}, {text: 'us', emoji: '👨‍👩‍👦'}
-  ];
-}
-
-function generateThreeLetterWords() {
-  return [
-    {text: 'Cat', emoji: '🐱'}, {text: 'Dog', emoji: '🐶'}, {text: 'Sun', emoji: '☀️'},
-    {text: 'Pen', emoji: '🖊️'}, {text: 'Cup', emoji: '🥤'}, {text: 'Box', emoji: '📦'},
-    {text: 'Bat', emoji: '🦇'}, {text: 'Hat', emoji: '👒'}, {text: 'Bus', emoji: '🚌'},
-    {text: 'Car', emoji: '🚗'}
-  ];
+  return [{cap: 'A', sm: 'a'}, {cap: 'B', sm: 'b'}, {cap: 'C', sm: 'c'}, {cap: 'D', sm: 'd'}, {cap: 'E', sm: 'e'}, {cap: 'F', sm: 'f'}];
 }
 
 function generateMissingAlpha() {
-  const words = [
-    {w: 'APPLE', e: '🍎'}, {w: 'BALL', e: '⚽'}, {w: 'CAT', e: '🐱'}, {w: 'DOG', e: '🐶'}, 
-    {w: 'ELEPHANT', e: '🐘'}, {w: 'FISH', e: '🐟'}, {w: 'GRAPES', e: '🍇'}, {w: 'HAT', e: '👒'}, 
-    {w: 'ICE', e: '🍦'}, {w: 'JUG', e: '🫙'}, {w: 'KITE', e: '🪁'}, {w: 'LION', e: '🦁'},
-    {w: 'MANGO', e: '🥭'}, {w: 'NEST', e: '🪺'}, {w: 'ORANGE', e: '🍊'}, {w: 'PARROT', e: '🦜'},
-    {w: 'QUEEN', e: '👑'}, {w: 'RAT', e: '🐀'}, {w: 'SUN', e: '☀️'}, {w: 'TIGER', e: '🐯'},
-    {w: 'UMBRELLA', e: '☂️'}, {w: 'VAN', e: '🚐'}, {w: 'WATCH', e: '⌚'}, {w: 'BOX', e: '📦'},
-    {w: 'YAK', e: '🐃'}, {w: 'ZEBRA', e: '🦓'}
-  ];
+  const words = [{w: 'APPLE', e: '🍎'}, {w: 'BALL', e: '⚽'}, {w: 'CAT', e: '🐱'}, {w: 'DOG', e: '🐶'}, {w: 'FISH', e: '🐟'}];
   return words.map(item => ({ word: item.w, emoji: item.e, blankIndex: Math.floor(Math.random() * item.w.length) }));
 }
 
-function generateVegetables() {
-  return [
-    {text: 'Carrot', emoji: '🥕'}, {text: 'Potato', emoji: '🥔'}, {text: 'Tomato', emoji: '🍅'},
-    {text: 'Onion', emoji: '🧅'}, {text: 'Brinjal', emoji: '🍆'}, {text: 'Broccoli', emoji: '🥦'},
-    {text: 'Corn', emoji: '🌽'}, {text: 'Cucumber', emoji: '🥒'}, {text: 'Peas', emoji: '🫛'},
-    {text: 'Pumpkin', emoji: '🎃'}
-  ];
-}
-
-function generateFlowers() {
-  return [
-    {text: 'Rose', emoji: '🌹'}, {text: 'Sunflower', emoji: '🌻'}, {text: 'Lotus', emoji: '🪷'},
-    {text: 'Tulip', emoji: '🌷'}, {text: 'Daisy', emoji: '🌼'}, {text: 'Hibiscus', emoji: '🌺'},
-    {text: 'Lily', emoji: '🌸'}, {text: 'Marigold', emoji: '🏵️'}
-  ];
-}
-
-function generateFruits() {
-  return [
-    {text: 'Apple', emoji: '🍎'}, {text: 'Banana', emoji: '🍌'}, {text: 'Mango', emoji: '🥭'},
-    {text: 'Grapes', emoji: '🍇'}, {text: 'Orange', emoji: '🍊'}, {text: 'Cherry', emoji: '🍒'}
-  ];
-}
-
-function generateColors() {
-  return [
-    {text: 'Red', emoji: '🔴'}, {text: 'Blue', emoji: '🔵'}, {text: 'Green', emoji: '🟢'},
-    {text: 'Yellow', emoji: '🟡'}, {text: 'Pink', emoji: '🩷'}, {text: 'Purple', emoji: '🟣'}
-  ];
-}
-
 function generateBody() {
-  return [
-    {text: 'Eye', emoji: '👁️'}, {text: 'Ear', emoji: '👂'}, {text: 'Nose', emoji: '👃'},
-    {text: 'Mouth', emoji: '👄'}, {text: 'Hand', emoji: '✋'}, {text: 'Leg', emoji: '🦵'},
-    {text: 'Hair', emoji: '💇'}, {text: 'Head', emoji: '🧑'}, {text: 'Finger', emoji: '👆'},
-    {text: 'Foot', emoji: '🦶'}
-  ];
-}
-
-function generateAnimals() {
-  return [
-    {text: 'Lion', emoji: '🦁'}, {text: 'Tiger', emoji: '🐯'}, {text: 'Elephant', emoji: '🐘'},
-    {text: 'Monkey', emoji: '🐵'}, {text: 'Dog', emoji: '🐶'}, {text: 'Cat', emoji: '🐱'},
-    {text: 'Cow', emoji: '🐮'}, {text: 'Horse', emoji: '🐴'}, {text: 'Rabbit', emoji: '🐰'},
-    {text: 'Panda', emoji: '🐼'}
-  ];
-}
-
-function generateBirds() {
-  return [
-    {text: 'Parrot', emoji: '🦜'}, {text: 'Peacock', emoji: '🦚'}, {text: 'Eagle', emoji: '🦅'},
-    {text: 'Owl', emoji: '🦉'}, {text: 'Duck', emoji: '🦆'}, {text: 'Swan', emoji: '🦢'},
-    {text: 'Penguin', emoji: '🐧'}, {text: 'Chicken', emoji: '🐔'}, {text: 'Crow', emoji: '🐦‍⬛'},
-    {text: 'Sparrow', emoji: '🐦'}
-  ];
+  return [ {text: 'Eye', emoji: '👁️'}, {text: 'Ear', emoji: '👂'}, {text: 'Nose', emoji: '👃'}, {text: 'Mouth', emoji: '👄'}, {text: 'Hand', emoji: '✋'}, {text: 'Leg', emoji: '🦵'}, {text: 'Hair', emoji: '💇'}, {text: 'Head', emoji: '🧑'}, {text: 'Finger', emoji: '👆'}, {text: 'Foot', emoji: '🦶'} ];
 }
 
 // =========================================
-// 3. UI HELPERS
+// 3. MASTER CONTENT DATA
+// =========================================
+const contentData = {
+  nursery: {
+    subjects: [
+      { name: 'English', topics: [
+        {id: 'nur_alpha', title: 'A to Z Alphabets', type: 'grid', data: generateAlpha()},
+        {id: 'nur_fill', title: 'Fill in the Blanks', type: 'fill', data: generateMissingAlpha()}
+      ]},
+      { name: 'Maths', topics: [
+        {id: 'nur_shapes', title: 'Shapes', type: 'grid', data: generateShapes()},
+        {id: 'nur_count', title: 'Counting', type: 'count', data: generateCount()},
+        {id: 'nur_num20', title: 'Numbers 1 to 20', type: 'numbers', data: generateNumbers(20)}
+      ]},
+      { name: 'EVS', topics: [
+        {id: 'nur_fruits', title: 'Fruits (30)', type: 'grid', data: generate30Items('fruits')},
+        {id: 'nur_animals', title: 'Animals (30)', type: 'grid', data: generate30Items('animals')},
+        {id: 'nur_birds', title: 'Birds (30)', type: 'grid', data: generate30Items('birds')},
+        {id: 'nur_veg', title: 'Vegetables (30)', type: 'grid', data: generate30Items('vegetables')},
+        {id: 'nur_flowers', title: 'Flowers (30)', type: 'grid', data: generate30Items('flowers')},
+        {id: 'nur_colors', title: 'Colors (30)', type: 'grid', data: generate30Items('colors')},
+        {id: 'nur_body', title: 'Parts of Body', type: 'grid', data: generateBody()}
+      ]},
+      { name: 'Rhymes', topics: [
+        {id: 'rhyme1', title: 'Twinkle Twinkle', type: 'rhyme', data: {emoji:'⭐', color:'linear-gradient(135deg, #1a237e, #4a148c)', lines:['Twinkle twinkle little star', 'How I wonder what you are', 'Up above the world so high', 'Like a diamond in the sky']}}
+      ]}
+    ]
+  },
+  
+  jr: {
+    subjects: [
+      { name: 'English', topics: [
+        {id: 'jr_alpha', title: 'A to Z Alphabets', type: 'grid', data: generateAlpha()},
+        {id: 'jr_match', title: 'Capital & Small Matching', type: 'match', data: generateMatchAlpha()},
+        {id: 'jr_missing', title: 'Missing Alphabet', type: 'missing', data: generateMissingAlpha()}
+      ]},
+      { name: 'Maths', topics: [
+        {id: 'jr_num50', title: 'Numbers 1 to 50', type: 'numbers', data: generateNumbers(50)},
+        {id: 'jr_add30', title: 'Addition (30 Q)', type: 'add', data: generateAdd30()},
+        {id: 'jr_sub30', title: 'Subtraction (30 Q)', type: 'add', data: generateSub30()}
+      ]},
+      { name: 'EVS', topics: [
+        {id: 'jr_fruits', title: 'Fruits (30)', type: 'grid', data: generate30Items('fruits')},
+        {id: 'jr_animals', title: 'Animals (30)', type: 'grid', data: generate30Items('animals')},
+        {id: 'jr_birds', title: 'Birds (30)', type: 'grid', data: generate30Items('birds')},
+        {id: 'jr_veg', title: 'Vegetables (30)', type: 'grid', data: generate30Items('vegetables')},
+        {id: 'jr_flowers', title: 'Flowers (30)', type: 'grid', data: generate30Items('flowers')},
+        {id: 'jr_colors', title: 'Colors (30)', type: 'grid', data: generate30Items('colors')},
+        {id: 'jr_body', title: 'Parts of Body', type: 'grid', data: generateBody()}
+      ]},
+      { name: 'Rhymes & Self', topics: [
+        {id: 'jr_myself', title: 'My Self', type: 'myself', data: {}},
+        {id: 'jr_poem1', title: 'Colours Poem', type: 'rhyme', data: {emoji:'🌈', color:'linear-gradient(135deg, #00b4db, #0083b0)', lines:['Red and yellow, green and blue', 'These are colours, bright and new', 'Orange, purple, pink and white', 'Colours make the world so bright']}}
+      ]}
+    ]
+  },
+
+  sr: {
+    subjects: [
+      { name: 'English', topics: [
+        {id: 'sr_alpha', title: 'A to Z Alphabets', type: 'grid', data: generateAlpha()},
+        {id: 'sr_missing', title: 'Missing Alphabet', type: 'missing', data: generateMissingAlpha()}
+      ]},
+      { name: 'Maths', topics: [
+        {id: 'sr_num100', title: 'Numbers 1 to 100', type: 'numbers', data: generateNumbers(100)},
+        {id: 'sr_add30', title: 'Addition (30 Q)', type: 'add', data: generateAdd30()},
+        {id: 'sr_sub30', title: 'Subtraction (30 Q)', type: 'add', data: generateSub30()},
+        {id: 'sr_shapes', title: 'Shapes (with Curve)', type: 'grid', data: generateShapes()}
+      ]},
+      { name: 'EVS', topics: [
+        {id: 'sr_fruits', title: 'Fruits (30)', type: 'grid', data: generate30Items('fruits')},
+        {id: 'sr_animals', title: 'Animals (30)', type: 'grid', data: generate30Items('animals')},
+        {id: 'sr_birds', title: 'Birds (30)', type: 'grid', data: generate30Items('birds')},
+        {id: 'sr_veg', title: 'Vegetables (30)', type: 'grid', data: generate30Items('vegetables')},
+        {id: 'sr_flowers', title: 'Flowers (30)', type: 'grid', data: generate30Items('flowers')},
+        {id: 'sr_colors', title: 'Colors (30)', type: 'grid', data: generate30Items('colors')},
+        {id: 'sr_body', title: 'Parts of Body', type: 'grid', data: generateBody()}
+      ]}
+    ]
+  },
+
+  class1: {
+    subjects: [
+      { name: 'Book Reading', topics: [
+        {id: 'c1_full_pdf', title: '📖 Read Full Book (PDF)', type: 'pdf', data: 'chapter1.pdf'}
+      ]},
+      { name: 'English', topics: [
+        {id: 'c1_ch1_poem', title: 'Ch 1: Two Little Hands (Poem)', type: 'rhyme', data: {
+          emoji: '👐', 
+          color: 'linear-gradient(135deg, #FF9A9E, #FECFEF)', 
+          lines: [
+            'Two little hands go clap, clap, clap.',
+            'Two little legs go tap, tap, tap.',
+            'Two little eyes are open wide.',
+            'One little head goes side to side.',
+            'Two little eyes to look around.',
+            'Two little ears to hear any sound.',
+            'One little nose to smell and breathe.',
+            'One little mouth that likes to eat.',
+            'Hands to clap, legs to walk,',
+            'Nose to smell, mouth to talk,',
+            'Head to move, eyes to see,',
+            'I have a little body that belongs to me.'
+          ]
+        }},
+        {id: 'c1_ch1_qa', title: 'Ch 1: Questions & Answers', type: 'qa', data: [
+          { q: "Q1. What do two little hands do?", a: "Two little hands go clap, clap, clap." },
+          { q: "Q2. What do two little legs do?", a: "Two little legs go tap, tap, tap." },
+          { q: "Q3. What helps us to look around?", a: "Two little eyes help us to look around." },
+          { q: "Q4. What helps us to hear any sound?", a: "Two little ears help us to hear any sound." },
+          { q: "Q5. What do we do with our mouth?", a: "We eat and talk with our mouth." },
+          { q: "Q6. What do we do with our nose?", a: "We smell and breathe with our nose." }
+        ]}
+      ]}
+    ]
+  }
+};
+
+// Fill missing classes with default template
+classes.forEach(c => {
+  if(!contentData[c]) {
+    contentData[c] = {
+      subjects: [{ name: 'English', topics: [{id:'c1', title:'Chapter 1', type:'info', data:'Content coming soon...'}] }]
+    };
+  }
+});
+
+// =========================================
+// 4. UI HELPERS & RENDER LOGIC
 // =========================================
 function addStar() {
   stars++;
@@ -532,9 +415,6 @@ function speak(text) {
   window.speechSynthesis.speak(u);
 }
 
-// =========================================
-// 4. RENDER APP
-// =========================================
 const tabsContainer = document.getElementById('classTabs');
 const sidebar = document.getElementById('sidebar');
 const content = document.getElementById('content');
@@ -558,8 +438,7 @@ function renderSidebar() {
   const data = contentData[currentClass];
   let html = '';
   data.subjects.forEach(sub => {
-    html += `<div class="subject-title">${sub.name}</div>`;
-    html += `<ul class="topic-list">`;
+    html += `<div class="subject-title">${sub.name}</div><ul class="topic-list">`;
     sub.topics.forEach(t => {
       html += `<li id="tab-${t.id}" onclick="loadTopic('${sub.name}', '${t.id}')">${t.title}</li>`;
     });
@@ -581,45 +460,22 @@ function loadTopic(subjectName, topicId) {
   if (topic.type === 'grid') {
     content.innerHTML += `<div class="interactive-grid">
       ${topic.data.map(item => `
-        <div class="grid-item" style="background-color: ${item.color || '#fff'}" onclick="speak('${item.say || item.text}'); addStar();">
+        <div class="grid-item" onclick="speak('${item.say || item.text}'); addStar();">
           ${item.svg ? item.svg : (item.emoji ? `<span class="pic">${item.emoji}</span>` : '')}
           <span class="text">${item.text}</span>
         </div>
       `).join('')}
     </div>`;
-
-  } else if (topic.type === 'fill') {
-    content.innerHTML += `<p>Type the missing letter in the box.</p><div class="fill-grid">`;
-    topic.data.forEach((item, index) => {
-      const displayWord = item.word.split('').map((char, i) => 
-        i === item.blankIndex ? `<input type="text" maxlength="1" class="blank-input" id="blank-${index}" oninput="checkFill(${index}, '${char}')">` : char
-      ).join('');
-      content.innerHTML += `<div class="fill-item">${displayWord} <span class="emoji-hint">${item.emoji}</span></div>`;
-    });
-    content.innerHTML += `</div>`;
-
-  } else if (topic.type === 'count') {
-    content.innerHTML += `<p>Count the items and type the number.</p>`;
-    topic.data.forEach((item, index) => {
-      content.innerHTML += `
-        <div class="count-item">
-          <span>${item.visual}</span>
-          <div>= <input type="number" class="count-input" id="count-${index}" oninput="checkCount(${index}, ${item.ans})"></div>
-        </div>
-      `;
-    });
-
-  } else if (topic.type === 'rhyme') {
+  } 
+  else if (topic.type === 'rhyme') {
     content.innerHTML += `
       <div class="rhyme-page" style="background: ${topic.data.color};">
         <div class="rhyme-cartoon">${topic.data.emoji}</div>
         <h2>${topic.title}</h2>
-        ${topic.data.lines.map(line => `
-          <div class="rhyme-line" onclick="speak('${line}')">🎵 ${line}</div>
-        `).join('')}
-      </div>
-    `;
-  } else if (topic.type === 'numbers') {
+        ${topic.data.lines.map(line => `<div class="rhyme-line" onclick="speak('${line}')">🎵 ${line}</div>`).join('')}
+      </div>`;
+  } 
+  else if (topic.type === 'numbers') {
     content.innerHTML += `<p>Click on any number to hear its name.</p>
     <div class="numbers-grid">
       ${topic.data.map(item => `
@@ -628,44 +484,42 @@ function loadTopic(subjectName, topicId) {
         </div>
       `).join('')}
     </div>`;
-  } else if (topic.type === 'match') {
-    content.innerHTML += `<p>Click a Capital letter, then click its Small letter to match.</p>
-    <div class="matching-container">
-      <div class="match-col" id="cap-col">
-        ${topic.data.map((item, i) => `<div class="match-item" id="cap-${i}" onclick="selectMatch('cap', ${i}, '${item.sm}')">${item.cap}</div>`).join('')}
-      </div>
-      <div class="match-col" id="sm-col">
-        ${topic.data.sort(() => Math.random() - 0.5).map((item, i) => `<div class="match-item" id="sm-${i}" onclick="selectMatch('sm', ${i}, '${item.sm}')">${item.sm}</div>`).join('')}
-      </div>
+  } 
+  else if (topic.type === 'add') {
+    content.innerHTML += `<p>Solve these questions.</p>
+    <div class="textbook-grid">
+      ${topic.data.map((item, index) => `
+        <div class="tb-item">
+          <span>${item.a} ${item.op} ${item.b} = </span>
+          <input type="number" id="add-${index}" oninput="checkAdd(${index}, ${item.ans})">
+        </div>
+      `).join('')}
     </div>`;
-  } else if (topic.type === 'missing') {
+  } 
+  else if (topic.type === 'fill' || topic.type === 'missing') {
     content.innerHTML += `<p>Type the missing letter in the box.</p><div class="fill-grid">`;
     topic.data.forEach((item, index) => {
       const displayWord = item.word.split('').map((char, i) => 
-        i === item.blankIndex ? `<input type="text" maxlength="1" class="blank-input" id="miss-${index}" oninput="checkMissing(${index}, '${char}')">` : char
+        i === item.blankIndex ? `<input type="text" maxlength="1" class="blank-input" id="blank-${index}" oninput="checkFill(${index}, '${char}')">` : char
       ).join('');
       content.innerHTML += `<div class="fill-item">${displayWord} <span class="emoji-hint">${item.emoji}</span></div>`;
     });
     content.innerHTML += `</div>`;
-  } else if (topic.type === 'numwords') {
-    content.innerHTML += `<p>Match the numbers with their words.</p><div class="interactive-grid">`;
-    topic.data.forEach(item => {
-      content.innerHTML += `<div class="grid-item" style="background:#e8e5ff;" onclick="speak('${item.word}'); addStar();">
-        <div class="num" style="font-size:2.5rem; font-weight:800; color:var(--primary);">${item.num}</div>
-        <div style="font-size:1.2rem; font-weight:700;">${item.word}</div>
-      </div>`;
-    });
-    content.innerHTML += `</div>`;
-  } else if (topic.type === 'add') {
-    content.innerHTML += `<p>Solve these questions.</p><div class="fill-grid">`;
+  } 
+  else if (topic.type === 'count') {
+    content.innerHTML += `<p>Count the items and type the number.</p>`;
     topic.data.forEach((item, index) => {
-      content.innerHTML += `<div class="fill-item">
-        <span>${item.a} ${item.op} ${item.b} = </span>
-        <input type="number" class="blank-input" id="add-${index}" style="width:70px;" oninput="checkAdd(${index}, ${item.ans})">
-      </div>`;
+      content.innerHTML += `<div class="count-item"><span>${item.visual}</span><div>= <input type="number" class="count-input" id="count-${index}" oninput="checkCount(${index}, ${item.ans})"></div></div>`;
     });
-    content.innerHTML += `</div>`;
-  } else if (topic.type === 'myself') {
+  } 
+  else if (topic.type === 'match') {
+    content.innerHTML += `<p>Click a Capital letter, then click its Small letter to match.</p>
+    <div class="matching-container">
+      <div class="match-col" id="cap-col">${topic.data.map((item, i) => `<div class="match-item" id="cap-${i}" onclick="selectMatch('cap', ${i}, '${item.sm}')">${item.cap}</div>`).join('')}</div>
+      <div class="match-col" id="sm-col">${topic.data.sort(() => Math.random() - 0.5).map((item, i) => `<div class="match-item" id="sm-${i}" onclick="selectMatch('sm', ${i}, '${item.sm}')">${item.sm}</div>`).join('')}</div>
+    </div>`;
+  } 
+  else if (topic.type === 'myself') {
     content.innerHTML += `
       <div class="myself-form">
         <p>My name is <input type="text" placeholder="Your Name"></p>
@@ -676,14 +530,31 @@ function loadTopic(subjectName, topicId) {
         <p>My favourite fruit is <input type="text" placeholder="Fruit" style="width:150px;"></p>
         <p>I love my family and friends.</p>
       </div>`;
-  } else {
-    content.innerHTML += `<p>${topic.data}</p>`;
+  } 
+  else if (topic.type === 'qa') {
+    content.innerHTML += `<p>Read the questions and click 'Show Answer'.</p><div style="margin-top: 20px; max-width: 800px;">`;
+    topic.data.forEach((item, index) => {
+      content.innerHTML += `<div class="qa-item"><div class="qa-q">${item.q}</div><div id="ans-${index}" class="qa-a">${item.a}</div><button onclick="toggleAnswer(${index})" id="btn-${index}" class="qa-btn">Show Answer</button></div>`;
+    });
+    content.innerHTML += `</div>`;
+  }
+  else if (topic.type === 'pdf') {
+    content.innerHTML += `<div style="width: 100%; height: 75vh; border: 2px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+      <iframe src="${topic.data}" width="100%" height="100%" style="border: none;"></iframe>
+    </div>`;
   }
 }
 
 // =========================================
-// 5. INTERACTIVE GAME LOGIC
+// 5. INTERACTIVE LOGIC
 // =========================================
+function checkAdd(index, correctAns) {
+  const input = document.getElementById(`add-${index}`);
+  if(parseInt(input.value) === correctAns) {
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else { input.classList.remove('correct'); }
+}
+
 function checkFill(index, correctChar) {
   const input = document.getElementById(`blank-${index}`);
   if(input.value.toUpperCase() === correctChar.toUpperCase()) {
@@ -700,7 +571,6 @@ function checkCount(index, correctAns) {
 
 let selectedCap = null;
 let selectedSm = null;
-
 function selectMatch(type, index, correctSm) {
   const el = document.getElementById(`${type}-${index}`);
   if (el.classList.contains('matched')) return;
@@ -728,46 +598,21 @@ function selectMatch(type, index, correctSm) {
   }
 }
 
-function checkMissing(index, correctChar) {
-  const input = document.getElementById(`miss-${index}`);
-  if(input.value.toUpperCase() === correctChar.toUpperCase()) {
-    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
-  } else { input.classList.remove('correct'); }
-}
-
-function checkAdd(index, correctAns) {
-  const input = document.getElementById(`add-${index}`);
-  if(parseInt(input.value) === correctAns) {
-    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
-  } else { input.classList.remove('correct'); }
-}
-// =========================================
-// CLASS 1 - FULL BOOK PDF VIEWER
-// =========================================
-// Naya topic add karein
-contentData['class1'].subjects.unshift({
-  name: 'Mridang Book',
-  topics: [
-    {id: 'c1_full_pdf', title: '📖 Read Full Book (PDF)', type: 'pdf', data: 'https://ncert.nic.in/textbook/pdf/femr101.pdf'}
-  ]
-});
-
-// PDF open karne ka naya logic
-const loadTopicWithPdf = loadTopic;
-loadTopic = function(subjectName, topicId) {
-  loadTopicWithPdf(subjectName, topicId);
-  
-  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
-  const topic = sub.topics.find(t => t.id === topicId);
-
-  if (topic.type === 'pdf') {
-    content.innerHTML = `<h1>${topic.title}</h1>
-    <div style="width: 100%; height: 75vh; border: 2px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-      <iframe src="${topic.data}" width="100%" height="100%" style="border: none;"></iframe>
-    </div>`;
+function toggleAnswer(index) {
+  const ansDiv = document.getElementById(`ans-${index}`);
+  const btn = document.getElementById(`btn-${index}`);
+  if (ansDiv.style.display === 'none' || ansDiv.style.display === '') {
+    ansDiv.style.display = 'block';
+    btn.textContent = 'Hide Answer';
+    btn.style.background = '#FF3B30';
+  } else {
+    ansDiv.style.display = 'none';
+    btn.textContent = 'Show Answer';
+    btn.style.background = 'var(--primary)';
   }
-};
-// Initialize
+}
+
+// Initialize App
 renderTabs();
 switchClass('nursery');
 </script>
