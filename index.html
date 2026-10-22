@@ -198,7 +198,7 @@ const classNames = { nursery:'Nursery', jr:'Jr KG', sr:'Sr KG', class1:'Class 1'
 // =========================================
 function generateAlpha() {
   const data = [{l:'A',e:'🍎',w:'Apple'},{l:'B',e:'⚽',w:'Ball'},{l:'C',e:'🐱',w:'Cat'},{l:'D',e:'🐶',w:'Dog'},{l:'E',e:'🐘',w:'Elephant'},{l:'F',e:'🐟',w:'Fish'},{l:'G',e:'🍇',w:'Grapes'},{l:'H',e:'🏠',w:'House'},{l:'I',e:'🍦',w:'Ice Cream'},{l:'J',e:'🧃',w:'Juice'},{l:'K',e:'🪁',w:'Kite'},{l:'L',e:'🦁',w:'Lion'},{l:'M',e:'🐵',w:'Monkey'},{l:'N',e:'🪺',w:'Nest'},{l:'O',e:'🍊',w:'Orange'},{l:'P',e:'🦜',w:'Parrot'},{l:'Q',e:'👑',w:'Queen'},{l:'R',e:'🐰',w:'Rabbit'},{l:'S',e:'☀️',w:'Sun'},{l:'T',e:'🐯',w:'Tiger'},{l:'U',e:'☂️',w:'Umbrella'},{l:'V',e:'🚐',w:'Van'},{l:'W',e:'⌚',w:'Watch'},{l:'X',e:'🎹',w:'Xylophone'},{l:'Y',e:'🐃',w:'Yak'},{l:'Z',e:'🦓',w:'Zebra'}];
-  return data.map(d => ({ text: `${d.l} for ${d.w}`, emoji: d.e, say: `${d.l} for ${d.w}` }));
+  return data.map(d => ({ text: `${d.l} for ${d.w}`, emoji: d.e, say: `${d.l} ${d.w}` }));
 }
 
 function generateShapes() {
