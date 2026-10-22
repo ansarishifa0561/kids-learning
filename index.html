@@ -539,7 +539,206 @@ function selectMatch(type, index, correctSm) {
     selectedCap = null; selectedSm = null;
   }
 }
+// =========================================
+// CLASS 1 - ADVANCED SYLLABUS (Grammar, Sentences, Verbs)
+// =========================================
 
+// 1. Small Sentences Data
+const c1Sentences = [
+  { text: "I am thirsty", emoji: "🥛" },
+  { text: "Let's play hide and seek", emoji: "🌳" },
+  { text: "I am scared", emoji: "😨" },
+  { text: "Look at the stars", emoji: "🔭" },
+  { text: "He is my father", emoji: "👨‍👦" },
+  { text: "You are my friend", emoji: "🧑‍🤝‍🧑" },
+  { text: "I like to go to school", emoji: "🏫" },
+  { text: "My mother is a teacher", emoji: "👩‍🏫" },
+  { text: "Do you have a pet dog?", emoji: "🐶" },
+  { text: "It is his toy", emoji: "🦖" },
+  { text: "Can I go out to play?", emoji: "🙋‍♂️" },
+  { text: "They are from Bangalore", emoji: "👦👧" }
+];
+
+// 2. Pronouns Data (My, Your, We, Us, etc.)
+const c1Pronouns = [
+  { pronoun: "My", sentences: ["This is my sister.", "I like my cat.", "It is my pencil."], emojis: ["👧", "🐱", "✏️"] },
+  { pronoun: "Your", sentences: ["These are your oranges.", "Wash your hands.", "You like your cat."], emojis: ["🍊", "🧼", "🐈"] },
+  { pronoun: "We / Us", sentences: ["We are going to school.", "Let us play together.", "We love our family."], emojis: ["🏫", "⚽", "👨‍👩‍👧‍👦"] },
+  { pronoun: "He / She", sentences: ["He is my brother.", "She is my sister.", "He is playing."], emojis: ["👦", "👧", "🏃‍♂️"] },
+  { pronoun: "It", sentences: ["It is a cat.", "It is raining.", "It is a big house."], emojis: ["🐱", "🌧️", "🏠"] }
+];
+
+// 3. Verbs Data
+const c1Verbs = [
+  { verb: "Run", emoji: "🏃‍♂️" }, { verb: "Jump", emoji: "🤸‍♂️" }, { verb: "Eat", emoji: "🍽️" }, { verb: "Sleep", emoji: "😴" },
+  { verb: "Read", emoji: "📖" }, { verb: "Write", emoji: "✍️" }, { verb: "Sing", emoji: "🎤" }, { verb: "Dance", emoji: "💃" },
+  { verb: "Play", emoji: "⚽" }, { verb: "Clap", emoji: "👏" }, { verb: "Walk", emoji: "🚶" }, { verb: "Cry", emoji: "😭" }
+];
+
+// 4. Class 1 Addition & Subtraction (20 Questions Each, Advanced Checker)
+function generateC1Add() {
+  const arr = [];
+  for (let i = 0; i < 20; i++) {
+    let a = Math.floor(Math.random() * 9) + 1;
+    let b = Math.floor(Math.random() * 9) + 1;
+    arr.push({ a: a, b: b, ans: a + b, op: '+' });
+  }
+  return arr;
+}
+function generateC1Sub() {
+  const arr = [];
+  for (let i = 0; i < 20; i++) {
+    let a = Math.floor(Math.random() * 10) + 5;
+    let b = Math.floor(Math.random() * 5) + 1;
+    arr.push({ a: a, b: b, ans: a - b, op: '-' });
+  }
+  return arr;
+}
+
+// =========================================
+// INJECT CLASS 1 DATA (Overwrite only Class 1)
+// =========================================
+contentData['class1'] = {
+  subjects: [
+    {
+      name: 'English Grammar',
+      topics: [
+        {id: 'c1_sentences', title: 'Small Sentences', type: 'sentences', data: c1Sentences},
+        {id: 'c1_pronouns', title: 'Pronouns (My, Your, We...)', type: 'pronouns', data: c1Pronouns},
+        {id: 'c1_verbs', title: 'Action Verbs', type: 'verbs', data: c1Verbs}
+      ]
+    },
+    {
+      name: 'Maths',
+      topics: [
+        {id: 'c1_add20', title: 'Addition (20 Q)', type: 'add_strict', data: generateC1Add()},
+        {id: 'c1_sub20', title: 'Subtraction (20 Q)', type: 'add_strict', data: generateC1Sub()}
+      ]
+    }
+  ]
+};
+
+// =========================================
+// NEW RENDER LOGIC FOR CLASS 1 TOPICS
+// =========================================
+const oldLoadTopicC1 = loadTopic;
+loadTopic = function(subjectName, topicId) {
+  oldLoadTopicC1(subjectName, topicId);
+  
+  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
+  const topic = sub.topics.find(t => t.id === topicId);
+
+  // 1. Small Sentences UI
+  if (topic.type === 'sentences') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Click on a sentence to hear it.</p>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px;">
+      ${topic.data.map((item, i) => `
+        <div class="grid-item" style="flex-direction: row; justify-content: flex-start; gap: 20px; padding: 20px;" onclick="speak('${item.text}'); addStar();">
+          <span class="pic" style="font-size: 3rem; margin-bottom: 0;">${item.emoji}</span>
+          <span class="text" style="font-size: 1.5rem; text-align: left;">${item.text}</span>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 2. Pronouns Table UI (Textbook Style)
+  else if (topic.type === 'pronouns') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Learn how to use pronouns with examples.</p>
+    <div style="display: flex; flex-direction: column; gap: 30px; margin-top: 20px;">
+      ${topic.data.map((item, i) => `
+        <div style="background: #fff; border: 2px solid var(--border); border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+          <div style="background: var(--primary); color: white; padding: 10px 20px; font-size: 1.5rem; font-weight: 800;">${item.pronoun}</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+            ${item.sentences.map((sent, idx) => `
+              <div style="padding: 15px; text-align: center; border-right: 1px solid #eee; cursor: pointer;" onclick="speak('${sent}'); addStar();">
+                <div style="font-size: 3rem; margin-bottom: 10px;">${item.emojis[idx]}</div>
+                <div style="font-size: 1.2rem; font-weight: 700; color: var(--text);">${sent}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 3. Verbs UI
+  else if (topic.type === 'verbs') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Click on a verb to hear it.</p>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-top: 20px;">
+      ${topic.data.map((item, i) => `
+        <div class="grid-item" onclick="speak('${item.verb}'); addStar();" style="padding: 20px 10px;">
+          <span class="pic" style="font-size: 4rem; margin-bottom: 10px;">${item.emoji}</span>
+          <span class="text" style="font-size: 1.4rem;">${item.verb}</span>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 4. Strict Math UI (Must complete all to get result)
+  else if (topic.type === 'add_strict') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Solve all questions to get the result. You cannot miss any!</p>
+    <div class="textbook-grid" id="math-container">
+      ${topic.data.map((item, index) => `
+        <div class="tb-item">
+          <span>${item.a} ${item.op} ${item.b} = </span>
+          <input type="number" id="strict-${index}" oninput="checkStrictAdd(${index}, ${item.ans}, ${topic.data.length})">
+        </div>
+      `).join('')}
+    </div>
+    <div id="result-box" style="display: none; text-align: center; margin-top: 40px; background: #d8fff0; padding: 30px; border-radius: 20px; border: 3px solid #34C759;">
+      <h2 style="color: #08764d; font-size: 2.5rem; margin-bottom: 10px;">🎉 Congratulations!</h2>
+      <p style="color: #08764d; font-size: 1.5rem;">You solved all questions correctly and got 20 Stars!</p>
+    </div>`;
+    // Reset tracker for this quiz
+    window.currentQuizScore = 0;
+    window.totalQuizQuestions = topic.data.length;
+    window.quizStarsGiven = false;
+  }
+};
+
+// Strict Math Logic
+function checkStrictAdd(index, correctAns, totalQ) {
+  const input = document.getElementById(`strict-${index}`);
+  if(parseInt(input.value) === correctAns) {
+    input.classList.add('correct'); input.disabled = true; 
+    addStar();
+    window.currentQuizScore++;
+    
+    // Check if all are completed
+    if(window.currentQuizScore === totalQ && !window.quizStarsGiven) {
+      window.quizStarsGiven = true;
+      document.getElementById('result-box').style.display = 'block';
+      speak('Congratulations! You solved all questions.');
+    }
+  } else { 
+    input.classList.remove('correct'); 
+  }
+}
+
+// =========================================
+// CLASS 2 (ADVANCED PREVIEW)
+// =========================================
+contentData['class2'] = {
+  subjects: [
+    {
+      name: 'Maths',
+      topics: [
+        {id: 'c2_add40', title: 'Addition (2-Digit)', type: 'add_strict', data: generateC2Add()},
+      ]
+    }
+  ]
+};
+
+// Class 2 Advanced Math Generator (2-Digit)
+function generateC2Add() {
+  const arr = [];
+  for (let i = 0; i < 20; i++) {
+    let a = Math.floor(Math.random() * 50) + 10;
+    let b = Math.floor(Math.random() * 50) + 10;
+    arr.push({ a: a, b: b, ans: a + b, op: '+' });
+  }
+  return arr;
+}
 // Initialize App
 renderTabs();
 switchClass('nursery');
