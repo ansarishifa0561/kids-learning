@@ -1078,35 +1078,38 @@ loadTopic = function(subjectName, topicId) {
   const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
   const topic = sub.topics.find(t => t.id === topicId);
 
-       if (topic.type === 'lines') {
-    content.innerHTML += `<div class="lines-container">
-      ${topic.data.lines.map((item, index) => {
-        let lineHtml = '';
-        let inputHtml = '';
-        
-        // Agar line mein blank (________) hai, toh wahan input box lagao
-        if (item.t.includes('________')) {
-          const parts = item.t.split('________');
-          inputHtml = `<input type="text" id="line-input-${index}" class="blank-input-text" style="border: none; border-bottom: 2px dashed var(--primary); font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); background: transparent; outline: none; text-align: center; width: 150px; padding: 0 5px;" placeholder="type here...">`;
-          lineHtml = parts[0] + inputHtml + parts[1];
-        } else {
-          lineHtml = item.t;
-        }
+     if (topic.type === 'lines') {
+    let linesHTML = '<div class="lines-container">';
+    
+    topic.data.lines.forEach((item, index) => {
+      let lineHtml = '';
+      let inputHtml = '';
+      
+      // Input box banana (agar line mein blank hai)
+      if (item.t.includes('________')) {
+        const parts = item.t.split('________');
+        inputHtml = `<input type="text" id="line-input-${index}" style="border: none; border-bottom: 2px dashed var(--primary); font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); background: transparent; outline: none; text-align: center; width: 120px; padding: 0 5px;" placeholder="...">`;
+        lineHtml = parts[0] + inputHtml + (parts[1] || '');
+      } else {
+        lineHtml = item.t;
+      }
 
-        return `
-          <div class="line-item">
-            <!-- Emoji par click karne se aawaz aayegi. Humne onclick ko safe rakha hai -->
-            <span class="emoji" onclick="playLineVoice(${index})" style="cursor:pointer; font-size: 2.5rem;">${item.e}</span>
-            <span>${lineHtml}</span>
-          </div>
-        `;
-      }).join('')}
-    </div>`;
-
-    // Aawaz ke liye data ko global variable mein save kar lo
+      // Emoji par click karne ka function
+      linesHTML += `
+        <div class="line-item">
+          <span class="emoji" onclick="speakLineText(${index})" style="cursor:pointer; font-size: 2.5rem;">${item.e}</span>
+          <span>${lineHtml}</span>
+        </div>
+      `;
+    });
+    
+    linesHTML += '</div>';
+    content.innerHTML += linesHTML;
+    
+    // Data ko global me save kar liya taaki function use kar sake
     window.currentLinesData = topic.data.lines;
   }
-   
+  
   else if (topic.type === 'vowels') {
     content.innerHTML += `<p>A, E, I, O, U are called Vowels. Click on a vowel to hear it.</p>
     <div class="vowels-grid">
