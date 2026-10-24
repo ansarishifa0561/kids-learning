@@ -89,6 +89,12 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 }
 .blank-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
 
+/* Missing Letters */
+.missing-letters-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; margin-top: 20px; max-width: 800px; }
+.ml-box { background: var(--white); border: 2px solid var(--border); border-radius: 12px; padding: 15px 5px; text-align: center; font-size: 2rem; font-weight: 800; color: var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+.ml-input { width: 50px; height: 50px; border: none; border-bottom: 3px dashed var(--primary); text-align: center; font-size: 1.8rem; font-weight: 800; outline: none; text-transform: uppercase; background: transparent; }
+.ml-input.correct { border-bottom-color: #34C759; color: #08764d; }
+
 /* Counting */
 .count-item {
   display: flex; align-items: center; justify-content: space-between;
@@ -167,6 +173,7 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
   .sentence-grid { grid-template-columns: 1fr; }
   .pronoun-cols { grid-template-columns: 1fr; }
   .pronoun-item { border-right: none; border-bottom: 1px solid #eee; }
+  .missing-letters-grid { grid-template-columns: repeat(4, 1fr); }
 }
 </style>
 </head>
@@ -197,7 +204,7 @@ const classes = ['nursery', 'jr', 'sr', 'class1', 'class2', 'class3', 'class4', 
 const classNames = { nursery:'Nursery', jr:'Jr KG', sr:'Sr KG', class1:'Class 1', class2:'Class 2', class3:'Class 3', class4:'Class 4', class5:'Class 5', class6:'Class 6', class7:'Class 7', class8:'Class 8' };
 
 // =========================================
-// 2. DATA GENERATORS (Unique - No Repeats)
+// 2. DATA GENERATORS (Unique & Colorful)
 // =========================================
 function generateAlpha() {
   const data = [{l:'A',e:'🍎',w:'Apple'},{l:'B',e:'⚽',w:'Ball'},{l:'C',e:'🐱',w:'Cat'},{l:'D',e:'🐶',w:'Dog'},{l:'E',e:'🐘',w:'Elephant'},{l:'F',e:'🐟',w:'Fish'},{l:'G',e:'🍇',w:'Grapes'},{l:'H',e:'🏠',w:'House'},{l:'I',e:'🍦',w:'Ice Cream'},{l:'J',e:'🧃',w:'Juice'},{l:'K',e:'🪁',w:'Kite'},{l:'L',e:'🦁',w:'Lion'},{l:'M',e:'🐵',w:'Monkey'},{l:'N',e:'🪺',w:'Nest'},{l:'O',e:'🍊',w:'Orange'},{l:'P',e:'🦜',w:'Parrot'},{l:'Q',e:'👑',w:'Queen'},{l:'R',e:'🐰',w:'Rabbit'},{l:'S',e:'☀️',w:'Sun'},{l:'T',e:'🐯',w:'Tiger'},{l:'U',e:'☂️',w:'Umbrella'},{l:'V',e:'🚐',w:'Van'},{l:'W',e:'⌚',w:'Watch'},{l:'X',e:'🎹',w:'Xylophone'},{l:'Y',e:'🐃',w:'Yak'},{l:'Z',e:'🦓',w:'Zebra'}];
@@ -206,12 +213,12 @@ function generateAlpha() {
 
 function generateShapes() {
   return [
-    {text: 'Circle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#FF9800" stroke-width="6"/></svg>`, say: 'Circle'},
-    {text: 'Square', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="15" y="15" width="70" height="70" fill="none" stroke="#FF9800" stroke-width="6"/></svg>`, say: 'Square'},
-    {text: 'Triangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,15 90,85 10,85" fill="none" stroke="#FF9800" stroke-width="6"/></svg>`, say: 'Triangle'},
-    {text: 'Rectangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="10" y="25" width="80" height="50" fill="none" stroke="#FF9800" stroke-width="6"/></svg>`, say: 'Rectangle'},
-    {text: 'Star', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="none" stroke="#FF9800" stroke-width="6"/></svg>`, say: 'Star'},
-    {text: 'Curve', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><path d="M 10 80 Q 50 10 90 80" fill="none" stroke="#FF9800" stroke-width="6"/></svg>`, say: 'Curve'}
+    {text: 'Circle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#FFCDD2" stroke="#E53935" stroke-width="6"/></svg>`, say: 'Circle'},
+    {text: 'Square', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="15" y="15" width="70" height="70" fill="#BBDEFB" stroke="#1E88E5" stroke-width="6"/></svg>`, say: 'Square'},
+    {text: 'Triangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,15 90,85 10,85" fill="#C8E6C9" stroke="#43A047" stroke-width="6"/></svg>`, say: 'Triangle'},
+    {text: 'Rectangle', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><rect x="10" y="25" width="80" height="50" fill="#FFF9C4" stroke="#FDD835" stroke-width="6"/></svg>`, say: 'Rectangle'},
+    {text: 'Star', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="#F8BBD0" stroke="#D81B60" stroke-width="6"/></svg>`, say: 'Star'},
+    {text: 'Curve', svg: `<svg class="shape-svg" viewBox="0 0 100 100"><path d="M 10 80 Q 50 10 90 80" fill="none" stroke="#8E24AA" stroke-width="8" stroke-linecap="round"/></svg>`, say: 'Curve'}
   ];
 }
 
@@ -235,7 +242,7 @@ const items20 = {
     {t:'Eagle',e:'🦅'}, {t:'Peacock',e:'🦚'}, {t:'Owl',e:'🦉'}, {t:'Flamingo',e:'🦩'}, 
     {t:'Swan',e:'🦢'}, {t:'Crow',e:'🐦‍⬛'}, {t:'Penguin',e:'🐧'}, {t:'Woodpecker',e:'🪶'}, 
     {t:'Duck',e:'🦆'}, {t:'Hen',e:'🐔'}, {t:'Goose',e:'🦢'}, {t:'Dove',e:'🕊️'}, 
-    {t:'Ostrich',e:'🦩'}, {t:'Vulture',e:'🦅'}, {t:'Falcon',e:'🦅'}, {t:'Turkey',e:'🦃'}, {t:'Rooster',e:'🐓'} 
+    {t:'Ostrich',e:'🦩'}, {t:'Hawk',e:'🦅'}, {t:'Turkey',e:'🦃'}, {t:'Rooster',e:'🐓'}, {t:'Kingfisher',e:'🐦'} 
   ],
   flowers: [
     {t:'Rose',e:'🌹'}, {t:'Sunflower',e:'🌻'}, {t:'Tulip',e:'🌷'}, {t:'Lotus',e:'🪷'}, 
@@ -254,10 +261,10 @@ const items20 = {
   ],
   insects: [
     {t:'Ant',e:'🐜'}, {t:'Bee',e:'🐝'}, {t:'Butterfly',e:'🦋'}, {t:'Ladybug',e:'🐞'}, 
-    {t:'Grasshopper',e:'🦗'}, {t:'Cricket',e:'🦗'}, {t:'Dragonfly',e:'🪰'}, {t:'Fly',e:'🪰'}, 
-    {t:'Mosquito',e:'🦟'}, {t:'Beetle',e:'🪲'}, {t:'Caterpillar',e:'🐛'}, {t:'Centipede',e:'🐛'}, 
-    {t:'Millipede',e:'🐛'}, {t:'Mantis',e:'🦗'}, {t:'Cicada',e:'🪰'}, {t:'Termite',e:'🐜'}, 
-    {t:'Firefly',e:'🪰'}, {t:'Stick Insect',e:'🪵'}, {t:'Mite',e:'🕷️'}, {t:'Snail',e:'🐌'} 
+    {t:'Grasshopper',e:'🦗'}, {t:'Dragonfly',e:'🪰'}, {t:'Fly',e:'🪰'}, {t:'Mosquito',e:'🦟'}, 
+    {t:'Beetle',e:'🪲'}, {t:'Mantis',e:'🦗'}, {t:'Cicada',e:'🪰'}, {t:'Termite',e:'🐜'}, 
+    {t:'Firefly',e:'🪰'}, {t:'Stick Insect',e:'🪵'}, {t:'Mite',e:'🕷️'}, {t:'Snail',e:'🐌'}, 
+    {t:'Worm',e:'🪱'}, {t:'Cockroach',e:'🪳'}, {t:'Scorpion',e:'🦂'}, {t:'Spider',e:'🕷️'} 
   ],
   colors: [
     {t:'Red',e:'🔴'}, {t:'Blue',e:'🔵'}, {t:'Green',e:'🟢'}, {t:'Yellow',e:'🟡'}, 
@@ -272,7 +279,6 @@ function generate20Items(category) {
   return items20[category].map(item => ({ text: item.t, emoji: item.e, say: item.t }));
 }
 
-// =========================================
 // (Aage ka code Part 2 mein hai, iske theek baad paste karein)
 function generateAdd30() {
   const arr = [];
@@ -309,6 +315,25 @@ function generateMissingAlpha() {
   return words.map(item => ({ word: item.w, emoji: item.e, blankIndex: Math.floor(Math.random() * item.w.length) }));
 }
 
+function generateMissingLettersAZ() {
+  const caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const smalls = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  const capBlanks = [2, 5, 9, 11, 14, 17, 20, 23]; // Indices to hide
+  const smallBlanks = [2, 5, 9, 11, 14, 17, 20, 23];
+  
+  return {
+    caps: caps.map((l, i) => ({ l, blank: capBlanks.includes(i) })),
+    smalls: smalls.map((l, i) => ({ l, blank: smallBlanks.includes(i) }))
+  };
+}
+
+function generateCounting() {
+  return [
+    { e: '🍎', count: 5 }, { e: '⭐', count: 7 }, { e: '🐶', count: 3 },
+    { e: '🎈', count: 4 }, { e: '🍌', count: 6 }, { e: '🚗', count: 8 }
+  ];
+}
+
 const c1Sentences = [
   { text: "I am thirsty", emoji: "🥛" }, { text: "Let's play hide and seek", emoji: "🌳" }, 
   { text: "I am scared", emoji: "😨" }, { text: "Look at the stars", emoji: "🔭" }, 
@@ -332,6 +357,11 @@ const c1Verbs = [
   { verb: "Play", emoji: "⚽" }, { verb: "Clap", emoji: "👏" }, { verb: "Walk", emoji: "🚶" }, { verb: "Cry", emoji: "😭" }
 ];
 
+function generateNumWords() {
+  const words = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
+  return words.map((w, i) => ({ num: i + 1, word: w }));
+}
+
 // =========================================
 // 3. MASTER CONTENT DATA
 // =========================================
@@ -340,11 +370,12 @@ const contentData = {
     subjects: [
       { name: 'English', topics: [
         {id: 'nur_alpha', title: 'A to Z Alphabets', type: 'grid', data: generateAlpha()},
-        {id: 'nur_fill', title: 'Fill in the Blanks', type: 'fill', data: generateMissingAlpha()}
+        {id: 'nur_fill', title: 'Fill in the Blanks', type: 'fill', data: generateMissingAlpha()},
+        {id: 'nur_missing_az', title: 'Missing Letters A-Z', type: 'missing_az', data: generateMissingLettersAZ()}
       ]},
       { name: 'Maths', topics: [
         {id: 'nur_shapes', title: 'Shapes', type: 'grid', data: generateShapes()},
-        {id: 'nur_count', title: 'Counting', type: 'count', data: generate20Items('fruits').slice(0, 6)},
+        {id: 'nur_count', title: 'Counting', type: 'count', data: generateCounting()},
         {id: 'nur_num20', title: 'Numbers 1 to 20', type: 'numbers', data: generateNumbers(20)}
       ]},
       { name: 'EVS', topics: [
@@ -364,10 +395,12 @@ const contentData = {
       { name: 'English', topics: [
         {id: 'jr_alpha', title: 'A to Z Alphabets', type: 'grid', data: generateAlpha()},
         {id: 'jr_match', title: 'Capital & Small Matching', type: 'match', data: generateMatchAlpha()},
-        {id: 'jr_missing', title: 'Missing Alphabet', type: 'missing', data: generateMissingAlpha()}
+        {id: 'jr_missing', title: 'Missing Alphabet', type: 'missing', data: generateMissingAlpha()},
+        {id: 'jr_missing_az', title: 'Missing Letters A-Z', type: 'missing_az', data: generateMissingLettersAZ()}
       ]},
       { name: 'Maths', topics: [
         {id: 'jr_num50', title: 'Numbers 1 to 50', type: 'numbers', data: generateNumbers(50)},
+        {id: 'jr_numwords', title: 'Number in Words (1-20)', type: 'numwords', data: generateNumWords()},
         {id: 'jr_add30', title: 'Addition (30 Q)', type: 'add', data: generateAdd30()},
         {id: 'jr_sub30', title: 'Subtraction (30 Q)', type: 'add', data: generateSub30()}
       ]},
@@ -391,7 +424,8 @@ const contentData = {
     subjects: [
       { name: 'English', topics: [
         {id: 'sr_alpha', title: 'A to Z Alphabets', type: 'grid', data: generateAlpha()},
-        {id: 'sr_missing', title: 'Missing Alphabet', type: 'missing', data: generateMissingAlpha()}
+        {id: 'sr_missing', title: 'Missing Alphabet', type: 'missing', data: generateMissingAlpha()},
+        {id: 'sr_missing_az', title: 'Missing Letters A-Z', type: 'missing_az', data: generateMissingLettersAZ()}
       ]},
       { name: 'Maths', topics: [
         {id: 'sr_num100', title: 'Numbers 1 to 100', type: 'numbers', data: generateNumbers(100)},
@@ -431,11 +465,6 @@ const contentData = {
     ]
   }
 };
-
-function generateNumWords() {
-  const words = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
-  return words.map((w, i) => ({ num: i + 1, word: w }));
-}
 
 classes.forEach(c => {
   if(!contentData[c]) {
@@ -518,6 +547,14 @@ function loadTopic(subjectName, topicId) {
   else if (topic.type === 'numbers') {
     content.innerHTML += `<div class="numbers-grid">${topic.data.map(item => `<div class="number-card" onclick="speak('${item.say}'); addStar();"><div class="num">${item.num}</div></div>`).join('')}</div>`;
   } 
+  else if (topic.type === 'count') {
+    content.innerHTML += topic.data.map((item, idx) => `
+      <div class="count-item">
+        <div style="letter-spacing: 10px;">${item.e.repeat(item.count)}</div>
+        <div>= <input type="number" class="count-input" id="count-${idx}" oninput="checkCount(${idx}, ${item.count})"></div>
+      </div>
+    `).join('');
+  }
   else if (topic.type === 'add') {
     content.innerHTML += `<div class="textbook-grid">${topic.data.map((item, index) => `<div class="tb-item"><span>${item.a} ${item.op} ${item.b} = </span><input type="number" id="add-${index}" oninput="checkAdd(${index}, ${item.ans})"></div>`).join('')}</div>`;
   } 
@@ -528,6 +565,16 @@ function loadTopic(subjectName, topicId) {
   else if (topic.type === 'fill' || topic.type === 'missing') {
     content.innerHTML += `<div class="fill-grid">${topic.data.map((item, index) => { const dw = item.word.split('').map((c, i) => i === item.blankIndex ? `<input type="text" maxlength="1" class="blank-input" id="blank-${index}" oninput="checkFill(${index}, '${c}')">` : c).join(''); return `<div class="fill-item">${dw} <span class="emoji-hint">${item.emoji}</span></div>`; }).join('')}</div>`;
   } 
+  else if (topic.type === 'missing_az') {
+    content.innerHTML += `<h3 style="color: var(--primary-dark); margin-top: 20px;">Write the missing uppercase letters.</h3>
+    <div class="missing-letters-grid">
+      ${topic.data.caps.map((item, idx) => `<div class="ml-box">${item.blank ? `<input type="text" maxlength="1" class="ml-input" id="cap-miss-${idx}" oninput="checkMissingAZ(${idx}, '${item.l}', 'cap')">` : item.l}</div>`).join('')}
+    </div>
+    <h3 style="color: var(--primary-dark); margin-top: 40px;">Write the missing lowercase letters.</h3>
+    <div class="missing-letters-grid">
+      ${topic.data.smalls.map((item, idx) => `<div class="ml-box">${item.blank ? `<input type="text" maxlength="1" class="ml-input" id="small-miss-${idx}" oninput="checkMissingAZ(${idx}, '${item.l}', 'small')">` : item.l}</div>`).join('')}
+    </div>`;
+  }
   else if (topic.type === 'match') {
     content.innerHTML += `<div class="matching-container"><div class="match-col" id="cap-col">${topic.data.map((item, i) => `<div class="match-item" id="cap-${i}" onclick="selectMatch('cap', ${i}, '${item.sm}')">${item.cap}</div>`).join('')}</div><div class="match-col" id="sm-col">${topic.data.sort(() => Math.random() - 0.5).map((item, i) => `<div class="match-item" id="sm-${i}" onclick="selectMatch('sm', ${i}, '${item.sm}')">${item.sm}</div>`).join('')}</div></div>`;
   } 
@@ -562,9 +609,17 @@ function checkStrictAdd(index, correctAns, totalQ) {
     if(window.currentQuizScore === totalQ && !window.quizStarsGiven) { window.quizStarsGiven = true; document.getElementById('result-box').style.display = 'block'; speak('Congratulations! You solved all questions.'); }
   } else { input.classList.remove('correct'); }
 }
+function checkCount(index, correctAns) {
+  const input = document.getElementById(`count-${index}`);
+  if(parseInt(input.value) === correctAns) { input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!'); } else { input.classList.remove('correct'); }
+}
 function checkFill(index, correctChar) {
   const input = document.getElementById(`blank-${index}`);
   if(input.value.toUpperCase() === correctChar.toUpperCase()) { input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!'); } else { input.classList.remove('correct'); }
+}
+function checkMissingAZ(idx, correctChar, type) {
+  const input = document.getElementById(`${type}-miss-${idx}`);
+  if(input.value === correctChar) { input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!'); } else { input.classList.remove('correct'); }
 }
 let selectedCap = null; let selectedSm = null;
 function selectMatch(type, index, correctSm) {
