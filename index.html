@@ -1077,11 +1077,12 @@ loadTopic = function(subjectName, topicId) {
   
   const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
   const topic = sub.topics.find(t => t.id === topicId);
-  
-  if (topic.type === 'lines') {
+
+    if (topic.type === 'lines') {
     content.innerHTML += `<div class="lines-container">
       ${topic.data.lines.map((item, index) => {
         let lineHtml = '';
+        // Blank ki jagah input box dalna
         if (item.t.includes('________')) {
           const parts = item.t.split('________');
           lineHtml = parts[0] + `<input type="text" class="blank-input-text" style="border: none; border-bottom: 2px dashed var(--primary); font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); background: transparent; outline: none; text-align: center; width: 150px; padding: 0 5px;" placeholder="type here...">` + parts[1];
@@ -1089,9 +1090,13 @@ loadTopic = function(subjectName, topicId) {
           lineHtml = item.t;
         }
 
+        // Voice ke liye text ko ready karna (jo type kiya hai wo bhi include hoga)
+        const textToSpeak = item.t.replace(/________/g, 'blank');
+
         return `
-          <div class="line-item" onclick="speak('${item.t.replace(/________/g, 'blank')}'); addStar();" style="cursor:pointer;">
-            <span class="emoji">${item.e}</span>
+          <div class="line-item">
+            <!-- Emoji par click karne se aawaz aayegi -->
+            <span class="emoji" onclick="speak('${textToSpeak}'); addStar();" style="cursor:pointer; font-size: 2.5rem;">${item.e}</span>
             <span>${lineHtml}</span>
           </div>
         `;
