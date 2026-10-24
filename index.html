@@ -843,6 +843,9 @@ function checkColorMatch(index, correctEmoji, selectEl) {
 // =========================================
 // CLASS 1 - NEW TOPICS (Advanced & Colorful)
 // =========================================
+// =========================================
+// CLASS 1 - NEW TOPICS (Advanced & Colorful)
+// =========================================
 
 // 1. My Self (8 Lines)
 const class1Myself = {
@@ -959,20 +962,21 @@ const class1MakeWords = [
   { scrambled:'B-G-U', ans:'BUG', e:'🐞' }, { scrambled:'E-G-G', ans:'EGG', e:'🥚' }
 ];
 
-// 11. Missing Letters (Class 1)
-const class1MissingWords = [
-  { w:'a_p_e', full:'apple', e:'🍎' }, { w:'c_t', full:'cat', e:'🐱' }, { w:'s_n', full:'sun', e:'☀️' },
+// 11. Missing Letters (Class 1 - FIXED SPELLING)
+const fixedClass1MissingWords = [
+  { w:'_pple', full:'apple', e:'🍎' }, { w:'c_t', full:'cat', e:'🐱' }, { w:'s_n', full:'sun', e:'☀️' },
   { w:'b_ll', full:'ball', e:'⚽' }, { w:'d_g', full:'dog', e:'🐶' }, { w:'b_s', full:'bus', e:'🚌' },
   { w:'b_g', full:'bug', e:'🐞' }, { w:'h_t', full:'hat', e:'👒' }, { w:'f_sh', full:'fish', e:'🐟' },
   { w:'t_e', full:'tree', e:'🌳' }, { w:'b_ar', full:'bear', e:'🐻' }, { w:'m_on', full:'moon', e:'🌙' },
-  { w:'t_rtle', full:'turtle', e:'🐢' }, { w:'b_tterfly', full:'butterfly', e:'🦋' }, { w:'p_ncil', full:'pencil', e:'✏️' },
-  { w:'cl_ud', full:'cloud', e:'☁️' }, { w:'umbr_la', full:'umbrella', e:'☂️' }, { w:'h_use', full:'house', e:'🏠' },
+  { w:'t_rtle', full:'turtle', e:'🐢' }, { w:'butter_ly', full:'butterfly', e:'🦋' }, { w:'p_ncil', full:'pencil', e:'✏️' },
+  { w:'cl_ud', full:'cloud', e:'☁️' }, { w:'umbrel_a', full:'umbrella', e:'☂️' }, { w:'h_use', full:'house', e:'🏠' },
   { w:'st_r', full:'star', e:'⭐' }, { w:'c_r', full:'car', e:'🚗' }
 ];
 
-// Add these topics to Class 1
+
+// UPDATE CLASS 1 MENU
+// =========================================
 if(contentData['class1']) {
-  // Remove old Class 1 to start fresh with new topics
   contentData['class1'].subjects = [
     {
       name: 'English Grammar',
@@ -992,14 +996,14 @@ if(contentData['class1']) {
       topics: [
         {id: 'c1_animalfacts', title: 'About Animals', type: 'animal_facts', data: class1AnimalFacts},
         {id: 'c1_makewords', title: 'Make Words', type: 'make_words', data: class1MakeWords},
-        {id: 'c1_missingwords', title: 'Missing Letters', type: 'missing_words', data: class1MissingWords}
+        {id: 'c1_missingwords', title: 'Missing Letters', type: 'missing_words', data: fixedClass1MissingWords}
       ]
     }
   ];
 }
 
 // =========================================
-// CSS FOR NEW CLASS 1 TOPICS
+// CSS FOR CLASS 1 TOPICS
 // =========================================
 const c1Style = document.createElement('style');
 c1Style.innerHTML = `
@@ -1007,40 +1011,34 @@ c1Style.innerHTML = `
   .line-item { display: flex; align-items: center; gap: 15px; background: #fff; border: 2px solid var(--border); padding: 15px 20px; border-radius: 12px; font-size: 1.3rem; font-weight: 600; cursor: pointer; transition: 0.2s; }
   .line-item:hover { border-color: var(--primary); transform: translateX(5px); background: #fff8e1; }
   .line-item .emoji { font-size: 2rem; }
-
   .vowels-grid { display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
   .vowel-card { display: flex; flex-direction: column; align-items: center; background: #fff; border: 3px solid var(--border); border-radius: 15px; padding: 20px; width: 140px; cursor: pointer; transition: 0.2s; }
   .vowel-card:hover { border-color: var(--primary); transform: translateY(-5px); }
   .vowel-card .letter { font-size: 3rem; font-weight: 800; color: var(--primary-dark); }
   .vowel-card .pic { font-size: 4rem; margin: 10px 0; }
   .vowel-card .word { font-size: 1.2rem; font-weight: 700; }
-
   .article-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; margin-bottom: 25px; }
   .article-title { font-size: 2rem; font-weight: 800; color: var(--primary); margin-bottom: 10px; }
   .article-rule { font-size: 1.2rem; color: var(--muted); margin-bottom: 15px; font-weight: 600; }
   .article-examples { display: flex; gap: 15px; flex-wrap: wrap; }
   .article-ex { display: flex; align-items: center; gap: 10px; background: #f8f7ff; padding: 10px 20px; border-radius: 10px; font-size: 1.2rem; font-weight: 700; cursor: pointer; }
-
   .conv-row { display: flex; align-items: center; background: #fff; border: 2px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; cursor: pointer; transition: 0.2s; }
   .conv-row:hover { background: #fff8e1; border-color: var(--primary); }
   .conv-q { flex: 1; padding: 15px; font-size: 1.2rem; font-weight: 700; color: var(--text); }
   .conv-arrow { padding: 0 10px; font-size: 1.5rem; color: var(--primary); }
   .conv-a { flex: 1; padding: 15px; font-size: 1.2rem; font-weight: 600; color: #08764d; background: #d8fff0; border-radius: 10px; margin: 5px; }
   .conv-icon { padding: 15px; font-size: 1.8rem; }
-
   .greet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; margin-top: 20px; }
   .greet-card { display: flex; flex-direction: column; align-items: center; background: #fff; border: 2px solid var(--border); padding: 20px 10px; border-radius: 15px; cursor: pointer; transition: 0.2s; text-align: center; }
   .greet-card:hover { border-color: var(--primary); background: #fff8e1; transform: scale(1.05); }
   .greet-card .pic { font-size: 3rem; margin-bottom: 10px; }
   .greet-card .text { font-size: 1.2rem; font-weight: 800; }
-
   .action-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; margin-top: 20px; }
   .action-card { display: flex; flex-direction: column; align-items: center; background: #fff; border: 2px solid var(--border); padding: 20px 10px; border-radius: 15px; cursor: pointer; transition: 0.2s; text-align: center; }
   .action-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
   .action-card .pic { font-size: 3.5rem; margin-bottom: 10px; }
   .action-card .word { font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); }
   .action-card .sent { font-size: 1rem; font-weight: 600; color: var(--muted); }
-
   .animal-facts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
   .animal-fact-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; cursor: pointer; transition: 0.2s; }
   .animal-fact-card:hover { border-color: var(--primary); background: #fff8e1; }
@@ -1049,21 +1047,18 @@ c1Style.innerHTML = `
   .animal-fact-header .name { font-size: 1.5rem; font-weight: 800; color: var(--primary-dark); }
   .animal-fact-list { list-style: none; padding-left: 0; }
   .animal-fact-list li { font-size: 1.1rem; font-weight: 600; margin-bottom: 5px; color: var(--text); }
-
   .make-word-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
   .mw-card { display: flex; align-items: center; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 15px; gap: 15px; }
   .mw-card .pic { font-size: 3rem; }
   .mw-card .scrambled { font-size: 1.5rem; font-weight: 800; color: var(--primary-dark); letter-spacing: 2px; }
   .mw-card input { width: 100px; border: none; border-bottom: 2px dashed var(--primary); font-size: 1.3rem; font-weight: 700; text-transform: uppercase; text-align: center; outline: none; }
   .mw-card input.correct { border-color: #34C759; color: #08764d; }
-
   .missing-word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
   .missword-card { display: flex; flex-direction: column; align-items: center; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; }
   .missword-card .pic { font-size: 3.5rem; margin-bottom: 10px; }
   .missword-card .word-box { display: flex; gap: 5px; font-size: 1.8rem; font-weight: 800; }
   .missword-card input { width: 35px; height: 40px; border: none; border-bottom: 3px solid var(--primary); text-align: center; font-size: 1.5rem; font-weight: 800; text-transform: lowercase; outline: none; }
   .missword-card input.correct { border-color: #34C759; color: #08764d; }
-
   @media (max-width: 768px) {
     .make-word-grid { grid-template-columns: 1fr; }
     .vowel-card { width: 100px; padding: 15px; }
@@ -1074,7 +1069,7 @@ c1Style.innerHTML = `
 document.head.appendChild(c1Style);
 
 // =========================================
-// RENDER LOGIC FOR CLASS 1 (Appended to loadTopic)
+// RENDER LOGIC FOR CLASS 1
 // =========================================
 const baseLoadTopicC1 = loadTopic;
 loadTopic = function(subjectName, topicId) {
@@ -1093,7 +1088,6 @@ loadTopic = function(subjectName, topicId) {
       `).join('')}
     </div>`;
   }
-
   else if (topic.type === 'vowels') {
     content.innerHTML += `<p>A, E, I, O, U are called Vowels. Click on a vowel to hear it.</p>
     <div class="vowels-grid">
@@ -1106,7 +1100,6 @@ loadTopic = function(subjectName, topicId) {
       `).join('')}
     </div>`;
   }
-
   else if (topic.type === 'articles') {
     content.innerHTML += topic.data.map(item => `
       <div class="article-card">
@@ -1122,7 +1115,6 @@ loadTopic = function(subjectName, topicId) {
       </div>
     `).join('');
   }
-
   else if (topic.type === 'conversation') {
     content.innerHTML += `<div style="margin-top: 20px;">
       ${topic.data.map(item => `
@@ -1135,7 +1127,6 @@ loadTopic = function(subjectName, topicId) {
       `).join('')}
     </div>`;
   }
-
   else if (topic.type === 'greetings') {
     content.innerHTML += `<div class="greet-grid">
       ${topic.data.map(item => `
@@ -1146,7 +1137,6 @@ loadTopic = function(subjectName, topicId) {
       `).join('')}
     </div>`;
   }
-
   else if (topic.type === 'action') {
     content.innerHTML += `<div class="action-grid">
       ${topic.data.map(item => `
@@ -1158,7 +1148,6 @@ loadTopic = function(subjectName, topicId) {
       `).join('')}
     </div>`;
   }
-
   else if (topic.type === 'animal_facts') {
     content.innerHTML += `<div class="animal-facts-grid">
       ${topic.data.map(item => `
@@ -1174,7 +1163,6 @@ loadTopic = function(subjectName, topicId) {
       `).join('')}
     </div>`;
   }
-
   else if (topic.type === 'make_words') {
     content.innerHTML += `<div class="make-word-grid">
       ${topic.data.map((item, index) => `
@@ -1187,7 +1175,6 @@ loadTopic = function(subjectName, topicId) {
       `).join('')}
     </div>`;
   }
-
   else if (topic.type === 'missing_words') {
     content.innerHTML += `<div class="missing-word-grid">
       ${topic.data.map((item, index) => {
@@ -1196,7 +1183,9 @@ loadTopic = function(subjectName, topicId) {
           <div class="missword-card">
             <div class="pic">${item.e}</div>
             <div class="word-box">
-              ${parts[0]}<input type="text" maxlength="1" id="missw-${index}" oninput="checkMissingWord(${index}, '${item.w.replace('_', 'X')}', '${item.full}')">${parts[1] || ''}
+              <span style="text-transform:lowercase">${parts[0]}</span>
+              <input type="text" maxlength="1" id="fix-missw-${index}" oninput="checkFixedMissing(${index}, '${item.full}', '${parts[0]}', '${parts[1] || ''}')">
+              <span style="text-transform:lowercase">${parts[1] || ''}</span>
             </div>
           </div>
         `;
@@ -1205,7 +1194,9 @@ loadTopic = function(subjectName, topicId) {
   }
 };
 
-// Logic for Make Words and Missing Words
+// =========================================
+// INTERACTIVE LOGIC FOR CLASS 1
+// =========================================
 function checkMakeWord(index, correctAns) {
   const input = document.getElementById(`mw-${index}`);
   if(input.value.toUpperCase() === correctAns) {
@@ -1213,14 +1204,24 @@ function checkMakeWord(index, correctAns) {
   } else { input.classList.remove('correct'); }
 }
 
-function checkMissingWord(index, pattern, fullWord) {
-  const input = document.getElementById(`missw-${index}`);
-  const missingLetter = pattern.replace('X', ''); // This logic needs adjustment based on exact word
-  // Simpler logic: just check if the word becomes valid
-  const currentVal = input.value.toLowerCase();
-  if(fullWord.includes(currentVal) && currentVal !== '') {
-    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
-  } else { input.classList.remove('correct'); }
+function checkFixedMissing(index, fullWord, part1, part2) {
+  const input = document.getElementById(`fix-missw-${index}`);
+  const typed = input.value.toLowerCase();
+  
+  if(typed === '') {
+    input.classList.remove('correct');
+    return;
+  }
+
+  const wordFormed = part1 + typed + part2;
+  
+  if (wordFormed.toLowerCase() === fullWord.toLowerCase()) {
+    input.classList.add('correct'); 
+    addStar(); 
+    speak('Correct!');
+  } else {
+    input.classList.remove('correct');
+  }
 }
 // =========================================
 // END CLASS 1 UPDATE
