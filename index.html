@@ -644,6 +644,202 @@ function selectMatch(type, index, correctSm) {
     selectedCap = null; selectedSm = null;
   }
 }
+// =========================================
+// NEW UPDATE: Small Letters, Missing Letters & Matching
+// =========================================
+
+// 1. Naya Generator Functions
+function generateSmallAlpha() {
+  const data = [{l:'a',e:'🍎',w:'Apple'},{l:'b',e:'⚽',w:'Ball'},{l:'c',e:'🐱',w:'Cat'},{l:'d',e:'🐶',w:'Dog'},{l:'e',e:'🐘',w:'Elephant'},{l:'f',e:'🐟',w:'Fish'},{l:'g',e:'🍇',w:'Grapes'},{l:'h',e:'🏠',w:'House'},{l:'i',e:'🍦',w:'Ice Cream'},{l:'j',e:'🧃',w:'Juice'},{l:'k',e:'🪁',w:'Kite'},{l:'l',e:'🦁',w:'Lion'},{l:'m',e:'🐵',w:'Monkey'},{l:'n',e:'🪺',w:'Nest'},{l:'o',e:'🍊',w:'Orange'},{l:'p',e:'🦜',w:'Parrot'},{l:'q',e:'👑',w:'Queen'},{l:'r',e:'🐰',w:'Rabbit'},{l:'s',e:'☀️',w:'Sun'},{l:'t',e:'🐯',w:'Tiger'},{l:'u',e:'☂️',w:'Umbrella'},{l:'v',e:'🚐',w:'Van'},{l:'w',e:'⌚',w:'Watch'},{l:'x',e:'🎹',w:'Xylophone'},{l:'y',e:'🐃',w:'Yak'},{l:'z',e:'🦓',w:'Zebra'}];
+  return data.map(d => ({ text: `${d.l} for ${d.w}`, emoji: d.e, say: `${d.l} for ${d.w}` }));
+}
+
+// 2. Caterpillar Missing Alphabet (Direct A-Z Check)
+function generateCaterpillarAZ() {
+  const caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const smalls = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  const capBlanks = [2, 4, 7, 9, 11, 13, 16, 19, 21, 23, 25]; 
+  const smallBlanks = [2, 4, 7, 9, 11, 13, 16, 19, 21, 23, 25];
+  
+  return {
+    caps: caps.map((l, i) => ({ l, blank: capBlanks.includes(i) })),
+    smalls: smalls.map((l, i) => ({ l, blank: smallBlanks.includes(i) }))
+  };
+}
+
+// 3. Match Small Letter (MCQ based on image)
+function generateMatchSmallMCQ() {
+  return [
+    { cap: 'A', options: ['g', 'c', 'a'], ans: 'a' }, { cap: 'B', options: ['d', 'c', 'b'], ans: 'b' },
+    { cap: 'C', options: ['a', 'c', 'b'], ans: 'c' }, { cap: 'D', options: ['b', 'd', 'c'], ans: 'd' },
+    { cap: 'E', options: ['f', 'e', 'a'], ans: 'e' }, { cap: 'F', options: ['f', 'h', 'd'], ans: 'f' },
+    { cap: 'G', options: ['e', 'k', 'g'], ans: 'g' }, { cap: 'H', options: ['h', 'n', 's'], ans: 'h' },
+    { cap: 'I', options: ['i', 'l', 'k'], ans: 'i' }, { cap: 'J', options: ['a', 'k', 'j'], ans: 'j' },
+    { cap: 'K', options: ['i', 'j', 'k'], ans: 'k' }, { cap: 'L', options: ['h', 'l', 'b'], ans: 'l' },
+    { cap: 'M', options: ['n', 'm', 'o'], ans: 'm' }, { cap: 'N', options: ['n', 'm', 'k'], ans: 'n' },
+    { cap: 'O', options: ['p', 'c', 'o'], ans: 'o' }, { cap: 'P', options: ['p', 'o', 'r'], ans: 'p' },
+    { cap: 'Q', options: ['q', 'r', 't'], ans: 'q' }, { cap: 'R', options: ['r', 's', 'p'], ans: 'r' },
+    { cap: 'S', options: ['g', 's', 'h'], ans: 's' }, { cap: 'T', options: ['t', 'z', 'k'], ans: 't' },
+    { cap: 'U', options: ['y', 'u', 'j'], ans: 'u' }, { cap: 'V', options: ['v', 'f', 'o'], ans: 'v' },
+    { cap: 'W', options: ['a', 'w', 'e'], ans: 'w' }, { cap: 'X', options: ['x', 'w', 'z'], ans: 'x' },
+    { cap: 'Y', options: ['x', 'y', 'u'], ans: 'y' }, { cap: 'Z', options: ['t', 's', 'z'], ans: 'z' }
+  ];
+}
+
+// 4. Color Matching Game
+function generateColorMatch() {
+  return [
+    { color: 'Red', bg: '#FF3B30', emoji: '🍓', name: 'Strawberry' },
+    { color: 'Green', bg: '#34C759', emoji: '🥕', name: 'Carrot Top' },
+    { color: 'Yellow', bg: '#FFCC00', emoji: '🐥', name: 'Duckling' },
+    { color: 'Blue', bg: '#007AFF', emoji: '🐳', name: 'Whale' },
+    { color: 'Purple', bg: '#AF52DE', emoji: '🐙', name: 'Octopus' },
+    { color: 'Pink', bg: '#FF2D55', emoji: '🦋', name: 'Butterfly' },
+    { color: 'Orange', bg: '#FF9500', emoji: '🥕', name: 'Carrot' },
+    { color: 'Brown', bg: '#8B4513', emoji: '🐻', name: 'Bear' },
+    { color: 'Black', bg: '#000000', emoji: '🐼', name: 'Panda Eyes' },
+    { color: 'White', bg: '#FFFFFF', emoji: '☁️', name: 'Cloud' }
+  ];
+}
+
+// =========================================
+// NAYE TOPICS KO MENU MEIN ADD KARNA
+// =========================================
+['nursery', 'jr', 'sr'].forEach(cls => {
+  if(contentData[cls]) {
+    // English Menu
+    const engSub = contentData[cls].subjects.find(s => s.name === 'English');
+    if(engSub) {
+      if(!engSub.topics.find(t => t.id === `${cls}_small_alpha`)) {
+        engSub.topics.unshift({id: `${cls}_small_alpha`, title: 'Small Letters (a to z)', type: 'grid', data: generateSmallAlpha()});
+      }
+      if(!engSub.topics.find(t => t.id === `${cls}_caterpillar`)) {
+        engSub.topics.push({id: `${cls}_caterpillar`, title: 'Caterpillar (Missing A-Z)', type: 'caterpillar', data: generateCaterpillarAZ()});
+      }
+      if(!engSub.topics.find(t => t.id === `${cls}_match_mcq`)) {
+        engSub.topics.push({id: `${cls}_match_mcq`, title: 'Match Capital & Small', type: 'match_mcq', data: generateMatchSmallMCQ()});
+      }
+    }
+    
+    // EVS Menu
+    const evsSub = contentData[cls].subjects.find(s => s.name === 'EVS');
+    if(evsSub) {
+      if(!evsSub.topics.find(t => t.id === `${cls}_color_match`)) {
+        evsSub.topics.push({id: `${cls}_color_match`, title: 'Match the Colors', type: 'color_match', data: generateColorMatch()});
+      }
+    }
+  }
+});
+
+// =========================================
+// NAYE TOPICS KA DESIGN (HTML/CSS)
+// =========================================
+const styleInject = document.createElement('style');
+styleInject.innerHTML = `
+  .caterpillar-grid { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-top: 20px; }
+  .cp-box { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; color: #333; }
+  .cp-box input { width: 35px; height: 35px; border-radius: 50%; border: 2px dashed #333; text-align: center; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; background: #fff; outline: none; }
+  .cp-box input.correct { background: #d8fff0; border-color: #34C759; color: #08764d; }
+
+  .mcq-row { display: flex; align-items: center; background: #fff; border: 2px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  .mcq-cap { background: var(--primary); color: white; padding: 15px 25px; font-size: 1.5rem; font-weight: 800; width: 80px; text-align: center; }
+  .mcq-options { display: flex; flex: 1; }
+  .mcq-opt { flex: 1; padding: 15px; text-align: center; font-size: 1.5rem; font-weight: 800; cursor: pointer; border-right: 1px solid #eee; transition: 0.2s; }
+  .mcq-opt:hover { background: #ffe0b2; }
+  .mcq-opt.correct { background: #d8fff0; color: #08764d; }
+  .mcq-opt.wrong { background: #ffd8d8; color: #cc0000; }
+
+  .color-match-row { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2px solid var(--border); border-radius: 10px; padding: 15px 30px; margin-bottom: 15px; }
+  .cm-left { display: flex; align-items: center; gap: 20px; font-size: 1.5rem; font-weight: 800; width: 150px; }
+  .cm-color-box { width: 50px; height: 30px; border-radius: 5px; border: 1px solid #ccc; }
+  .cm-right select { padding: 10px; font-size: 1.2rem; font-family: inherit; border-radius: 8px; border: 2px solid var(--primary); outline: none; }
+  .cm-right select.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+`;
+document.head.appendChild(styleInject);
+
+// LoadTopic function ko update karna naye designs ke liye
+const prevLoadTopic = loadTopic;
+loadTopic = function(subjectName, topicId) {
+  prevLoadTopic(subjectName, topicId);
+  
+  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
+  const topic = sub.topics.find(t => t.id === topicId);
+
+  // Caterpillar Missing A-Z
+  if (topic.type === 'caterpillar') {
+    const colors = ['#FFCDD2', '#F8BBD0', '#E1BEE7', '#D1C4E9', '#C5CAE9', '#BBDEFB', '#B3E5FC', '#B2EBF2', '#B2DFDB', '#C8E6C9'];
+    content.innerHTML += `<p>Complete the alphabet. Write the missing CAPITAL letters.</p>
+    <div class="caterpillar-grid">
+      ${topic.data.caps.map((item, i) => `<div class="cp-box" style="background:${colors[i%10]}">${item.blank ? `<input type="text" maxlength="1" id="cat-cap-${i}" oninput="checkCat(${i}, '${item.l}', 'cap')">` : item.l}</div>`).join('')}
+    </div>
+    <p style="margin-top: 40px;">Complete the alphabet. Write the missing small letters.</p>
+    <div class="caterpillar-grid">
+      ${topic.data.smalls.map((item, i) => `<div class="cp-box" style="background:${colors[i%10]}">${item.blank ? `<input type="text" maxlength="1" id="cat-small-${i}" oninput="checkCat(${i}, '${item.l}', 'small')">` : item.l}</div>`).join('')}
+    </div>`;
+  }
+  
+  // Match Capital & Small MCQ
+  else if (topic.type === 'match_mcq') {
+    content.innerHTML += `<p>Circle the correct lowercase letter for each capital letter.</p>
+    <div style="max-width: 600px;">
+      ${topic.data.map((item, i) => `
+        <div class="mcq-row">
+          <div class="mcq-cap">${item.cap}</div>
+          <div class="mcq-options">
+            ${item.options.map(opt => `<div class="mcq-opt" onclick="checkMCQ(this, '${opt}', '${item.ans}')">${opt}</div>`).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // Color Match Game
+  else if (topic.type === 'color_match') {
+    const shuffledEmojis = [...topic.data].sort(() => Math.random() - 0.5);
+    content.innerHTML += `<p>Match each color name with the correct picture.</p>
+    <div>
+      ${topic.data.map((item, i) => `
+        <div class="color-match-row">
+          <div class="cm-left">
+            <div class="cm-color-box" style="background: ${item.bg};"></div>
+            ${item.color}
+          </div>
+          <div class="cm-right">
+            <select id="color-select-${i}" onchange="checkColorMatch(${i}, '${item.emoji}', this)">
+              <option value="">Select Picture</option>
+              ${shuffledEmojis.map(emo => `<option value="${emo.emoji}">${emo.emoji} ${emo.name}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+};
+
+// Naye Games ka Logic
+function checkCat(idx, correctChar, type) {
+  const input = document.getElementById(`cat-${type}-${idx}`);
+  if(input.value.toUpperCase() === correctChar.toUpperCase()) {
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else { input.classList.remove('correct'); }
+}
+
+function checkMCQ(el, selected, correct) {
+  if (el.classList.contains('correct')) return;
+  if (selected === correct) {
+    el.classList.add('correct');
+    addStar(); speak('Correct!');
+  } else {
+    el.classList.add('wrong');
+    setTimeout(() => el.classList.remove('wrong'), 500);
+  }
+}
+
+function checkColorMatch(index, correctEmoji, selectEl) {
+  if (selectEl.value === correctEmoji) {
+    selectEl.classList.add('correct'); selectEl.disabled = true; addStar(); speak('Correct!');
+  }
+}
 
 // Initialize App
 renderTabs();
