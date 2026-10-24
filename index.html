@@ -1077,28 +1077,28 @@ loadTopic = function(subjectName, topicId) {
   
   const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
   const topic = sub.topics.find(t => t.id === topicId);
-
-     if (topic.type === 'lines') {
+  
+  if (topic.type === 'lines') {
     content.innerHTML += `<div class="lines-container">
       ${topic.data.lines.map((item, index) => {
-        // Agar line mein blank (________) hai, toh wahan input box lagao
         let lineHtml = '';
         if (item.t.includes('________')) {
           const parts = item.t.split('________');
-          lineHtml = `${parts[0]}<input type="text" class="blank-input-text" style="border: none; border-bottom: 2px dashed var(--primary); font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); background: transparent; outline: none; text-align: center; width: 150px; padding: 0 5px;" placeholder="type here...">${parts[1]}`;
+          lineHtml = parts[0] + `<input type="text" class="blank-input-text" style="border: none; border-bottom: 2px dashed var(--primary); font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); background: transparent; outline: none; text-align: center; width: 150px; padding: 0 5px;" placeholder="type here...">` + parts[1];
         } else {
           lineHtml = item.t;
         }
 
         return `
-          <div class="line-item">
-            <span class="emoji" onclick="speak('${item.t.replace(/________/g, 'blank')}'); addStar();" style="cursor:pointer;">${item.e}</span>
+          <div class="line-item" onclick="speak('${item.t.replace(/________/g, 'blank')}'); addStar();" style="cursor:pointer;">
+            <span class="emoji">${item.e}</span>
             <span>${lineHtml}</span>
           </div>
         `;
       }).join('')}
     </div>`;
   }
+   
   else if (topic.type === 'vowels') {
     content.innerHTML += `<p>A, E, I, O, U are called Vowels. Click on a vowel to hear it.</p>
     <div class="vowels-grid">
