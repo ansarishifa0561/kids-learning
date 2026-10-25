@@ -1248,6 +1248,342 @@ function checkFixedMissing(index, fullWord, part1, part2) {
 // =========================================
 // END CLASS 1 UPDATE
 // =========================================
+// =========================================
+// CLASS 2 - COMPLETE SYLLABUS (Interactive & Colorful)
+// =========================================
+
+// 1. OPPOSITE WORDS DATA
+const c2Opposites = [
+  { w1: 'Big', w2: 'Small', e1: '🐘', e2: '🐁' },
+  { w1: 'Hot', w2: 'Cold', e1: '🔥', e2: '❄️' },
+  { w1: 'Happy', w2: 'Sad', e1: '😊', e2: '😢' },
+  { w1: 'Day', w2: 'Night', e1: '☀️', e2: '🌙' },
+  { w1: 'Open', w2: 'Close', e1: '🚪', e2: '🔒' },
+  { w1: 'Fast', w2: 'Slow', e1: '🐇', e2: '🐢' },
+  { w1: 'Tall', w2: 'Short', e1: '🦒', e2: '🐜' },
+  { w1: 'Clean', w2: 'Dirty', e1: '✨', e2: '🤢' },
+  { w1: 'Full', w2: 'Empty', e1: '🫙', e2: '🥛' },
+  { w1: 'Up', w2: 'Down', e1: '⬆️', e2: '⬇️' },
+  { w1: 'Light', w2: 'Heavy', e1: '🪶', e2: '🏋️' },
+  { w1: 'Young', w2: 'Old', e1: '👶', e2: '👴' }
+];
+
+// 2. SINGULAR & PLURAL DATA
+const c2Plurals = [
+  { sing: 'Apple', plur: 'Apples', e1: '🍎', e2: '🍎🍎', rule: 'Add -s' },
+  { sing: 'Book', plur: 'Books', e1: '📖', e2: '📚', rule: 'Add -s' },
+  { sing: 'Dog', plur: 'Dogs', e1: '🐶', e2: '🐶🐶', rule: 'Add -s' },
+  { sing: 'Box', plur: 'Boxes', e1: '📦', e2: '📦📦', rule: 'Add -es' },
+  { sing: 'Bus', plur: 'Buses', e1: '🚌', e2: '🚌🚌', rule: 'Add -es' },
+  { sing: 'Baby', plur: 'Babies', e1: '👶', e2: '👶👶', rule: 'Change y to ies' },
+  { sing: 'City', plur: 'Cities', e1: '🏙️', e2: '🏙️🏙️', rule: 'Change y to ies' },
+  { sing: 'Leaf', plur: 'Leaves', e1: '🍃', e2: '🍃🍃', rule: 'Change f to ves' },
+  { sing: 'Knife', plur: 'Knives', e1: '🔪', e2: '🔪🔪', rule: 'Change fe to ves' },
+  { sing: 'Child', plur: 'Children', e1: '🧒', e2: '👦👧', rule: 'Irregular' },
+  { sing: 'Man', plur: 'Men', e1: '👨', e2: '👨👨', rule: 'Irregular' },
+  { sing: 'Mouse', plur: 'Mice', e1: '🐭', e2: '🐭🐭', rule: 'Irregular' }
+];
+
+// 3. IS / AM / ARE DATA
+const c2IsAmAre = [
+  { q: 'I _______ a student.', ans: 'am', e: '🧑‍🎓' },
+  { q: 'You _______ my friend.', ans: 'are', e: '🤝' },
+  { q: 'He _______ tall.', ans: 'is', e: '👦' },
+  { q: 'She _______ a teacher.', ans: 'is', e: '👩‍🏫' },
+  { q: 'It _______ a cat.', ans: 'is', e: '🐱' },
+  { q: 'We _______ playing.', ans: 'are', e: '⚽' },
+  { q: 'They _______ happy.', ans: 'are', e: '😊' },
+  { q: 'The dog _______ black.', ans: 'is', e: '🐶' },
+  { q: 'I _______ from India.', ans: 'am', e: '🇮🇳' },
+  { q: 'Tom and Jerry _______ friends.', ans: 'are', e: '🐱🐭' }
+];
+
+// 4. GREATER THAN / LESS THAN DATA
+const c2GreaterLess = [
+  { a: 5, b: 9, ans: '<' }, { a: 12, b: 7, ans: '>' }, { a: 15, b: 15, ans: '=' },
+  { a: 24, b: 20, ans: '>' }, { a: 33, b: 40, ans: '<' }, { a: 50, b: 50, ans: '=' },
+  { a: 18, b: 9, ans: '>' }, { a: 25, b: 30, ans: '<' }, { a: 45, b: 22, ans: '>' },
+  { a: 60, b: 65, ans: '<' }, { a: 80, b: 80, ans: '=' }, { a: 95, b: 88, ans: '>' }
+];
+
+// 5. ASCENDING / DESCENDING DATA
+const c2Ascending = [
+  { list: [14, 7, 22, 3], ans: [3, 7, 14, 22] },
+  { list: [38, 11, 27, 5], ans: [5, 11, 27, 38] },
+  { list: [50, 20, 40, 10], ans: [10, 20, 40, 50] }
+];
+
+// 6. ADDITION WITH PICTURES
+const c2AddPics = [
+  { a: 3, b: 2, e: '🍎', sum: 5 }, { a: 4, b: 3, e: '🍌', sum: 7 },
+  { a: 2, b: 3, e: '🧸', sum: 5 }, { a: 5, b: 2, e: '🚗', sum: 7 },
+  { a: 4, b: 5, e: '🍊', sum: 9 }, { a: 6, b: 4, e: '🎈', sum: 10 }
+];
+
+// 7. SUBTRACTION WITH PICTURES
+const c2SubPics = [
+  { a: 7, b: 2, e: '🍎', sum: 5 }, { a: 8, b: 3, e: '🐟', sum: 5 },
+  { a: 6, b: 1, e: '⭐', sum: 5 }, { a: 9, b: 4, e: '🎈', sum: 5 },
+  { a: 7, b: 3, e: '🍪', sum: 4 }, { a: 10, b: 5, e: '🐝', sum: 5 }
+];
+
+// =========================================
+// INJECT CLASS 2 DATA
+// =========================================
+if(!contentData['class2']) contentData['class2'] = { subjects: [] };
+contentData['class2'].subjects = [
+  {
+    name: 'English',
+    topics: [
+      {id: 'c2_opposites', title: 'Opposite Words', type: 'c2_opposite', data: c2Opposites},
+      {id: 'c2_plurals', title: 'Singular & Plural', type: 'c2_plural', data: c2Plurals},
+      {id: 'c2_isamare', title: 'Use of Is / Am / Are', type: 'c2_isamare', data: c2IsAmAre}
+    ]
+  },
+  {
+    name: 'Maths',
+    topics: [
+      {id: 'c2_greaterless', title: 'Greater, Less, Equal', type: 'c2_greaterless', data: c2GreaterLess},
+      {id: 'c2_ascending', title: 'Ascending / Descending', type: 'c2_ascending', data: c2Ascending},
+      {id: 'c2_addpics', title: 'Addition with Pictures', type: 'c2_addpics', data: c2AddPics},
+      {id: 'c2_subpics', title: 'Subtraction with Pictures', type: 'c2_subpics', data: c2SubPics}
+    ]
+  }
+];
+
+// =========================================
+// CSS FOR CLASS 2
+// =========================================
+const c2Style = document.createElement('style');
+c2Style.innerHTML = `
+  /* Opposites */
+  .opp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+  .opp-card { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 15px 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+  .opp-side { display: flex; flex-direction: column; align-items: center; width: 100px; }
+  .opp-side .emoji { font-size: 3rem; }
+  .opp-side .word { font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); }
+  .opp-arrow { font-size: 2rem; color: var(--primary); font-weight: 800; }
+
+  /* Plurals */
+  .plural-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
+  .plural-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; text-align: center; }
+  .plural-row { display: flex; align-items: center; justify-content: space-around; margin-bottom: 15px; }
+  .plural-item { display: flex; flex-direction: column; align-items: center; }
+  .plural-item .emoji { font-size: 3rem; margin-bottom: 5px; }
+  .plural-item .word { font-size: 1.3rem; font-weight: 800; }
+  .plural-rule { background: #fff8e1; color: #e65100; padding: 5px 15px; border-radius: 20px; font-size: 1rem; font-weight: 700; display: inline-block; }
+
+  /* Is Am Are */
+  .isamare-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+  .iam-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; display: flex; align-items: center; gap: 15px; }
+  .iam-card .pic { font-size: 3rem; }
+  .iam-card .sentence { font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .iam-card select { font-size: 1.2rem; padding: 5px 10px; border: 2px solid var(--primary); border-radius: 8px; outline: none; font-family: inherit; font-weight: 700; cursor: pointer; }
+  .iam-card select.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+
+  /* Greater Less */
+  .gl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+  .gl-card { display: flex; align-items: center; justify-content: center; gap: 15px; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; font-size: 2rem; font-weight: 800; }
+  .gl-card .num { color: var(--primary-dark); }
+  .gl-card .gl-input { width: 50px; height: 50px; font-size: 2rem; font-weight: 800; text-align: center; border: 2px dashed var(--primary); border-radius: 10px; outline: none; background: #fff8e1; color: var(--primary-dark); }
+  .gl-card .gl-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; border-style: solid; }
+
+  /* Ascending / Descending */
+  .asc-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
+  .asc-question { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; color: var(--text); }
+  .asc-inputs { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .asc-inputs input { width: 70px; height: 50px; font-size: 1.5rem; font-weight: 800; text-align: center; border: 2px solid var(--primary); border-radius: 10px; outline: none; }
+  .asc-inputs input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+
+  /* Math Pictures */
+  .math-pic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+  .mp-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; text-align: center; }
+  .mp-visual { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 2rem; margin-bottom: 15px; }
+  .mp-visual .group { letter-spacing: 5px; }
+  .mp-eq { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.8rem; font-weight: 800; }
+  .mp-input { width: 60px; height: 60px; font-size: 1.8rem; font-weight: 800; text-align: center; border: 3px solid var(--primary); border-radius: 12px; outline: none; }
+  .mp-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+`;
+document.head.appendChild(c2Style);
+
+// =========================================
+// RENDER LOGIC FOR CLASS 2
+// =========================================
+const prevLoadTopicC2 = loadTopic;
+loadTopic = function(subjectName, topicId) {
+  prevLoadTopicC2(subjectName, topicId);
+  
+  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
+  const topic = sub.topics.find(t => t.id === topicId);
+
+  // 1. OPPOSITES
+  if (topic.type === 'c2_opposite') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Click on a card to hear the words.</p>
+    <div class="opp-grid">
+      ${topic.data.map(item => `
+        <div class="opp-card" onclick="speak('${item.w1} and ${item.w2}'); addStar();">
+          <div class="opp-side"><span class="emoji">${item.e1}</span><span class="word">${item.w1}</span></div>
+          <div class="opp-arrow">⇄</div>
+          <div class="opp-side"><span class="emoji">${item.e2}</span><span class="word">${item.w2}</span></div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 2. PLURALS
+  else if (topic.type === 'c2_plural') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Learn how words change from one to many.</p>
+    <div class="plural-grid">
+      ${topic.data.map(item => `
+        <div class="plural-card" onclick="speak('${item.sing} becomes ${item.plur}'); addStar();">
+          <div class="plural-row">
+            <div class="plural-item"><span class="emoji">${item.e1}</span><span class="word">${item.sing}</span></div>
+            <div class="opp-arrow">➔</div>
+            <div class="plural-item"><span class="emoji">${item.e2}</span><span class="word">${item.plur}</span></div>
+          </div>
+          <div class="plural-rule">${item.rule}</div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 3. IS AM ARE
+  else if (topic.type === 'c2_isamare') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Choose the correct word to complete the sentence.</p>
+    <div class="isamare-grid">
+      ${topic.data.map((item, index) => `
+        <div class="iam-card">
+          <span class="pic">${item.e}</span>
+          <div class="sentence">
+            ${item.q.split('_______')[0]}
+            <select id="iam-${index}" onchange="checkIsAmAre(${index}, '${item.ans}')">
+              <option value="">...</option>
+              <option value="am">am</option>
+              <option value="is">is</option>
+              <option value="are">are</option>
+            </select>
+            ${item.q.split('_______')[1]}
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 4. GREATER / LESS
+  else if (topic.type === 'c2_greaterless') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Type > (Greater), < (Less) or = (Equal) in the box.</p>
+    <div class="gl-grid">
+      ${topic.data.map((item, index) => `
+        <div class="gl-card">
+          <span class="num">${item.a}</span>
+          <input type="text" maxlength="1" class="gl-input" id="gl-${index}" oninput="checkGL(${index}, '${item.ans}')">
+          <span class="num">${item.b}</span>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 5. ASCENDING
+  else if (topic.type === 'c2_ascending') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Arrange the numbers from smallest to greatest.</p>
+    <div style="margin-top: 20px;">
+      ${topic.data.map((item, idx) => `
+        <div class="asc-card">
+          <div class="asc-question">Sort this list: ${item.list.join(', ')}</div>
+          <div class="asc-inputs">
+            <input type="number" id="asc-${idx}-0" oninput="checkAsc(${idx}, 0, ${item.ans[0]})">
+            <span><</span>
+            <input type="number" id="asc-${idx}-1" oninput="checkAsc(${idx}, 1, ${item.ans[1]})">
+            <span><</span>
+            <input type="number" id="asc-${idx}-2" oninput="checkAsc(${idx}, 2, ${item.ans[2]})">
+            <span><</span>
+            <input type="number" id="asc-${idx}-3" oninput="checkAsc(${idx}, 3, ${item.ans[3]})">
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 6. ADDITION WITH PICS
+  else if (topic.type === 'c2_addpics') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Count the pictures and add them.</p>
+    <div class="math-pic-grid">
+      ${topic.data.map((item, index) => `
+        <div class="mp-card">
+          <div class="mp-visual">
+            <span class="group">${item.e.repeat(item.a)}</span>
+            <span>+</span>
+            <span class="group">${item.e.repeat(item.b)}</span>
+          </div>
+          <div class="mp-eq">
+            <span>${item.a} + ${item.b} =</span>
+            <input type="number" class="mp-input" id="addpic-${index}" oninput="checkMathPic(${index}, ${item.sum})">
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // 7. SUBTRACTION WITH PICS
+  else if (topic.type === 'c2_subpics') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Count the pictures and subtract.</p>
+    <div class="math-pic-grid">
+      ${topic.data.map((item, index) => `
+        <div class="mp-card">
+          <div class="mp-visual">
+            <span class="group" style="position: relative;">${item.e.repeat(item.a)}</span>
+          </div>
+          <div class="mp-eq">
+            <span>${item.a} - ${item.b} =</span>
+            <input type="number" class="mp-input" id="subpic-${index}" oninput="checkMathPic(${index}, ${item.sum})">
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+};
+
+// =========================================
+// INTERACTIVE LOGIC FOR CLASS 2
+// =========================================
+function checkIsAmAre(index, correctAns) {
+  const selectEl = document.getElementById(`iam-${index}`);
+  if(selectEl.value === correctAns) {
+    selectEl.classList.add('correct');
+    addStar(); speak('Correct!');
+  } else {
+    selectEl.classList.remove('correct');
+  }
+}
+
+function checkGL(index, correctAns) {
+  const input = document.getElementById(`gl-${index}`);
+  if(input.value === correctAns) {
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else {
+    input.classList.remove('correct');
+  }
+}
+
+function checkAsc(idx, pos, correctAns) {
+  const input = document.getElementById(`asc-${idx}-${pos}`);
+  if(parseInt(input.value) === correctAns) {
+    input.classList.add('correct'); 
+    input.disabled = true; 
+    addStar(); speak('Correct!');
+  } else {
+    input.classList.remove('correct');
+  }
+}
+
+function checkMathPic(index, correctAns) {
+  const input = document.getElementById(`addpic-${index}`) || document.getElementById(`subpic-${index}`);
+  if(parseInt(input.value) === correctAns) {
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else {
+    input.classList.remove('correct');
+  }
+}
 // Initialize App
 renderTabs();
 switchClass('nursery');
