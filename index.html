@@ -1249,390 +1249,166 @@ function checkFixedMissing(index, fullWord, part1, part2) {
 // END CLASS 1 UPDATE
 // =========================================
 // =========================================
-// CLASS 2 - COMPLETE SYLLABUS (Interactive & Colorful)
+// CLASS 2 - NEW TOPICS UPDATE (Maths & English)
 // =========================================
 
-// 1. OPPOSITE WORDS DATA
-const c2Opposites = [
-  { w1: 'Big', w2: 'Small', e1: '🐘', e2: '🐁' },
-  { w1: 'Hot', w2: 'Cold', e1: '🔥', e2: '❄️' },
-  { w1: 'Happy', w2: 'Sad', e1: '😊', e2: '😢' },
-  { w1: 'Day', w2: 'Night', e1: '☀️', e2: '🌙' },
-  { w1: 'Open', w2: 'Close', e1: '🚪', e2: '🔒' },
-  { w1: 'Fast', w2: 'Slow', e1: '🐇', e2: '🐢' },
-  { w1: 'Tall', w2: 'Short', e1: '🦒', e2: '🐜' },
-  { w1: 'Clean', w2: 'Dirty', e1: '✨', e2: '🤢' },
-  { w1: 'Full', w2: 'Empty', e1: '🫙', e2: '🥛' },
-  { w1: 'Up', w2: 'Down', e1: '⬆️', e2: '⬇️' },
-  { w1: 'Light', w2: 'Heavy', e1: '🪶', e2: '🏋️' },
-  { w1: 'Young', w2: 'Old', e1: '👶', e2: '👴' },
-  { w1: 'Start', w2: 'End', e1: '🏁', e2: '🛑' },
-  { w1: 'Win', w2: 'Lose', e1: '🏆', e2: '❌' },
-  { w1: 'Love', w2: 'Hate', e1: '❤️', e2: '💔' }
-];
+// 1. Picture Addition (30 Questions)
+function generateC2AddPic30() {
+  const emojis = ['🍎','🍌','🍇','🍊','⭐','🎈','🚗','⚽','🐶','🐱'];
+  const arr = [];
+  for (let i = 0; i < 30; i++) {
+    let a = Math.floor(Math.random() * 5) + 1;
+    let b = Math.floor(Math.random() * 5) + 1;
+    arr.push({ a: a, b: b, ans: a + b, e: emojis[i % emojis.length] });
+  }
+  return arr;
+}
 
-// 2. SINGULAR & PLURAL DATA (30+ Words with Rules)
-const c2Plurals = [
-  // Rule 1: Add -s
-  { sing: 'Apple', plur: 'Apples', e1: '🍎', e2: '🍎🍎', rule: 'Add -s' },
-  { sing: 'Book', plur: 'Books', e1: '📖', e2: '📚', rule: 'Add -s' },
-  { sing: 'Dog', plur: 'Dogs', e1: '🐶', e2: '🐶🐶', rule: 'Add -s' },
-  { sing: 'Cat', plur: 'Cats', e1: '🐱', e2: '🐱🐱', rule: 'Add -s' },
-  { sing: 'Car', plur: 'Cars', e1: '🚗', e2: '🚗🚗', rule: 'Add -s' },
-  { sing: 'Tree', plur: 'Trees', e1: '🌳', e2: '🌳🌳', rule: 'Add -s' },
-  { sing: 'Pen', plur: 'Pens', e1: '🖊️', e2: '🖊️🖊️', rule: 'Add -s' },
-  // Rule 2: Add -es (s, x, z, ch, sh)
-  { sing: 'Box', plur: 'Boxes', e1: '📦', e2: '📦📦', rule: 'Add -es' },
-  { sing: 'Bus', plur: 'Buses', e1: '🚌', e2: '🚌🚌', rule: 'Add -es' },
-  { sing: 'Watch', plur: 'Watches', e1: '⌚', e2: '⌚⌚', rule: 'Add -es' },
-  { sing: 'Dish', plur: 'Dishes', e1: '🍽️', e2: '🍽️🍽️', rule: 'Add -es' },
-  { sing: 'Fox', plur: 'Foxes', e1: '🦊', e2: '🦊🦊', rule: 'Add -es' },
-  // Rule 3: Change y to ies
-  { sing: 'Baby', plur: 'Babies', e1: '👶', e2: '👶👶', rule: 'Change y to ies' },
-  { sing: 'City', plur: 'Cities', e1: '🏙️', e2: '🏙️🏙️', rule: 'Change y to ies' },
-  { sing: 'Story', plur: 'Stories', e1: '📖', e2: '📚', rule: 'Change y to ies' },
-  { sing: 'Lady', plur: 'Ladies', e1: '👩', e2: '👩👩', rule: 'Change y to ies' },
-  // Rule 4: Change f/fe to ves
-  { sing: 'Leaf', plur: 'Leaves', e1: '🍃', e2: '🍃🍃', rule: 'Change f to ves' },
-  { sing: 'Knife', plur: 'Knives', e1: '🔪', e2: '🔪🔪', rule: 'Change fe to ves' },
-  { sing: 'Wolf', plur: 'Wolves', e1: '🐺', e2: '🐺🐺', rule: 'Change f to ves' },
-  { sing: 'Shelf', plur: 'Shelves', e1: '🗄️', e2: '🗄️🗄️', rule: 'Change f to ves' },
-  // Rule 5: Irregular
-  { sing: 'Child', plur: 'Children', e1: '🧒', e2: '👦👧', rule: 'Irregular' },
-  { sing: 'Man', plur: 'Men', e1: '👨', e2: '👨👨', rule: 'Irregular' },
-  { sing: 'Woman', plur: 'Women', e1: '👩', e2: '👩👩', rule: 'Irregular' },
-  { sing: 'Mouse', plur: 'Mice', e1: '🐭', e2: '🐭🐭', rule: 'Irregular' },
-  { sing: 'Foot', plur: 'Feet', e1: '🦶', e2: '🦶🦶', rule: 'Irregular' },
-  { sing: 'Tooth', plur: 'Teeth', e1: '🦷', e2: '🦷🦷', rule: 'Irregular' },
-  // Rule 6: No Change
-  { sing: 'Sheep', plur: 'Sheep', e1: '🐑', e2: '🐑🐑', rule: 'No Change' },
-  { sing: 'Fish', plur: 'Fish', e1: '🐟', e2: '🐟🐟', rule: 'No Change' },
-  { sing: 'Deer', plur: 'Deer', e1: '🦌', e2: '🦌🦌', rule: 'No Change' }
-];
+// 2. Picture Subtraction (30 Questions)
+function generateC2SubPic30() {
+  const emojis = ['🍎','🍌','🍇','🍊','⭐','🎈','🚗','⚽','🐶','🐱'];
+  const arr = [];
+  for (let i = 0; i < 30; i++) {
+    let a = Math.floor(Math.random() * 8) + 3; // 3 to 10
+    let b = Math.floor(Math.random() * 3) + 1; // 1 to 3
+    arr.push({ a: a, b: b, ans: a - b, e: emojis[i % emojis.length] });
+  }
+  return arr;
+}
 
-// 3. IS / AM / ARE (Complete Rules & Sentences)
-const c2IsAmAre = {
-  rule: "Use 'Am' with I, 'Is' with He/She/It, and 'Are' with We/You/They.",
-  exercises: [
-    { type: 'fill', sentences: [
-      { q: 'I _______ a student.', a: 'am' }, { q: 'She _______ happy.', a: 'is' },
-      { q: 'He _______ my brother.', a: 'is' }, { q: 'It _______ a cat.', a: 'is' },
-      { q: 'We _______ good friends.', a: 'are' }, { q: 'You _______ my best friend.', a: 'are' },
-      { q: 'They _______ playing in the park.', a: 'are' }, { q: 'Riya _______ reading a book.', a: 'is' },
-      { q: 'The parrot _______ green.', a: 'is' }, { q: 'My parents _______ very kind.', a: 'are' }
-    ]},
-    { type: 'choose', sentences: [
-      { q: 'I (is/am/are) from India.', a: 'am' }, { q: 'He (is/am/are) tall.', a: 'is' },
-      { q: 'We (is/am/are) going to school.', a: 'are' }, { q: 'It (is/am/are) a beautiful day.', a: 'is' },
-      { q: 'You (is/am/are) very kind.', a: 'are' }, { q: 'They (is/am/are) my cousins.', a: 'are' },
-      { q: 'She (is/am/are) dancing.', a: 'is' }, { q: 'My dog (is/am/are) cute.', a: 'is' },
-      { q: 'The flowers (is/am/are) fresh.', a: 'are' }, { q: 'I (is/am/are) eight years old.', a: 'am' }
-    ]}
-  ]
+// 3. Without Picture Addition & Subtraction (30 Each)
+function generateC2SimpleMath() {
+  const addArr = [], subArr = [];
+  for (let i = 0; i < 30; i++) {
+    let a = Math.floor(Math.random() * 50) + 10;
+    let b = Math.floor(Math.random() * 40) + 10;
+    addArr.push({ a: a, b: b, ans: a + b, op: '+' });
+  }
+  for (let i = 0; i < 30; i++) {
+    let a = Math.floor(Math.random() * 50) + 20;
+    let b = Math.floor(Math.random() * 15) + 5;
+    subArr.push({ a: a, b: b, ans: a - b, op: '-' });
+  }
+  return { add: addArr, sub: subArr };
+}
+
+// 4. Tables 1 to 5
+const c2Tables = {
+  1: [1,2,3,4,5,6,7,8,9,10],
+  2: [2,4,6,8,10,12,14,16,18,20],
+  3: [3,6,9,12,15,18,21,24,27,30],
+  4: [4,8,12,16,20,24,28,32,36,40],
+  5: [5,10,15,20,25,30,35,40,45,50]
 };
 
-// 4. GREATER THAN / LESS THAN DATA
-const c2GreaterLess = [
-  { a: 5, b: 9, ans: '<' }, { a: 12, b: 7, ans: '>' }, { a: 15, b: 15, ans: '=' },
-  { a: 24, b: 20, ans: '>' }, { a: 33, b: 40, ans: '<' }, { a: 50, b: 50, ans: '=' },
-  { a: 18, b: 9, ans: '>' }, { a: 25, b: 30, ans: '<' }, { a: 45, b: 22, ans: '>' },
-  { a: 60, b: 65, ans: '<' }, { a: 80, b: 80, ans: '=' }, { a: 95, b: 88, ans: '>' }
-];
-
-// 5. ASCENDING / DESCENDING DATA
-const c2Ascending = [
-  { list: [14, 7, 22, 3], ans: [3, 7, 14, 22] },
-  { list: [38, 11, 27, 5], ans: [5, 11, 27, 38] },
-  { list: [50, 20, 40, 10], ans: [10, 20, 40, 50] }
-];
-
-// 6. ADDITION WITH PICTURES
-const c2AddPics = [
-  { a: 3, b: 2, e: '🍎', sum: 5 }, { a: 4, b: 3, e: '🍌', sum: 7 },
-  { a: 2, b: 3, e: '🧸', sum: 5 }, { a: 5, b: 2, e: '🚗', sum: 7 },
-  { a: 4, b: 5, e: '🍊', sum: 9 }, { a: 6, b: 4, e: '🎈', sum: 10 }
-];
-
-// 7. SUBTRACTION WITH PICTURES
-const c2SubPics = [
-  { a: 7, b: 2, e: '🍎', sum: 5 }, { a: 8, b: 3, e: '🐟', sum: 5 },
-  { a: 6, b: 1, e: '⭐', sum: 5 }, { a: 9, b: 4, e: '🎈', sum: 5 },
-  { a: 7, b: 3, e: '🍪', sum: 4 }, { a: 10, b: 5, e: '🐝', sum: 5 }
+// 5. 30 Action Words (Verbs) with Pictures
+const c2VerbSentences = [
+  { w:'Run', e:'🏃‍♂️', s:'He is running.' }, { w:'Jump', e:'🤸‍♂️', s:'She is jumping.' },
+  { w:'Walk', e:'🚶‍♀️', s:'He is walking.' }, { w:'Eat', e:'🍽️', s:'She is eating.' },
+  { w:'Drink', e:'🥛', s:'He is drinking.' }, { w:'Read', e:'📖', s:'She is reading.' },
+  { w:'Write', e:'✍️', s:'He is writing.' }, { w:'Draw', e:'🎨', s:'She is drawing.' },
+  { w:'Sing', e:'🎤', s:'He is singing.' }, { w:'Dance', e:'💃', s:'She is dancing.' },
+  { w:'Laugh', e:'😂', s:'He is laughing.' }, { w:'Cry', e:'😭', s:'She is crying.' },
+  { w:'Clap', e:'👏', s:'He is clapping.' }, { w:'Sleep', e:'😴', s:'She is sleeping.' },
+  { w:'Think', e:'🤔', s:'He is thinking.' }, { w:'Look', e:'🔭', s:'She is looking.' },
+  { w:'Listen', e:'👂', s:'He is listening.' }, { w:'Help', e:'🤝', s:'She is helping.' },
+  { w:'Open', e:'🚪', s:'He is opening the door.' }, { w:'Close', e:'🪟', s:'She is closing the window.' },
+  { w:'Throw', e:'⚾', s:'He is throwing the ball.' }, { w:'Catch', e:'🧤', s:'She is catching the ball.' },
+  { w:'Kick', e:'⚽', s:'He is kicking the ball.' }, { w:'Swim', e:'🏊‍♂️', s:'She is swimming.' },
+  { w:'Cook', e:'🍳', s:'He is cooking.' }, { w:'Wash', e:'🧼', s:'She is washing hands.' },
+  { w:'Play', e:'🎮', s:'He is playing.' }, { w:'Study', e:'📚', s:'She is studying.' },
+  { w:'Paint', e:'🖌️', s:'He is painting.' }, { w:'Ride', e:'🚴', s:'She is riding a bike.' }
 ];
 
 // =========================================
-// INJECT CLASS 2 DATA
+// INJECT NEW TOPICS INTO CLASS 2
 // =========================================
-if(!contentData['class2']) contentData['class2'] = { subjects: [] };
-contentData['class2'].subjects = [
-  {
-    name: 'English',
-    topics: [
-      {id: 'c2_opposites', title: 'Opposite Words (15)', type: 'c2_opposite', data: c2Opposites},
-      {id: 'c2_plurals', title: 'Singular & Plural (30+)', type: 'c2_plural', data: c2Plurals},
-      {id: 'c2_isamare', title: 'Use of Is / Am / Are', type: 'c2_isamare', data: c2IsAmAre}
-    ]
-  },
-  {
-    name: 'Maths',
-    topics: [
-      {id: 'c2_greaterless', title: 'Greater, Less, Equal', type: 'c2_greaterless', data: c2GreaterLess},
-      {id: 'c2_ascending', title: 'Ascending / Descending', type: 'c2_ascending', data: c2Ascending},
-      {id: 'c2_addpics', title: 'Addition with Pictures', type: 'c2_addpics', data: c2AddPics},
-      {id: 'c2_subpics', title: 'Subtraction with Pictures', type: 'c2_subpics', data: c2SubPics}
-    ]
+if(contentData['class2']) {
+  const mathSub = contentData['class2'].subjects.find(s => s.name === 'Maths');
+  const engSub = contentData['class2'].subjects.find(s => s.name === 'English');
+  
+  const simpleMath = generateC2SimpleMath();
+
+  if(mathSub) {
+    mathSub.topics.push(
+      {id: 'c2_addpic30', title: 'Addition with Pictures (30)', type: 'c2_addpics', data: generateC2AddPic30()},
+      {id: 'c2_subpic30', title: 'Subtraction with Pictures (30)', type: 'c2_subpics', data: generateC2SubPic30()},
+      {id: 'c2_add30', title: 'Addition (30 Questions)', type: 'c2_math_plain', data: simpleMath.add},
+      {id: 'c2_sub30', title: 'Subtraction (30 Questions)', type: 'c2_math_plain', data: simpleMath.sub},
+      {id: 'c2_tables', title: 'Tables 1 to 5', type: 'c2_tables', data: c2Tables}
+    );
   }
-];
+
+  if(engSub) {
+    engSub.topics.push(
+      {id: 'c2_verbs', title: 'Action Words Sentences (30)', type: 'c2_verbs', data: c2VerbSentences}
+    );
+  }
+}
 
 // =========================================
-// CSS FOR CLASS 2
+// RENDER LOGIC FOR NEW TOPICS
 // =========================================
-const c2Style = document.createElement('style');
-c2Style.innerHTML = `
-  /* Opposites */
-  .opp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
-  .opp-card { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 15px 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-  .opp-side { display: flex; flex-direction: column; align-items: center; width: 100px; }
-  .opp-side .emoji { font-size: 3rem; }
-  .opp-side .word { font-size: 1.4rem; font-weight: 800; color: var(--primary-dark); }
-  .opp-arrow { font-size: 2rem; color: var(--primary); font-weight: 800; }
-
-  /* Plurals */
-  .plural-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-top: 20px; }
-  .plural-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; text-align: center; }
-  .plural-row { display: flex; align-items: center; justify-content: space-around; margin-bottom: 15px; }
-  .plural-item { display: flex; flex-direction: column; align-items: center; }
-  .plural-item .emoji { font-size: 3rem; margin-bottom: 5px; }
-  .plural-item .word { font-size: 1.3rem; font-weight: 800; }
-  .plural-rule { background: #fff8e1; color: #e65100; padding: 5px 15px; border-radius: 20px; font-size: 1rem; font-weight: 700; display: inline-block; }
-
-  /* Is Am Are */
-  .iam-rule { background: #e3f2fd; color: #1565c0; padding: 15px 20px; border-radius: 12px; font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; border-left: 5px solid #1976d2; }
-  .isamare-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
-  .iam-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; display: flex; align-items: center; gap: 15px; }
-  .iam-card .sentence { font-size: 1.3rem; font-weight: 700; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
-  .iam-card select { font-size: 1.2rem; padding: 5px 10px; border: 2px solid var(--primary); border-radius: 8px; outline: none; font-family: inherit; font-weight: 700; cursor: pointer; }
-  .iam-card select.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
-
-  /* Greater Less */
-  .gl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-  .gl-card { display: flex; align-items: center; justify-content: center; gap: 15px; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; font-size: 2rem; font-weight: 800; }
-  .gl-card .num { color: var(--primary-dark); }
-  .gl-card .gl-input { width: 50px; height: 50px; font-size: 2rem; font-weight: 800; text-align: center; border: 2px dashed var(--primary); border-radius: 10px; outline: none; background: #fff8e1; color: var(--primary-dark); }
-  .gl-card .gl-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; border-style: solid; }
-
-  /* Ascending / Descending */
-  .asc-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; margin-bottom: 20px; }
-  .asc-question { font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; color: var(--text); }
-  .asc-inputs { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-  .asc-inputs input { width: 70px; height: 50px; font-size: 1.5rem; font-weight: 800; text-align: center; border: 2px solid var(--primary); border-radius: 10px; outline: none; }
-  .asc-inputs input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
-
-  /* Math Pictures */
-  .math-pic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
-  .mp-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; text-align: center; }
-  .mp-visual { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 2rem; margin-bottom: 15px; }
-  .mp-visual .group { letter-spacing: 5px; }
-  .mp-eq { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.8rem; font-weight: 800; }
-  .mp-input { width: 60px; height: 60px; font-size: 1.8rem; font-weight: 800; text-align: center; border: 3px solid var(--primary); border-radius: 12px; outline: none; }
-  .mp-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
-`;
-document.head.appendChild(c2Style);
-
-// =========================================
-// RENDER LOGIC FOR CLASS 2
-// =========================================
-const prevLoadTopicC2 = loadTopic;
+const baseLoadTopicC2New = loadTopic;
 loadTopic = function(subjectName, topicId) {
-  prevLoadTopicC2(subjectName, topicId);
+  baseLoadTopicC2New(subjectName, topicId);
   
   const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
   const topic = sub.topics.find(t => t.id === topicId);
 
-  // 1. OPPOSITES
-  if (topic.type === 'c2_opposite') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Click on a card to hear the words.</p>
-    <div class="opp-grid">
+  // Addition / Subtraction Without Picture
+  if (topic.type === 'c2_math_plain') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Solve these questions.</p>
+    <div class="textbook-grid">
+      ${topic.data.map((item, index) => `
+        <div class="tb-item">
+          <span>${item.a} ${item.op} ${item.b} = </span>
+          <input type="number" id="c2m-${index}" oninput="checkC2MathPlain(${index}, ${item.ans})">
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // Tables 1 to 5
+  else if (topic.type === 'c2_tables') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Learn multiplication tables.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+      ${Object.keys(topic.data).map(num => `
+        <div style="background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px;">
+          <h3 style="color: var(--primary); font-size: 1.8rem; text-align: center; margin-bottom: 15px;">Table of ${num}</h3>
+          ${topic.data[num].map((ans, i) => `
+            <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; border-bottom: 1px dashed #eee; padding-bottom: 5px;">
+              <span>${num} x ${i+1} =</span> <span style="color: var(--primary-dark);">${ans}</span>
+            </div>
+          `).join('')}
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  // Verbs Sentences
+  else if (topic.type === 'c2_verbs') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Click on a card to hear the sentence.</p>
+    <div class="action-grid">
       ${topic.data.map(item => `
-        <div class="opp-card" onclick="speak('${item.w1} and ${item.w2}'); addStar();">
-          <div class="opp-side"><span class="emoji">${item.e1}</span><span class="word">${item.w1}</span></div>
-          <div class="opp-arrow">⇄</div>
-          <div class="opp-side"><span class="emoji">${item.e2}</span><span class="word">${item.w2}</span></div>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  // 2. PLURALS
-  else if (topic.type === 'c2_plural') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Learn how words change from one to many.</p>
-    <div class="plural-grid">
-      ${topic.data.map(item => `
-        <div class="plural-card" onclick="speak('${item.sing} becomes ${item.plur}'); addStar();">
-          <div class="plural-row">
-            <div class="plural-item"><span class="emoji">${item.e1}</span><span class="word">${item.sing}</span></div>
-            <div class="opp-arrow">➔</div>
-            <div class="plural-item"><span class="emoji">${item.e2}</span><span class="word">${item.plur}</span></div>
-          </div>
-          <div class="plural-rule">${item.rule}</div>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  // 3. IS AM ARE (With Rules & 2 Exercises)
-  else if (topic.type === 'c2_isamare') {
-    content.innerHTML = `<h1>${topic.title}</h1>
-    <div class="iam-rule">📌 Rule: ${topic.data.rule}</div>
-    
-    <h3 style="color: var(--primary-dark); margin-top: 20px;">Exercise 1: Fill in the blanks</h3>
-    <div class="isamare-grid">
-      ${topic.data.exercises[0].sentences.map((item, index) => `
-        <div class="iam-card">
-          <div class="sentence">
-            ${item.q.split('_______')[0]}
-            <select id="iam-${index}" onchange="checkIsAmAre(${index}, '${item.a}')">
-              <option value="">...</option>
-              <option value="am">am</option>
-              <option value="is">is</option>
-              <option value="are">are</option>
-            </select>
-            ${item.q.split('_______')[1]}
-          </div>
-        </div>
-      `).join('')}
-    </div>
-
-    <h3 style="color: var(--primary-dark); margin-top: 40px;">Exercise 2: Choose the correct word</h3>
-    <div class="isamare-grid">
-      ${topic.data.exercises[1].sentences.map((item, index) => `
-        <div class="iam-card">
-          <div class="sentence">
-            ${item.q.split('(')[0]}
-            <select id="iam-choose-${index}" onchange="checkIsAmAreChoose(${index}, '${item.a}')">
-              <option value="">...</option>
-              <option value="am">am</option>
-              <option value="is">is</option>
-              <option value="are">are</option>
-            </select>
-            ${item.q.split(')')[1]}
-          </div>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  // 4. GREATER / LESS
-  else if (topic.type === 'c2_greaterless') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Type > (Greater), < (Less) or = (Equal) in the box.</p>
-    <div class="gl-grid">
-      ${topic.data.map((item, index) => `
-        <div class="gl-card">
-          <span class="num">${item.a}</span>
-          <input type="text" maxlength="1" class="gl-input" id="gl-${index}" oninput="checkGL(${index}, '${item.ans}')">
-          <span class="num">${item.b}</span>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  // 5. ASCENDING
-  else if (topic.type === 'c2_ascending') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Arrange the numbers from smallest to greatest.</p>
-    <div style="margin-top: 20px;">
-      ${topic.data.map((item, idx) => `
-        <div class="asc-card">
-          <div class="asc-question">Sort this list: ${item.list.join(', ')}</div>
-          <div class="asc-inputs">
-            <input type="number" id="asc-${idx}-0" oninput="checkAsc(${idx}, 0, ${item.ans[0]})">
-            <span><</span>
-            <input type="number" id="asc-${idx}-1" oninput="checkAsc(${idx}, 1, ${item.ans[1]})">
-            <span><</span>
-            <input type="number" id="asc-${idx}-2" oninput="checkAsc(${idx}, 2, ${item.ans[2]})">
-            <span><</span>
-            <input type="number" id="asc-${idx}-3" oninput="checkAsc(${idx}, 3, ${item.ans[3]})">
-          </div>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  // 6. ADDITION WITH PICS
-  else if (topic.type === 'c2_addpics') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Count the pictures and add them.</p>
-    <div class="math-pic-grid">
-      ${topic.data.map((item, index) => `
-        <div class="mp-card">
-          <div class="mp-visual">
-            <span class="group">${item.e.repeat(item.a)}</span>
-            <span>+</span>
-            <span class="group">${item.e.repeat(item.b)}</span>
-          </div>
-          <div class="mp-eq">
-            <span>${item.a} + ${item.b} =</span>
-            <input type="number" class="mp-input" id="addpic-${index}" oninput="checkMathPic(${index}, ${item.sum})">
-          </div>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  // 7. SUBTRACTION WITH PICS
-  else if (topic.type === 'c2_subpics') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Count the pictures and subtract.</p>
-    <div class="math-pic-grid">
-      ${topic.data.map((item, index) => `
-        <div class="mp-card">
-          <div class="mp-visual">
-            <span class="group" style="position: relative;">${item.e.repeat(item.a)}</span>
-          </div>
-          <div class="mp-eq">
-            <span>${item.a} - ${item.b} =</span>
-            <input type="number" class="mp-input" id="subpic-${index}" oninput="checkMathPic(${index}, ${item.sum})">
-          </div>
+        <div class="action-card" onclick="speak('${item.w}. ${item.s}'); addStar();">
+          <div class="pic">${item.e}</div>
+          <div class="word">${item.w}</div>
+          <div class="sent">${item.s}</div>
         </div>
       `).join('')}
     </div>`;
   }
 };
 
-// =========================================
-// INTERACTIVE LOGIC FOR CLASS 2
-// =========================================
-function checkIsAmAre(index, correctAns) {
-  const selectEl = document.getElementById(`iam-${index}`);
-  if(selectEl.value === correctAns) {
-    selectEl.classList.add('correct'); addStar(); speak('Correct!');
-  } else { selectEl.classList.remove('correct'); }
-}
-
-function checkIsAmAreChoose(index, correctAns) {
-  const selectEl = document.getElementById(`iam-choose-${index}`);
-  if(selectEl.value === correctAns) {
-    selectEl.classList.add('correct'); addStar(); speak('Correct!');
-  } else { selectEl.classList.remove('correct'); }
-}
-
-function checkGL(index, correctAns) {
-  const input = document.getElementById(`gl-${index}`);
-  if(input.value === correctAns) {
-    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
-  } else { input.classList.remove('correct'); }
-}
-
-function checkAsc(idx, pos, correctAns) {
-  const input = document.getElementById(`asc-${idx}-${pos}`);
+// Logic for Plain Math
+function checkC2MathPlain(index, correctAns) {
+  const input = document.getElementById(`c2m-${index}`);
   if(parseInt(input.value) === correctAns) {
     input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
   } else { input.classList.remove('correct'); }
 }
-
-function checkMathPic(index, correctAns) {
-  const input = document.getElementById(`addpic-${index}`) || document.getElementById(`subpic-${index}`);
-  if(parseInt(input.value) === correctAns) {
-    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
-  } else { input.classList.remove('correct'); }
-}
+// =========================================
 // Initialize App
 renderTabs();
 switchClass('nursery');
