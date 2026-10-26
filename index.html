@@ -1542,10 +1542,10 @@ function checkC2MathPlain(index, correctAns) {
   if(parseInt(input.value) === correctAns) { input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!'); } else { input.classList.remove('correct'); }
 }
 // =========================================
-// CLASS 3 - COMPLETE SYLLABUS (Based on Worksheets)
+// CLASS 3 - FINAL COMPLETE CODE (No Errors)
 // =========================================
 
-// 1. MATHS GENERATORS (30 Questions Each)
+// 1. MATHS GENERATORS
 function generateC3Add() {
   const arr = [];
   for (let i = 0; i < 30; i++) {
@@ -1630,218 +1630,145 @@ const c3Conversations = [
   { q: "Do you want to play with me?", a: "Yes, let's play!", e: "🎮" }
 ];
 
-// 4. GRAMMAR: This, That, These, Those
-const c3ThisThat = [
-  { q: "_______ is a cat.", ans: "This", e: "🐱", img: "near" },
-  { q: "_______ are apples.", ans: "These", e: "🍎🍎", img: "near" },
-  { q: "_______ is a bus.", ans: "That", e: "🚌", img: "far" },
-  { q: "_______ are balloons.", ans: "Those", e: "🎈🎈", img: "far" },
-  { q: "_______ is my pen.", ans: "This", e: "🖊️", img: "near" },
-  { q: "_______ are my books.", ans: "These", e: "📚📚", img: "near" },
-  { q: "_______ is a tree.", ans: "That", e: "🌳", img: "far" },
-  { q: "_______ are stars.", ans: "Those", e: "⭐⭐", img: "far" }
+// 4. THIS/THAT/THESE/THOSE DATA
+const c3ThisData = { def: "We use 'This' for one thing that is near us.", examples: [{t:"This is my bag.", e:"🎒"}, {t:"This is a cat.", e:"🐱"}, {t:"This is a book.", e:"📖"}, {t:"This is an apple.", e:"🍎"}, {t:"This is a pen.", e:"🖊️"}, {t:"This is my toy.", e:"🧸"}, {t:"This is a bus.", e:"🚌"}, {t:"This is a hat.", e:"👒"}, {t:"This is a cup.", e:"🥤"}, {t:"This is a ball.", e:"⚽"}, {t:"This is a tree.", e:"🌳"}, {t:"This is a car.", e:"🚗"}, {t:"This is my house.", e:"🏠"}, {t:"This is a flower.", e:"🌸"}, {t:"This is a kite.", e:"🪁"}, {t:"This is a chair.", e:"🪑"}, {t:"This is a table.", e:"🪵"}, {t:"This is a door.", e:"🚪"}, {t:"This is a window.", e:"🪟"}, {t:"This is a clock.", e:"⏰"}, {t:"This is a box.", e:"📦"}, {t:"This is a fish.", e:"🐟"}, {t:"This is a bird.", e:"🐦"}, {t:"This is a dog.", e:"🐶"}, {t:"This is a bell.", e:"🔔"}, {t:"This is a star.", e:"⭐"}, {t:"This is a moon.", e:"🌙"}, {t:"This is my pencil.", e:"✏️"}, {t:"This is my shoe.", e:"👟"}, {t:"This is a banana.", e:"🍌"}] };
+const c3ThatData = { def: "We use 'That' for one thing that is far from us.", examples: [{t:"That is a car.", e:"🚗"}, {t:"That is a house.", e:"🏠"}, {t:"That is a tree.", e:"🌳"}, {t:"That is a bus.", e:"🚌"}, {t:"That is a park.", e:"🏞️"}, {t:"That is a hill.", e:"⛰️"}, {t:"That is a boat.", e:"⛵"}, {t:"That is a plane.", e:"✈️"}, {t:"That is a train.", e:"🚂"}, {t:"That is a kite.", e:"🪁"}, {t:"That is a temple.", e:"🛕"}, {t:"That is a school.", e:"🏫"}, {t:"That is a river.", e:"🏞️"}, {t:"That is a road.", e:"🛣️"}, {t:"That is a bridge.", e:"🌉"}, {t:"That is a cloud.", e:"☁️"}, {t:"That is a mountain.", e:"🏔️"}, {t:"That is a tower.", e:"🗼"}, {t:"That is a shop.", e:"🏪"}, {t:"That is a hospital.", e:"🏥"}, {t:"That is a library.", e:"📚"}, {t:"That is a garden.", e:"🌻"}, {t:"That is a zoo.", e:"🦁"}, {t:"That is a museum.", e:"🏛️"}, {t:"That is a stadium.", e:"🏟️"}, {t:"That is a church.", e:"⛪"}, {t:"That is a hotel.", e:"🏨"}, {t:"That is a bank.", e:"🏦"}, {t:"That is a factory.", e:"🏭"}, {t:"That is a market.", e:"🛒"}] };
+const c3TheseData = { def: "We use 'These' for more than one thing that is near us.", examples: [{t:"These are my books.", e:"📚"}, {t:"These are apples.", e:"🍎🍎"}, {t:"These are my toys.", e:"🧸🧸"}, {t:"These are pens.", e:"🖊️🖊️"}, {t:"These are bags.", e:"🎒🎒"}, {t:"These are cats.", e:"🐱🐱"}, {t:"These are dogs.", e:"🐶🐶"}, {t:"These are cups.", e:"🥤🥤"}, {t:"These are balls.", e:"⚽⚽"}, {t:"These are flowers.", e:"🌸🌸"}, {t:"These are chairs.", e:"🪑🪑"}, {t:"These are shoes.", e:"👟👟"}, {t:"These are birds.", e:"🐦🐦"}, {t:"These are kites.", e:"🪁🪁"}, {t:"These are boxes.", e:"📦📦"}, {t:"These are my pencils.", e:"✏️✏️"}, {t:"These are bananas.", e:"🍌🍌"}, {t:"These are cars.", e:"🚗🚗"}, {t:"These are tables.", e:"🪵🪵"}, {t:"These are doors.", e:"🚪🚪"}, {t:"These are windows.", e:"🪟🪟"}, {t:"These are clocks.", e:"⏰⏰"}, {t:"These are bells.", e:"🔔🔔"}, {t:"These are stars.", e:"⭐⭐"}, {t:"These are oranges.", e:"🍊🍊"}, {t:"These are grapes.", e:"🍇🍇"}, {t:"These are eggs.", e:"🥚🥚"}, {t:"These are caps.", e:"🧢🧢"}, {t:"These are mats.", e:"🧘🧘"}, {t:"These are rings.", e:"💍💍"}] };
+const c3ThoseData = { def: "We use 'Those' for more than one thing that is far from us.", examples: [{t:"Those are trees.", e:"🌳🌳"}, {t:"Those are houses.", e:"🏠🏠"}, {t:"Those are cars.", e:"🚗🚗"}, {t:"Those are buses.", e:"🚌🚌"}, {t:"Those are mountains.", e:"🏔️🏔️"}, {t:"Those are birds.", e:"🐦🐦"}, {t:"Those are stars.", e:"⭐⭐"}, {t:"Those are clouds.", e:"☁️☁️"}, {t:"Those are boats.", e:"⛵⛵"}, {t:"Those are trains.", e:"🚂🚂"}, {t:"Those are planes.", e:"✈️✈️"}, {t:"Those are bikes.", e:"🚲🚲"}, {t:"Those are kites.", e:"🪁🪁"}, {t:"Those are flowers.", e:"🌸🌸"}, {t:"Those are dogs.", e:"🐶🐶"}, {t:"Those are cats.", e:"🐱🐱"}, {t:"Those are cows.", e:"🐮🐮"}, {t:"Those are horses.", e:"🐴🐴"}, {t:"Those are sheep.", e:"🐑🐑"}, {t:"Those are elephants.", e:"🐘🐘"}, {t:"Those are lions.", e:"🦁🦁"}, {t:"Those are tigers.", e:"🐯🐯"}, {t:"Those are monkeys.", e:"🐵🐵"}, {t:"Those are buildings.", e:"🏢🏢"}, {t:"Those are towers.", e:"🗼🗼"}, {t:"Those are bridges.", e:"🌉🌉"}, {t:"Those are ships.", e:"🚢🚢"}, {t:"Those are fruits.", e:"🍎🍎"}, {t:"Those are vegetables.", e:"🥕🥕"}, {t:"Those are books.", e:"📚📚"}] };
+
+// 5. WORKBOOK (50 Questions)
+const c3WorkbookQuestions = [
+  { q: "_______ is a cat.", ans: "This", opts: ["This", "That", "These", "Those"] }, { q: "_______ are apples.", ans: "These", opts: ["This", "That", "These", "Those"] },
+  { q: "_______ is a bus.", ans: "That", opts: ["This", "That", "These", "Those"] }, { q: "_______ are balloons.", ans: "Those", opts: ["This", "That", "These", "Those"] },
+  { q: "_______ is my pen.", ans: "This", opts: ["This", "That", "These", "Those"] }, { q: "_______ are my books.", ans: "These", opts: ["This", "That", "These", "Those"] },
+  { q: "_______ is a tree.", ans: "That", opts: ["This", "That", "These", "Those"] }, { q: "_______ are stars.", ans: "Those", opts: ["This", "That", "These", "Those"] },
+  { q: "_______ is a bag.", ans: "This", opts: ["This", "That", "These", "Those"] }, { q: "_______ are cars.", ans: "These", opts: ["This", "That", "These", "Those"] },
+  { q: "I _______ a student.", ans: "am", opts: ["am", "is", "are"] }, { q: "She _______ my sister.", ans: "is", opts: ["am", "is", "are"] },
+  { q: "They _______ playing.", ans: "are", opts: ["am", "is", "are"] }, { q: "He _______ a doctor.", ans: "is", opts: ["am", "is", "are"] },
+  { q: "We _______ friends.", ans: "are", opts: ["am", "is", "are"] }, { q: "You _______ very kind.", ans: "are", opts: ["am", "is", "are"] },
+  { q: "I _______ happy today.", ans: "am", opts: ["am", "is", "are"] }, { q: "It _______ a cat.", ans: "is", opts: ["am", "is", "are"] },
+  { q: "The boys _______ running.", ans: "are", opts: ["am", "is", "are"] }, { q: "My father _______ a teacher.", ans: "is", opts: ["am", "is", "are"] },
+  { q: "I saw _______ elephant.", ans: "an", opts: ["a", "an", "the"] }, { q: "She has _______ umbrella.", ans: "an", opts: ["a", "an", "the"] },
+  { q: "She is reading _______ book.", ans: "a", opts: ["a", "an", "the"] }, { q: "We live in _______ big house.", ans: "a", opts: ["a", "an", "the"] },
+  { q: "_______ sun is very bright.", ans: "The", opts: ["A", "An", "The"] }, { q: "He is _______ honest boy.", ans: "an", opts: ["a", "an", "the"] },
+  { q: "_______ moon comes out at night.", ans: "The", opts: ["A", "An", "The"] }, { q: "I have _______ orange.", ans: "an", opts: ["a", "an", "the"] },
+  { q: "_______ earth is round.", ans: "The", opts: ["A", "An", "The"] }, { q: "I need _______ pen.", ans: "a", opts: ["a", "an", "the"] },
+  { q: "_______ am happy.", ans: "I", opts: ["I", "You", "He", "She"] }, { q: "_______ is a boy.", ans: "He", opts: ["I", "You", "He", "It"] },
+  { q: "_______ is my sister.", ans: "She", opts: ["I", "You", "She", "It"] }, { q: "_______ are playing.", ans: "They", opts: ["I", "He", "It", "They"] },
+  { q: "_______ is a dog.", ans: "It", opts: ["I", "You", "He", "It"] }, { q: "_______ are my friends.", ans: "We", opts: ["I", "He", "We", "It"] },
+  { q: "_______ are a good girl.", ans: "You", opts: ["I", "You", "He", "It"] }, { q: "_______ is my teacher.", ans: "She", opts: ["I", "You", "She", "It"] },
+  { q: "_______ am eating.", ans: "I", opts: ["I", "You", "He", "It"] }, { q: "_______ are singing.", ans: "They", opts: ["I", "He", "It", "They"] },
+  { q: "_______ is a red ball.", ans: "This", opts: ["This", "These", "Those", "am"] }, { q: "They _______ my cousins.", ans: "are", opts: ["is", "are", "am", "the"] },
+  { q: "I want _______ apple.", ans: "an", opts: ["a", "an", "the", "is"] }, { q: "_______ are big trees.", ans: "Those", opts: ["This", "That", "Those", "am"] },
+  { q: "He _______ my brother.", ans: "is", opts: ["am", "is", "are", "a"] }, { q: "_______ sun is hot.", ans: "The", opts: ["A", "An", "The", "are"] },
+  { q: "_______ are my toys.", ans: "These", opts: ["This", "That", "These", "is"] }, { q: "We _______ going to school.", ans: "are", opts: ["am", "is", "are", "the"] },
+  { q: "I have _______ pencil.", ans: "a", opts: ["a", "an", "the", "am"] }, { q: "_______ is a big house.", ans: "That", opts: ["This", "That", "These", "are"] }
 ];
 
-// 5. GRAMMAR: A / An / The & Is / Am / Are
-const c3Articles = [
-  { q: "I saw _______ elephant.", ans: "an", options: ["a", "an", "the"] },
-  { q: "She has _______ umbrella.", ans: "an", options: ["a", "an", "the"] },
-  { q: "She is reading _______ book.", ans: "a", options: ["a", "an", "the"] },
-  { q: "We live in _______ big house.", ans: "a", options: ["a", "an", "the"] },
-  { q: "_______ sun is very bright today.", ans: "The", options: ["A", "An", "The"] },
-  { q: "He is _______ honest boy.", ans: "an", options: ["a", "an", "the"] },
-  { q: "_______ moon comes out at night.", ans: "The", options: ["A", "An", "The"] },
-  { q: "I have _______ orange.", ans: "an", options: ["a", "an", "the"] },
-  { q: "I _______ a student.", ans: "am", options: ["am", "is", "are"] },
-  { q: "She _______ my sister.", ans: "is", options: ["am", "is", "are"] },
-  { q: "They _______ playing.", ans: "are", options: ["am", "is", "are"] },
-  { q: "He _______ a doctor.", ans: "is", options: ["am", "is", "are"] },
-  { q: "We _______ friends.", ans: "are", options: ["am", "is", "are"] },
-  { q: "You _______ very kind.", ans: "are", options: ["am", "is", "are"] },
-  { q: "I _______ happy today.", ans: "am", options: ["am", "is", "are"] }
-];
-
-// 6. GRAMMAR: Pronouns, Emotions, Body Parts
-const c3Pronouns = [
-  { q: "_______ am happy.", ans: "I", options: ["I", "You", "He", "She"] },
-  { q: "_______ is a boy.", ans: "He", options: ["I", "You", "He", "It"] },
-  { q: "_______ is my sister.", ans: "She", options: ["I", "You", "She", "It"] },
-  { q: "_______ are playing.", ans: "They", options: ["I", "He", "It", "They"] },
-  { q: "_______ is a dog.", ans: "It", options: ["I", "You", "He", "It"] }
-];
-const c3Emotions = [
-  { w: "Happy", e: "😊" }, { w: "Angry", e: "😡" }, { w: "Sad", e: "😢" }, { w: "Excited", e: "🤩" },
-  { w: "Shy", e: "😳" }, { w: "Tired", e: "😴" }, { w: "Scared", e: "😨" }, { w: "Surprised", e: "😮" },
-  { w: "Calm", e: "😌" }, { w: "Proud", e: "😌" }, { w: "Bored", e: "😒" }, { w: "Silly", e: "🤪" }
-];
-const c3Body = [
-  { w: "Head", e: "🧑" }, { w: "Eye", e: "👁️" }, { w: "Ear", e: "👂" }, { w: "Nose", e: "👃" },
-  { w: "Mouth", e: "👄" }, { w: "Hand", e: "✋" }, { w: "Foot", e: "🦶" }, { w: "Hair", e: "💇" }
-];
-
-// =========================================
-// INJECT DATA INTO MENU
-// =========================================
-if(!contentData['class3']) contentData['class3'] = { subjects: [] };
-contentData['class3'].subjects = [
-  {
-    name: 'Maths',
-    topics: [
-      {id: 'c3_add', title: 'Addition (30 Q)', type: 'c3_math_plain', data: generateC3Add()},
-      {id: 'c3_sub', title: 'Subtraction (30 Q)', type: 'c3_math_plain', data: generateC3Sub()},
-      {id: 'c3_mul', title: 'Multiplication (30 Q)', type: 'c3_math_plain', data: generateC3Mul()},
-      {id: 'c3_gl', title: 'Greater, Less, Equal', type: 'c3_greaterless', data: generateC3GL()}
-    ]
-  },
-  {
-    name: 'English Grammar',
-    topics: [
-      {id: 'c3_3letter', title: 'Reading: 3 Letter Words', type: 'grid', data: c3ThreeLetter.map(i => ({text: i.w, emoji: i.e}))},
-      {id: 'c3_4letter', title: 'Reading: 4 Letter Words', type: 'grid', data: c3FourLetter.map(i => ({text: i.w, emoji: i.e}))},
-      {id: 'c3_conv', title: '50 Daily Conversations', type: 'c3_conversation', data: c3Conversations},
-      {id: 'c3_this_that', title: 'This, That, These, Those', type: 'c3_this_that', data: c3ThisThat},
-      {id: 'c3_articles', title: 'A, An, The & Is, Am, Are', type: 'c3_grammar', data: c3Articles},
-      {id: 'c3_pronouns', title: 'Personal Pronouns', type: 'c3_grammar', data: c3Pronouns},
-      {id: 'c3_emotions', title: 'Emotions & Feelings', type: 'grid', data: c3Emotions.map(i => ({text: i.w, emoji: i.e}))},
-      {id: 'c3_body', title: 'Parts of Body', type: 'grid', data: c3Body.map(i => ({text: i.w, emoji: i.e}))}
-    ]
+// 6. TABLES & NUMBERS
+function generateTables() {
+  let tablesHTML = '';
+  for (let i = 1; i <= 50; i++) {
+    tablesHTML += `<div style="background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 15px; margin-bottom: 15px; display: inline-block; width: calc(33.33% - 20px); vertical-align: top; margin-right: 15px; box-sizing: border-box;">
+      <h4 style="color: var(--primary); text-align: center; margin-bottom: 10px;">Table of ${i}</h4>
+      ${[1,2,3,4,5,6,7,8,9,10].map(j => `<div style="display:flex; justify-content:space-between; font-size:1.1rem; font-weight:700; border-bottom:1px dashed #eee; padding: 2px 0;"> <span>${i} x ${j}</span> <span style="color:var(--primary-dark)">${i*j}</span> </div>`).join('')}
+    </div>`;
   }
-];
+  return tablesHTML;
+}
+const numberWords = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty','Twenty One','Twenty Two','Twenty Three','Twenty Four','Twenty Five','Twenty Six','Twenty Seven','Twenty Eight','Twenty Nine','Thirty','Thirty One','Thirty Two','Thirty Three','Thirty Four','Thirty Five','Thirty Six','Thirty Seven','Thirty Eight','Thirty Nine','Forty','Forty One','Forty Two','Forty Three','Forty Four','Forty Five','Forty Six','Forty Seven','Forty Eight','Forty Nine','Fifty'];
 
 // =========================================
-// CSS FOR CLASS 3 (Ensuring all designs work)
+// INJECT DATA
 // =========================================
-const c3Style = document.createElement('style');
-c3Style.innerHTML = `
+contentData['class3'] = {
+  subjects: [
+    {
+      name: 'Maths',
+      topics: [
+        {id: 'c3_add', title: 'Addition (30 Q)', type: 'c3_math_plain', data: generateC3Add()},
+        {id: 'c3_sub', title: 'Subtraction (30 Q)', type: 'c3_math_plain', data: generateC3Sub()},
+        {id: 'c3_mul', title: 'Multiplication (30 Q)', type: 'c3_math_plain', data: generateC3Mul()},
+        {id: 'c3_gl', title: 'Greater, Less, Equal', type: 'c3_greaterless', data: generateC3GL()},
+        {id: 'c3_tables', title: 'Tables 1 to 50', type: 'c3_tables', data: {}},
+        {id: 'c3_numwords', title: 'Numbers in Words (1-50)', type: 'grid', data: numberWords.map((w, i) => ({text: `${i+1} = ${w}`, emoji: '🔢'}))}
+      ]
+    },
+    {
+      name: 'English Grammar',
+      topics: [
+        {id: 'c3_3letter', title: 'Reading: 3 Letter Words', type: 'grid', data: c3ThreeLetter.map(i => ({text: i.w, emoji: i.e}))},
+        {id: 'c3_4letter', title: 'Reading: 4 Letter Words', type: 'grid', data: c3FourLetter.map(i => ({text: i.w, emoji: i.e}))},
+        {id: 'c3_conv', title: '50 Daily Conversations', type: 'c3_conversation', data: c3Conversations},
+        {id: 'c3_this', title: 'This (Near, One)', type: 'c3_this_that_def', data: c3ThisData},
+        {id: 'c3_that', title: 'That (Far, One)', type: 'c3_this_that_def', data: c3ThatData},
+        {id: 'c3_these', title: 'These (Near, Many)', type: 'c3_this_that_def', data: c3TheseData},
+        {id: 'c3_those', title: 'Those (Far, Many)', type: 'c3_this_that_def', data: c3ThoseData},
+        {id: 'c3_workbook', title: 'Workbook (50 Questions)', type: 'c3_workbook', data: c3WorkbookQuestions}
+      ]
+    }
+  ]
+};
+
+// =========================================
+// CSS & RENDER LOGIC
+// =========================================
+const c3StyleNew = document.createElement('style');
+c3StyleNew.innerHTML = `
   .c3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
   .c3-grid-item { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2px solid var(--border); padding: 10px 15px; border-radius: 10px; font-size: 1.4rem; font-weight: 800; }
   .c3-grid-item input { width: 60px; height: 45px; font-size: 1.4rem; text-align: center; border: 2px solid var(--primary); border-radius: 8px; outline: none; }
   .c3-grid-item input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
-  
   .c3-conv-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
   .c3-conv-card { display: flex; align-items: center; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 15px 20px; gap: 15px; cursor: pointer; transition: 0.2s; }
   .c3-conv-card:hover { border-color: var(--primary); background: #fff8e1; }
   .c3-conv-card .emoji { font-size: 2.5rem; }
   .c3-conv-card .q-text { font-size: 1.3rem; font-weight: 800; color: var(--text); width: 40%; }
   .c3-conv-card .a-text { font-size: 1.2rem; font-weight: 700; color: #08764d; background: #d8fff0; padding: 10px 15px; border-radius: 10px; flex: 1; }
-
   .c3-grammar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
   .c3-grammar-card { display: flex; align-items: center; gap: 15px; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; font-size: 1.3rem; font-weight: 700; }
   .c3-grammar-card select { font-size: 1.2rem; padding: 5px 10px; border: 2px solid var(--primary); border-radius: 8px; outline: none; font-family: inherit; font-weight: 700; cursor: pointer; }
   .c3-grammar-card select.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
-
-  .c3-tt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
-  .c3-tt-card { display: flex; align-items: center; justify-content: center; gap: 15px; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; font-size: 1.4rem; font-weight: 800; }
-  .c3-tt-card .pic { font-size: 2.5rem; }
-  .c3-tt-card select { font-size: 1.2rem; padding: 5px 10px; border: 2px solid var(--primary); border-radius: 8px; outline: none; font-family: inherit; font-weight: 700; cursor: pointer; }
-  .c3-tt-card select.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
 `;
-document.head.appendChild(c3Style);
+document.head.appendChild(c3StyleNew);
 
-// =========================================
-// RENDER LOGIC FOR CLASS 3
-// =========================================
-const prevLoadTopicC3 = loadTopic;
+const prevLoadTopicC3New = loadTopic;
 loadTopic = function(subjectName, topicId) {
-  prevLoadTopicC3(subjectName, topicId);
-  
+  prevLoadTopicC3New(subjectName, topicId);
   const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
   const topic = sub.topics.find(t => t.id === topicId);
 
   if (topic.type === 'c3_math_plain') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Solve these questions.</p>
-    <div class="c3-grid">
-      ${topic.data.map((item, index) => `
-        <div class="c3-grid-item">
-          <span>${item.a} ${item.op} ${item.b} =</span>
-          <input type="number" id="c3m-${index}" oninput="checkC3Math(${index}, ${item.ans})">
-        </div>
-      `).join('')}
-    </div>`;
+    content.innerHTML = `<h1>${topic.title}</h1><p>Solve these questions.</p><div class="c3-grid">${topic.data.map((item, index) => `<div class="c3-grid-item"><span>${item.a} ${item.op} ${item.b} =</span><input type="number" id="c3m-${index}" oninput="checkC3Math(${index}, ${item.ans})"></div>`).join('')}</div>`;
   }
-  
   else if (topic.type === 'c3_greaterless') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Type > (Greater), < (Less) or = (Equal) in the box.</p>
-    <div class="c3-grid">
-      ${topic.data.map((item, index) => `
-        <div class="c3-grid-item">
-          <span>${item.a}</span>
-          <input type="text" maxlength="1" id="c3gl-${index}" oninput="checkC3GL(${index}, '${item.ans}')">
-          <span>${item.b}</span>
-        </div>
-      `).join('')}
-    </div>`;
+    content.innerHTML = `<h1>${topic.title}</h1><p>Type > (Greater), < (Less) or = (Equal) in the box.</p><div class="c3-grid">${topic.data.map((item, index) => `<div class="c3-grid-item"><span>${item.a}</span><input type="text" maxlength="1" id="c3gl-${index}" oninput="checkC3GL(${index}, '${item.ans}')"><span>${item.b}</span></div>`).join('')}</div>`;
   }
-
   else if (topic.type === 'c3_conversation') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Click on a conversation to hear it.</p>
-    <div class="c3-conv-grid">
-      ${topic.data.map(item => `
-        <div class="c3-conv-card" onclick="speak('${item.q} ${item.a}'); addStar();">
-          <div class="emoji">${item.e}</div>
-          <div class="q-text">${item.q}</div>
-          <div class="a-text">${item.a}</div>
-        </div>
-      `).join('')}
-    </div>`;
+    content.innerHTML = `<h1>${topic.title}</h1><p>Click on a conversation to hear it.</p><div class="c3-conv-grid">${topic.data.map(item => `<div class="c3-conv-card" onclick="speak('${item.q} ${item.a}'); addStar();"><div class="emoji">${item.e}</div><div class="q-text">${item.q}</div><div class="a-text">${item.a}</div></div>`).join('')}</div>`;
   }
-
-  else if (topic.type === 'c3_grammar') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Choose the correct word to complete the sentence.</p>
-    <div class="c3-grammar-grid">
-      ${topic.data.map((item, index) => `
-        <div class="c3-grammar-card">
-          <span>${item.q.split('_______')[0]}</span>
-          <select id="c3g-${index}" onchange="checkC3Grammar(${index}, '${item.ans}')">
-            <option value="">...</option>
-            ${item.options.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
-          </select>
-          <span>${item.q.split('_______')[1] || ''}</span>
-        </div>
-      `).join('')}
-    </div>`;
+  else if (topic.type === 'c3_tables') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Learn multiplication tables.</p><div style="margin-top: 20px;">${generateTables()}</div>`;
   }
-
-  else if (topic.type === 'c3_this_that') {
-    content.innerHTML = `<h1>${topic.title}</h1><p>Choose the correct word based on whether the object is near or far.</p>
-    <div class="c3-tt-grid">
-      ${topic.data.map((item, index) => `
-        <div class="c3-tt-card">
-          <span class="pic">${item.e}</span>
-          <select id="c3tt-${index}" onchange="checkC3Grammar(${index}, '${item.ans}', 'c3tt-')">
-            <option value="">...</option>
-            <option value="This">This</option>
-            <option value="That">That</option>
-            <option value="These">These</option>
-            <option value="Those">Those</option>
-          </select>
-          <span>${item.q.split('_______')[1]}</span>
-        </div>
-      `).join('')}
-    </div>`;
+  else if (topic.type === 'c3_this_that_def') {
+    content.innerHTML = `<h1>${topic.title}</h1><div style="background: #e3f2fd; color: #1565c0; padding: 15px 20px; border-radius: 12px; font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; border-left: 5px solid #1976d2;">📌 ${topic.data.def}</div><h3 style="color: var(--primary-dark); margin-bottom: 15px;">Examples (Click to hear):</h3><div class="interactive-grid">${topic.data.examples.map(item => `<div class="grid-item" onclick="speak('${item.t}'); addStar();"><span class="pic">${item.e}</span><span class="text" style="font-size:1.1rem;">${item.t}</span></div>`).join('')}</div>`;
+  }
+  else if (topic.type === 'c3_workbook') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Choose the correct word to complete the sentence.</p><div class="c3-grammar-grid">${topic.data.map((item, index) => `<div class="c3-grammar-card"><span>${item.q.split('_______')[0]}</span><select id="c3wb-${index}" onchange="checkC3Grammar(${index}, '${item.ans}', 'c3wb-')"><option value="">...</option>${item.opts.map(opt => `<option value="${opt}">${opt}</option>`).join('')}</select><span>${item.q.split('_______')[1] || ''}</span></div>`).join('')}</div>`;
   }
 };
 
-// Logic Functions for Class 3
 function checkC3Math(index, correctAns) {
   const input = document.getElementById(`c3m-${index}`);
-  if(parseInt(input.value) === correctAns) {
-    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
-  } else { input.classList.remove('correct'); }
+  if(parseInt(input.value) === correctAns) { input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!'); } else { input.classList.remove('correct'); }
 }
-
 function checkC3GL(index, correctAns) {
   const input = document.getElementById(`c3gl-${index}`);
-  if(input.value === correctAns) {
-    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
-  } else { input.classList.remove('correct'); }
+  if(input.value === correctAns) { input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!'); } else { input.classList.remove('correct'); }
 }
-
-function checkC3Grammar(index, correctAns, prefix = 'c3g-') {
+function checkC3Grammar(index, correctAns, prefix) {
   const selectEl = document.getElementById(`${prefix}${index}`);
-  if(selectEl.value.toLowerCase() === correctAns.toLowerCase()) {
-    selectEl.classList.add('correct'); addStar(); speak('Correct!');
-  } else { selectEl.classList.remove('correct'); }
+  if(selectEl.value.toLowerCase() === correctAns.toLowerCase()) { selectEl.classList.add('correct'); addStar(); speak('Correct!'); } else { selectEl.classList.remove('correct'); }
 }
 // =========================================
 // Initialize App
