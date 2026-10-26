@@ -1691,7 +1691,7 @@ contentData['class3'] = {
         {id: 'c3_mul', title: 'Multiplication (30 Q)', type: 'c3_math_plain', data: generateC3Mul()},
         {id: 'c3_gl', title: 'Greater, Less, Equal', type: 'c3_greaterless', data: generateC3GL()},
         {id: 'c3_tables', title: 'Tables 1 to 50', type: 'c3_tables', data: {}},
-        {id: 'c3_numwords', title: 'Numbers in Words (1-50)', type: 'grid', data: numberWords.map((w, i) => ({text: `${i+1} = ${w}`, emoji: '🔢'}))}
+        {id: 'c3_numwords', title: 'Numbers in Words (1-50)', type: 'c3_numwords_grid', data: numberWords}
       ]
     },
     {
@@ -1749,6 +1749,17 @@ loadTopic = function(subjectName, topicId) {
   }
   else if (topic.type === 'c3_tables') {
     content.innerHTML = `<h1>${topic.title}</h1><p>Learn multiplication tables.</p><div style="margin-top: 20px;">${generateTables()}</div>`;
+  }
+    else if (topic.type === 'c3_numwords_grid') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Click on a card to hear the word.</p>
+    <div class="interactive-grid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));">
+      ${topic.data.map((word, index) => `
+        <div class="grid-item" onclick="speak('${word}'); addStar();" style="padding: 20px 10px;">
+          <div style="font-size: 1.5rem; font-weight: 800; color: var(--text); margin-bottom: 5px;">${word}</div>
+          <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary-dark);">= ${index + 1}</div>
+        </div>
+      `).join('')}
+    </div>`;
   }
   else if (topic.type === 'c3_this_that_def') {
     content.innerHTML = `<h1>${topic.title}</h1><div style="background: #e3f2fd; color: #1565c0; padding: 15px 20px; border-radius: 12px; font-size: 1.3rem; font-weight: 700; margin-bottom: 20px; border-left: 5px solid #1976d2;">📌 ${topic.data.def}</div><h3 style="color: var(--primary-dark); margin-bottom: 15px;">Examples (Click to hear):</h3><div class="interactive-grid">${topic.data.examples.map(item => `<div class="grid-item" onclick="speak('${item.t}'); addStar();"><span class="pic">${item.e}</span><span class="text" style="font-size:1.1rem;">${item.t}</span></div>`).join('')}</div>`;
