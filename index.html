@@ -129,6 +129,7 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
       <li onclick="loadTopic('Animals 20', this)">Animals (20)</li>
       <li onclick="loadTopic('Birds 20', this)">Birds (20)</li>
       <li onclick="loadTopic('Flowers 20', this)">Flowers (20)</li>
+      <li onclick="loadTopic('Colors 20', this)">Colors (20)</li>
     </ul>
     <div class="subject-title">Maths</div>
     <ul class="topic-list">
@@ -174,7 +175,8 @@ const evsData = {
   fruits: [{t:'Apple',e:'🍎'},{t:'Banana',e:'🍌'},{t:'Mango',e:'🥭'},{t:'Grapes',e:'🍇'},{t:'Orange',e:'🍊'},{t:'Cherry',e:'🍒'},{t:'Watermelon',e:'🍉'},{t:'Strawberry',e:'🍓'},{t:'Pineapple',e:'🍍'},{t:'Pear',e:'🍐'},{t:'Peach',e:'🍑'},{t:'Coconut',e:'🥥'},{t:'Lemon',e:'🍋'},{t:'Kiwi',e:'🥝'},{t:'Blueberry',e:'🫐'},{t:'Papaya',e:'🍈'},{t:'Avocado',e:'🥑'},{t:'Guava',e:'🍏'},{t:'Pomegranate',e:'🍎'},{t:'Apricot',e:'🍑'}],
   animals: [{t:'Lion',e:'🦁'},{t:'Tiger',e:'🐯'},{t:'Elephant',e:'🐘'},{t:'Monkey',e:'🐵'},{t:'Dog',e:'🐶'},{t:'Cat',e:'🐱'},{t:'Cow',e:'🐮'},{t:'Horse',e:'🐴'},{t:'Sheep',e:'🐑'},{t:'Goat',e:'🐐'},{t:'Pig',e:'🐷'},{t:'Rabbit',e:'🐰'},{t:'Bear',e:'🐻'},{t:'Panda',e:'🐼'},{t:'Fox',e:'🦊'},{t:'Wolf',e:'🐺'},{t:'Deer',e:'🦌'},{t:'Giraffe',e:'🦒'},{t:'Zebra',e:'🦓'},{t:'Kangaroo',e:'🦘'}],
   birds: [{t:'Sparrow',e:'🐦'},{t:'Parrot',e:'🦜'},{t:'Pigeon',e:'🕊️'},{t:'Eagle',e:'🦅'},{t:'Peacock',e:'🦚'},{t:'Owl',e:'🦉'},{t:'Flamingo',e:'🦩'},{t:'Swan',e:'🦢'},{t:'Crow',e:'🐦‍⬛'},{t:'Penguin',e:'🐧'},{t:'Rooster',e:'🐓'},{t:'Duck',e:'🦆'},{t:'Hen',e:'🐔'},{t:'Goose',e:'🦢'},{t:'Ostrich',e:'🦩'},{t:'Hawk',e:'🦅'},{t:'Turkey',e:'🦃'}], 
-  flowers: [{t:'Rose',e:'🌹'},{t:'Sunflower',e:'🌻'},{t:'Tulip',e:'🌷'},{t:'Lotus',e:'🪷'},{t:'Hibiscus',e:'🌺'},{t:'Daisy',e:'🌼'},{t:'Daffodil',e:'🌼'},{t:'Bouquet',e:'💐'},{t:'Marigold',e:'🏵️'},{t:'Yellow Flower',e:'🌻'},{t:'Orange Flower',e:'🌼'},{t:'Pansy',e:'🌺'},{t:'Blossom',e:'🌸'},{t:'Red Flower',e:'🌹'},{t:'Pink Flower',e:'🌸'},{t:'White Flower',e:'🤍'},{t:'Purple Flower',e:'💜'},{t:'Blue Flower',e:'💙'},{t:'Green Flower',e:'💚'},{t:'Mixed Flower',e:'🌈'}]
+  flowers: [{t:'Rose',e:'🌹'},{t:'Sunflower',e:'🌻'},{t:'Tulip',e:'🌷'},{t:'Lotus',e:'🪷'},{t:'Hibiscus',e:'🌺'},{t:'Daisy',e:'🌼'},{t:'Daffodil',e:'🌼'},{t:'Bouquet',e:'💐'},{t:'Marigold',e:'🏵️'},{t:'Yellow Flower',e:'🌻'},{t:'Orange Flower',e:'🌼'},{t:'Pansy',e:'🌺'},{t:'Blossom',e:'🌸'},{t:'Red Flower',e:'🌹'},{t:'Pink Flower',e:'🌸'},{t:'White Flower',e:'🤍'},{t:'Purple Flower',e:'💜'},{t:'Blue Flower',e:'💙'},{t:'Green Flower',e:'💚'},{t:'Mixed Flower',e:'🌈'}],
+  colors: [{t:'Red',e:'🔴'},{t:'Blue',e:'🔵'},{t:'Green',e:'🟢'},{t:'Yellow',e:'🟡'},{t:'Pink',e:'🩷'},{t:'Purple',e:'🟣'},{t:'Orange',e:'🟠'},{t:'Brown',e:'🟤'},{t:'Black',e:'⚫'},{t:'White',e:'⚪'},{t:'Grey',e:'🔘'},{t:'Golden',e:'🟡'},{t:'Silver',e:'⚪'},{t:'Maroon',e:'🟤'},{t:'Navy',e:'🔵'},{t:'Cyan',e:'🩵'},{t:'Magenta',e:'🟣'},{t:'Peach',e:'🟠'},{t:'Olive',e:'🟢'},{t:'Beige',e:'🟤'}]
 };
 
 const shapesData = [
