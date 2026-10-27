@@ -125,7 +125,7 @@ body {
 .banner {
     /* Nayi image jo aapne lagayi hai (school wali) */
     background-image: url('images/boy.png'); 
-    background-size: cover; 
+    background-size: contain; 
     background-position: center; 
     background-repeat: no-repeat;
     
