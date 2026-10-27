@@ -3,13 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jr KG Test | Shifa's Learning Hub</title>
+<title>Jr KG | Shifa's Learning Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* Aapke purane design se match karta hua CSS */
-:root { --primary: #7657e8; --primary-dark: #4f35b8; --bg: #f4f2ff; --sidebar-bg: #ffffff; --text: #252044; --muted: #77728f; --border: #d9d0ff; --white: #ffffff; --shadow: 0 8px 22px rgba(74, 53, 160, 0.10); --radius: 20px; }
+:root {
+  --primary: #7657e8; --primary-dark: #4f35b8; --bg: #f4f2ff; --sidebar-bg: #ffffff;
+  --text: #252044; --muted: #77728f; --border: #d9d0ff; --white: #ffffff;
+  --shadow: 0 8px 22px rgba(74, 53, 160, 0.10); --radius: 20px; --success: #00b894; --danger: #d32f2f;
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Top Navbar */
 .topnav { background: var(--white); display: flex; align-items: center; border-bottom: 3px solid var(--border); height: 70px; padding: 0 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 100; }
 .logo-area { display: flex; align-items: center; gap: 10px; font-size: 1.6rem; font-weight: 800; color: var(--primary); margin-right: 30px; }
 .class-tabs { display: flex; gap: 8px; overflow-x: auto; }
@@ -17,6 +22,8 @@ body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(
 .class-tab:hover { background: #e9e3ff; color: var(--primary-dark); }
 .class-tab.active { background: var(--primary); color: var(--white); border-color: var(--primary-dark); box-shadow: 0 4px 10px rgba(118,87,232,0.3); }
 .stars-display { margin-left: auto; background: #fff8e1; border: 2px solid #c8bcff; padding: 8px 16px; border-radius: 12px; font-weight: 800; color: #4f35b8; font-size: 1.1rem; }
+
+/* Layout */
 .layout { display: flex; flex: 1; overflow: hidden; }
 .sidebar { width: 270px; background: var(--sidebar-bg); border-right: 3px solid var(--border); overflow-y: auto; padding: 20px 15px; z-index: 10;}
 .subject-title { padding: 12px 15px; font-weight: 800; font-size: 1.2rem; color: var(--primary-dark); background: #eee9ff; border-radius: 12px; margin-bottom: 10px; margin-top: 15px; text-align: center;}
@@ -24,18 +31,63 @@ body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(
 .topic-list li { padding: 12px 15px; cursor: pointer; font-weight: 700; color: var(--muted); transition: 0.2s; border-radius: 12px; border: 2px solid transparent; font-size: 1rem;}
 .topic-list li:hover { background: #f1f2f6; color: var(--primary); }
 .topic-list li.active { background: #e9e3ff; color: var(--primary-dark); border-color: var(--primary); box-shadow: 0 4px 8px rgba(118,87,232,0.15); }
+
+/* Content Area */
 .content { flex: 1; padding: 30px 40px; overflow-y: auto; background: var(--bg); }
 .page-title { font-size: 2rem; color: var(--primary-dark); margin-bottom: 10px; font-weight: 800; text-align: center; }
 .page-desc { font-size: 1.1rem; color: var(--muted); text-align: center; margin-bottom: 30px; font-weight: 600; }
-.grid-3d { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
-.card-3d { background: var(--white); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: var(--shadow); border: 3px solid #fff; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+
+/* Cards & Grids */
+.grid-3d { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; }
+.card-3d { background: var(--white); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: var(--shadow); border: 3px solid #fff; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center;}
 .card-3d:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 25px rgba(118,87,232,0.15); }
-.card-3d .emoji { font-size: 4rem; margin-bottom: 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: 0.3s;}
+.card-3d .emoji { font-size: 3.5rem; margin-bottom: 10px; transition: 0.3s;}
 .card-3d:hover .emoji { transform: scale(1.1) rotate(5deg); }
-.card-3d .text { font-size: 1.2rem; font-weight: 800; color: var(--text); background: #f8f9fa; padding: 4px 12px; border-radius: 20px; }
-.c0 { border-bottom: 6px solid #ff7675; } .c1 { border-bottom: 6px solid #74b9ff; } .c2 { border-bottom: 6px solid #55efc4; } .c3 { border-bottom: 6px solid #fdcb6e; } .c4 { border-bottom: 6px solid #a29bfe; } .c5 { border-bottom: 6px solid #fd79a8; }
-.btn-back { background: #2d3436; color: white; padding: 10px 20px; border-radius: 10px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s; }
-@media (max-width: 768px) { .layout { flex-direction: column; } .sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 10px; } .subject-title { display: none; } .topic-list { flex-direction: row; } .topic-list li { white-space: nowrap; } .content { padding: 20px; } }
+.card-3d .text { font-size: 1.1rem; font-weight: 800; color: var(--text); background: #f8f9fa; padding: 4px 12px; border-radius: 20px; }
+
+/* Borders */
+.c0 { border-bottom: 6px solid #ff7675; } .c1 { border-bottom: 6px solid #74b9ff; } .c2 { border-bottom: 6px solid #55efc4; }
+.c3 { border-bottom: 6px solid #fdcb6e; } .c4 { border-bottom: 6px solid #a29bfe; } .c5 { border-bottom: 6px solid #fd79a8; }
+
+/* Workbook Math/Counting */
+.workbook-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
+.wb-card { background: var(--white); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); border-left: 8px solid var(--primary); }
+.wb-eq { display: flex; align-items: center; justify-content: space-between; font-size: 1.8rem; font-weight: 800; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;}
+.wb-input { width: 70px; height: 60px; border: 3px dashed #b2bec3; border-radius: 12px; text-align: center; font-size: 1.5rem; font-weight: 800; outline: none; background: #f8f9fa; color: var(--text); transition: 0.2s; font-family: inherit;}
+.wb-input:focus { border-color: var(--primary); background: #fff; }
+.wb-input.correct { border-color: var(--success); border-style: solid; background: #d8fff0; color: #08764d; }
+
+/* Worksheets (Match & Missing) */
+.ws-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; max-width: 900px; margin: 0 auto; }
+.ws-box { background: #fff; border-radius: 20px; padding: 20px; box-shadow: var(--shadow); }
+.ws-box h3 { font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px dashed #d9d0ff; padding-bottom: 5px; }
+.match-container { display: flex; justify-content: space-between; gap: 20px; }
+.match-col { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.match-item { padding: 10px; font-size: 1.3rem; font-weight: 800; border: 2px solid #dfe6e9; border-radius: 12px; background: #fff; cursor: pointer; text-align: center; transition: 0.2s;}
+.match-item:hover { border-color: var(--primary); }
+.match-item.selected { border-color: var(--primary); background: #e9e3ff; transform: scale(1.02); }
+.match-item.matched { border-color: var(--success); background: #d8fff0; color: #08764d; cursor: default; opacity: 0.7; }
+
+/* Exam Sheet */
+.exam-sheet { max-width: 800px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 10px 28px rgba(28,38,70,.10); overflow: hidden; font-family: Arial, sans-serif; }
+.exam-head { padding: 20px; border-bottom: 2px solid #293a63; background: #f7f9ff; text-align: center; }
+.exam-questions { padding: 20px; display: grid; gap: 15px; }
+.exam-question { padding: 15px; border: 1px solid #d9deea; border-radius: 8px; background: #fff; }
+.exam-options { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.exam-option { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #cbd2e0; border-radius: 7px; padding: 8px 12px; cursor: pointer; }
+.exam-actions { padding: 20px; border-top: 1px solid #d9deea; text-align: center; }
+.exam-btn { border: 0; border-radius: 8px; padding: 12px 24px; font: 700 1rem Arial; cursor: pointer; background: #284b91; color: #fff; }
+.exam-result { display: none; margin: 20px; padding: 20px; border-radius: 10px; text-align: center; background: #eefaf3; border: 1px solid #8ed4a9; }
+
+@media (max-width: 768px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 10px; }
+  .subject-title { display: none; }
+  .topic-list { flex-direction: row; }
+  .topic-list li { white-space: nowrap; }
+  .content { padding: 20px; }
+  .ws-container { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -45,26 +97,49 @@ body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(
   <div class="class-tabs">
     <a href="index.html" class="class-tab">Nursery</a>
     <a href="jr-kg.html" class="class-tab active">Jr KG</a>
-    <a href="#" class="class-tab" onclick="alert('Coming soon!')">Sr KG</a>
+    <a href="#" class="class-tab">Sr KG</a>
   </div>
   <div class="stars-display">⭐ <span id="starCount">0</span></div>
 </div>
 
 <div class="layout">
   <div class="sidebar" id="sidebar">
-    <div class="subject-title">English (Test)</div>
+    <div class="subject-title">English</div>
     <ul class="topic-list">
-      <li onclick="loadTopic('Words', this)">Two Letter Words</li>
+      <li onclick="loadTopic('A-Z Capital', this)">Capital Alphabet</li>
+      <li onclick="loadTopic('a-z Small', this)">Small Alphabet</li>
+      <li onclick="loadTopic('Missing', this)">Missing Alphabet</li>
+      <li onclick="loadTopic('Match', this)">Activity Worksheet</li>
+      <li onclick="loadTopic('2 Letter Words', this)">2 Letter Words</li>
     </ul>
-    <div class="subject-title">Maths (Test)</div>
+    <div class="subject-title">EVS</div>
     <ul class="topic-list">
-      <li onclick="loadTopic('Numbers', this)">Numbers 1-10</li>
+      <li onclick="loadTopic('Fruits', this)">Fruits</li>
+      <li onclick="loadTopic('Animals', this)">Animals</li>
+      <li onclick="loadTopic('Birds', this)">Birds</li>
+      <li onclick="loadTopic('Flowers', this)">Flowers</li>
+      <li onclick="loadTopic('Vegetables', this)">Vegetables</li>
+      <li onclick="loadTopic('Colors', this)">Colors</li>
+      <li onclick="loadTopic('Body Parts', this)">Body Parts</li>
+    </ul>
+    <div class="subject-title">Maths</div>
+    <ul class="topic-list">
+      <li onclick="loadTopic('1-50 Numbers', this)">Numbers 1-50</li>
+      <li onclick="loadTopic('Tables', this)">Tables 1-10</li>
+      <li onclick="loadTopic('Shapes', this)">30 Shapes</li>
+      <li onclick="loadTopic('Counting', this)">Object Counting</li>
+      <li onclick="loadTopic('Addition', this)">Addition (50)</li>
+      <li onclick="loadTopic('Subtraction', this)">Subtraction (50)</li>
+    </ul>
+    <div class="subject-title">Workbook</div>
+    <ul class="topic-list">
+      <li onclick="loadTopic('Workbook', this)">📚 Final Worksheet</li>
     </ul>
   </div>
   
   <div class="content" id="content">
     <h1 class="page-title">👋 Welcome to Jr KG</h1>
-    <p class="page-desc">Yeh ek test file hai. Left side se click karke check karein!</p>
+    <p class="page-desc">Click on any topic from the left side to start learning!</p>
   </div>
 </div>
 
@@ -75,42 +150,320 @@ function addStar() { stars++; localStorage.setItem('shifaStars', stars); documen
 function speak(text) { if (!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'en-IN'; u.rate = 0.85; window.speechSynthesis.speak(u); }
 const content = document.getElementById('content');
 
-// Test Data
-const testWords = [
-  {w:'at', e:'🐱', d:'A cat sits at the mat.'},
-  {w:'in', e:'📦', d:'The toy is in the box.'},
-  {w:'on', e:'🪑', d:'The book is on the table.'},
-  {w:'go', e:'🚶', d:'We go to school.'},
-  {w:'up', e:'⬆️', d:'The balloon goes up.'}
+// ---------------- DATA ----------------
+const alphaData = [
+  {l:'A', w:'Apple', e:'🍎'}, {l:'B', w:'Ball', e:'⚽'}, {l:'C', w:'Cat', e:'🐱'}, {l:'D', w:'Dog', e:'🐶'},
+  {l:'E', w:'Elephant', e:'🐘'}, {l:'F', w:'Fish', e:'🐟'}, {l:'G', w:'Giraffe', e:'🦒'}, {l:'H', w:'Hat', e:'👒'},
+  {l:'I', w:'Ice Cream', e:'🍦'}, {l:'J', w:'Juice', e:'🧃'}, {l:'K', w:'Kite', e:'🪁'}, {l:'L', w:'Lion', e:'🦁'},
+  {l:'M', w:'Monkey', e:'🐵'}, {l:'N', w:'Nest', e:'🪺'}, {l:'O', w:'Orange', e:'🍊'}, {l:'P', w:'Penguin', e:'🐧'},
+  {l:'Q', w:'Queen', e:'👸'}, {l:'R', w:'Rabbit', e:'🐰'}, {l:'S', w:'Sun', e:'☀️'}, {l:'T', w:'Tiger', e:'🐯'},
+  {l:'U', w:'Umbrella', e:'☂️'}, {l:'V', w:'Van', e:'🚐'}, {l:'W', w:'Whale', e:'🐳'}, {l:'X', w:'Xylophone', e:'🎹'},
+  {l:'Y', w:'Yo-yo', e:'🪀'}, {l:'Z', w:'Zebra', e:'🦓'}
 ];
 
-function loadTopic(topicName, el) {
-  document.querySelectorAll('.topic-list li').forEach(x => x.classList.remove('active'));
-  if (el) el.classList.add('active');
+const twoLetterWords = [
+  {w:'at', e:'🐱', d:'A cat sits at the mat.'}, {w:'in', e:'📦', d:'The toy is in the box.'}, {w:'on', e:'🪑', d:'The book is on the table.'},
+  {w:'go', e:'🚶', d:'We go to school.'}, {w:'up', e:'⬆️', d:'The balloon goes up.'}, {w:'my', e:'👦', d:'This is my bag.'},
+  {w:'me', e:'🙋', d:'Give it to me.'}, {w:'we', e:'👫', d:'We are friends.'}, {w:'he', e:'👨', d:'He is a boy.'},
+  {w:'is', e:'✅', d:'It is red.'}, {w:'it', e:'📦', d:'It is a box.'}, {w:'am', e:'🙋', d:'I am happy.'}
+];
 
-  if (topicName === 'Words') {
-    let html = `<h1 class="page-title">📚 Two Letter Words</h1><p class="page-desc">Tap to listen!</p><div class="grid-3d">`;
-    testWords.forEach((item, i) => {
-      html += `<div class="card-3d c${i%6}" onclick="speak('${item.w}. ${item.d}'); addStar();">
+const evsData = {
+  Fruits: [{t:'Apple',e:'🍎'},{t:'Banana',e:'🍌'},{t:'Mango',e:'🥭'},{t:'Grapes',e:'🍇'},{t:'Orange',e:'🍊'},{t:'Cherry',e:'🍒'},{t:'Watermelon',e:'🍉'},{t:'Strawberry',e:'🍓'},{t:'Pineapple',e:'🍍'},{t:'Pear',e:'🍐'}],
+  Animals: [{t:'Lion',e:'🦁'},{t:'Tiger',e:'🐯'},{t:'Elephant',e:'🐘'},{t:'Monkey',e:'🐵'},{t:'Dog',e:'🐶'},{t:'Cat',e:'🐱'},{t:'Cow',e:'🐮'},{t:'Horse',e:'🐴'},{t:'Sheep',e:'🐑'},{t:'Rabbit',e:'🐰'}],
+  Birds: [{t:'Sparrow',e:'🐦'},{t:'Parrot',e:'🦜'},{t:'Pigeon',e:'🕊️'},{t:'Eagle',e:'🦅'},{t:'Peacock',e:'🦚'},{t:'Owl',e:'🦉'},{t:'Flamingo',e:'🦩'},{t:'Swan',e:'🦢'},{t:'Crow',e:'🐦‍⬛'},{t:'Penguin',e:'🐧'}],
+  Flowers: [{t:'Rose',e:'🌹'},{t:'Sunflower',e:'🌻'},{t:'Tulip',e:'🌷'},{t:'Lotus',e:'🪷'},{t:'Hibiscus',e:'🌺'},{t:'Daisy',e:'🌼'},{t:'Daffodil',e:'🌼'},{t:'Bouquet',e:'💐'},{t:'Marigold',e:'🏵️'}],
+  Vegetables: [{t:'Carrot',e:'🥕'},{t:'Potato',e:'🥔'},{t:'Tomato',e:'🍅'},{t:'Brinjal',e:'🍆'},{t:'Broccoli',e:'🥦'},{t:'Corn',e:'🌽'},{t:'Cucumber',e:'🥒'},{t:'Onion',e:'🧅'},{t:'Garlic',e:'🧄'},{t:'Pumpkin',e:'🎃'}],
+  Colors: [{t:'Red',e:'🔴'},{t:'Blue',e:'🔵'},{t:'Green',e:'🟢'},{t:'Yellow',e:'🟡'},{t:'Pink',e:'🩷'},{t:'Purple',e:'🟣'},{t:'Orange',e:'🟠'},{t:'Brown',e:'🟤'},{t:'Black',e:'⚫'},{t:'White',e:'⚪'}],
+  BodyParts: [{t:'Eyes',e:'👁️'},{t:'Ears',e:'👂'},{t:'Nose',e:'👃'},{t:'Mouth',e:'👄'},{t:'Hands',e:'🤲'},{t:'Legs',e:'🦵'},{t:'Head',e:'🗣️'},{t:'Hair',e:'💇'},{t:'Teeth',e:'🦷'},{t:'Tongue',e:'👅'},{t:'Fingers',e:'👆'},{t:'Toes',e:'🦶'}]
+};
+
+// 30 Shapes
+const shapesData = [];
+const shapeNames = ['Circle','Square','Triangle','Rectangle','Star','Heart','Oval','Diamond','Pentagon','Hexagon'];
+const shapeColors = ['#FFCDD2','#BBDEFB','#C8E6C9','#FFF9C4','#F8BBD0','#FFE082','#D1C4E9','#B2EBF2','#FFCCBC','#CFD8DC'];
+for(let i=0; i<30; i++) {
+  let type = i % 6; let color = shapeColors[i % 10];
+  let svg = '';
+  if(type===0) svg = `<circle cx="50" cy="50" r="40" fill="${color}" stroke="#333" stroke-width="4"/>`;
+  else if(type===1) svg = `<rect x="15" y="15" width="70" height="70" fill="${color}" stroke="#333" stroke-width="4"/>`;
+  else if(type===2) svg = `<polygon points="50,15 90,85 10,85" fill="${color}" stroke="#333" stroke-width="4"/>`;
+  else if(type===3) svg = `<rect x="10" y="25" width="80" height="50" fill="${color}" stroke="#333" stroke-width="4"/>`;
+  else if(type===4) svg = `<polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="${color}" stroke="#333" stroke-width="4"/>`;
+  else if(type===5) svg = `<path d="M50,85 C10,50 10,20 30,15 C45,10 50,25 50,25 C50,25 55,10 70,15 C90,20 90,50 50,85" fill="${color}" stroke="#333" stroke-width="4"/>`;
+  shapesData.push({svg: svg, name: shapeNames[type] + ' ' + (Math.floor(i/6)+1)});
+}
+
+// Counting, Addition, Subtraction (50 each)
+const mathData = { counting: [], add: [], sub: [] };
+for(let i=0; i<50; i++) {
+  mathData.counting.push({e: ['🍎','⭐','🐶','🎈','🍌','🚗','🌸','🐱','🧸','🍩'][i%10], count: (i%10)+1});
+  let a = (i%10)+1; let b = (Math.floor(i/10)%5)+1;
+  mathData.add.push({a, b, sum:a+b, e1:'🍎', e2:'⭐'});
+  let c = (i%10)+5; let d = (Math.floor(i/10)%5)+1;
+  mathData.sub.push({a:c, b:d, sum:c-d, e1:'🎈', e2:'🐶'});
+}
+
+// Exam Data
+const examData = [
+  {q:'Which letter comes after A?', opts:['B','C','D'], a:'B'},
+  {q:'What is 2 + 2?', opts:['3','4','5'], a:'4'},
+  {q:'Which is a fruit?', opts:['Apple','Carrot','Potato'], a:'Apple'},
+  {q:'What is the small letter of B?', opts:['b','d','p'], a:'b'},
+  {q:'Which animal says meow?', opts:['Dog','Cat','Cow'], a:'Cat'},
+  {q:'What is 5 - 2?', opts:['2','3','4'], a:'3'},
+  {q:'Which is a bird?', opts:['Fish','Owl','Cat'], a:'Owl'},
+  {q:'What comes before 10?', opts:['9','11','8'], a:'9'},
+  {q:'How many sides does a triangle have?', opts:['2','3','4'], a:'3'},
+  {q:'Which is a vegetable?', opts:['Mango','Carrot','Grapes'], a:'Carrot'}
+];
+
+// ---------------- RENDERERS ----------------
+function loadTopic(topic, el) {
+  document.querySelectorAll('.topic-list li').forEach(x => x.classList.remove('active'));
+  if(el) el.classList.add('active');
+
+  if (topic === 'A-Z Capital' || topic === 'a-z Small') {
+    let isSmall = topic === 'a-z Small';
+    let html = `<h1 class="page-title">${isSmall ? 'Small Alphabet' : 'Capital Alphabet'}</h1><p class="page-desc">Tap to hear!</p><div class="grid-3d">`;
+    alphaData.forEach((item, i) => {
+      let l = isSmall ? item.l.toLowerCase() : item.l;
+      html += `<div class="card-3d c${i%6}" onclick="speak('${l} for ${item.w}'); addStar();">
         <div class="emoji">${item.e}</div>
-        <div style="font-size:2.5rem; font-weight:800; color:var(--primary);">${item.w}</div>
-        <div class="text" style="margin-top:10px; font-size:0.9rem;">${item.d}</div>
+        <div style="font-size:2.5rem; font-weight:800; color:var(--primary);">${l}</div>
+        <div class="text">${isSmall ? item.w.toLowerCase() : item.w}</div>
       </div>`;
     });
     html += '</div>';
     content.innerHTML = html;
   }
-  else if (topicName === 'Numbers') {
-    let html = `<h1 class="page-title">🔢 Numbers 1-10</h1><p class="page-desc">Tap to listen!</p><div class="grid-3d">`;
-    for (let i = 1; i <= 10; i++) {
+  else if (topic === '2 Letter Words') {
+    let html = `<h1 class="page-title">📚 2 Letter Words</h1><p class="page-desc">Tap to listen!</p><div class="grid-3d">`;
+    twoLetterWords.forEach((item, i) => {
+      html += `<div class="card-3d c${i%6}" onclick="speak('${item.w}. ${item.d}'); addStar();">
+        <div class="emoji">${item.e}</div>
+        <div style="font-size:2.5rem; font-weight:800; color:var(--primary);">${item.w}</div>
+        <div class="text" style="font-size:0.9rem;">${item.d}</div>
+      </div>`;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topic === 'Missing') {
+    let caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+    let html = '<h1 class="page-title">Missing Alphabet</h1><p class="page-desc">Type the missing capital letters.</p><div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center; max-width:800px; margin:0 auto;">';
+    caps.forEach((l, i) => {
+      const isBlank = [2, 5, 9, 14, 17, 20, 23].includes(i);
+      html += `<div style="background:#fff; border:2px solid var(--border); border-radius:12px; padding:10px; font-size:2rem; font-weight:800; width:60px; height:60px; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow);">
+        ${isBlank ? `<input type="text" maxlength="1" style="width:100%; height:100%; border:none; outline:none; text-align:center; font-size:2rem; font-weight:800; background:transparent; border-bottom:3px dashed var(--primary);" oninput="checkMissing(this, '${l}')">` : l}
+      </div>`;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topic === 'Match') {
+    let html = `
+      <h1 class="page-title">Alphabet Activity Worksheet</h1>
+      <div class="ws-container">
+        <div class="ws-box">
+          <h3>1. Match Capital with Small</h3>
+          <div class="match-container">
+            <div class="match-col" id="cap-col"></div>
+            <div class="match-col" id="sm-col"></div>
+          </div>
+        </div>
+        <div class="ws-box">
+          <h3>2. Match Letter with Picture</h3>
+          <div class="match-container">
+            <div class="match-col" id="cap2-col"></div>
+            <div class="match-col" id="pic2-col"></div>
+          </div>
+        </div>
+      </div>
+    `;
+    content.innerHTML = html;
+    let capArr = alphaData.slice(0, 5);
+    document.getElementById('cap-col').innerHTML = capArr.map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set1')">${c.l}</div>`).join('');
+    document.getElementById('sm-col').innerHTML = capArr.sort(() => Math.random() - 0.5).map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set1')">${c.l.toLowerCase()}</div>`).join('');
+    let capArr2 = alphaData.slice(0, 5);
+    document.getElementById('cap2-col').innerHTML = capArr2.map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set2')">${c.l}</div>`).join('');
+    document.getElementById('pic2-col').innerHTML = capArr2.sort(() => Math.random() - 0.5).map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set2')" style="font-size:2rem;">${c.e}</div>`).join('');
+  }
+  else if (['Fruits', 'Animals', 'Birds', 'Flowers', 'Vegetables', 'Colors', 'Body Parts'].includes(topic)) {
+    let dataKey = topic.replace(' ', '');
+    let items = evsData[dataKey] || evsData[topic];
+    let html = `<h1 class="page-title">${topic}</h1><p class="page-desc">Tap to listen to the name!</p><div class="grid-3d">`;
+    items.forEach((i, idx) => {
+      html += `<div class="card-3d c${idx%6}" onclick="speak('${i.t}'); addStar();">
+        <div class="emoji">${i.e}</div>
+        <div class="text">${i.t}</div>
+      </div>`;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topic === '1-50 Numbers') {
+    let html = '<h1 class="page-title">🔢 Numbers 1 to 50</h1><p class="page-desc">Tap to listen.</p><div class="grid-3d">';
+    for (let i = 1; i <= 50; i++) {
       html += `<div class="card-3d c${i%6}" onclick="speak('${i}'); addStar();">
-        <div style="font-size:3rem; font-weight:900; color:var(--primary-dark);">${i}</div>
-        <div class="text">Number ${i}</div>
+        <div style="font-size:2.5rem; font-weight:900; color:var(--primary-dark);">${i}</div>
       </div>`;
     }
     html += '</div>';
     content.innerHTML = html;
   }
+  else if (topic === 'Tables') {
+    let html = '<h1 class="page-title">✖️ Tables 1 to 10</h1><p class="page-desc">Tap a table to learn.</p><div class="grid-3d">';
+    for (let n = 1; n <= 10; n++) {
+      html += `<div class="card-3d c${n%6}" onclick="loadTable(${n})"><div class="emoji">🔢</div><div class="text">Table of ${n}</div></div>`;
+    }
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topic === 'Shapes') {
+    let html = '<h1 class="page-title">Shapes (30)</h1><p class="page-desc">Tap to learn.</p><div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:20px;">';
+    shapesData.forEach((s, idx) => {
+      html += `<div class="card-3d c${idx%6}" onclick="speak('${s.name}'); addStar();">
+        <svg width="70" height="70" viewBox="0 0 100 100">${s.svg}</svg>
+        <div class="text" style="margin-top:10px; font-size:0.9rem;">${s.name}</div>
+      </div>`;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topic === 'Counting') {
+    let html = '<h1 class="page-title">Object Counting (50)</h1><p class="page-desc">Count and type the number.</p><div class="workbook-grid">';
+    mathData.counting.forEach((item, idx) => {
+      html += `<div class="wb-card">
+        <div style="font-size:1.8rem; letter-spacing:5px; margin-bottom:15px; word-break:break-all;">${item.e.repeat(item.count)}</div>
+        <div class="wb-eq"><span>How many?</span><input type="number" class="wb-input" id="cnt-${idx}" oninput="checkMath(${idx}, ${item.count}, 'cnt')"></div>
+      </div>`;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topic === 'Addition') {
+    let html = '<h1 class="page-title">➕ Addition (50)</h1><p class="page-desc">Count pictures and write the sum.</p><div class="workbook-grid">';
+    mathData.add.forEach((i, idx) => {
+      html += `<div class="wb-card">
+        <div style="font-size:1.3rem; margin-bottom:15px; display:flex; justify-content:space-between; background:#f8f9fa; padding:10px; border-radius:10px;">
+          <span>${i.e1.repeat(i.a)}</span> <span style="font-weight:800; color:var(--primary);">+</span> <span>${i.e2.repeat(i.b)}</span>
+        </div>
+        <div class="wb-eq"><span>${i.a} + ${i.b} =</span><input type="number" class="wb-input" id="add-${idx}" oninput="checkMath(${idx}, ${i.sum}, 'add')"></div>
+      </div>`;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topic === 'Subtraction') {
+    let html = '<h1 class="page-title">➖ Subtraction (50)</h1><p class="page-desc">Subtract and write the answer.</p><div class="workbook-grid">';
+    mathData.sub.forEach((i, idx) => {
+      html += `<div class="wb-card">
+        <div style="font-size:1.3rem; margin-bottom:15px; display:flex; justify-content:space-between; background:#f8f9fa; padding:10px; border-radius:10px;">
+          <span>${i.e1.repeat(i.a)}</span> <span style="font-weight:800; color:var(--danger);">- ${i.b}</span> <span>${i.e2.repeat(i.b)}</span>
+        </div>
+        <div class="wb-eq"><span>${i.a} - ${i.b} =</span><input type="number" class="wb-input" id="sub-${idx}" oninput="checkMath(${idx}, ${i.sum}, 'sub')"></div>
+      </div>`;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topic === 'Workbook') {
+    content.innerHTML = `
+      <div class="exam-sheet">
+        <div class="exam-head">
+          <h2>SHIFA'S LEARNING HUB</h2>
+          <div style="font-weight:700;">JR KG • FINAL WORKSHEET</div>
+          <div style="margin-top:10px; font-size:0.9rem;"><span>Name: __________________</span> &nbsp;&nbsp; <span>Date: __________</span></div>
+        </div>
+        <form id="jrExam" onsubmit="submitExam(event)">
+          <div class="exam-questions" id="examQuestions"></div>
+          <div class="exam-actions">
+            <button type="submit" class="exam-btn">Submit Test ✓</button>
+          </div>
+        </form>
+        <div id="examResult" class="exam-result"></div>
+      </div>`;
+    renderExam();
+  }
+}
+
+function loadTable(n) {
+  let html = `<button class="btn-back" onclick="loadTopic('Tables', null)" style="background:#2d3436;color:white;padding:10px 20px;border-radius:10px;border:none;font-size:1.1rem;font-weight:700;cursor:pointer;margin-bottom:20px;">⬅ Back</button>
+    <h1 class="page-title">✖️ Table of ${n}</h1>
+    <div class="workbook-grid">`;
+  for (let i = 1; i <= 10; i++) {
+    html += `<div class="wb-card" style="border-left-color:hsl(${(n*23+i*11)%360},75%,55%);">
+      <button class="wb-eq" style="width:100%;border:none;background:none;cursor:pointer;justify-content:center;" onclick="speak('${n} times ${i} equals ${n*i}'); addStar();">
+        <span style="font-size:1.5rem;">${n} × ${i} = ${n*i} 🔊</span>
+      </button>
+    </div>`;
+  }
+  html += '</div>';
+  content.innerHTML = html;
+}
+
+function renderExam() {
+  const holder = document.getElementById('examQuestions');
+  holder.innerHTML = examData.map((item, idx) => `
+    <div class="exam-question" id="ex-q-${idx}">
+      <p>${idx+1}. ${item.q}</p>
+      <div class="exam-options">
+        ${item.opts.map(o => `<label class="exam-option"><input type="radio" name="ex-${idx}" value="${o}"> ${o}</label>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function submitExam(e) {
+  e.preventDefault();
+  let score = 0;
+  examData.forEach((item, idx) => {
+    const chosen = document.querySelector(`input[name="ex-${idx}"]:checked`);
+    const card = document.getElementById(`ex-q-${idx}`);
+    card.style.border = '1px solid #d9deea';
+    if (chosen && chosen.value === item.a) {
+      score++;
+      card.style.borderColor = '#35a66b';
+      card.style.background = '#f1fff6';
+    } else {
+      card.style.borderColor = '#e07b7b';
+      card.style.background = '#fff5f5';
+    }
+  });
+  const percent = Math.round(score / examData.length * 100);
+  const result = document.getElementById('examResult');
+  result.style.display = 'block';
+  result.innerHTML = `<h3>Result: ${score} / ${examData.length} (${percent}%)</h3>
+    <p>${percent >= 80 ? 'Excellent work! 🎉' : percent >= 50 ? 'Good effort! 🌟' : 'Keep practising! 💪'}</p>`;
+  result.scrollIntoView({behavior:'smooth'});
+  addStar();
+}
+
+// Match & Math Checkers
+let selMatch = { set1: null, set2: null };
+function matchSelect(btn, id, set) {
+  if (btn.classList.contains('matched')) return;
+  if (!selMatch[set]) {
+    selMatch[set] = { btn, id }; btn.classList.add('selected');
+  } else {
+    if (selMatch[set].btn === btn) { btn.classList.remove('selected'); selMatch[set] = null; return; }
+    if (selMatch[set].id === id) {
+      btn.classList.add('matched'); selMatch[set].btn.classList.add('matched');
+      btn.classList.remove('selected'); selMatch[set].btn.classList.remove('selected');
+      addStar(); speak('Correct!');
+    } else {
+      btn.classList.remove('selected'); selMatch[set].btn.classList.remove('selected');
+    }
+    selMatch[set] = null;
+  }
+}
+function checkMath(idx, ans, prefix) {
+  const input = document.getElementById(`${prefix}-${idx}`);
+  if (parseInt(input.value) === ans) { input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!'); }
+  else { input.classList.remove('correct'); }
+}
+function checkMissing(input, char) {
+  if (input.value.toUpperCase() === char) { input.style.color = '#00b894'; input.disabled = true; addStar(); speak('Correct'); }
 }
 </script>
 </body>
