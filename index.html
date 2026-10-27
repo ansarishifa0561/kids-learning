@@ -315,7 +315,7 @@ function loadTopic(topicName, element) {
     html += '</div>';
     content.innerHTML = html;
   }
-  else if (topicName === 'Numbers 1-20') {
+  else if (topicName === 'Numbers 1 to 20' || topicName === 'Numbers 1-20') {
     let html = '<h1 class="page-title">Numbers 1 to 20</h1><p class="page-desc">Tap on the number to hear it.</p><div class="grid-3d">';
     for(let i=1; i<=20; i++) {
       html += `<div class="card-3d c${i%6}" onclick="speak('${i}'); addStar();"><div style="font-size:3rem; font-weight:800; color:var(--primary-dark);">${i}</div></div>`;
