@@ -60,11 +60,10 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 .wb-input:focus { border-color: var(--primary); background: #fff; }
 .wb-input.correct { border-color: #00b894; border-style: solid; background: #d8fff0; color: #08764d; }
 
-/* --- NEW MATCHING WORKSHEET STYLE --- */
+/* --- MATCHING WORKSHEET STYLE --- */
 .ws-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; max-width: 1000px; margin: 0 auto; }
 .ws-box { background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .ws-box h3 { font-size: 1.2rem; color: #e67e22; margin-bottom: 15px; border-bottom: 2px dashed #ffe0b2; padding-bottom: 5px; }
-
 .match-container { display: flex; justify-content: space-between; gap: 20px; }
 .match-col { display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .match-item { padding: 10px 15px; font-size: 1.3rem; font-weight: 800; border: 2px solid #dfe6e9; border-radius: 12px; background: #fff; cursor: pointer; transition: 0.2s; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px;}
@@ -249,14 +248,10 @@ function loadTopic(topicName, element) {
     content.innerHTML = html;
   }
   else if (topicName === 'Match Capital-Small') {
-    // Professional Worksheet Style (matching your image)
     let html = `
       <h1 class="page-title">Alphabet Activity Worksheet</h1>
       <p class="page-desc">Look • Match • Trace • Color • Learn</p>
-      
       <div class="ws-container">
-        
-        <!-- Box 1: Match Capital to Small -->
         <div class="ws-box">
           <h3>1. Match the capital letter with its small letter.</h3>
           <div class="match-container">
@@ -264,8 +259,6 @@ function loadTopic(topicName, element) {
             <div class="match-col" id="sm-col"></div>
           </div>
         </div>
-
-        <!-- Box 2: Match Letter to Picture -->
         <div class="ws-box">
           <h3>2. Match the letter to the correct picture.</h3>
           <div class="match-container">
@@ -273,8 +266,6 @@ function loadTopic(topicName, element) {
             <div class="match-col" id="pic2-col"></div>
           </div>
         </div>
-
-        <!-- Box 3: Circle the correct small letter -->
         <div class="ws-box" style="grid-column: span 2;">
           <h3>3. Look at the picture and circle the correct small letter.</h3>
           <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px;">
@@ -286,8 +277,6 @@ function loadTopic(topicName, element) {
             `).join('')}
           </div>
         </div>
-
-        <!-- Box 4: Trace the letter -->
         <div class="ws-box">
           <h3>4. Trace the capital letters.</h3>
           ${['A','B','C','D','E'].map(l => `
@@ -297,8 +286,6 @@ function loadTopic(topicName, element) {
             </div>
           `).join('')}
         </div>
-
-        <!-- Box 5: Missing small letters -->
         <div class="ws-box">
           <h3>5. Write the missing small letters.</h3>
           <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:15px;">
@@ -311,13 +298,9 @@ function loadTopic(topicName, element) {
       </div>
     `;
     content.innerHTML = html;
-    
-    // Populate Box 1 (Capital to Small)
     let capArr = alphaData.slice(0, 6);
     document.getElementById('cap-col').innerHTML = capArr.map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set1')">${c.l}</div>`).join('');
     document.getElementById('sm-col').innerHTML = capArr.sort(() => Math.random() - 0.5).map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set1')">${c.l.toLowerCase()}</div>`).join('');
-
-    // Populate Box 2 (Letter to Picture)
     let capArr2 = alphaData.slice(0, 6);
     document.getElementById('cap2-col').innerHTML = capArr2.map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set2')">${c.l}</div>`).join('');
     document.getElementById('pic2-col').innerHTML = capArr2.sort(() => Math.random() - 0.5).map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set2')" style="font-size:2rem;">${c.e}</div>`).join('');
@@ -376,7 +359,6 @@ function loadTopic(topicName, element) {
   else if (topicName === 'Subtraction 50') {
     let html = '<h1 class="page-title">Subtraction Practice</h1><p class="page-desc">Count the objects and subtract the red ones.</p><div class="workbook-grid">';
     fixedSubData.forEach((i, idx) => {
-      // Highlighted faded images with red color
       html += `<div class="wb-card">
         <div style="font-size:1.5rem; margin-bottom:15px; display:flex; justify-content:space-between; align-items:center; background:#f8f9fa; padding:10px; border-radius:10px;">
           <span>${i.e1.repeat(i.a)}</span> 
@@ -447,12 +429,9 @@ function checkCircle(el, selected, correct) {
     el.classList.remove('correct');
   }
 }
-
-// MATCH GAME LOGIC (Updated for multiple sets)
 let selectedMatch = { set1: null, set2: null };
 function matchSelect(btn, matchId, setId) {
   if (btn.classList.contains('matched')) return;
-  
   if (!selectedMatch[setId]) {
     selectedMatch[setId] = { btn, matchId };
     btn.classList.add('selected');
