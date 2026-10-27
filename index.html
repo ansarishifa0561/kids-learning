@@ -2211,6 +2211,167 @@ function checkStoryAnswer(sIdx, qIdx) {
     msgBox.style.color = '#d32f2f';
     msgBox.innerText = "❌ Oops! That's not quite right. Try again or check the hint below.";
   }
+  // =========================================
+// CLASS 4 - UPDATE (Detailed Verbs & Workbook)
+// =========================================
+
+// 1. Naya Workbook Data (20 Questions)
+const c4WorkbookNew = [
+  { q: "_______ is a cat.", ans: "This", opts: ["This", "That", "These", "Those"] },
+  { q: "_______ are apples.", ans: "These", opts: ["This", "That", "These", "Those"] },
+  { q: "_______ is a bus.", ans: "That", opts: ["This", "That", "These", "Those"] },
+  { q: "_______ are balloons.", ans: "Those", opts: ["This", "That", "These", "Those"] },
+  { q: "I _______ a student.", ans: "am", opts: ["am", "is", "are"] },
+  { q: "She _______ my sister.", ans: "is", opts: ["am", "is", "are"] },
+  { q: "They _______ playing.", ans: "are", opts: ["am", "is", "are"] },
+  { q: "We _______ good friends.", ans: "are", opts: ["am", "is", "are"] },
+  { q: "I saw _______ elephant.", ans: "an", opts: ["a", "an", "the"] },
+  { q: "She is reading _______ book.", ans: "a", opts: ["a", "an", "the"] },
+  { q: "_______ sun is very bright.", ans: "The", opts: ["A", "An", "The"] },
+  { q: "He is _______ honest boy.", ans: "an", opts: ["a", "an", "the"] },
+  { q: "She _______ to school every day.", ans: "goes", opts: ["go", "goes", "going"] },
+  { q: "They _______ playing football.", ans: "are", opts: ["is", "am", "are"] },
+  { q: "He _______ a new car yesterday.", ans: "bought", opts: ["buy", "bought", "buys"] },
+  { q: "I _______ a pen.", ans: "have", opts: ["has", "have", "had"] },
+  { q: "The baby _______ sleeping.", ans: "is", opts: ["am", "is", "are"] },
+  { q: "Birds _______ in the sky.", ans: "fly", opts: ["flies", "fly", "flying"] },
+  { q: "_______ you like ice cream?", ans: "Do", opts: ["Does", "Do", "Did"] },
+  { q: "I _______ my homework yesterday.", ans: "did", opts: ["do", "does", "did"] }
+];
+
+// 2. Verb Forms Data (Present, Past, Past Participle)
+const c4VerbForms = [
+  { v1: "Go", v2: "Went", v3: "Gone", meaning: "जाना" },
+  { v1: "Eat", v2: "Ate", v3: "Eaten", meaning: "खाना" },
+  { v1: "Write", v2: "Wrote", v3: "Written", meaning: "लिखना" },
+  { v1: "See", v2: "Saw", v3: "Seen", meaning: "देखना" },
+  { v1: "Take", v2: "Took", v3: "Taken", meaning: "लेना" },
+  { v1: "Run", v2: "Ran", v3: "Run", meaning: "दौड़ना" },
+  { v1: "Play", v2: "Played", v3: "Played", meaning: "खेलना" },
+  { v1: "Read", v2: "Read", v3: "Read", meaning: "पढ़ना" },
+  { v1: "Speak", v2: "Spoke", v3: "Spoken", meaning: "बोलना" },
+  { v1: "Drink", v2: "Drank", v3: "Drunk", meaning: "पीना" },
+  { v1: "Cut", v2: "Cut", v3: "Cut", meaning: "काटना" },
+  { v1: "Put", v2: "Put", v3: "Put", meaning: "रखना" }
+];
+
+// =========================================
+// INJECT DATA INTO CLASS 4 MENU
+// =========================================
+if(contentData['class4']) {
+  const engSub = contentData['class4'].subjects.find(s => s.name === 'English');
+  if(engSub) {
+    // Purane Workbook ko update karna (naye questions ke saath)
+    const wbIndex = engSub.topics.findIndex(t => t.id === 'c4_workbook');
+    if(wbIndex !== -1) {
+      engSub.topics[wbIndex].data = c4WorkbookNew;
+    }
+
+    // Naya Topic: Verbs
+    if(!engSub.topics.find(t => t.id === 'c4_verbs')) {
+      engSub.topics.push({
+        id: 'c4_verbs', 
+        title: 'Verbs (Detailed Grammar)', 
+        type: 'c4_verbs_detail', 
+        data: c4VerbForms
+      });
+    }
+  }
+}
+
+// =========================================
+// RENDER LOGIC FOR VERBS
+// =========================================
+const prevLoadTopicC4Verbs = loadTopic;
+loadTopic = function(subjectName, topicId) {
+  prevLoadTopicC4Verbs(subjectName, topicId);
+  
+  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
+  const topic = sub.topics.find(t => t.id === topicId);
+
+  if (topic.type === 'c4_verbs_detail') {
+    content.innerHTML = `<h1>${topic.title}</h1>
+    
+    <!-- VERB DEFINITION -->
+    <div style="background: #f3e5f5; border: 2px solid #ce93d8; border-radius: 15px; padding: 20px; text-align: center; margin-bottom: 30px;">
+      <h2 style="font-size: 2.5rem; color: #8e24aa; font-weight: 800; margin-bottom: 10px;">VERB</h2>
+      <p style="font-size: 1.3rem; font-weight: 700; color: #4a148c;">A verb is a word that shows an action or a state of being.</p>
+    </div>
+
+    <!-- TYPES OF VERBS -->
+    <h3 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px dashed #ccc; padding-bottom: 5px;">Types of Verbs</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px;">
+      
+      <!-- Action Verbs -->
+      <div style="background: #e3f2fd; border: 2px solid #90caf9; border-radius: 15px; padding: 20px;">
+        <h4 style="color: #1565c0; font-size: 1.4rem; margin-bottom: 10px;">1. Action Verbs</h4>
+        <p style="font-size: 1rem; color: #333; margin-bottom: 10px; font-weight: 600;">Show physical or mental actions.</p>
+        <div style="background: #fff; padding: 10px; border-radius: 10px; font-size: 1.1rem; font-weight: 700;">Examples: run, write, jump, think, sing</div>
+      </div>
+
+      <!-- Linking Verbs -->
+      <div style="background: #fff3e0; border: 2px solid #ffb74d; border-radius: 15px; padding: 20px;">
+        <h4 style="color: #e65100; font-size: 1.4rem; margin-bottom: 10px;">2. Linking Verbs</h4>
+        <p style="font-size: 1rem; color: #333; margin-bottom: 10px; font-weight: 600;">Connect the subject with more information.</p>
+        <div style="background: #fff; padding: 10px; border-radius: 10px; font-size: 1.1rem; font-weight: 700;">Examples: am, is, are, was, were, be, been</div>
+      </div>
+
+      <!-- Helping Verbs -->
+      <div style="background: #e8f5e9; border: 2px solid #81c784; border-radius: 15px; padding: 20px;">
+        <h4 style="color: #2e7d32; font-size: 1.4rem; margin-bottom: 10px;">3. Helping Verbs</h4>
+        <p style="font-size: 1rem; color: #333; margin-bottom: 10px; font-weight: 600;">Help the main verb to show tense.</p>
+        <div style="background: #fff; padding: 10px; border-radius: 10px; font-size: 1.1rem; font-weight: 700;">Examples: am, is, are, was, were, have, has, do, does, did, will</div>
+      </div>
+
+      <!-- Modal Verbs -->
+      <div style="background: #fce4ec; border: 2px solid #f06292; border-radius: 15px; padding: 20px;">
+        <h4 style="color: #ad1457; font-size: 1.4rem; margin-bottom: 10px;">4. Modal Verbs</h4>
+        <p style="font-size: 1rem; color: #333; margin-bottom: 10px; font-weight: 600;">Show ability, permission, or obligation.</p>
+        <div style="background: #fff; padding: 10px; border-radius: 10px; font-size: 1.1rem; font-weight: 700;">Examples: can, could, may, must, should, will, would</div>
+      </div>
+    </div>
+
+    <!-- ROLE OF VERBS -->
+    <div style="background: #fffde7; border: 2px solid #fff176; border-radius: 15px; padding: 20px; margin-bottom: 40px;">
+      <h3 style="color: #f57f17; margin-bottom: 15px;">Role of Verbs in a Sentence</h3>
+      <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 15px;">Verbs are the heart of a sentence. They tell us what the subject does.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 1.2rem; font-weight: 700;">
+        <span style="background: #fff; padding: 10px; border-radius: 10px;">The cat <span style="color: #f57f17;">jumps</span>.</span>
+        <span style="background: #fff; padding: 10px; border-radius: 10px;">Riya <span style="color: #f57f17;">is</span> kind.</span>
+        <span style="background: #fff; padding: 10px; border-radius: 10px;">They <span style="color: #f57f17;">have finished</span> homework.</span>
+      </div>
+    </div>
+
+    <!-- FORMS OF VERBS (1st, 2nd, 3rd Form Table) -->
+    <h3 style="color: var(--primary-dark); margin-bottom: 15px; border-bottom: 2px dashed #ccc; padding-bottom: 5px;">Forms of Verbs (Present, Past, Past Participle)</h3>
+    <div style="overflow-x: auto; margin-bottom: 30px;">
+      <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+        <thead>
+          <tr style="background: var(--primary); color: #fff;">
+            <th style="padding: 15px; border: 1px solid #ddd; font-size: 1.1rem;">Base Form (V1)</th>
+            <th style="padding: 15px; border: 1px solid #ddd; font-size: 1.1rem;">Past Form (V2)</th>
+            <th style="padding: 15px; border: 1px solid #ddd; font-size: 1.1rem;">Past Participle (V3)</th>
+            <th style="padding: 15px; border: 1px solid #ddd; font-size: 1.1rem;">Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${topic.data.map((item, index) => `
+            <tr style="text-align: center; background: ${index % 2 === 0 ? '#f9f9f9' : '#fff'};">
+              <td style="padding: 12px; border: 1px solid #ddd; font-weight: 700; font-size: 1.2rem; color: #1565c0;">${item.v1}</td>
+              <td style="padding: 12px; border: 1px solid #ddd; font-weight: 700; font-size: 1.2rem; color: #e65100;">${item.v2}</td>
+              <td style="padding: 12px; border: 1px solid #ddd; font-weight: 700; font-size: 1.2rem; color: #2e7d32;">${item.v3}</td>
+              <td style="padding: 12px; border: 1px solid #ddd; font-weight: 600; color: #555;">${item.meaning}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+    
+    <div style="background: #e8f5e9; border-left: 5px solid #4caf50; padding: 15px; border-radius: 5px; font-size: 1.1rem; font-weight: 600; color: #2e7d32;">
+      💡 <strong>Remember:</strong> Most verbs change their form to show time and action! (e.g., Go ➔ Went ➔ Gone). But some stay the same (e.g., Cut ➔ Cut ➔ Cut).
+    </div>`;
+  }
+};
 }
 // =========================================
 // Initialize App
