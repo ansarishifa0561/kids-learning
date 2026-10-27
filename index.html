@@ -129,7 +129,7 @@
                             <p>Test your knowledge and earn stars!</p>
                         </div>
                     </div>
-                    <button class="btn btn-purple">Start Quiz <i class="fa-solid fa-arrow-right"></i></button>
+                    <button class="btn btn-purple" onclick="openQuiz()">Start Quiz <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
                 
                 <div class="card action-card">
@@ -156,9 +156,19 @@
                     <option>Class 5</option>
                 </select>
                 <div class="class-grid">
-                    <button>Nursery</button><button>LKG</button><button>UKG</button>
-                    <button>Class 1</button><button>Class 2</button><button>Class 3</button>
-                    <button>Class 4</button><button class="active-class">Class 5</button><button>Class 6</button>
+                    
+    <button onclick="selectClass(this)">Nursery</button>
+    <button onclick="selectClass(this)">LKG</button>
+    <button onclick="selectClass(this)">UKG</button>
+    <button onclick="selectClass(this)">Class 1</button>
+    <button onclick="selectClass(this)">Class 2</button>
+    <button onclick="selectClass(this)">Class 3</button>
+    <button onclick="selectClass(this)">Class 4</button>
+    <button class="active-class" onclick="selectClass(this)">Class 5</button>
+    <button onclick="selectClass(this)">Class 6</button>
+    <button onclick="selectClass(this)">Class 7</button>
+    <button onclick="selectClass(this)">Class 8</button>
+</div>
                 </div>
             </div>
 
@@ -197,5 +207,14 @@
         </aside>
     </div>
 
+    <!-- Quiz Popup Modal -->
+<div id="quizModal" class="modal">
+    <div class="modal-content">
+        <h2>🎉 Great Job!</h2>
+        <p>Quiz is starting soon. Get ready to test your knowledge!</p>
+        <button onclick="closeQuiz()" class="btn btn-purple">Close</button>
+    </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

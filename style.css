@@ -236,3 +236,42 @@ body {
     .banner-text { width: 100%; margin-bottom: 20px; }
     .quick-actions, .subjects-grid { grid-template-columns: 1fr 1fr; }
 }
+/* ===== QUIZ POPUP MODAL ===== */
+.modal {
+    display: none; /* Shuru mein chhupa rahega */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Peeche kaala parda */
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    max-width: 400px;
+    animation: popIn 0.3s ease;
+}
+
+.modal-content h2 {
+    color: #8b5cf6;
+    font-family: 'Baloo 2', cursive;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.modal-content p {
+    color: #475569;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* Popup aane ka animation */
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
