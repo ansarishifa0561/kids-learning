@@ -78,6 +78,11 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 .mp-eq input { width: 60px; height: 60px; font-size: 1.5rem; font-weight: 800; text-align: center; border: 3px solid var(--primary); border-radius: 10px; outline: none; font-family: inherit; }
 .mp-eq input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
 
+/* Object Counting Box */
+.count-item { display: flex; align-items: center; justify-content: space-between; font-size: 2rem; margin-bottom: 15px; background: var(--white); padding: 15px 25px; border-radius: 15px; border: 2px solid var(--border); letter-spacing: 4px; max-width: 600px; margin-left: auto; margin-right: auto;}
+.count-input { width: 70px; height: 55px; border: 3px solid var(--primary); border-radius: 10px; text-align: center; font-size: 1.5rem; font-weight: 800; outline: none; letter-spacing: 0; }
+.count-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+
 @media (max-width: 768px) {
   .layout { flex-direction: column; }
   .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 2px solid var(--border); display: flex; overflow-x: auto; padding: 10px; gap: 10px; }
@@ -123,6 +128,7 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
     <div class="subject-title">Maths</div>
     <ul class="topic-list">
       <li onclick="loadTopic('Numbers 1-20')">Numbers 1 to 20</li>
+      <li onclick="loadTopic('Object Counting')">🔢 Object Counting</li>
       <li onclick="loadTopic('Shapes')">Shapes</li>
       <li onclick="loadTopic('Addition 50')">➕ Addition (50 Q)</li>
       <li onclick="loadTopic('Subtraction 50')">➖ Subtraction (50 Q)</li>
@@ -180,6 +186,7 @@ const picPool = ['🍎','🍌','🍇','🍊','🍓','⭐','🌸','🌻','🌹','
 const rndPic = () => picPool[Math.floor(Math.random() * picPool.length)];
 function generateAdd50() { const arr = [], used = new Set(); while (arr.length < 50) { const a = Math.floor(Math.random() * 5) + 1, b = Math.floor(Math.random() * 5) + 1, k = a + '+' + b; if (used.has(k)) continue; used.add(k); arr.push({ a, b, sum: a + b, e1: rndPic(), e2: rndPic() }); } return arr; }
 function generateSub50() { const arr = [], used = new Set(); while (arr.length < 50) { const a = Math.floor(Math.random() * 6) + 3, b = Math.floor(Math.random() * (a - 1)) + 1, k = a + '-' + b; if (used.has(k)) continue; used.add(k); arr.push({ a, b, sum: a - b, e1: rndPic(), e2: rndPic() }); } return arr; }
+function generateCount10() { return [{ e: '🍎', count: 5 }, { e: '⭐', count: 7 }, { e: '🐶', count: 3 }, { e: '🎈', count: 4 }, { e: '🍌', count: 6 }, { e: '🚗', count: 8 }, { e: '🌸', count: 2 }, { e: '🐱', count: 9 }, { e: '🧸', count: 1 }, { e: '🍩', count: 10 }]; }
 
 // RENDER TOPICS
 function loadTopic(topicName) {
@@ -256,6 +263,17 @@ function loadTopic(topicName) {
     html += '</div>';
     content.innerHTML = html;
   }
+  else if (topicName === 'Object Counting') {
+    const countData = generateCount10();
+    let html = '<h1>🔢 Object Counting</h1><p>Count the objects and type the number!</p>';
+    countData.forEach((item, idx) => {
+      html += `<div class="count-item">
+        <div>${item.e.repeat(item.count)}</div>
+        <div>= <input type="number" class="count-input" id="count-${idx}" oninput="checkCount(${idx}, ${item.count})"></div>
+      </div>`;
+    });
+    content.innerHTML = html;
+  }
   else if (topicName === 'Shapes') {
     let html = '<h1>Shapes</h1><div class="interactive-grid">';
     shapesData.forEach(s => {
@@ -294,6 +312,7 @@ function loadTopic(topicName) {
         <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
           <button class="match-btn" onclick="loadTopic('Addition 50')" style="background:#d8fff0; border-color:#34C759; color:#08764d;">➕ 50 Addition</button>
           <button class="match-btn" onclick="loadTopic('Subtraction 50')" style="background:#ffebee; border-color:#d32f2f; color:#d32f2f;">➖ 50 Subtraction</button>
+          <button class="match-btn" onclick="loadTopic('Object Counting')" style="background:#fff3e0; border-color:#f39c12; color:#e65100;">🔢 Counting</button>
           <button class="match-btn" onclick="loadTopic('Match Capital-Small')" style="background:#e3f2fd; border-color:#2196f3; color:#1565c0;">🔤 Match Letters</button>
         </div>
       </div>
@@ -304,6 +323,12 @@ function loadTopic(topicName) {
 // CHECKERS
 function checkMathPic(idx, correctAns, prefix) {
   const input = document.getElementById(`${prefix}-${idx}`);
+  if (parseInt(input.value) === correctAns) {
+    input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
+  } else { input.classList.remove('correct'); }
+}
+function checkCount(idx, correctAns) {
+  const input = document.getElementById(`count-${idx}`);
   if (parseInt(input.value) === correctAns) {
     input.classList.add('correct'); input.disabled = true; addStar(); speak('Correct!');
   } else { input.classList.remove('correct'); }
