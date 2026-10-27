@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Test — Nursery Picture Math</title>
+<title>Shifa's Hub — Nursery</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{--primary:#f39c12;--primary-dark:#e67e22;--bg:#fffdf9;--text:#3e2723;--muted:#8d6e63;--border:#ffe0b2;}
@@ -24,8 +24,8 @@ p{color:var(--muted);text-align:center;margin-bottom:20px;font-size:1.1rem;}
 </head>
 <body>
 
-<h1>🎓 Shifa's Hub — Test File</h1>
-<p>Nursery Maths — Picture Addition & Subtraction</p>
+<h1>🎓 Shifa's Hub — Nursery</h1>
+<p>Maths — Picture Addition & Subtraction</p>
 <div class="stars">⭐ Stars: <span id="starCount">0</span></div>
 
 <h2>➕ Addition with Pictures (50 Questions)</h2>
@@ -35,16 +35,14 @@ p{color:var(--muted);text-align:center;margin-bottom:20px;font-size:1.1rem;}
 <div class="math-pic-grid" id="subGrid"></div>
 
 <script>
-/* ===== STARS ===== */
-let stars = parseInt(localStorage.getItem('shifaStars') || '0', 10);
-document.getElementById('starCount').textContent = stars;
+let stars = 0;
+const starEl = document.getElementById('starCount');
+
 function addStar() {
   stars++;
-  localStorage.setItem('shifaStars', stars);
-  document.getElementById('starCount').textContent = stars;
+  starEl.textContent = stars;
 }
 
-/* ===== SPEAK ===== */
 function speak(text) {
   if (!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
@@ -54,21 +52,15 @@ function speak(text) {
   window.speechSynthesis.speak(u);
 }
 
-/* ===== PICTURE POOL ===== */
-const picPool = ['🍎','🍌','🍇','🍊','🍓','⭐','🌸','🌻','🌹','🦋','🐶','🐱','🐰','🐟','🎈','⚽','🚗','🧸','🍩','🍭','🪁','🐦','🌼','💐','🟢','🔵','🔺','🟡','❤️','🍒','🌟','🌈','🍪','🚀','🎁','🧁','🐢','🐸','🌸','🍀'];
+const picPool = ['🍎','🍌','🍇','🍊','🍓','⭐','🌸','🌻','🌹','🦋','🐶','🐱','🐰','🐟','🎈','⚽','🚗','🧸','🍩','🍭','🪁','🐦','🌼','💐','🟢','🔵','🔺','🟡','❤️','🍒'];
+function rndPic() { return picPool[Math.floor(Math.random() * picPool.length)]; }
 
-function rndPic() {
-  return picPool[Math.floor(Math.random() * picPool.length)];
-}
-
-/* ===== GENERATE 50 ADDITION ===== */
 function generateAddPics50() {
-  const arr = [];
-  const used = new Set();
+  const arr = [], used = new Set();
   while (arr.length < 50) {
     const a = Math.floor(Math.random() * 5) + 1;
     const b = Math.floor(Math.random() * 5) + 1;
-    const k = `${a}+${b}`;
+    const k = a + '+' + b;
     if (used.has(k)) continue;
     used.add(k);
     arr.push({ a, b, sum: a + b, e1: rndPic(), e2: rndPic() });
@@ -76,14 +68,12 @@ function generateAddPics50() {
   return arr;
 }
 
-/* ===== GENERATE 50 SUBTRACTION ===== */
 function generateSubPics50() {
-  const arr = [];
-  const used = new Set();
+  const arr = [], used = new Set();
   while (arr.length < 50) {
     const a = Math.floor(Math.random() * 6) + 3;
     const b = Math.floor(Math.random() * (a - 1)) + 1;
-    const k = `${a}-${b}`;
+    const k = a + '-' + b;
     if (used.has(k)) continue;
     used.add(k);
     arr.push({ a, b, sum: a - b, e1: rndPic(), e2: rndPic() });
@@ -91,7 +81,6 @@ function generateSubPics50() {
   return arr;
 }
 
-/* ===== RENDER ADDITION ===== */
 const addData = generateAddPics50();
 document.getElementById('addGrid').innerHTML = addData.map((i, idx) => `
   <div class="mp-card">
@@ -107,25 +96,23 @@ document.getElementById('addGrid').innerHTML = addData.map((i, idx) => `
   </div>
 `).join('');
 
-/* ===== RENDER SUBTRACTION ===== */
 const subData = generateSubPics50();
 document.getElementById('subGrid').innerHTML = subData.map((i, idx) => `
   <div class="mp-card">
     <div class="mp-visual">
       <span class="group">${i.e1.repeat(i.a)}</span>
-      <span style="font-weight:800; color:#d32f2f;">− ${i.b}</span>
+      <span style="font-weight:800; color:#d32f2f;">- ${i.b}</span>
       <span class="group" style="opacity:0.3;">${i.e2.repeat(i.b)}</span>
     </div>
     <div class="mp-eq">
-      <span>${i.a} − ${i.b} =</span>
+      <span>${i.a} - ${i.b} =</span>
       <input type="number" id="subpic-${idx}" oninput="checkMathPic(${idx}, ${i.sum}, 'subpic')">
     </div>
   </div>
 `).join('');
 
-/* ===== CHECKER ===== */
 function checkMathPic(idx, correctAns, prefix) {
-  const input = document.getElementById(`${prefix}-${idx}`);
+  const input = document.getElementById(prefix + '-' + idx);
   if (!input) return;
   if (parseInt(input.value) === correctAns) {
     input.classList.add('correct');
