@@ -125,9 +125,9 @@ body {
 }
 
 .banner-image-area img { 
-    height: 220px; /* Image ka size bada kiya */
-    width: auto;
-    object-fit: contain;
+    height: 100px; /* Image ka size bada kiya */
+    width: 100;
+    object-fit: cover;
     /* Image ke peeche ka white background hatane ke liye mask (agar transparent na ho) */
     mix-blend-mode: multiply; /* Yeh white background ko gayab kar dega! */
 }
