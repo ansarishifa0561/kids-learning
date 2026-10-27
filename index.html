@@ -101,30 +101,30 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
   <div class="sidebar" id="sidebar">
     <div class="subject-title">English</div>
     <ul class="topic-list">
-      <li onclick="loadTopic('Capital A-Z')">A to Z (Capital)</li>
-      <li onclick="loadTopic('Small a-z')">a to z (Small)</li>
-      <li onclick="loadTopic('Missing Alphabet')">Missing Alphabet</li>
-      <li onclick="loadTopic('Match Capital-Small')">Match Capital-Small</li>
-      <li onclick="loadTopic('Match Letter-Picture')">Match Letter-Picture</li>
+      <li onclick="loadTopic('Capital A-Z', this)">A to Z (Capital)</li>
+      <li onclick="loadTopic('Small a-z', this)">a to z (Small)</li>
+      <li onclick="loadTopic('Missing Alphabet', this)">Missing Alphabet</li>
+      <li onclick="loadTopic('Match Capital-Small', this)">Match Capital-Small</li>
+      <li onclick="loadTopic('Match Letter-Picture', this)">Match Letter-Picture</li>
     </ul>
     <div class="subject-title">EVS</div>
     <ul class="topic-list">
-      <li onclick="loadTopic('Fruits 20')">Fruits (20)</li>
-      <li onclick="loadTopic('Animals 20')">Animals (20)</li>
-      <li onclick="loadTopic('Birds 20')">Birds (20)</li>
-      <li onclick="loadTopic('Flowers 20')">Flowers (20)</li>
+      <li onclick="loadTopic('Fruits 20', this)">Fruits (20)</li>
+      <li onclick="loadTopic('Animals 20', this)">Animals (20)</li>
+      <li onclick="loadTopic('Birds 20', this)">Birds (20)</li>
+      <li onclick="loadTopic('Flowers 20', this)">Flowers (20)</li>
     </ul>
     <div class="subject-title">Maths</div>
     <ul class="topic-list">
-      <li onclick="loadTopic('Numbers 1-20')">Numbers 1 to 20</li>
-      <li onclick="loadTopic('Shapes')">Shapes</li>
-      <li onclick="loadTopic('Object Counting')">🔢 Object Counting</li>
-      <li onclick="loadTopic('Addition 50')">➕ Addition (50 Q)</li>
-      <li onclick="loadTopic('Subtraction 50')">➖ Subtraction (50 Q)</li>
+      <li onclick="loadTopic('Numbers 1-20', this)">Numbers 1 to 20</li>
+      <li onclick="loadTopic('Shapes', this)">Shapes</li>
+      <li onclick="loadTopic('Object Counting', this)">🔢 Object Counting</li>
+      <li onclick="loadTopic('Addition 50', this)">➕ Addition (50 Q)</li>
+      <li onclick="loadTopic('Subtraction 50', this)">➖ Subtraction (50 Q)</li>
     </ul>
     <div class="subject-title">Workbook</div>
     <ul class="topic-list">
-      <li onclick="loadTopic('Workbook')">📚 Final Worksheet</li>
+      <li onclick="loadTopic('Workbook', this)">📚 Final Worksheet</li>
     </ul>
   </div>
   
@@ -170,17 +170,46 @@ const shapesData = [
   {t:'Heart', svg:'<path d="M50,85 C10,50 10,20 30,15 C45,10 50,25 50,25 C50,25 55,10 70,15 C90,20 90,50 50,85" fill="#FFE082" stroke="#FFB300" stroke-width="6"/>'}
 ];
 
-// GENERATORS
-const picPool = ['🍎','🍌','🍇','🍊','🍓','⭐','🌸','🌻','🌹','🦋','🐶','🐱','🐰','🐟','🎈','⚽','🚗','🧸','🍩','🍭'];
-const rndPic = () => picPool[Math.floor(Math.random() * picPool.length)];
-function generateAdd50() { const arr = [], used = new Set(); while (arr.length < 50) { const a = Math.floor(Math.random() * 5) + 1, b = Math.floor(Math.random() * 5) + 1, k = a + '+' + b; if (used.has(k)) continue; used.add(k); arr.push({ a, b, sum: a + b, e1: rndPic(), e2: rndPic() }); } return arr; }
-function generateSub50() { const arr = [], used = new Set(); while (arr.length < 50) { const a = Math.floor(Math.random() * 6) + 3, b = Math.floor(Math.random() * (a - 1)) + 1, k = a + '-' + b; if (used.has(k)) continue; used.add(k); arr.push({ a, b, sum: a - b, e1: rndPic(), e2: rndPic() }); } return arr; }
-function generateCount10() { return [{ e: '🍎', count: 5 }, { e: '⭐', count: 7 }, { e: '🐶', count: 3 }, { e: '🎈', count: 4 }, { e: '🍌', count: 6 }, { e: '🚗', count: 8 }, { e: '🌸', count: 2 }, { e: '🐱', count: 9 }, { e: '🧸', count: 1 }, { e: '🍩', count: 10 }]; }
+// Fixed Arrays to prevent browser freeze
+const fixedAddData = [
+  {a:1,b:1,sum:2,e1:'🍎',e2:'🍌'}, {a:1,b:2,sum:3,e1:'⭐',e2:'🐶'}, {a:1,b:3,sum:4,e1:'🌸',e2:'🚗'},
+  {a:1,b:4,sum:5,e1:'🎈',e2:'🍩'}, {a:1,b:5,sum:6,e1:'🍇',e2:'⚽'}, {a:2,b:1,sum:3,e1:'🐱',e2:'🐰'},
+  {a:2,b:2,sum:4,e1:'🍊',e2:'🧸'}, {a:2,b:3,sum:5,e1:'🐟',e2:'🌻'}, {a:2,b:4,sum:6,e1:'🍭',e2:'🌹'},
+  {a:2,b:5,sum:7,e1:'🦋',e2:'🍓'}, {a:3,b:1,sum:4,e1:'🚀',e2:'🪁'}, {a:3,b:2,sum:5,e1:'🐦',e2:'🍪'},
+  {a:3,b:3,sum:6,e1:'🌼',e2:'💐'}, {a:3,b:4,sum:7,e1:'🔺',e2:'🟡'}, {a:3,b:5,sum:8,e1:'❤️',e2:'🍒'},
+  {a:4,b:1,sum:5,e1:'🍎',e2:'🍌'}, {a:4,b:2,sum:6,e1:'⭐',e2:'🐶'}, {a:4,b:3,sum:7,e1:'🌸',e2:'🚗'},
+  {a:4,b:4,sum:8,e1:'🎈',e2:'🍩'}, {a:4,b:5,sum:9,e1:'🍇',e2:'⚽'}, {a:5,b:1,sum:6,e1:'🐱',e2:'🐰'},
+  {a:5,b:2,sum:7,e1:'🍊',e2:'🧸'}, {a:5,b:3,sum:8,e1:'🐟',e2:'🌻'}, {a:5,b:4,sum:9,e1:'🍭',e2:'🌹'},
+  {a:5,b:5,sum:10,e1:'🦋',e2:'🍓'}
+];
+// Fill up to 50 by repeating with different emojis
+while(fixedAddData.length < 50) {
+  let base = fixedAddData[fixedAddData.length % 25];
+  fixedAddData.push({a:base.a, b:base.b, sum:base.sum, e1:'🌟', e2:'🌈'});
+}
+
+const fixedSubData = [
+  {a:3,b:1,sum:2,e1:'🍎',e2:'🍌'}, {a:4,b:2,sum:2,e1:'⭐',e2:'🐶'}, {a:5,b:3,sum:2,e1:'🌸',e2:'🚗'},
+  {a:6,b:4,sum:2,e1:'🎈',e2:'🍩'}, {a:7,b:5,sum:2,e1:'🍇',e2:'⚽'}, {a:4,b:1,sum:3,e1:'🐱',e2:'🐰'},
+  {a:5,b:2,sum:3,e1:'🍊',e2:'🧸'}, {a:6,b:3,sum:3,e1:'🐟',e2:'🌻'}, {a:7,b:4,sum:3,e1:'🍭',e2:'🌹'},
+  {a:8,b:5,sum:3,e1:'🦋',e2:'🍓'}, {a:5,b:1,sum:4,e1:'🚀',e2:'🪁'}, {a:6,b:2,sum:4,e1:'🐦',e2:'🍪'},
+  {a:7,b:3,sum:4,e1:'🌼',e2:'💐'}, {a:8,b:4,sum:4,e1:'🔺',e2:'🟡'}, {a:9,b:5,sum:4,e1:'❤️',e2:'🍒'},
+  {a:6,b:1,sum:5,e1:'🍎',e2:'🍌'}, {a:7,b:2,sum:5,e1:'⭐',e2:'🐶'}, {a:8,b:3,sum:5,e1:'🌸',e2:'🚗'},
+  {a:9,b:4,sum:5,e1:'🎈',e2:'🍩'}, {a:10,b:5,sum:5,e1:'🍇',e2:'⚽'}, {a:7,b:1,sum:6,e1:'🐱',e2:'🐰'},
+  {a:8,b:2,sum:6,e1:'🍊',e2:'🧸'}, {a:9,b:3,sum:6,e1:'🐟',e2:'🌻'}, {a:10,b:4,sum:6,e1:'🍭',e2:'🌹'},
+  {a:9,b:2,sum:7,e1:'🦋',e2:'🍓'}
+];
+while(fixedSubData.length < 50) {
+  let base = fixedSubData[fixedSubData.length % 25];
+  fixedSubData.push({a:base.a, b:base.b, sum:base.sum, e1:'🌟', e2:'🌈'});
+}
+
+const fixedCountData = [{ e: '🍎', count: 5 }, { e: '⭐', count: 7 }, { e: '🐶', count: 3 }, { e: '🎈', count: 4 }, { e: '🍌', count: 6 }, { e: '🚗', count: 8 }, { e: '🌸', count: 2 }, { e: '🐱', count: 9 }, { e: '🧸', count: 1 }, { e: '🍩', count: 10 }];
 
 // RENDER
-function loadTopic(topicName) {
+function loadTopic(topicName, element) {
   document.querySelectorAll('.topic-list li').forEach(el => el.classList.remove('active'));
-  event.target.classList.add('active');
+  if(element) element.classList.add('active');
 
   if (topicName === 'Capital A-Z' || topicName === 'Small a-z') {
     let isSmall = topicName === 'Small a-z';
@@ -247,9 +276,8 @@ function loadTopic(topicName) {
     content.innerHTML = html;
   }
   else if (topicName === 'Object Counting') {
-    const countData = generateCount10();
     let html = '<h1 class="page-title">Object Counting</h1><p class="page-desc">Count the objects and type the number.</p><div class="workbook-grid">';
-    countData.forEach((item, idx) => {
+    fixedCountData.forEach((item, idx) => {
       html += `<div class="wb-card">
         <div style="font-size:1.8rem; letter-spacing:5px; margin-bottom:15px; word-break:break-all;">${item.e.repeat(item.count)}</div>
         <div class="wb-eq"><span>How many?</span><input type="number" class="wb-input" id="count-${idx}" oninput="checkCount(${idx}, ${item.count})"></div>
@@ -259,9 +287,8 @@ function loadTopic(topicName) {
     content.innerHTML = html;
   }
   else if (topicName === 'Addition 50') {
-    const addData = generateAdd50();
     let html = '<h1 class="page-title">Addition Practice</h1><p class="page-desc">Count the pictures and write the sum.</p><div class="workbook-grid">';
-    addData.forEach((i, idx) => {
+    fixedAddData.forEach((i, idx) => {
       html += `<div class="wb-card">
         <div style="font-size:1.5rem; margin-bottom:15px; display:flex; justify-content:space-between; align-items:center; background:#f8f9fa; padding:10px; border-radius:10px;">
           <span>${i.e1.repeat(i.a)}</span> <span style="font-weight:800; color:var(--primary);">+</span> <span>${i.e2.repeat(i.b)}</span>
@@ -273,9 +300,8 @@ function loadTopic(topicName) {
     content.innerHTML = html;
   }
   else if (topicName === 'Subtraction 50') {
-    const subData = generateSub50();
     let html = '<h1 class="page-title">Subtraction Practice</h1><p class="page-desc">Count and subtract the faded pictures.</p><div class="workbook-grid">';
-    subData.forEach((i, idx) => {
+    fixedSubData.forEach((i, idx) => {
       html += `<div class="wb-card">
         <div style="font-size:1.5rem; margin-bottom:15px; display:flex; justify-content:space-between; align-items:center; background:#f8f9fa; padding:10px; border-radius:10px;">
           <span>${i.e1.repeat(i.a)}</span> <span style="font-weight:800; color:#d32f2f;">- ${i.b}</span> <span style="opacity:0.3;">${i.e2.repeat(i.b)}</span>
@@ -292,10 +318,10 @@ function loadTopic(topicName) {
         <h2>📚 Nursery Workbook</h2>
         <p class="page-desc">Ready for the final test? Click on a section below to practice!</p>
         <div class="links">
-          <button class="wb-link" onclick="loadTopic('Match Capital-Small')">🔤 Match Letters</button>
-          <button class="wb-link" onclick="loadTopic('Object Counting')">🔢 Count Objects</button>
-          <button class="wb-link" onclick="loadTopic('Addition 50')">➕ Addition</button>
-          <button class="wb-link" onclick="loadTopic('Subtraction 50')">➖ Subtraction</button>
+          <button class="wb-link" onclick="loadTopic('Match Capital-Small', this)">🔤 Match Letters</button>
+          <button class="wb-link" onclick="loadTopic('Object Counting', this)">🔢 Count Objects</button>
+          <button class="wb-link" onclick="loadTopic('Addition 50', this)">➕ Addition</button>
+          <button class="wb-link" onclick="loadTopic('Subtraction 50', this)">➖ Subtraction</button>
         </div>
       </div>
     `;
