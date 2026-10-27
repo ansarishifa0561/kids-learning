@@ -24,3 +24,8 @@ function openQuiz() {
 function closeQuiz() {
     document.getElementById('quizModal').style.display = 'none';
 }
+// Subject click karne ka function
+function openSubject(subjectName) {
+    // Browser mein ek chota sa popup (alert) dikhayega
+    alert("Aapne " + subjectName + " select kiya hai!\n\nIs subject ke lessons jald hi add kiye jayenge. 😊");
+}
