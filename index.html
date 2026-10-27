@@ -4,35 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nursery Workbook | Shifa's Learning Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #ff8c00; --primary-dark: #e67e22; --bg: #f4f7f6; --sidebar-bg: #ffffff;
-  --text: #2c3e50; --muted: #7f8c8d; --border: #ffeaa7; --white: #ffffff;
-  --shadow: 0 8px 20px rgba(0,0,0,0.06); --radius: 20px;
+  --primary: #7657e8; --primary-dark: #4f35b8; --bg: #f4f2ff; --sidebar-bg: #ffffff;
+  --text: #252044; --muted: #77728f; --border: #d9d0ff; --white: #ffffff;
+  --shadow: 0 8px 22px rgba(74, 53, 160, 0.10); --radius: 20px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
 /* Top Navbar */
 .topnav { background: var(--white); display: flex; align-items: center; border-bottom: 3px solid var(--border); height: 70px; padding: 0 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 100; }
 .logo-area { display: flex; align-items: center; gap: 10px; font-size: 1.6rem; font-weight: 800; color: var(--primary); margin-right: 30px; }
 .class-tabs { display: flex; gap: 8px; overflow-x: auto; }
 .class-tab { padding: 8px 18px; border-radius: 12px; cursor: pointer; text-decoration: none; font-weight: 800; border: 2px solid transparent; background: #f8f9fa; color: var(--muted); white-space: nowrap; transition: 0.2s; font-family: inherit; font-size: 1rem; }
-.class-tab:hover { background: #ffeaa7; color: var(--primary-dark); }
-.class-tab.active { background: var(--primary); color: var(--white); border-color: var(--primary-dark); box-shadow: 0 4px 10px rgba(255,140,0,0.3); }
-.stars-display { margin-left: auto; background: #fff8e1; border: 2px solid #ffcc80; padding: 8px 16px; border-radius: 12px; font-weight: 800; color: #e65100; font-size: 1.1rem; }
+.class-tab:hover { background: #e9e3ff; color: var(--primary-dark); }
+.class-tab.active { background: var(--primary); color: var(--white); border-color: var(--primary-dark); box-shadow: 0 4px 10px rgba(118,87,232,0.3); }
+.stars-display { margin-left: auto; background: #fff8e1; border: 2px solid #c8bcff; padding: 8px 16px; border-radius: 12px; font-weight: 800; color: #4f35b8; font-size: 1.1rem; }
 
 /* Layout */
 .layout { display: flex; flex: 1; overflow: hidden; }
 
 /* Sidebar */
 .sidebar { width: 270px; background: var(--sidebar-bg); border-right: 3px solid var(--border); overflow-y: auto; padding: 20px 15px; box-shadow: 2px 0 10px rgba(0,0,0,0.02); z-index: 10;}
-.subject-title { padding: 12px 15px; font-weight: 800; font-size: 1.2rem; color: var(--primary-dark); background: #fff3e0; border-radius: 12px; margin-bottom: 10px; margin-top: 15px; text-align: center;}
+.subject-title { padding: 12px 15px; font-weight: 800; font-size: 1.2rem; color: var(--primary-dark); background: #eee9ff; border-radius: 12px; margin-bottom: 10px; margin-top: 15px; text-align: center;}
 .topic-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .topic-list li { padding: 12px 15px; cursor: pointer; font-weight: 700; color: var(--muted); transition: 0.2s; border-radius: 12px; border: 2px solid transparent; font-size: 1rem;}
 .topic-list li:hover { background: #f1f2f6; color: var(--primary); }
-.topic-list li.active { background: #ffeaa7; color: var(--primary-dark); border-color: var(--primary); box-shadow: 0 4px 8px rgba(255,140,0,0.15); }
+.topic-list li.active { background: #e9e3ff; color: var(--primary-dark); border-color: var(--primary); box-shadow: 0 4px 8px rgba(118,87,232,0.15); }
 
 /* Content Area */
 .content { flex: 1; padding: 30px 40px; overflow-y: auto; background: var(--bg); }
@@ -42,7 +42,7 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 /* Grids & Cards */
 .grid-3d { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
 .card-3d { background: var(--white); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: var(--shadow); border: 3px solid #fff; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;}
-.card-3d:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 25px rgba(255,140,0,0.15); }
+.card-3d:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 25px rgba(118,87,232,0.15); }
 .card-3d .emoji { font-size: 4rem; margin-bottom: 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: 0.3s;}
 .card-3d:hover .emoji { transform: scale(1.1) rotate(5deg); }
 .card-3d .text { font-size: 1.2rem; font-weight: 800; color: var(--text); background: #f8f9fa; padding: 4px 12px; border-radius: 20px; }
@@ -63,12 +63,12 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 /* --- MATCHING WORKSHEET STYLE --- */
 .ws-container { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; max-width: 1000px; margin: 0 auto; }
 .ws-box { background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-.ws-box h3 { font-size: 1.2rem; color: #e67e22; margin-bottom: 15px; border-bottom: 2px dashed #ffe0b2; padding-bottom: 5px; }
+.ws-box h3 { font-size: 1.2rem; color: #4f35b8; margin-bottom: 15px; border-bottom: 2px dashed #d9d0ff; padding-bottom: 5px; }
 .match-container { display: flex; justify-content: space-between; gap: 20px; }
 .match-col { display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .match-item { padding: 10px 15px; font-size: 1.3rem; font-weight: 800; border: 2px solid #dfe6e9; border-radius: 12px; background: #fff; cursor: pointer; transition: 0.2s; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px;}
 .match-item:hover { border-color: var(--primary); }
-.match-item.selected { border-color: var(--primary); background: #ffeaa7; transform: scale(1.02); }
+.match-item.selected { border-color: var(--primary); background: #e9e3ff; transform: scale(1.02); }
 .match-item.matched { border-color: #00b894; background: #d8fff0; color: #08764d; cursor: default; opacity: 0.7; }
 
 /* Tracing Box */
@@ -81,11 +81,39 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
 .circle-opt:hover { background: #f1f2f6; }
 .circle-opt.correct { background: #00b894; color: white; border-color: #00b894; }
 
+/* Multiplication table lines */
+.table-line { width: 100%; border: 0; border-radius: 14px; padding: 14px 12px; background: linear-gradient(135deg, #f0ecff, #e2f7ff); color: #35236f; font: inherit; font-size: 1.55rem; font-weight: 900; cursor: pointer; transition: transform .18s, box-shadow .18s; }
+.table-line:hover { transform: translateY(-2px); box-shadow: 0 7px 16px rgba(79,53,184,.14); background: linear-gradient(135deg, #e4dcff, #d7f2ff); }
+
+/* Exam-style workbook */
+.exam-sheet { max-width: 900px; margin: 0 auto; background: #fff; border: 1px solid #d8dce5; border-radius: 12px; box-shadow: 0 10px 28px rgba(28,38,70,.10); overflow: hidden; color: #202638; font-family: Arial, sans-serif; }
+.exam-head { padding: 24px 28px; border-bottom: 2px solid #293a63; background: #f7f9ff; }
+.exam-head h2 { color: #263b69; font-size: 1.65rem; margin-bottom: 8px; }
+.exam-meta { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 16px; font-size: .95rem; }
+.exam-meta span { border-bottom: 1px solid #9aa4b8; padding-bottom: 5px; min-width: 150px; }
+.exam-instructions { padding: 14px 28px; background: #fffbe8; border-bottom: 1px solid #e8dfb6; font-size: .95rem; }
+.exam-questions { padding: 22px 28px; display: grid; gap: 18px; }
+.exam-question { padding: 16px; border: 1px solid #d9deea; border-radius: 8px; background: #fff; }
+.exam-question p { font-weight: 700; margin-bottom: 12px; }
+.exam-options { display: flex; flex-wrap: wrap; gap: 9px; }
+.exam-option { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #cbd2e0; border-radius: 7px; padding: 8px 11px; cursor: pointer; background: #fff; font-size: .98rem; }
+.exam-option:has(input:checked) { border-color: #536fbd; background: #edf2ff; }
+.exam-actions { padding: 18px 28px 24px; border-top: 1px solid #d9deea; display: flex; flex-wrap: wrap; gap: 12px; }
+.exam-btn { border: 0; border-radius: 8px; padding: 12px 20px; font: 700 1rem Arial,sans-serif; cursor: pointer; }
+.exam-submit { background: #284b91; color: #fff; }
+.exam-reset { background: #eef1f7; color: #27334c; }
+.exam-result { display: none; margin: 0 28px 26px; padding: 22px; border-radius: 10px; text-align: center; background: #eefaf3; border: 1px solid #8ed4a9; }
+.exam-result h3 { color: #17663a; font-size: 1.5rem; margin-bottom: 8px; }
+.exam-result .score { font-size: 2.2rem; font-weight: 900; color: #17663a; }
+.exam-question.right { border-color: #35a66b; background: #f1fff6; }
+.exam-question.wrong { border-color: #e07b7b; background: #fff5f5; }
+@media (max-width: 600px) { .exam-head,.exam-instructions,.exam-questions,.exam-actions { padding-left: 14px; padding-right: 14px; } .exam-result { margin-left:14px; margin-right:14px; } }
+
 /* Workbook Section */
 .workbook-page { background: #fff; border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); text-align: center; }
 .workbook-page h2 { font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 20px; }
 .workbook-page .links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
-.wb-link { padding: 15px 30px; font-size: 1.3rem; font-weight: 800; color: #fff; background: var(--primary); border-radius: 15px; text-decoration: none; transition: 0.2s; box-shadow: 0 6px 15px rgba(255,140,0,0.3); cursor: pointer; border: none;}
+.wb-link { padding: 15px 30px; font-size: 1.3rem; font-weight: 800; color: #fff; background: var(--primary); border-radius: 15px; text-decoration: none; transition: 0.2s; box-shadow: 0 6px 15px rgba(118,87,232,0.3); cursor: pointer; border: none;}
 .wb-link:hover { background: var(--primary-dark); transform: translateY(-3px); }
 .btn-back { background: #2d3436; color: white; padding: 10px 20px; border-radius: 10px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s; }
 .btn-back:hover { background: #000; transform: translateX(-5px); }
@@ -138,6 +166,7 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
       <li onclick="loadTopic('Object Counting', this)">🔢 Object Counting</li>
       <li onclick="loadTopic('Addition 50', this)">➕ Addition (50 Q)</li>
       <li onclick="loadTopic('Subtraction 50', this)">➖ Subtraction (50 Q)</li>
+      <li onclick="loadTopic('Tables 1 to 20', this)">✖️ Tables (1–20)</li>
     </ul>
     <div class="subject-title">Workbook</div>
     <ul class="topic-list">
@@ -307,7 +336,7 @@ function loadTopic(topicName, element) {
     document.getElementById('cap2-col').innerHTML = capArr2.map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set2')">${c.l}</div>`).join('');
     document.getElementById('pic2-col').innerHTML = capArr2.sort(() => Math.random() - 0.5).map(c => `<div class="match-item" onclick="matchSelect(this, '${c.l}', 'set2')" style="font-size:2rem;">${c.e}</div>`).join('');
   }
-  else if (topicName.includes('20')) {
+  else if (['Fruits 20', 'Animals 20', 'Birds 20', 'Flowers 20', 'Colors 20'].includes(topicName)) {
     const type = topicName.split(' ')[0].toLowerCase();
     const items = evsData[type];
     let html = `<h1 class="page-title">${topicName}</h1><p class="page-desc">Tap to listen to the name!</p><div class="grid-3d">`;
@@ -316,9 +345,17 @@ function loadTopic(topicName, element) {
     content.innerHTML = html;
   }
   else if (topicName === 'Numbers 1 to 20' || topicName === 'Numbers 1-20') {
-    let html = '<h1 class="page-title">Numbers 1 to 20</h1><p class="page-desc">Tap on the number to hear it.</p><div class="grid-3d">';
-    for(let i=1; i<=20; i++) {
-      html += `<div class="card-3d c${i%6}" onclick="speak('${i}'); addStar();"><div style="font-size:3rem; font-weight:800; color:var(--primary-dark);">${i}</div></div>`;
+    let html = '<h1 class="page-title">🔢 Numbers 1 to 20</h1><p class="page-desc">Click any number to hear it aloud.</p><div class="grid-3d">';
+    for (let i = 1; i <= 20; i++) {
+      html += `<button type="button" class="card-3d c${i%6}" style="font-family:inherit;width:100%;" onclick="speak('${i}'); addStar();" aria-label="Listen to number ${i}"><div style="font-size:3rem;font-weight:900;color:var(--primary-dark);">${i}</div><div class="text">Number ${i}</div><div style="margin-top:8px;color:var(--muted);font-weight:700;">🔊 Tap to listen</div></button>`;
+    }
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topicName === 'Tables 1 to 20') {
+    let html = '<h1 class="page-title">✖️ Multiplication Tables 1 to 20</h1><p class="page-desc">Click any table card to open it. Then tap a line to hear the multiplication sentence.</p><div class="grid-3d">';
+    for (let n = 1; n <= 20; n++) {
+      html += `<div class="card-3d c${n%6}" onclick="loadTable(${n})"><div class="emoji">🔢</div><div class="text">Table of ${n}</div><div style="margin-top:8px;color:var(--muted);font-weight:700;">Tap to learn</div></div>`;
     }
     html += '</div>';
     content.innerHTML = html;
@@ -375,21 +412,126 @@ function loadTopic(topicName, element) {
   }
   else if (topicName === 'Workbook') {
     content.innerHTML = `
-      <div style="text-align: left; max-width: 800px; margin: 0 auto;">
-        <button class="btn-back" onclick="goHome()">⬅ Back to Topics</button>
-      </div>
-      <div class="workbook-page">
-        <h2>📚 Nursery Workbook</h2>
-        <p class="page-desc">Ready for the final test? Click on a section below to practice!</p>
-        <div class="links">
-          <button class="wb-link" onclick="loadTopic('Match Capital-Small', this)">🔤 Match Letters</button>
-          <button class="wb-link" onclick="loadTopic('Object Counting', this)">🔢 Count Objects</button>
-          <button class="wb-link" onclick="loadTopic('Addition 50', this)">➕ Addition</button>
-          <button class="wb-link" onclick="loadTopic('Subtraction 50', this)">➖ Subtraction</button>
+      <button class="btn-back" onclick="goHome()">⬅ Back to Topics</button>
+      <div class="exam-sheet">
+        <div class="exam-head">
+          <h2>SHIFA'S LEARNING HUB</h2>
+          <div style="font-weight:700;">NURSERY • MATHEMATICS & ENGLISH</div>
+          <div class="exam-meta">
+            <span>Name: __________________</span><span>Date: __________________</span>
+            <span>Time: 20 minutes</span><span>Maximum Marks: 20</span>
+          </div>
         </div>
-      </div>
-    `;
+        <div class="exam-instructions"><strong>Instructions:</strong> Choose one answer for each question. Each correct answer carries 1 mark. Click <em>Submit Test</em> at the end to see your score and result.</div>
+        <form id="nurseryExam" onsubmit="submitNurseryExam(event)">
+          <div class="exam-questions" id="examQuestions"></div>
+          <div class="exam-actions">
+            <button type="submit" class="exam-btn exam-submit">Submit Test ✓</button>
+            <button type="button" class="exam-btn exam-reset" onclick="resetNurseryExam()">Start Again ↻</button>
+          </div>
+        </form>
+        <div id="examResult" class="exam-result" aria-live="polite"></div>
+      </div>`;
+    renderNurseryExam();
   }
+}
+
+function loadTable(n) {
+  let html = `<button class="btn-back" onclick="loadTopic('Tables 1 to 20', null)">⬅ All Tables</button>
+    <h1 class="page-title">✖️ Table of ${n}</h1>
+    <p class="page-desc">Learn the table from 1 to 10.</p>
+    <div class="workbook-grid">`;
+  for (let i = 1; i <= 10; i++) {
+    html += `<div class="wb-card" style="border-left-color:hsl(${(n*23+i*11)%360},75%,55%);">
+      <div class="wb-eq" style="justify-content:center; margin:0;">
+        <button type="button" class="table-line" onclick="speak('${n} times ${i} equals ${n*i}'); addStar();">${n} × ${i} = ${n*i} 🔊</button>
+      </div>
+    </div>`;
+  }
+  html += '</div>';
+  content.innerHTML = html;
+}
+
+const nurseryExamData = [
+  {q:"What number comes after 4?", options:["3","5","7"], a:"5"},
+  {q:"What number comes before 10?", options:["9","11","8"], a:"9"},
+  {q:"What is 2 + 3?", options:["4","5","6"], a:"5"},
+  {q:"What is 5 - 2?", options:["2","3","4"], a:"3"},
+  {q:"Which number is the biggest?", options:["6","2","9"], a:"9"},
+  {q:"How many sides does a triangle have?", options:["2","3","4"], a:"3"},
+  {q:"Which shape is round?", options:["Circle","Square","Triangle"], a:"Circle"},
+  {q:"Which number comes between 7 and 9?", options:["6","8","10"], a:"8"},
+  {q:"What is 1 + 4?", options:["4","5","6"], a:"5"},
+  {q:"What is 6 - 1?", options:["4","5","7"], a:"5"},
+  {q:"Which is a fruit?", options:["Carrot","Mango","Potato"], a:"Mango"},
+  {q:"Which animal says 'meow'?", options:["Dog","Cat","Cow"], a:"Cat"},
+  {q:"Which letter comes after B?", options:["A","C","D"], a:"C"},
+  {q:"Which is a capital letter?", options:["b","D","g"], a:"D"},
+  {q:"Choose the small letter for A.", options:["a","c","d"], a:"a"},
+  {q:"Complete: A, B, __, D", options:["E","C","F"], a:"C"},
+  {q:"How many fingers are on one hand?", options:["4","5","6"], a:"5"},
+  {q:"Which colour is a banana usually?", options:["Blue","Yellow","Purple"], a:"Yellow"},
+  {q:"Which one can fly?", options:["Bird","Fish","Cat"], a:"Bird"},
+  {q:"What is 3 + 3?", options:["5","6","7"], a:"6"}
+];
+
+function renderNurseryExam() {
+  const holder = document.getElementById('examQuestions');
+  if (!holder) return;
+  holder.innerHTML = nurseryExamData.map((item, idx) => `
+    <div class="exam-question" id="exam-q-${idx}">
+      <p>${idx + 1}. ${item.q}</p>
+      <div class="exam-options">
+        ${item.options.map(opt => `<label class="exam-option"><input type="radio" name="exam-${idx}" value="${opt}"> ${opt}</label>`).join('')}
+      </div>
+      <div class="exam-feedback" id="exam-feedback-${idx}" style="margin-top:8px;font-size:.9rem;"></div>
+    </div>`).join('');
+}
+function submitNurseryExam(event) {
+  if (event) event.preventDefault();
+  let score = 0;
+  let unanswered = 0;
+  nurseryExamData.forEach((item, idx) => {
+    const chosen = document.querySelector(`input[name="exam-${idx}"]:checked`);
+    const card = document.getElementById(`exam-q-${idx}`);
+    const feedback = document.getElementById(`exam-feedback-${idx}`);
+    card.classList.remove('right','wrong');
+    if (!chosen) {
+      unanswered++;
+      card.classList.add('wrong');
+      feedback.textContent = `Not answered. Correct answer: ${item.a}`;
+      feedback.style.color = '#a33';
+    } else if (chosen.value === item.a) {
+      score++;
+      card.classList.add('right');
+      feedback.textContent = '✓ Correct';
+      feedback.style.color = '#17663a';
+    } else {
+      card.classList.add('wrong');
+      feedback.textContent = `Correct answer: ${item.a}`;
+      feedback.style.color = '#a33';
+    }
+  });
+  const percent = Math.round(score / nurseryExamData.length * 100);
+  const result = document.getElementById('examResult');
+  result.style.display = 'block';
+  result.innerHTML = `<h3>${percent >= 80 ? 'Excellent work! 🎉' : percent >= 50 ? 'Good effort! Keep practising! 🌟' : 'Keep learning — you can do it! 💪'}</h3>
+    <div class="score">${score} / ${nurseryExamData.length}</div>
+    <p style="font-size:1.05rem;margin:6px 0;">Marks: ${score}/20 • Percentage: ${percent}%</p>
+    <p>${nurseryExamData.length - unanswered} answered • ${unanswered} unanswered</p>
+    <p style="margin-top:8px;">${percent >= 80 ? 'Result: Outstanding' : percent >= 50 ? 'Result: Passed practice test' : 'Result: More practice recommended'}</p>`;
+  result.scrollIntoView({behavior:'smooth',block:'center'});
+  addStar();
+}
+function resetNurseryExam() {
+  const form = document.getElementById('nurseryExam');
+  if (!form) return;
+  form.reset();
+  document.querySelectorAll('.exam-question').forEach(card => card.classList.remove('right','wrong'));
+  document.querySelectorAll('.exam-feedback').forEach(feedback => feedback.textContent = '');
+  const result = document.getElementById('examResult');
+  result.style.display = 'none';
+  result.innerHTML = '';
 }
 
 function goHome() {
