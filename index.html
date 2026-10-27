@@ -133,7 +133,7 @@ body { font-family: 'Baloo 2', system-ui, sans-serif; background: var(--bg); col
     </ul>
     <div class="subject-title">Maths</div>
     <ul class="topic-list">
-      <li onclick="loadTopic('Numbers 1-20', this)">Numbers 1 to 20</li>
+      <li onclick="loadTopic('Numbers 1 to 20', this)">Numbers 1 to 20</li>
       <li onclick="loadTopic('Shapes', this)">Shapes</li>
       <li onclick="loadTopic('Object Counting', this)">🔢 Object Counting</li>
       <li onclick="loadTopic('Addition 50', this)">➕ Addition (50 Q)</li>
@@ -315,7 +315,7 @@ function loadTopic(topicName, element) {
     html += '</div>';
     content.innerHTML = html;
   }
-  else if (topicName === 'Numbers 1-20') {
+  else if (topicName === 'Numbers 1 to 20') {
     let html = '<h1 class="page-title">Numbers 1 to 20</h1><p class="page-desc">Tap on the number to hear it.</p><div class="grid-3d">';
     for(let i=1; i<=20; i++) {
       html += `<div class="card-3d c${i%6}" onclick="speak('${i}'); addStar();"><div style="font-size:3rem; font-weight:800; color:var(--primary-dark);">${i}</div></div>`;
