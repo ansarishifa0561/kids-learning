@@ -92,11 +92,44 @@ body {
 
 /* ===== 3. MAIN CONTENT ===== */
 /* Banner */
+/* Banner Container */
 .banner {
     background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-    border-radius: 24px; display: flex; justify-content: space-between;
-    align-items: center; padding: 30px 40px; margin-bottom: 24px;
-    overflow: hidden; border: 1px solid #7dd3fc;
+    border-radius: 24px; 
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    padding: 0px; /* Image ko corner tak laane ke liye */
+    margin-bottom: 24px;
+    overflow: hidden; 
+    border: 1px solid #7dd3fc;
+}
+
+/* Text ka area */
+.banner-text { 
+    padding: 30px 40px; /* Text ko andar se space dene ke liye */
+    width: 60%;
+}
+.banner-text h1 { color: #1e3a8a; font-size: 32px; line-height: 1.2; margin-bottom: 5px; font-family: 'Baloo 2', cursive; }
+.banner-text p { color: #0284c7; font-weight: 800; font-size: 14px; margin-bottom: 12px; }
+.banner-text span { color: #334155; font-size: 15px; font-weight: 600; }
+
+/* IMAGE ka area - Yahan asli jadoo hai */
+.banner-image-area {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end; /* Image ko niche se chipkane ke liye */
+    justify-content: flex-end;
+    padding-right: 20px; /* Thoda right se space */
+}
+
+.banner-image-area img { 
+    height: 220px; /* Image ka size bada kiya */
+    width: auto;
+    object-fit: contain;
+    /* Image ke peeche ka white background hatane ke liye mask (agar transparent na ho) */
+    mix-blend-mode: multiply; /* Yeh white background ko gayab kar dega! */
 }
 .banner-text h1 { color: #1e3a8a; font-size: 32px; line-height: 1.2; margin-bottom: 5px; font-family: 'Baloo 2', cursive; }
 .banner-text p { color: #0284c7; font-weight: 800; font-size: 14px; margin-bottom: 12px; }
