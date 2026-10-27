@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jr KG Test | Shifa's Learning Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Aapke purane design se match karta hua CSS */
+:root { --primary: #7657e8; --primary-dark: #4f35b8; --bg: #f4f2ff; --sidebar-bg: #ffffff; --text: #252044; --muted: #77728f; --border: #d9d0ff; --white: #ffffff; --shadow: 0 8px 22px rgba(74, 53, 160, 0.10); --radius: 20px; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+.topnav { background: var(--white); display: flex; align-items: center; border-bottom: 3px solid var(--border); height: 70px; padding: 0 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 100; }
+.logo-area { display: flex; align-items: center; gap: 10px; font-size: 1.6rem; font-weight: 800; color: var(--primary); margin-right: 30px; }
+.class-tabs { display: flex; gap: 8px; overflow-x: auto; }
+.class-tab { padding: 8px 18px; border-radius: 12px; cursor: pointer; text-decoration: none; font-weight: 800; border: 2px solid transparent; background: #f8f9fa; color: var(--muted); white-space: nowrap; transition: 0.2s; font-family: inherit; font-size: 1rem; }
+.class-tab:hover { background: #e9e3ff; color: var(--primary-dark); }
+.class-tab.active { background: var(--primary); color: var(--white); border-color: var(--primary-dark); box-shadow: 0 4px 10px rgba(118,87,232,0.3); }
+.stars-display { margin-left: auto; background: #fff8e1; border: 2px solid #c8bcff; padding: 8px 16px; border-radius: 12px; font-weight: 800; color: #4f35b8; font-size: 1.1rem; }
+.layout { display: flex; flex: 1; overflow: hidden; }
+.sidebar { width: 270px; background: var(--sidebar-bg); border-right: 3px solid var(--border); overflow-y: auto; padding: 20px 15px; z-index: 10;}
+.subject-title { padding: 12px 15px; font-weight: 800; font-size: 1.2rem; color: var(--primary-dark); background: #eee9ff; border-radius: 12px; margin-bottom: 10px; margin-top: 15px; text-align: center;}
+.topic-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.topic-list li { padding: 12px 15px; cursor: pointer; font-weight: 700; color: var(--muted); transition: 0.2s; border-radius: 12px; border: 2px solid transparent; font-size: 1rem;}
+.topic-list li:hover { background: #f1f2f6; color: var(--primary); }
+.topic-list li.active { background: #e9e3ff; color: var(--primary-dark); border-color: var(--primary); box-shadow: 0 4px 8px rgba(118,87,232,0.15); }
+.content { flex: 1; padding: 30px 40px; overflow-y: auto; background: var(--bg); }
+.page-title { font-size: 2rem; color: var(--primary-dark); margin-bottom: 10px; font-weight: 800; text-align: center; }
+.page-desc { font-size: 1.1rem; color: var(--muted); text-align: center; margin-bottom: 30px; font-weight: 600; }
+.grid-3d { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; }
+.card-3d { background: var(--white); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: var(--shadow); border: 3px solid #fff; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;}
+.card-3d:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 25px rgba(118,87,232,0.15); }
+.card-3d .emoji { font-size: 4rem; margin-bottom: 10px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); transition: 0.3s;}
+.card-3d:hover .emoji { transform: scale(1.1) rotate(5deg); }
+.card-3d .text { font-size: 1.2rem; font-weight: 800; color: var(--text); background: #f8f9fa; padding: 4px 12px; border-radius: 20px; }
+.c0 { border-bottom: 6px solid #ff7675; } .c1 { border-bottom: 6px solid #74b9ff; } .c2 { border-bottom: 6px solid #55efc4; } .c3 { border-bottom: 6px solid #fdcb6e; } .c4 { border-bottom: 6px solid #a29bfe; } .c5 { border-bottom: 6px solid #fd79a8; }
+.btn-back { background: #2d3436; color: white; padding: 10px 20px; border-radius: 10px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-bottom: 20px; display: inline-flex; align-items: center; gap: 8px; transition: 0.2s; }
+@media (max-width: 768px) { .layout { flex-direction: column; } .sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 10px; } .subject-title { display: none; } .topic-list { flex-direction: row; } .topic-list li { white-space: nowrap; } .content { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <div class="logo-area"><span>🎓</span> Shifa's Hub</div>
+  <div class="class-tabs">
+    <a href="index.html" class="class-tab">Nursery</a>
+    <a href="jr-kg.html" class="class-tab active">Jr KG</a>
+    <a href="#" class="class-tab" onclick="alert('Coming soon!')">Sr KG</a>
+  </div>
+  <div class="stars-display">⭐ <span id="starCount">0</span></div>
+</div>
+
+<div class="layout">
+  <div class="sidebar" id="sidebar">
+    <div class="subject-title">English (Test)</div>
+    <ul class="topic-list">
+      <li onclick="loadTopic('Words', this)">Two Letter Words</li>
+    </ul>
+    <div class="subject-title">Maths (Test)</div>
+    <ul class="topic-list">
+      <li onclick="loadTopic('Numbers', this)">Numbers 1-10</li>
+    </ul>
+  </div>
+  
+  <div class="content" id="content">
+    <h1 class="page-title">👋 Welcome to Jr KG</h1>
+    <p class="page-desc">Yeh ek test file hai. Left side se click karke check karein!</p>
+  </div>
+</div>
+
+<script>
+let stars = parseInt(localStorage.getItem('shifaStars') || '0', 10);
+document.getElementById('starCount').textContent = stars;
+function addStar() { stars++; localStorage.setItem('shifaStars', stars); document.getElementById('starCount').textContent = stars; }
+function speak(text) { if (!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'en-IN'; u.rate = 0.85; window.speechSynthesis.speak(u); }
+const content = document.getElementById('content');
+
+// Test Data
+const testWords = [
+  {w:'at', e:'🐱', d:'A cat sits at the mat.'},
+  {w:'in', e:'📦', d:'The toy is in the box.'},
+  {w:'on', e:'🪑', d:'The book is on the table.'},
+  {w:'go', e:'🚶', d:'We go to school.'},
+  {w:'up', e:'⬆️', d:'The balloon goes up.'}
+];
+
+function loadTopic(topicName, el) {
+  document.querySelectorAll('.topic-list li').forEach(x => x.classList.remove('active'));
+  if (el) el.classList.add('active');
+
+  if (topicName === 'Words') {
+    let html = `<h1 class="page-title">📚 Two Letter Words</h1><p class="page-desc">Tap to listen!</p><div class="grid-3d">`;
+    testWords.forEach((item, i) => {
+      html += `<div class="card-3d c${i%6}" onclick="speak('${item.w}. ${item.d}'); addStar();">
+        <div class="emoji">${item.e}</div>
+        <div style="font-size:2.5rem; font-weight:800; color:var(--primary);">${item.w}</div>
+        <div class="text" style="margin-top:10px; font-size:0.9rem;">${item.d}</div>
+      </div>`;
+    });
+    html += '</div>';
+    content.innerHTML = html;
+  }
+  else if (topicName === 'Numbers') {
+    let html = `<h1 class="page-title">🔢 Numbers 1-10</h1><p class="page-desc">Tap to listen!</p><div class="grid-3d">`;
+    for (let i = 1; i <= 10; i++) {
+      html += `<div class="card-3d c${i%6}" onclick="speak('${i}'); addStar();">
+        <div style="font-size:3rem; font-weight:900; color:var(--primary-dark);">${i}</div>
+        <div class="text">Number ${i}</div>
+      </div>`;
+    }
+    html += '</div>';
+    content.innerHTML = html;
+  }
+}
+</script>
+</body>
+</html>
