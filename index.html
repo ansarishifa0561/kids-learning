@@ -2374,6 +2374,366 @@ loadTopic = function(subjectName, topicId) {
 };
 }
 // =========================================
+// =========================================
+// CLASS 5 - COMPLETE SYLLABUS (Reading, Grammar, Verbs, Maths)
+// =========================================
+
+// 1. MATHS: Fractions Data
+const c5Fractions = [
+  { q: "1/2 + 1/2 = ?", ans: "1", e: "🍕" },
+  { q: "1/3 + 1/3 = ?", ans: "2/3", e: "🍰" },
+  { q: "2/4 + 1/4 = ?", ans: "3/4", e: "🍫" },
+  { q: "3/5 - 1/5 = ?", ans: "2/5", e: "🍎" },
+  { q: "1/2 + 1/4 = ?", ans: "3/4", e: "🍉" },
+  { q: "1/4 + 2/4 = ?", ans: "3/4", e: "🍩" }
+];
+
+// 2. GRAMMAR: Parts of Speech Details (Noun, Verb, Adjective, Punctuation)
+const c5PartsOfSpeech = {
+  noun: { title: "Noun", def: "A noun is a name of a person, place, animal or thing.", examples: ["Riya", "School", "Lion", "Book"], e: "📚", color: "#e3f2fd", border: "#2196f3" },
+  verb: { title: "Verb", def: "A verb is a word that shows an action.", examples: ["Run", "Jump", "Eat", "Sleep"], e: "🏃", color: "#e8f5e9", border: "#4caf50" },
+  adj: { title: "Adjective", def: "An adjective describes a noun.", examples: ["Big", "Small", "Red", "Happy"], e: "🌈", color: "#fff3e0", border: "#ff9800" },
+  punct: { title: "Punctuation", def: "Marks used to make sentences clear.", examples: [". (Full stop)", "? (Question)", "! (Exclamation)", ", (Comma)"], e: "❗", color: "#fce4ec", border: "#e91e63" }
+};
+
+// 3. GRAMMAR: Verb Forms (V1, V2, V3)
+const c5VerbForms = [
+  { v1: "Go", v2: "Went", v3: "Gone", meaning: "जाना" },
+  { v1: "Eat", v2: "Ate", v3: "Eaten", meaning: "खाना" },
+  { v1: "Write", v2: "Wrote", v3: "Written", meaning: "लिखना" },
+  { v1: "See", v2: "Saw", v3: "Seen", meaning: "देखना" },
+  { v1: "Run", v2: "Ran", v3: "Run", meaning: "दौड़ना" },
+  { v1: "Read", v2: "Read", v3: "Read", meaning: "पढ़ना" },
+  { v1: "Speak", v2: "Spoke", v3: "Spoken", meaning: "बोलना" },
+  { v1: "Drink", v2: "Drank", v3: "Drunk", meaning: "पीना" },
+  { v1: "Cut", v2: "Cut", v3: "Cut", meaning: "काटना" },
+  { v1: "Put", v2: "Put", v3: "Put", meaning: "रखना" },
+  { v1: "Fly", v2: "Flew", v3: "Flown", meaning: "उड़ना" },
+  { v1: "Buy", v2: "Bought", v3: "Bought", meaning: "खरीदना" }
+];
+
+// 4. READING COMPREHENSION: 5 Paragraphs
+const c5ReadingStories = [
+  {
+    title: "Where is my cat?",
+    img: "🐱",
+    text: "Lily is a little girl. She has a cat. The cat's name is Snow. One morning, Lily cannot find Snow. She looks in her bedroom. She looks in the kitchen. She looks in the garden, but Snow is not there. Lily asks her mom, 'Mom, where is Snow?' Mom says, 'I don't know. Let's look for her.' Lily asks her friends, 'Do you see my cat?' They say, 'No, we don't.' Lily looks around the neighborhood. She looks near the park and near the houses. Then Lily looks up. Snow is sleeping in a tree! Lily is very happy. She takes Snow home and gives her a big hug.",
+    qas: [
+      { q: "1. What is the girl's name?", a: "The girl's name is Lily." },
+      { q: "2. Who does Lily ask about her cat?", a: "She asks her mom and her friends." },
+      { q: "3. Where does Lily find Snow?", a: "She finds Snow sleeping in a tree." }
+    ],
+    fillBlanks: [
+      { q: "Lily has a small ______.", a: "cat", opts: ["cat", "dog", "bird"] },
+      { q: "Lily asks her ______ about Snow.", a: "mother", opts: ["brother", "mother", "father"] },
+      { q: "Lily looks around the ______.", a: "neighborhood", opts: ["school", "neighborhood", "zoo"] },
+      { q: "Lily is very ______ when she finds Snow.", a: "happy", opts: ["sad", "angry", "happy"] }
+    ]
+  },
+  {
+    title: "The Mango Tree",
+    img: "🥭",
+    text: "The mango tree is a beautiful and useful tree. It is usually big and has many green leaves. Mango trees grow well in warm places. In summer, they give us sweet and juicy mangoes. Mangoes come in different shapes, sizes, and colours. The mango tree also gives us cool shade on hot days. Birds often build their nests on its branches. People enjoy eating mangoes and making mango juice, shakes, pickles, and sweets from them. The mango tree is helpful to people, birds, and other animals. We should plant more trees and take care of them.",
+    qas: [
+      { q: "1. What kind of tree is the mango tree?", a: "It is a beautiful and useful tree." },
+      { q: "2. When do mango trees give us mangoes?", a: "In summer, they give us mangoes." },
+      { q: "3. Name two things we can make from mangoes.", a: "We can make mango juice and pickles." },
+      { q: "4. Why do people sit under mango trees on hot days?", a: "Because it gives us cool shade." },
+      { q: "5. Who builds nests on the branches of mango trees?", a: "Birds build their nests on its branches." }
+    ],
+    fillBlanks: [
+      { q: "Mangoes are usually ______ and juicy.", a: "sweet", opts: ["big", "sweet", "small"] },
+      { q: "Birds build their ______ on the branches.", a: "nests", opts: ["nests", "fruits", "leaves"] },
+      { q: "Mango trees give us cool ______.", a: "shade", opts: ["shade", "rain", "flowers"] }
+    ]
+  },
+  {
+    title: "The Little Tree",
+    img: "🌳",
+    text: "Once, in a small village, there was a tiny tree near a pond. It was smaller than all the other trees. The bigger trees laughed at it and said, 'You are too small. You will never be useful.' The little tree felt sad but did not give up. It kept growing with the help of sunlight, water, and fresh air. It faced rain, wind, and even scorching heat, yet it stood strong. Years passed, and the little tree grew tall and strong. One day, a storm came to the village. Many big trees fell down, but the little tree stood firm. The villagers found shelter under it and realized how important it was. From that day, no one ever laughed at the little tree again.",
+    qas: [
+      { q: "1. Why did the little tree feel sad?", a: "Because the bigger trees laughed at it." },
+      { q: "2. What challenges did the little tree face?", a: "It faced rain, wind, and scorching heat." },
+      { q: "3. How did the little tree help the villagers?", a: "It gave them shelter during a storm." },
+      { q: "4. What lesson can we learn from the story?", a: "We should never give up and stay strong." }
+    ],
+    fillBlanks: [
+      { q: "The little tree was near a ______.", a: "pond", opts: ["pond", "mountain", "city"] },
+      { q: "Many big trees ______ down in the storm.", a: "fell", opts: ["grew", "fell", "flew"] },
+      { q: "The villagers found ______ under the little tree.", a: "shelter", opts: ["food", "shelter", "water"] }
+    ]
+  },
+  {
+    title: "A Trip to the Science Museum",
+    img: "🚀",
+    text: "Last Tuesday, the three Grade 5 classes went on a trip to the Science Museum. They left school at 8 o'clock in the morning by bus. The weather was sunny and nice. When they arrived, the students were very excited. First, they visited the Space Gallery. They saw models of planets, rockets, and stars. The guide explained how the solar system works. Next, they went to the Dinosaur Hall. They saw big dinosaur skeletons and learned about how dinosaurs lived millions of years ago. After that, they visited the Invention Room. The students saw old machines and new robots. Some of them even tried a robot game. Then, they had lunch in the museum garden. They sat under the trees and ate their sandwiches. Finally, they went to the Earth and Ocean Hall. They learned about animals, oceans, and volcanoes. The trip was both fun and educational. The students came back to school at 3 o'clock. They were tired but very happy. All of them agreed it was an amazing day!",
+    qas: [
+      { q: "1. Where did the Grade 5 classes go on a trip?", a: "They went to the Science Museum." },
+      { q: "2. What time did they leave school?", a: "They left school at 8 o'clock." },
+      { q: "3. What did they see in the Dinosaur Hall?", a: "They saw big dinosaur skeletons." },
+      { q: "4. Where did they have lunch?", a: "They had lunch in the museum garden." },
+      { q: "5. How did the students feel at the end of the day?", a: "They felt tired but very happy." }
+    ],
+    fillBlanks: [
+      { q: "They went to the museum by ______.", a: "bus", opts: ["car", "bus", "train"] },
+      { q: "The guide explained about the ______ system.", a: "solar", opts: ["solar", "weather", "ocean"] },
+      { q: "They came back to school at ______ o'clock.", a: "3", opts: ["2", "3", "4"] }
+    ]
+  },
+  {
+    title: "The Honest Woodcutter",
+    img: "🪓",
+    text: "Once there lived a poor but honest woodcutter in a village. One day, while cutting a tree near a river, his axe fell into the water. He became very sad because it was his only source of income. He sat by the river and started crying. Suddenly, a water fairy appeared. She asked him, 'Why are you crying?' The woodcutter told her about his lost axe. The fairy dived into the water and brought out a golden axe. She asked, 'Is this your axe?' The honest woodcutter said, 'No, this is not mine.' The fairy then brought a silver axe. Again, he said no. Finally, she brought his iron axe. The woodcutter was happy and said, 'Yes, that is mine!' The fairy was pleased with his honesty and gave him all three axes as a reward.",
+    qas: [
+      { q: "1. What was the woodcutter's only source of income?", a: "His axe was his only source of income." },
+      { q: "2. What happened to his axe?", a: "His axe fell into the river." },
+      { q: "3. Who helped the woodcutter?", a: "A water fairy helped him." },
+      { q: "4. Why did the fairy give him all three axes?", a: "She was pleased with his honesty." }
+    ],
+    fillBlanks: [
+      { q: "The woodcutter was very ______.", a: "honest", opts: ["dishonest", "honest", "lazy"] },
+      { q: "The fairy brought out a ______ axe first.", a: "golden", opts: ["silver", "iron", "golden"] },
+      { q: "The fairy gave him all three axes as a ______.", a: "reward", opts: ["punishment", "reward", "gift"] }
+    ]
+  }
+];
+
+// 5. POEM
+const c5Poem = {
+  title: "The Little Seed",
+  e: "🌱",
+  color: "linear-gradient(135deg, #a8edea, #fed6e3)",
+  lines: [
+    "I am a little seed, small and round.",
+    "I sleep in the warm, dark ground.",
+    "The rain comes down, the sun shines bright.",
+    "I wake up slowly, feeling just right.",
+    "A tiny green leaf pops out of me.",
+    "I grow into a big, beautiful tree!"
+  ]
+};
+
+// 6. TIME CONCEPT
+const c5TimeConcept = {
+  def: "A clock has two hands. The short hand shows hours and the long hand shows minutes.",
+  examples: [
+    { time: "3:00", desc: "3 o'clock", e: "🕒" },
+    { time: "3:15", desc: "Quarter past 3", e: "🕒" },
+    { time: "3:30", desc: "Half past 3", e: "🕞" },
+    { time: "3:45", desc: "Quarter to 4", e: "🕦" }
+  ]
+};
+
+// =========================================
+// INJECT DATA INTO MENU
+// =========================================
+if(!contentData['class5']) contentData['class5'] = { subjects: [] };
+contentData['class5'].subjects = [
+  {
+    name: 'Maths',
+    topics: [
+      {id: 'c5_fractions', title: 'Fractions', type: 'c5_fractions', data: c5Fractions},
+      {id: 'c5_time', title: 'Time (Clock)', type: 'c5_time', data: c5TimeConcept}
+    ]
+  },
+  {
+    name: 'English Grammar',
+    topics: [
+      {id: 'c5_parts', title: 'Parts of Speech', type: 'c5_parts', data: c5PartsOfSpeech},
+      {id: 'c5_verbs', title: 'Verbs (1st, 2nd, 3rd Form)', type: 'c5_verbs_table', data: c5VerbForms}
+    ]
+  },
+  {
+    name: 'Reading & Writing',
+    topics: [
+      {id: 'c5_reading', title: 'Reading Comprehension (5 Passages)', type: 'c5_reading', data: c5ReadingStories},
+      {id: 'c5_poem', title: 'Poem: The Little Seed', type: 'rhyme', data: c5Poem}
+    ]
+  }
+];
+
+// =========================================
+// CSS FOR CLASS 5
+// =========================================
+const c5Style = document.createElement('style');
+c5Style.innerHTML = `
+  .c5-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+  .c5-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; }
+  .c5-card h3 { font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-dark); }
+  .c5-card p { font-size: 1.1rem; color: var(--text); margin-bottom: 15px; }
+  
+  .c5-reading-card { background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 30px; margin-bottom: 30px; }
+  .c5-reading-text { font-size: 1.2rem; line-height: 1.8; color: var(--text); margin-bottom: 20px; background: #f9f9f9; padding: 20px; border-radius: 10px; }
+  .c5-q-box { margin-bottom: 15px; }
+  .c5-q { font-weight: 800; font-size: 1.2rem; margin-bottom: 5px; }
+  .c5-a { font-weight: 600; color: #08764d; display: none; background: #d8fff0; padding: 10px; border-radius: 8px; margin-top: 5px; }
+  
+  .c5-verb-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #fff; border-radius: 10px; overflow: hidden; }
+  .c5-verb-table th { background: var(--primary); color: #fff; padding: 15px; font-size: 1.2rem; }
+  .c5-verb-table td { padding: 12px; border-bottom: 1px solid #eee; text-align: center; font-size: 1.2rem; font-weight: 700; }
+  .c5-verb-table tr:nth-child(even) { background: #f9f9f9; }
+  
+  .c5-frac-card { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 2px solid var(--border); border-radius: 15px; padding: 20px; font-size: 1.5rem; font-weight: 800; }
+  .c5-frac-input { width: 80px; height: 50px; border: 2px solid var(--primary); border-radius: 10px; text-align: center; font-size: 1.3rem; outline: none; }
+  .c5-frac-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+`;
+document.head.appendChild(c5Style);
+
+// =========================================
+// RENDER LOGIC FOR CLASS 5
+// =========================================
+const prevLoadTopicC5 = loadTopic;
+loadTopic = function(subjectName, topicId) {
+  prevLoadTopicC5(subjectName, topicId);
+  
+  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
+  const topic = sub.topics.find(t => t.id === topicId);
+
+  if (topic.type === 'c5_parts') {
+    content.innerHTML = `<h1>${topic.title}</h1>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+      ${Object.values(topic.data).map(item => `
+        <div style="background: ${item.color}; border: 2px solid ${item.border}; border-radius: 15px; padding: 20px; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 10px;">${item.e}</div>
+          <h3 style="font-size: 1.5rem; color: #333; margin-bottom: 10px;">${item.title}</h3>
+          <p style="font-size: 1.1rem; color: #555; margin-bottom: 15px;">${item.def}</p>
+          <div style="background: #fff; padding: 10px; border-radius: 10px; font-weight: 700; font-size: 1.1rem;">
+            ${item.examples.join(', ')}
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+  
+  else if (topic.type === 'c5_verbs_table') {
+    content.innerHTML = `<h1>${topic.title}</h1>
+    <div style="overflow-x: auto;">
+      <table class="c5-verb-table">
+        <thead>
+          <tr>
+            <th>1st Form (Present)</th>
+            <th>2nd Form (Past)</th>
+            <th>3rd Form (Past Participle)</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${topic.data.map(item => `
+            <tr>
+              <td style="color: #1565c0;">${item.v1}</td>
+              <td style="color: #e65100;">${item.v2}</td>
+              <td style="color: #2e7d32;">${item.v3}</td>
+              <td style="color: #555;">${item.meaning}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>`;
+  }
+  
+  else if (topic.type === 'c5_reading') {
+    content.innerHTML = `<h1>${topic.title}</h1>
+    ${topic.data.map((story, sIdx) => `
+      <div class="c5-reading-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2 style="color: var(--primary-dark); font-size: 2rem;">${story.title}</h2>
+          <span style="font-size: 3rem;">${story.img}</span>
+        </div>
+        <div class="c5-reading-text">${story.text}</div>
+        
+        <h3 style="color: var(--primary); margin-bottom: 15px;">Questions & Answers</h3>
+        ${story.qas.map((qa, qIdx) => `
+          <div class="c5-q-box">
+            <div class="c5-q">${qa.q}</div>
+            <button onclick="toggleC5Answer(${sIdx}, ${qIdx})" style="background: var(--primary); color: #fff; border: none; padding: 5px 15px; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 700;">Show Answer</button>
+            <div class="c5-a" id="c5-ans-${sIdx}-${qIdx}">${qa.a}</div>
+          </div>
+        `).join('')}
+        
+        <h3 style="color: var(--primary); margin-top: 30px; margin-bottom: 15px;">Fill in the Blanks</h3>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          ${story.fillBlanks.map((fb, fIdx) => `
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 1.2rem; font-weight: 700;">
+              <span>${fb.q.split('______')[0]}</span>
+              <select id="c5-fb-${sIdx}-${fIdx}" onchange="checkC5Fill(${sIdx}, ${fIdx}, '${fb.a}')" style="font-size: 1.2rem; padding: 5px; border: 2px solid var(--primary); border-radius: 8px; font-family: inherit; font-weight: 700;">
+                <option value="">...</option>
+                ${fb.opts.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+              </select>
+              <span>${fb.q.split('______')[1] || ''}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('')}`;
+  }
+  
+  else if (topic.type === 'c5_fractions') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Solve the fraction problems.</p>
+    <div class="c5-grid">
+      ${topic.data.map((item, index) => `
+        <div class="c5-frac-card">
+          <span>${item.e} ${item.q}</span>
+          <input type="text" class="c5-frac-input" id="c5fr-${index}" oninput="checkC5Fraction(${index}, '${item.ans}')" placeholder="?">
+        </div>
+      `).join('')}
+    </div>`;
+  }
+
+  else if (topic.type === 'c5_time') {
+    content.innerHTML = `<h1>${topic.title}</h1>
+    <div style="background: #e3f2fd; border: 2px solid #90caf9; border-radius: 15px; padding: 20px; margin-bottom: 20px;">
+      <h3 style="color: #1565c0; font-size: 1.3rem; margin-bottom: 10px;">Definition</h3>
+      <p style="font-size: 1.2rem; font-weight: 600;">${topic.data.def}</p>
+    </div>
+    <div class="c5-grid">
+      ${topic.data.examples.map(item => `
+        <div class="c5-card" style="display: flex; align-items: center; gap: 20px;">
+          <span style="font-size: 3rem;">${item.e}</span>
+          <div>
+            <h3 style="margin-bottom: 5px;">${item.time}</h3>
+            <p style="margin-bottom: 0;">${item.desc}</p>
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+  }
+};
+
+// Logic Functions for Class 5
+function toggleC5Answer(sIdx, qIdx) {
+  const el = document.getElementById(`c5-ans-${sIdx}-${qIdx}`);
+  if (el.style.display === 'block') {
+    el.style.display = 'none';
+  } else {
+    el.style.display = 'block';
+  }
+}
+
+function checkC5Fill(sIdx, fIdx, correctAns) {
+  const selectEl = document.getElementById(`c5-fb-${sIdx}-${fIdx}`);
+  if (selectEl.value === correctAns) {
+    selectEl.classList.add('correct');
+    selectEl.style.borderColor = '#34C759';
+    selectEl.style.background = '#d8fff0';
+    addStar(); speak('Correct!');
+  } else {
+    selectEl.classList.remove('correct');
+    selectEl.style.borderColor = 'var(--primary)';
+    selectEl.style.background = '#fff';
+  }
+}
+
+function checkC5Fraction(index, correctAns) {
+  const input = document.getElementById(`c5fr-${index}`);
+  // Basic check (allow string match like "3/4" or "1")
+  if (input.value.trim() === correctAns) {
+    input.classList.add('correct');
+    addStar(); speak('Correct!');
+  } else {
+    input.classList.remove('correct');
+  }
+}
+// =========================================
 // Initialize App
 renderTabs();
 switchClass('nursery');
