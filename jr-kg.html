@@ -38,7 +38,7 @@ body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(
 .page-desc { font-size: 1.1rem; color: var(--muted); text-align: center; margin-bottom: 30px; font-weight: 600; }
 
 /* Cards & Grids */
-.grid-3d { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 20px; }
+.grid-3d { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 20px; }
 .card-3d { background: var(--white); border-radius: var(--radius); padding: 20px; text-align: center; box-shadow: var(--shadow); border: 3px solid #fff; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; align-items: center; justify-content: center;}
 .card-3d:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 15px 25px rgba(118,87,232,0.15); }
 .card-3d .emoji { font-size: 3.5rem; margin-bottom: 10px; transition: 0.3s;}
@@ -79,6 +79,11 @@ body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(
 .exam-btn { border: 0; border-radius: 8px; padding: 12px 24px; font: 700 1rem Arial; cursor: pointer; background: #284b91; color: #fff; }
 .exam-result { display: none; margin: 20px; padding: 20px; border-radius: 10px; text-align: center; background: #eefaf3; border: 1px solid #8ed4a9; }
 
+/* Number Grid */
+.num-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 15px; max-width: 900px; margin: 0 auto; }
+.num-box { background: #fff; border-radius: 15px; padding: 15px 5px; text-align: center; font-size: 2rem; font-weight: 900; color: var(--primary-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 2px solid var(--border); cursor: pointer; transition: 0.2s;}
+.num-box:hover { background: var(--primary); color: #fff; transform: scale(1.05); }
+
 @media (max-width: 768px) {
   .layout { flex-direction: column; }
   .sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 10px; }
@@ -115,19 +120,19 @@ body { font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif; background: var(
     <div class="subject-title">EVS</div>
     <ul class="topic-list">
       <li onclick="loadTopic('Fruits', this)">Fruits</li>
+      <li onclick="loadTopic('Vegetables', this)">Vegetables</li>
       <li onclick="loadTopic('Animals', this)">Animals</li>
       <li onclick="loadTopic('Birds', this)">Birds</li>
       <li onclick="loadTopic('Flowers', this)">Flowers</li>
-      <li onclick="loadTopic('Vegetables', this)">Vegetables</li>
       <li onclick="loadTopic('Colors', this)">Colors</li>
       <li onclick="loadTopic('Body Parts', this)">Body Parts</li>
     </ul>
     <div class="subject-title">Maths</div>
     <ul class="topic-list">
       <li onclick="loadTopic('1-50 Numbers', this)">Numbers 1-50</li>
-      <li onclick="loadTopic('Tables', this)">Tables 1-10</li>
+      <li onclick="loadTopic('Tables', this)">Tables 1-30</li>
       <li onclick="loadTopic('Shapes', this)">30 Shapes</li>
-      <li onclick="loadTopic('Counting', this)">Object Counting</li>
+      <li onclick="loadTopic('Counting', this)">Object Counting (20)</li>
       <li onclick="loadTopic('Addition', this)">Addition (50)</li>
       <li onclick="loadTopic('Subtraction', this)">Subtraction (50)</li>
     </ul>
@@ -169,42 +174,60 @@ const twoLetterWords = [
 ];
 
 const evsData = {
-  Fruits: [{t:'Apple',e:'🍎'},{t:'Banana',e:'🍌'},{t:'Mango',e:'🥭'},{t:'Grapes',e:'🍇'},{t:'Orange',e:'🍊'},{t:'Cherry',e:'🍒'},{t:'Watermelon',e:'🍉'},{t:'Strawberry',e:'🍓'},{t:'Pineapple',e:'🍍'},{t:'Pear',e:'🍐'}],
-  Animals: [{t:'Lion',e:'🦁'},{t:'Tiger',e:'🐯'},{t:'Elephant',e:'🐘'},{t:'Monkey',e:'🐵'},{t:'Dog',e:'🐶'},{t:'Cat',e:'🐱'},{t:'Cow',e:'🐮'},{t:'Horse',e:'🐴'},{t:'Sheep',e:'🐑'},{t:'Rabbit',e:'🐰'}],
-  Birds: [{t:'Sparrow',e:'🐦'},{t:'Parrot',e:'🦜'},{t:'Pigeon',e:'🕊️'},{t:'Eagle',e:'🦅'},{t:'Peacock',e:'🦚'},{t:'Owl',e:'🦉'},{t:'Flamingo',e:'🦩'},{t:'Swan',e:'🦢'},{t:'Crow',e:'🐦‍⬛'},{t:'Penguin',e:'🐧'}],
-  Flowers: [{t:'Rose',e:'🌹'},{t:'Sunflower',e:'🌻'},{t:'Tulip',e:'🌷'},{t:'Lotus',e:'🪷'},{t:'Hibiscus',e:'🌺'},{t:'Daisy',e:'🌼'},{t:'Daffodil',e:'🌼'},{t:'Bouquet',e:'💐'},{t:'Marigold',e:'🏵️'}],
-  Vegetables: [{t:'Carrot',e:'🥕'},{t:'Potato',e:'🥔'},{t:'Tomato',e:'🍅'},{t:'Brinjal',e:'🍆'},{t:'Broccoli',e:'🥦'},{t:'Corn',e:'🌽'},{t:'Cucumber',e:'🥒'},{t:'Onion',e:'🧅'},{t:'Garlic',e:'🧄'},{t:'Pumpkin',e:'🎃'}],
-  Colors: [{t:'Red',e:'🔴'},{t:'Blue',e:'🔵'},{t:'Green',e:'🟢'},{t:'Yellow',e:'🟡'},{t:'Pink',e:'🩷'},{t:'Purple',e:'🟣'},{t:'Orange',e:'🟠'},{t:'Brown',e:'🟤'},{t:'Black',e:'⚫'},{t:'White',e:'⚪'}],
-  BodyParts: [{t:'Eyes',e:'👁️'},{t:'Ears',e:'👂'},{t:'Nose',e:'👃'},{t:'Mouth',e:'👄'},{t:'Hands',e:'🤲'},{t:'Legs',e:'🦵'},{t:'Head',e:'🗣️'},{t:'Hair',e:'💇'},{t:'Teeth',e:'🦷'},{t:'Tongue',e:'👅'},{t:'Fingers',e:'👆'},{t:'Toes',e:'🦶'}]
+  Fruits: [{t:'Apple',e:'🍎'},{t:'Banana',e:'🍌'},{t:'Mango',e:'🥭'},{t:'Grapes',e:'🍇'},{t:'Orange',e:'🍊'},{t:'Cherry',e:'🍒'},{t:'Watermelon',e:'🍉'},{t:'Strawberry',e:'🍓'},{t:'Pineapple',e:'🍍'},{t:'Pear',e:'🍐'},{t:'Peach',e:'🍑'},{t:'Coconut',e:'🥥'},{t:'Lemon',e:'🍋'},{t:'Kiwi',e:'🥝'},{t:'Blueberry',e:'🫐'},{t:'Papaya',e:'🍈'},{t:'Avocado',e:'🥑'},{t:'Guava',e:'🍏'},{t:'Pomegranate',e:'🍎'},{t:'Apricot',e:'🍑'}],
+  Vegetables: [{t:'Carrot',e:'🥕'},{t:'Potato',e:'🥔'},{t:'Tomato',e:'🍅'},{t:'Brinjal',e:'🍆'},{t:'Broccoli',e:'🥦'},{t:'Corn',e:'🌽'},{t:'Cucumber',e:'🥒'},{t:'Onion',e:'🧅'},{t:'Garlic',e:'🧄'},{t:'Pumpkin',e:'🎃'},{t:'Cabbage',e:'🥬'},{t:'Peas',e:'🫛'},{t:'Capsicum',e:'🫑'},{t:'Chilli',e:'🌶️'},{t:'Ginger',e:'🫚'},{t:'Radish',e:'🥕'},{t:'Beetroot',e:'🍠'},{t:'Spinach',e:'🥬'},{t:'Mushroom',e:'🍄'},{t:'Lettuce',e:'🥬'}],
+  Animals: [{t:'Lion',e:'🦁'},{t:'Tiger',e:'🐯'},{t:'Elephant',e:'🐘'},{t:'Monkey',e:'🐵'},{t:'Dog',e:'🐶'},{t:'Cat',e:'🐱'},{t:'Cow',e:'🐮'},{t:'Horse',e:'🐴'},{t:'Sheep',e:'🐑'},{t:'Rabbit',e:'🐰'},{t:'Bear',e:'🐻'},{t:'Panda',e:'🐼'},{t:'Fox',e:'🦊'},{t:'Wolf',e:'🐺'},{t:'Deer',e:'🦌'},{t:'Giraffe',e:'🦒'},{t:'Zebra',e:'🦓'},{t:'Kangaroo',e:'🦘'},{t:'Camel',e:'🐪'},{t:'Hippo',e:'🦛'}],
+  Birds: [{t:'Sparrow',e:'🐦'},{t:'Parrot',e:'🦜'},{t:'Pigeon',e:'🕊️'},{t:'Eagle',e:'🦅'},{t:'Peacock',e:'🦚'},{t:'Owl',e:'🦉'},{t:'Flamingo',e:'🦩'},{t:'Swan',e:'🦢'},{t:'Crow',e:'🐦‍⬛'},{t:'Penguin',e:'🐧'},{t:'Rooster',e:'🐓'},{t:'Duck',e:'🦆'},{t:'Hen',e:'🐔'},{t:'Ostrich',e:'🦩'},{t:'Hawk',e:'🦅'},{t:'Turkey',e:'🦃'}],
+  Flowers: [{t:'Rose',e:'🌹'},{t:'Sunflower',e:'🌻'},{t:'Tulip',e:'🌷'},{t:'Lotus',e:'🪷'},{t:'Hibiscus',e:'🌺'},{t:'Daisy',e:'🌼'},{t:'Daffodil',e:'🌼'},{t:'Bouquet',e:'💐'},{t:'Marigold',e:'🏵️'},{t:'Blossom',e:'🌸'}],
+  Colors: [{t:'Red',e:'🔴'},{t:'Blue',e:'🔵'},{t:'Green',e:'🟢'},{t:'Yellow',e:'🟡'},{t:'Pink',e:'🩷'},{t:'Purple',e:'🟣'},{t:'Orange',e:'🟠'},{t:'Brown',e:'🟤'},{t:'Black',e:'⚫'},{t:'White',e:'⚪'},{t:'Grey',e:'🔘'},{t:'Golden',e:'🟡'}],
+  BodyParts: [{t:'Head',e:'🗣️'},{t:'Hair',e:'💇'},{t:'Eyes',e:'👁️'},{t:'Ears',e:'👂'},{t:'Nose',e:'👃'},{t:'Mouth',e:'👄'},{t:'Teeth',e:'🦷'},{t:'Tongue',e:'👅'},{t:'Neck',e:'🧣'},{t:'Shoulders',e:'🤷'},{t:'Arms',e:'💪'},{t:'Elbow',e:'🦾'},{t:'Hands',e:'🤲'},{t:'Fingers',e:'👆'},{t:'Chest',e:'🫁'},{t:'Stomach',e:'🫃'},{t:'Back',e:'🔙'},{t:'Legs',e:'🦵'},{t:'Knees',e:'🦵'},{t:'Feet',e:'🦶'},{t:'Toes',e:'🦶'}]
 };
 
-// 30 Shapes
-const shapesData = [];
-const shapeNames = ['Circle','Square','Triangle','Rectangle','Star','Heart','Oval','Diamond','Pentagon','Hexagon'];
-const shapeColors = ['#FFCDD2','#BBDEFB','#C8E6C9','#FFF9C4','#F8BBD0','#FFE082','#D1C4E9','#B2EBF2','#FFCCBC','#CFD8DC'];
-for(let i=0; i<30; i++) {
-  let type = i % 6; let color = shapeColors[i % 10];
-  let svg = '';
-  if(type===0) svg = `<circle cx="50" cy="50" r="40" fill="${color}" stroke="#333" stroke-width="4"/>`;
-  else if(type===1) svg = `<rect x="15" y="15" width="70" height="70" fill="${color}" stroke="#333" stroke-width="4"/>`;
-  else if(type===2) svg = `<polygon points="50,15 90,85 10,85" fill="${color}" stroke="#333" stroke-width="4"/>`;
-  else if(type===3) svg = `<rect x="10" y="25" width="80" height="50" fill="${color}" stroke="#333" stroke-width="4"/>`;
-  else if(type===4) svg = `<polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="${color}" stroke="#333" stroke-width="4"/>`;
-  else if(type===5) svg = `<path d="M50,85 C10,50 10,20 30,15 C45,10 50,25 50,25 C50,25 55,10 70,15 C90,20 90,50 50,85" fill="${color}" stroke="#333" stroke-width="4"/>`;
-  shapesData.push({svg: svg, name: shapeNames[type] + ' ' + (Math.floor(i/6)+1)});
-}
+// 30 UNIQUE Shapes
+const shapesData = [
+  {n:'Circle', svg:`<circle cx="50" cy="50" r="40" fill="#FFCDD2" stroke="#E53935" stroke-width="5"/>`},
+  {n:'Square', svg:`<rect x="15" y="15" width="70" height="70" fill="#BBDEFB" stroke="#1E88E5" stroke-width="5"/>`},
+  {n:'Triangle', svg:`<polygon points="50,15 90,85 10,85" fill="#C8E6C9" stroke="#43A047" stroke-width="5"/>`},
+  {n:'Rectangle', svg:`<rect x="10" y="25" width="80" height="50" fill="#FFF9C4" stroke="#FDD835" stroke-width="5"/>`},
+  {n:'Star', svg:`<polygon points="50,10 61,40 93,40 67,58 76,88 50,70 24,88 33,58 7,40 39,40" fill="#F8BBD0" stroke="#D81B60" stroke-width="5"/>`},
+  {n:'Heart', svg:`<path d="M50,85 C10,50 10,20 30,15 C45,10 50,25 50,25 C50,25 55,10 70,15 C90,20 90,50 50,85" fill="#FFE082" stroke="#FFB300" stroke-width="5"/>`},
+  {n:'Oval', svg:`<ellipse cx="50" cy="50" rx="40" ry="25" fill="#D1C4E9" stroke="#5E35B1" stroke-width="5"/>`},
+  {n:'Diamond', svg:`<polygon points="50,10 90,50 50,90 10,50" fill="#B2EBF2" stroke="#00838F" stroke-width="5"/>`},
+  {n:'Pentagon', svg:`<polygon points="50,10 90,40 75,90 25,90 10,40" fill="#FFCCBC" stroke="#D84315" stroke-width="5"/>`},
+  {n:'Hexagon', svg:`<polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="#CFD8DC" stroke="#546E7A" stroke-width="5"/>`},
+  {n:'Heptagon', svg:`<polygon points="50,10 80,25 95,55 75,85 25,85 5,55 20,25" fill="#DCEDC8" stroke="#689F38" stroke-width="5"/>`},
+  {n:'Octagon', svg:`<polygon points="30,10 70,10 90,30 90,70 70,90 30,90 10,70 10,30" fill="#F0F4C3" stroke="#AFB42B" stroke-width="5"/>`},
+  {n:'Crescent', svg:`<path d="M50,10 A40,40 0 1,0 90,50 A30,30 0 1,1 50,10" fill="#FFF59D" stroke="#FBC02D" stroke-width="5"/>`},
+  {n:'Cross', svg:`<polygon points="35,10 65,10 65,35 90,35 90,65 65,65 65,90 35,90 35,65 10,65 10,35 35,35" fill="#FFCDD2" stroke="#C62828" stroke-width="5"/>`},
+  {n:'Arrow', svg:`<polygon points="10,40 60,40 60,20 90,50 60,80 60,60 10,60" fill="#B3E5FC" stroke="#0277BD" stroke-width="5"/>`},
+  {n:'Semicircle', svg:`<path d="M10,50 A40,40 0 0,1 90,50 Z" fill="#D7CCC8" stroke="#4E342E" stroke-width="5"/>`},
+  {n:'Trapezoid', svg:`<polygon points="25,20 75,20 95,80 5,80" fill="#F8BBD0" stroke="#AD1457" stroke-width="5"/>`},
+  {n:'Parallelogram', svg:`<polygon points="25,20 95,20 75,80 5,80" fill="#C5CAE9" stroke="#283593" stroke-width="5"/>`},
+  {n:'Rhombus', svg:`<polygon points="50,10 85,50 50,90 15,50" fill="#B2DFDB" stroke="#00695C" stroke-width="5"/>`},
+  {n:'Kite', svg:`<polygon points="50,10 85,40 50,90 15,40" fill="#FFE0B2" stroke="#E65100" stroke-width="5"/>`},
+  {n:'Pie', svg:`<path d="M50,50 L90,50 A40,40 0 0,1 50,90 Z" fill="#F48FB1" stroke="#880E4F" stroke-width="5"/>`},
+  {n:'Ring', svg:`<circle cx="50" cy="50" r="40" fill="none" stroke="#FFB300" stroke-width="15"/>`},
+  {n:'Squircle', svg:`<rect x="15" y="15" width="70" height="70" rx="20" fill="#A5D6A7" stroke="#2E7D32" stroke-width="5"/>`},
+  {n:'Cloud', svg:`<path d="M30,60 Q10,60 10,45 Q10,30 30,30 Q35,15 55,15 Q75,15 80,30 Q95,30 95,45 Q95,60 80,60 Z" fill="#E1F5FE" stroke="#0288D1" stroke-width="5"/>`},
+  {n:'Sun', svg:`<circle cx="50" cy="50" r="20" fill="#FFCA28" stroke="#FF8F00" stroke-width="4"/><path d="M50 5 L50 20 M50 80 L50 95 M5 50 L20 50 M80 50 L95 50 M18 18 L30 30 M70 70 L82 82 M18 82 L30 70 M70 30 L82 18" stroke="#FF8F00" stroke-width="5" stroke-linecap="round"/>`},
+  {n:'Moon', svg:`<path d="M50,10 A40,40 0 1,0 90,50 A30,30 0 1,1 50,10" fill="#E0E0E0" stroke="#757575" stroke-width="5"/>`},
+  {n:'Drop', svg:`<path d="M50,10 C50,10 15,50 15,70 A35,35 0 0,0 85,70 C85,50 50,10 50,10" fill="#81D4FA" stroke="#0277BD" stroke-width="5"/>`},
+  {n:'Leaf', svg:`<path d="M10,90 Q50,90 90,10 Q50,50 10,90" fill="#AED581" stroke="#33691E" stroke-width="5"/>`},
+  {n:'Arrow Right', svg:`<polygon points="20,40 60,40 60,20 90,50 60,80 60,60 20,60" fill="#FFCC80" stroke="#E65100" stroke-width="5"/>`}
+];
 
-// Counting, Addition, Subtraction (50 each)
+// Math Data
 const mathData = { counting: [], add: [], sub: [] };
-for(let i=0; i<50; i++) {
+for(let i=0; i<20; i++) {
   mathData.counting.push({e: ['🍎','⭐','🐶','🎈','🍌','🚗','🌸','🐱','🧸','🍩'][i%10], count: (i%10)+1});
+}
+for(let i=0; i<50; i++) {
   let a = (i%10)+1; let b = (Math.floor(i/10)%5)+1;
   mathData.add.push({a, b, sum:a+b, e1:'🍎', e2:'⭐'});
   let c = (i%10)+5; let d = (Math.floor(i/10)%5)+1;
   mathData.sub.push({a:c, b:d, sum:c-d, e1:'🎈', e2:'🐶'});
 }
 
-// Exam Data
 const examData = [
   {q:'Which letter comes after A?', opts:['B','C','D'], a:'B'},
   {q:'What is 2 + 2?', opts:['3','4','5'], a:'4'},
@@ -303,36 +326,34 @@ function loadTopic(topic, el) {
     content.innerHTML = html;
   }
   else if (topic === '1-50 Numbers') {
-    let html = '<h1 class="page-title">🔢 Numbers 1 to 50</h1><p class="page-desc">Tap to listen.</p><div class="grid-3d">';
+    let html = '<h1 class="page-title">🔢 Numbers 1 to 50</h1><p class="page-desc">Tap to listen.</p><div class="num-grid">';
     for (let i = 1; i <= 50; i++) {
-      html += `<div class="card-3d c${i%6}" onclick="speak('${i}'); addStar();">
-        <div style="font-size:2.5rem; font-weight:900; color:var(--primary-dark);">${i}</div>
-      </div>`;
+      html += `<div class="num-box" onclick="speak('${i}'); addStar();">${i}</div>`;
     }
     html += '</div>';
     content.innerHTML = html;
   }
   else if (topic === 'Tables') {
-    let html = '<h1 class="page-title">✖️ Tables 1 to 10</h1><p class="page-desc">Tap a table to learn.</p><div class="grid-3d">';
-    for (let n = 1; n <= 10; n++) {
+    let html = '<h1 class="page-title">✖️ Tables 1 to 30</h1><p class="page-desc">Tap a table to learn.</p><div class="grid-3d">';
+    for (let n = 1; n <= 30; n++) {
       html += `<div class="card-3d c${n%6}" onclick="loadTable(${n})"><div class="emoji">🔢</div><div class="text">Table of ${n}</div></div>`;
     }
     html += '</div>';
     content.innerHTML = html;
   }
   else if (topic === 'Shapes') {
-    let html = '<h1 class="page-title">Shapes (30)</h1><p class="page-desc">Tap to learn.</p><div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:20px;">';
+    let html = '<h1 class="page-title">30 Shapes</h1><p class="page-desc">Tap to learn.</p><div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:20px;">';
     shapesData.forEach((s, idx) => {
-      html += `<div class="card-3d c${idx%6}" onclick="speak('${s.name}'); addStar();">
+      html += `<div class="card-3d c${idx%6}" onclick="speak('${s.n}'); addStar();">
         <svg width="70" height="70" viewBox="0 0 100 100">${s.svg}</svg>
-        <div class="text" style="margin-top:10px; font-size:0.9rem;">${s.name}</div>
+        <div class="text" style="margin-top:10px; font-size:0.9rem;">${s.n}</div>
       </div>`;
     });
     html += '</div>';
     content.innerHTML = html;
   }
   else if (topic === 'Counting') {
-    let html = '<h1 class="page-title">Object Counting (50)</h1><p class="page-desc">Count and type the number.</p><div class="workbook-grid">';
+    let html = '<h1 class="page-title">Object Counting (20)</h1><p class="page-desc">Count and type the number.</p><div class="workbook-grid">';
     mathData.counting.forEach((item, idx) => {
       html += `<div class="wb-card">
         <div style="font-size:1.8rem; letter-spacing:5px; margin-bottom:15px; word-break:break-all;">${item.e.repeat(item.count)}</div>
