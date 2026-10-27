@@ -1895,6 +1895,120 @@ loadTopic = function(subjectName, topicId) {
       `).join('')}
     </div>`;
   }
+  // =========================================
+// CLASS 3 - 3-DIGIT ADDITION & SUBTRACTION
+// =========================================
+
+// 1. Data Generator for 3-Digit Addition (30 Questions)
+function generateC3_3DigitAdd() {
+  const arr = [];
+  for (let i = 0; i < 30; i++) {
+    let a = Math.floor(Math.random() * 500) + 100; // 100 to 599
+    let b = Math.floor(Math.random() * 400) + 100; // 100 to 499
+    arr.push({ a: a, b: b, ans: a + b });
+  }
+  return arr;
+}
+
+// 2. Data Generator for 3-Digit Subtraction (30 Questions)
+function generateC3_3DigitSub() {
+  const arr = [];
+  for (let i = 0; i < 30; i++) {
+    let a = Math.floor(Math.random() * 500) + 300; // 300 to 799
+    let b = Math.floor(Math.random() * 200) + 100; // 100 to 299
+    arr.push({ a: a, b: b, ans: a - b });
+  }
+  return arr;
+}
+
+// =========================================
+// INJECT NEW TOPICS INTO CLASS 3 MATHS
+// =========================================
+if(contentData['class3']) {
+  const mathSub = contentData['class3'].subjects.find(s => s.name === 'Maths');
+  if(mathSub) {
+    // Naye topics add karna (Nursery, Jr, Sr, ya Class 1/2 ka kuch delete nahi hoga)
+    if(!mathSub.topics.find(t => t.id === 'c3_3digit_add')) {
+      mathSub.topics.push(
+        {id: 'c3_3digit_add', title: '3-Digit Addition (30 Q)', type: 'c3_3digit_math', data: generateC3_3DigitAdd(), op: '+'},
+        {id: 'c3_3digit_sub', title: '3-Digit Subtraction (30 Q)', type: 'c3_3digit_math', data: generateC3_3DigitSub(), op: '-'}
+      );
+    }
+  }
+}
+
+// =========================================
+// RENDER LOGIC & CSS FOR 3-DIGIT MATHS
+// =========================================
+const c3_3DigitStyle = document.createElement('style');
+c3_3DigitStyle.innerHTML = `
+  .math-3d-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px; }
+  
+  /* Image jaisa colorful box design */
+  .math-3d-card { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    border: 3px solid #ccc; 
+    border-radius: 15px; 
+    padding: 20px 10px; 
+    background: #fff; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  
+  /* Different border colors for a colorful look */
+  .math-3d-card:nth-child(4n+1) { border-color: #FF3B30; background: #FFF0F0; }
+  .math-3d-card:nth-child(4n+2) { border-color: #007AFF; background: #F0F8FF; }
+  .math-3d-card:nth-child(4n+3) { border-color: #34C759; background: #F0FFF4; }
+  .math-3d-card:nth-child(4n+4) { border-color: #FF9500; background: #FFF8F0; }
+
+  .math-3d-row { font-size: 1.8rem; font-weight: 800; color: #333; letter-spacing: 2px; line-height: 1.2; text-align: right; font-family: monospace; }
+  .math-3d-line { width: 80%; height: 3px; background: #333; margin: 10px 0; border-radius: 2px; }
+  .math-3d-input { width: 100px; height: 50px; font-size: 1.8rem; font-weight: 800; text-align: center; border: 2px solid #333; border-radius: 8px; outline: none; font-family: monospace; }
+  .math-3d-input.correct { border-color: #34C759; background: #d8fff0; color: #08764d; }
+  
+  @media (max-width: 768px) {
+    .math-3d-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+`;
+document.head.appendChild(c3_3DigitStyle);
+
+// Render logic
+const prevLoadTopicC3Math = loadTopic;
+loadTopic = function(subjectName, topicId) {
+  prevLoadTopicC3Math(subjectName, topicId);
+  
+  const sub = contentData[currentClass].subjects.find(s => s.name === subjectName);
+  const topic = sub.topics.find(t => t.id === topicId);
+
+  if (topic.type === 'c3_3digit_math') {
+    content.innerHTML = `<h1>${topic.title}</h1><p>Solve the problems.</p>
+    <div class="math-3d-grid">
+      ${topic.data.map((item, index) => `
+        <div class="math-3d-card">
+          <div class="math-3d-row">${item.a}</div>
+          <div class="math-3d-row">${topic.op} ${item.b}</div>
+          <div class="math-3d-line"></div>
+          <input type="number" class="math-3d-input" id="m3d-${index}" oninput="check3DigitMath(${index}, ${item.ans})" placeholder="?">
+        </div>
+      `).join('')}
+    </div>`;
+  }
+};
+
+// Logic to check answer
+function check3DigitMath(index, correctAns) {
+  const input = document.getElementById(`m3d-${index}`);
+  if(parseInt(input.value) === correctAns) {
+    input.classList.add('correct'); 
+    input.disabled = true; 
+    addStar(); 
+    speak('Correct!');
+  } else { 
+    input.classList.remove('correct'); 
+  }
+}
 };
 // =========================================
 // Initialize App
